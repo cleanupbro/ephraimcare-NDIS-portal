@@ -10,16 +10,16 @@ See: .planning/PROJECT.md (updated 2026-01-24)
 ## Current Position
 
 Phase: 2 of 13 (Participant Management)
-Plan: 3 of 5 in current phase (02-02 in parallel)
+Plan: 3 of 5 in current phase
 Status: In progress
-Last activity: 2026-01-24 -- Completed 02-03-PLAN.md (Multi-step Create Form)
+Last activity: 2026-01-24 -- Completed 02-02-PLAN.md (Participant List Page)
 
-Progress: [███░░░░░░░] 12%
+Progress: [████░░░░░░] 14%
 
 ## Performance Metrics
 
 **Velocity:**
-- Total plans completed: 11 (Phase 1: 9, Phase 2: 2)
+- Total plans completed: 12 (Phase 1: 9, Phase 2: 3)
 - Average duration: --
 - Total execution time: --
 
@@ -28,7 +28,7 @@ Progress: [███░░░░░░░] 12%
 | Phase | Plans | Total | Avg/Plan |
 |-------|-------|-------|----------|
 | 1 | 9/9 | -- | -- |
-| 2 | 2/5 | -- | -- |
+| 2 | 3/5 | -- | -- |
 
 **Recent Trend:**
 - Last 5 plans: --
@@ -50,10 +50,13 @@ Recent decisions affecting current work:
 - Per-step independent useForm instances (not shared FormProvider) for React 19 compatibility
 - Supabase inserts use type assertions (as any) due to postgrest-js v12 Generic type resolution issue
 - Dedicated hook files for form needs (use-check-ndis.ts, use-create-participant.ts) to avoid conflicts with parallel plan 02-02
+- use-participants.ts re-exports from sibling hook files (single import point for consumers)
+- useDeferredValue for search debounce (React 19 native pattern, no external lib)
+- Server-side initial fetch + client TanStack Query for list pages (SSR first paint + client interactivity)
 
 ### Pending Todos
 
-- Consolidate hooks: After 02-02 completes, consider merging use-check-ndis.ts and use-create-participant.ts into use-participants.ts
+- Hook consolidation complete: use-participants.ts re-exports from use-check-ndis.ts and use-create-participant.ts
 
 ### Blockers/Concerns
 
@@ -62,7 +65,7 @@ None.
 ## Session Continuity
 
 Last session: 2026-01-24
-Stopped at: Completed 02-03-PLAN.md (Multi-step Create Form)
+Stopped at: Completed 02-02-PLAN.md (Participant List Page)
 Resume file: None
 
 ## Phase Progress
@@ -70,7 +73,7 @@ Resume file: None
 | Phase | Name | Status | Plans |
 |-------|------|--------|-------|
 | 1 | Foundation | Complete | 9/9 |
-| 2 | Participant Management | In Progress | 2/5 |
+| 2 | Participant Management | In Progress | 3/5 |
 | 3 | Worker Management | Pending | 0/0 |
 | 4 | Shift Scheduling | Pending | 0/0 |
 | 5 | Worker Mobile App | Pending | 0/0 |
@@ -93,3 +96,4 @@ Resume file: None
 | 2026-01-24 | Phase 1 UAT | 12/12 tests passed, no issues |
 | 2026-01-24 | Phase 2 Plan 01 executed | Schemas + DataTable + 15 UI components installed |
 | 2026-01-24 | Phase 2 Plan 03 executed | Multi-step form, Zustand store, NDIS check, DB types fixed |
+| 2026-01-24 | Phase 2 Plan 02 executed | Participant list page, query hooks, search/filter, DataTable |
