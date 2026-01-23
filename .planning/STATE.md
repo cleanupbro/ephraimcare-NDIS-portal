@@ -10,16 +10,16 @@ See: .planning/PROJECT.md (updated 2026-01-24)
 ## Current Position
 
 Phase: 2 of 13 (Participant Management)
-Plan: 3 of 5 in current phase
+Plan: 4 of 5 in current phase
 Status: In progress
-Last activity: 2026-01-24 -- Completed 02-02-PLAN.md (Participant List Page)
+Last activity: 2026-01-24 -- Completed 02-04-PLAN.md (Participant Detail Page)
 
-Progress: [████░░░░░░] 14%
+Progress: [█████░░░░░] 17%
 
 ## Performance Metrics
 
 **Velocity:**
-- Total plans completed: 12 (Phase 1: 9, Phase 2: 3)
+- Total plans completed: 13 (Phase 1: 9, Phase 2: 4)
 - Average duration: --
 - Total execution time: --
 
@@ -28,7 +28,7 @@ Progress: [████░░░░░░] 14%
 | Phase | Plans | Total | Avg/Plan |
 |-------|-------|-------|----------|
 | 1 | 9/9 | -- | -- |
-| 2 | 3/5 | -- | -- |
+| 2 | 4/5 | -- | -- |
 
 **Recent Trend:**
 - Last 5 plans: --
@@ -53,6 +53,9 @@ Recent decisions affecting current work:
 - use-participants.ts re-exports from sibling hook files (single import point for consumers)
 - useDeferredValue for search debounce (React 19 native pattern, no external lib)
 - Server-side initial fetch + client TanStack Query for list pages (SSR first paint + client interactivity)
+- Custom amber badge class for plan countdown (avoids adding variant to shared Badge component)
+- plan_budgets queried with (as any) type assertion due to missing PostgREST type mapping
+- Budget bar caps at 100% display even when overspent (Math.min)
 
 ### Pending Todos
 
@@ -65,7 +68,7 @@ None.
 ## Session Continuity
 
 Last session: 2026-01-24
-Stopped at: Completed 02-02-PLAN.md (Participant List Page)
+Stopped at: Completed 02-04-PLAN.md (Participant Detail Page)
 Resume file: None
 
 ## Phase Progress
@@ -73,7 +76,7 @@ Resume file: None
 | Phase | Name | Status | Plans |
 |-------|------|--------|-------|
 | 1 | Foundation | Complete | 9/9 |
-| 2 | Participant Management | In Progress | 3/5 |
+| 2 | Participant Management | In Progress | 4/5 |
 | 3 | Worker Management | Pending | 0/0 |
 | 4 | Shift Scheduling | Pending | 0/0 |
 | 5 | Worker Mobile App | Pending | 0/0 |
@@ -97,3 +100,4 @@ Resume file: None
 | 2026-01-24 | Phase 2 Plan 01 executed | Schemas + DataTable + 15 UI components installed |
 | 2026-01-24 | Phase 2 Plan 03 executed | Multi-step form, Zustand store, NDIS check, DB types fixed |
 | 2026-01-24 | Phase 2 Plan 02 executed | Participant list page, query hooks, search/filter, DataTable |
+| 2026-01-24 | Phase 2 Plan 04 executed | Detail page, budget progress bar, plan countdown badge |
