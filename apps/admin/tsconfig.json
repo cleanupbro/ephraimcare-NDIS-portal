@@ -1,0 +1,38 @@
+{
+  "extends": "../../tsconfig.base.json",
+  "compilerOptions": {
+    "plugins": [
+      {
+        "name": "next"
+      }
+    ],
+    "paths": {
+      "@/*": [
+        "./*"
+      ],
+      "@ephraimcare/ui/*": [
+        "../../packages/ui/src/*"
+      ],
+      "@ephraimcare/utils/*": [
+        "../../packages/utils/src/*"
+      ],
+      "@ephraimcare/supabase/*": [
+        "../../packages/supabase/src/*"
+      ],
+      "@ephraimcare/types": [
+        "../../packages/types/src"
+      ]
+    },
+    "allowJs": true,
+    "jsx": "preserve"
+  },
+  "include": [
+    "next-env.d.ts",
+    "**/*.ts",
+    "**/*.tsx",
+    ".next/types/**/*.ts"
+  ],
+  "exclude": [
+    "node_modules"
+  ]
+}

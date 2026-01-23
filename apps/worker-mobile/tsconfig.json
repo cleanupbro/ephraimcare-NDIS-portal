@@ -1,0 +1,21 @@
+{
+  "extends": "expo/tsconfig.base",
+  "compilerOptions": {
+    "strict": true,
+    "paths": {
+      "@/*": [
+        "./*"
+      ],
+      "@ephraimcare/utils/*": [
+        "../../packages/utils/src/*"
+      ],
+      "@ephraimcare/types": [
+        "../../packages/types/src"
+      ]
+    }
+  },
+  "include": [
+    "**/*.ts",
+    "**/*.tsx"
+  ]
+}

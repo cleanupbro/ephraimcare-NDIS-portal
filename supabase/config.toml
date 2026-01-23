@@ -1,0 +1,26 @@
+# Project ref is managed via `supabase link`
+
+[api]
+port = 54321
+schemas = ["public", "audit"]
+extra_search_path = ["public", "extensions"]
+max_rows = 1000
+
+[db]
+port = 54322
+major_version = 15
+
+[studio]
+port = 54323
+
+[auth]
+site_url = "http://localhost:3000"
+additional_redirect_urls = ["http://localhost:3000/**", "http://localhost:3001/**"]
+
+[auth.email]
+enable_signup = true
+double_confirm_changes = true
+enable_confirmations = false
+
+[storage]
+file_size_limit = "50MiB"

@@ -1,0 +1,31 @@
+{
+  "expo": {
+    "name": "Ephraim Care Worker",
+    "slug": "ephraimcare-worker",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "scheme": "ephraimcare-worker",
+    "platforms": ["ios", "android"],
+    "ios": {
+      "bundleIdentifier": "au.com.ephraimcare.worker",
+      "supportsTablet": false,
+      "infoPlist": {
+        "NSLocationWhenInUseUsageDescription": "We need your location to verify shift check-in at the participant's address."
+      }
+    },
+    "android": {
+      "package": "au.com.ephraimcare.worker",
+      "permissions": ["ACCESS_FINE_LOCATION", "ACCESS_COARSE_LOCATION"]
+    },
+    "plugins": [
+      "expo-router",
+      "expo-secure-store",
+      [
+        "expo-location",
+        {
+          "locationWhenInUsePermission": "We need your location to verify shift check-in at the participant's address."
+        }
+      ]
+    ]
+  }
+}

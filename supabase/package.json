@@ -1,0 +1,8 @@
+{
+  "name": "@ephraimcare/supabase-config",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "generate": "supabase gen types typescript --local > ../packages/types/src/database.ts"
+  }
+}

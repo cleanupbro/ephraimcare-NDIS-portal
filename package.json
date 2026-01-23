@@ -1,0 +1,24 @@
+{
+  "name": "ephraimcare-portal",
+  "private": true,
+  "scripts": {
+    "dev": "turbo run dev",
+    "build": "turbo run build",
+    "lint": "turbo run lint",
+    "test": "turbo run test",
+    "test:e2e": "turbo run test:e2e",
+    "typecheck": "turbo run typecheck",
+    "db:generate-types": "supabase gen types typescript --local > packages/types/src/database.ts",
+    "db:reset": "supabase db reset",
+    "db:migrate": "supabase migration up",
+    "db:seed": "supabase db reset --seed-only"
+  },
+  "devDependencies": {
+    "turbo": "^2.4.0",
+    "typescript": "^5.7.0"
+  },
+  "packageManager": "pnpm@9.15.0",
+  "engines": {
+    "node": ">=20.0.0"
+  }
+}

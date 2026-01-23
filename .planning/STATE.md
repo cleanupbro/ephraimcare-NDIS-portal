@@ -5,29 +5,29 @@
 See: .planning/PROJECT.md (updated 2026-01-24)
 
 **Core value:** Schedule shifts, track check-ins, generate invoices from actual hours worked
-**Current focus:** Ready to plan Phase 1 (Foundation)
+**Current focus:** Phase 1 complete, ready for Phase 2 (Participant Management)
 
 ## Current Position
 
-Phase: 1 of 13 (Foundation)
-Plan: 0 of 0 in current phase
-Status: Ready to plan
-Last activity: 2026-01-24 -- Roadmap created
+Phase: 2 of 13 (Participant Management)
+Plan: 0 of 5 in current phase
+Status: Planned (5 plans in 4 waves, verified)
+Last activity: 2026-01-24 -- Phase 2 planned and verified
 
-Progress: [░░░░░░░░░░] 0%
+Progress: [█░░░░░░░░░] 8%
 
 ## Performance Metrics
 
 **Velocity:**
-- Total plans completed: 0
+- Total plans completed: 9 (Phase 1)
 - Average duration: --
-- Total execution time: 0 hours
+- Total execution time: --
 
 **By Phase:**
 
 | Phase | Plans | Total | Avg/Plan |
 |-------|-------|-------|----------|
-| - | - | - | - |
+| 1 | 9/9 | -- | -- |
 
 **Recent Trend:**
 - Last 5 plans: --
@@ -42,27 +42,29 @@ Recent decisions affecting current work:
 
 - Foundation phase: RLS + audit trail + timezone handling MUST come before any feature work (cannot be retrofitted)
 - Build order: Shifts before mobile, invoicing before participant portal, screening before compliance dashboard
+- RLS helper functions use SECURITY DEFINER with COALESCE fallback (works without custom JWT hook enabled)
+- Cookie typing uses explicit CookieToSet[] for Supabase SSR v0.6.1 compatibility
 
 ### Pending Todos
 
-None yet.
+None.
 
 ### Blockers/Concerns
 
-None yet.
+None.
 
 ## Session Continuity
 
 Last session: 2026-01-24
-Stopped at: Roadmap and State files created, ready to plan Phase 1
+Stopped at: Phase 1 UAT complete (12/12 passed), ready for Phase 2
 Resume file: None
 
 ## Phase Progress
 
 | Phase | Name | Status | Plans |
 |-------|------|--------|-------|
-| 1 | Foundation | Pending | 0/0 |
-| 2 | Participant Management | Pending | 0/0 |
+| 1 | Foundation | Complete | 9/9 |
+| 2 | Participant Management | Planned | 0/5 |
 | 3 | Worker Management | Pending | 0/0 |
 | 4 | Shift Scheduling | Pending | 0/0 |
 | 5 | Worker Mobile App | Pending | 0/0 |
@@ -81,3 +83,5 @@ Resume file: None
 |------|--------|--------|
 | 2026-01-24 | Project initialized | PROJECT.md, config.json, research, REQUIREMENTS.md created |
 | 2026-01-24 | Roadmap created | 13 phases, 108 requirements mapped, ROADMAP.md + STATE.md written |
+| 2026-01-24 | Phase 1 built | Monorepo, migrations, auth, seed data, all pages, RLS fix |
+| 2026-01-24 | Phase 1 UAT | 12/12 tests passed, no issues |
