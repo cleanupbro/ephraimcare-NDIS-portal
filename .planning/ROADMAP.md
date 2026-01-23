@@ -61,7 +61,18 @@ This roadmap delivers a complete NDIS management platform across 13 phases, from
 4. All database tables have RLS policies and audit trail triggers firing on insert/update/delete
 5. Seed data script populates the database with test data that passes all constraint checks
 
-**Plans:** TBD
+**Plans:** 9 plans
+
+Plans:
+- [ ] 01-PLAN-01.md -- Monorepo scaffold (Turborepo + pnpm + 3 apps)
+- [ ] 01-PLAN-02.md -- Shared packages (types, supabase, utils, ui, config)
+- [ ] 01-PLAN-03.md -- Database schema migrations (15 migration files)
+- [ ] 01-PLAN-04.md -- RLS policies and auth hook permissions
+- [ ] 01-PLAN-05.md -- Auth system (login, reset password, RBAC, session timeout)
+- [ ] 01-PLAN-06.md -- Seed data (5 participants, 5 workers, 20 shifts, 2 invoices)
+- [ ] 01-PLAN-07.md -- Dashboard shell and branding (admin + participant portals)
+- [ ] 01-PLAN-08.md -- Testing infrastructure (Vitest + Playwright + initial tests)
+- [ ] 01-PLAN-09.md -- Integration verification and checkpoint
 
 ---
 
@@ -398,7 +409,7 @@ Note: Phases 2 and 3 can execute in parallel (both depend only on Phase 1).
 
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
-| 1. Foundation | 0/0 | Not started | - |
+| 1. Foundation | 0/9 | Planned | - |
 | 2. Participant Management | 0/0 | Not started | - |
 | 3. Worker Management | 0/0 | Not started | - |
 | 4. Shift Scheduling | 0/0 | Not started | - |
@@ -414,3 +425,4 @@ Note: Phases 2 and 3 can execute in parallel (both depend only on Phase 1).
 
 ---
 *Roadmap created: 2026-01-24*
+*Phase 1 planned: 2026-01-24*
