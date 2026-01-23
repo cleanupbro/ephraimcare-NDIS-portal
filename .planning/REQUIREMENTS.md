@@ -22,7 +22,7 @@
 - [ ] **PART-02**: Admin can create participant using multi-step form (basic info, plan details, contacts, support needs)
 - [ ] **PART-03**: Admin can view participant detail page with personal info, NDIS plan, contacts, support needs, quick stats
 - [ ] **PART-04**: Admin can edit participant details (except NDIS number and plan dates which are read-only)
-- [ ] **PART-05**: Admin can archive participant (soft delete — data preserved, hidden from active list)
+- [ ] **PART-05**: Admin can archive participant (soft delete -- data preserved, hidden from active list)
 - [ ] **PART-06**: Participant record shows budget used percentage (calculated from invoiced amounts)
 - [ ] **PART-07**: Participant record shows days until plan ends
 - [ ] **PART-08**: Form validation enforces required fields, date logic, and format checks
@@ -90,7 +90,7 @@
 - [ ] **INVC-05**: Invoice displays line items with date, service type, hours, rate, and line total
 - [ ] **INVC-06**: Invoice calculates GST at 10% on subtotal
 - [ ] **INVC-07**: Invoice receives unique sequential number in INV-YYYY-NNN format
-- [ ] **INVC-08**: Admin can approve/finalize invoice (status: draft → final)
+- [ ] **INVC-08**: Admin can approve/finalize invoice (status: draft to final)
 - [ ] **INVC-09**: Finalized invoices cannot be edited (locked)
 - [ ] **INVC-10**: Admin can configure support type hourly rates in settings page
 - [ ] **INVC-11**: Invoice exportable as PDF with Ephraim Care branding (logo, ABN, colors)
@@ -127,7 +127,7 @@
 ### Incident Management (INCD)
 
 - **INCD-01**: Worker or Admin can report incident with type, severity, description, and actions taken
-- **INCD-02**: Incident tracks lifecycle (open → in_review → closed)
+- **INCD-02**: Incident tracks lifecycle (open to in_review to closed)
 - **INCD-03**: System highlights incidents requiring NDIA reporting within 24 hours
 - **INCD-04**: Coordinator can mark incident as reported to NDIA with reference number
 - **INCD-05**: Incident list with filters by severity, status, type
@@ -204,35 +204,131 @@
 
 | Requirement | Phase | Status |
 |-------------|-------|--------|
-| AUTH-01 to AUTH-08 | Phase 1 | Pending |
-| PART-01 to PART-09 | Phase 1 | Pending |
-| WORK-01 to WORK-08 | Phase 1 | Pending |
-| SCRN-01 to SCRN-03 | Phase 1 | Pending |
-| SHFT-01 to SHFT-09 | Phase 1 | Pending |
-| MOBL-01 to MOBL-12 | Phase 1 | Pending |
-| NOTE-01 to NOTE-06 | Phase 1 | Pending |
-| INVC-01 to INVC-12 | Phase 1 | Pending |
-| PTPL-01 to PTPL-05 | Phase 1 | Pending |
-| NOTF-01 to NOTF-03 | Phase 1 | Pending |
-| INFR-01 to INFR-09 | Phase 1 | Pending |
-| INCD-01 to INCD-05 | Phase 2 | Pending |
-| COMP-01 to COMP-03 | Phase 2 | Pending |
-| PTPL-06 to PTPL-07 | Phase 2 | Pending |
-| AUTH-09 | Phase 2 | Pending |
-| SHFT-10 to SHFT-11 | Phase 2 | Pending |
-| REPT-01 to REPT-08 | Phase 3 | Pending |
-| EXPRT-01 to EXPRT-03 | Phase 3 | Pending |
-| SCALE-01 to SCALE-08 | Phase 4 | Pending |
+| AUTH-01 | Phase 1: Foundation | Pending |
+| AUTH-02 | Phase 1: Foundation | Pending |
+| AUTH-03 | Phase 1: Foundation | Pending |
+| AUTH-04 | Phase 3: Worker Management | Pending |
+| AUTH-05 | Phase 5: Worker Mobile App | Pending |
+| AUTH-06 | Phase 1: Foundation | Pending |
+| AUTH-07 | Phase 1: Foundation | Pending |
+| AUTH-08 | Phase 1: Foundation | Pending |
+| AUTH-09 | Phase 11: Compliance and Incidents | Pending |
+| PART-01 | Phase 2: Participant Management | Pending |
+| PART-02 | Phase 2: Participant Management | Pending |
+| PART-03 | Phase 2: Participant Management | Pending |
+| PART-04 | Phase 2: Participant Management | Pending |
+| PART-05 | Phase 2: Participant Management | Pending |
+| PART-06 | Phase 2: Participant Management | Pending |
+| PART-07 | Phase 2: Participant Management | Pending |
+| PART-08 | Phase 2: Participant Management | Pending |
+| PART-09 | Phase 2: Participant Management | Pending |
+| WORK-01 | Phase 3: Worker Management | Pending |
+| WORK-02 | Phase 3: Worker Management | Pending |
+| WORK-03 | Phase 3: Worker Management | Pending |
+| WORK-04 | Phase 3: Worker Management | Pending |
+| WORK-05 | Phase 3: Worker Management | Pending |
+| WORK-06 | Phase 3: Worker Management | Pending |
+| WORK-07 | Phase 3: Worker Management | Pending |
+| WORK-08 | Phase 3: Worker Management | Pending |
+| SCRN-01 | Phase 10: Worker Screening | Pending |
+| SCRN-02 | Phase 10: Worker Screening | Pending |
+| SCRN-03 | Phase 10: Worker Screening | Pending |
+| SHFT-01 | Phase 4: Shift Scheduling | Pending |
+| SHFT-02 | Phase 4: Shift Scheduling | Pending |
+| SHFT-03 | Phase 4: Shift Scheduling | Pending |
+| SHFT-04 | Phase 4: Shift Scheduling | Pending |
+| SHFT-05 | Phase 4: Shift Scheduling | Pending |
+| SHFT-06 | Phase 4: Shift Scheduling | Pending |
+| SHFT-07 | Phase 4: Shift Scheduling | Pending |
+| SHFT-08 | Phase 4: Shift Scheduling | Pending |
+| SHFT-09 | Phase 4: Shift Scheduling | Pending |
+| SHFT-10 | Phase 11: Compliance and Incidents | Pending |
+| SHFT-11 | Phase 11: Compliance and Incidents | Pending |
+| MOBL-01 | Phase 5: Worker Mobile App | Pending |
+| MOBL-02 | Phase 5: Worker Mobile App | Pending |
+| MOBL-03 | Phase 5: Worker Mobile App | Pending |
+| MOBL-04 | Phase 5: Worker Mobile App | Pending |
+| MOBL-05 | Phase 5: Worker Mobile App | Pending |
+| MOBL-06 | Phase 5: Worker Mobile App | Pending |
+| MOBL-07 | Phase 5: Worker Mobile App | Pending |
+| MOBL-08 | Phase 5: Worker Mobile App | Pending |
+| MOBL-09 | Phase 5: Worker Mobile App | Pending |
+| MOBL-10 | Phase 5: Worker Mobile App | Pending |
+| MOBL-11 | Phase 5: Worker Mobile App | Pending |
+| MOBL-12 | Phase 5: Worker Mobile App | Pending |
+| NOTE-01 | Phase 6: Case Notes | Pending |
+| NOTE-02 | Phase 6: Case Notes | Pending |
+| NOTE-03 | Phase 6: Case Notes | Pending |
+| NOTE-04 | Phase 6: Case Notes | Pending |
+| NOTE-05 | Phase 6: Case Notes | Pending |
+| NOTE-06 | Phase 6: Case Notes | Pending |
+| INVC-01 | Phase 7: Invoicing | Pending |
+| INVC-02 | Phase 7: Invoicing | Pending |
+| INVC-03 | Phase 7: Invoicing | Pending |
+| INVC-04 | Phase 7: Invoicing | Pending |
+| INVC-05 | Phase 7: Invoicing | Pending |
+| INVC-06 | Phase 7: Invoicing | Pending |
+| INVC-07 | Phase 7: Invoicing | Pending |
+| INVC-08 | Phase 7: Invoicing | Pending |
+| INVC-09 | Phase 7: Invoicing | Pending |
+| INVC-10 | Phase 7: Invoicing | Pending |
+| INVC-11 | Phase 7: Invoicing | Pending |
+| INVC-12 | Phase 7: Invoicing | Pending |
+| PTPL-01 | Phase 8: Participant Portal | Pending |
+| PTPL-02 | Phase 8: Participant Portal | Pending |
+| PTPL-03 | Phase 8: Participant Portal | Pending |
+| PTPL-04 | Phase 8: Participant Portal | Pending |
+| PTPL-05 | Phase 8: Participant Portal | Pending |
+| PTPL-06 | Phase 11: Compliance and Incidents | Pending |
+| PTPL-07 | Phase 11: Compliance and Incidents | Pending |
+| NOTF-01 | Phase 9: Notifications | Pending |
+| NOTF-02 | Phase 9: Notifications | Pending |
+| NOTF-03 | Phase 9: Notifications | Pending |
+| INFR-01 | Phase 1: Foundation | Pending |
+| INFR-02 | Phase 1: Foundation | Pending |
+| INFR-03 | Phase 1: Foundation | Pending |
+| INFR-04 | Phase 1: Foundation | Pending |
+| INFR-05 | Phase 1: Foundation | Pending |
+| INFR-06 | Phase 1: Foundation | Pending |
+| INFR-07 | Phase 1: Foundation | Pending |
+| INFR-08 | Phase 1: Foundation | Pending |
+| INFR-09 | Phase 1: Foundation | Pending |
+| INCD-01 | Phase 11: Compliance and Incidents | Pending |
+| INCD-02 | Phase 11: Compliance and Incidents | Pending |
+| INCD-03 | Phase 11: Compliance and Incidents | Pending |
+| INCD-04 | Phase 11: Compliance and Incidents | Pending |
+| INCD-05 | Phase 11: Compliance and Incidents | Pending |
+| COMP-01 | Phase 11: Compliance and Incidents | Pending |
+| COMP-02 | Phase 11: Compliance and Incidents | Pending |
+| COMP-03 | Phase 11: Compliance and Incidents | Pending |
+| REPT-01 | Phase 12: Reporting and Export | Pending |
+| REPT-02 | Phase 12: Reporting and Export | Pending |
+| REPT-03 | Phase 12: Reporting and Export | Pending |
+| REPT-04 | Phase 12: Reporting and Export | Pending |
+| REPT-05 | Phase 12: Reporting and Export | Pending |
+| REPT-06 | Phase 12: Reporting and Export | Pending |
+| REPT-07 | Phase 12: Reporting and Export | Pending |
+| REPT-08 | Phase 12: Reporting and Export | Pending |
+| EXPRT-01 | Phase 12: Reporting and Export | Pending |
+| EXPRT-02 | Phase 12: Reporting and Export | Pending |
+| EXPRT-03 | Phase 12: Reporting and Export | Pending |
+| SCALE-01 | Phase 13: Scale Features | Pending |
+| SCALE-02 | Phase 13: Scale Features | Pending |
+| SCALE-03 | Phase 13: Scale Features | Pending |
+| SCALE-04 | Phase 13: Scale Features | Pending |
+| SCALE-05 | Phase 13: Scale Features | Pending |
+| SCALE-06 | Phase 13: Scale Features | Pending |
+| SCALE-07 | Phase 13: Scale Features | Pending |
+| SCALE-08 | Phase 13: Scale Features | Pending |
 
 **Coverage:**
-- v1 requirements: 77 total
-- v2 requirements: 12 total
-- v3 requirements: 11 total
-- v4 requirements: 8 total
-- Total: 108 requirements
-- Mapped to phases: 108
+- v1 requirements: 77/77 mapped
+- v2 requirements: 12/12 mapped
+- v3 requirements: 11/11 mapped
+- v4 requirements: 8/8 mapped
+- Total: 108/108 requirements mapped
 - Unmapped: 0
 
 ---
 *Requirements defined: 2026-01-24*
-*Last updated: 2026-01-24 after initial definition*
+*Last updated: 2026-01-24 after roadmap creation (traceability updated with 13-phase structure)*
