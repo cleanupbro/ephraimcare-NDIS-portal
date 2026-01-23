@@ -2,7 +2,6 @@ import Link from 'next/link'
 import { notFound } from 'next/navigation'
 import { createClient } from '@/lib/supabase/server'
 import type { Participant } from '@ephraimcare/types'
-import { Card, CardContent } from '@ephraimcare/ui'
 import { ParticipantEditForm } from '@/components/participants/participant-edit-form'
 
 interface PageProps {
