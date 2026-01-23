@@ -1,9 +1,12 @@
 "use client"
 
+import Link from 'next/link'
 import { format, parseISO, differenceInYears } from 'date-fns'
+import { Pencil } from 'lucide-react'
 import type { Participant, NdisPlan, PlanBudget } from '@ephraimcare/types'
 import {
   Badge,
+  Button,
   Card,
   CardContent,
   CardHeader,
@@ -11,6 +14,7 @@ import {
 } from '@ephraimcare/ui'
 import { BudgetProgress } from './participant-budget'
 import { PlanCountdown } from './participant-plan-badge'
+import { ArchiveDialog } from './archive-dialog'
 
 interface ParticipantDetailProps {
   participant: Participant
@@ -75,10 +79,29 @@ export function ParticipantDetail({ participant, plan, budgets }: ParticipantDet
         </div>
         <div className="flex items-center gap-2">
           <PlanCountdown endDate={plan?.end_date ?? null} />
-          <Badge variant={participant.is_active ? 'default' : 'secondary'}>
-            {participant.is_active ? 'Active' : 'Inactive'}
-          </Badge>
+          {!participant.is_active && (
+            <Badge variant="destructive">Archived</Badge>
+          )}
+          {participant.is_active && (
+            <Badge variant="default">Active</Badge>
+          )}
         </div>
+      </div>
+
+      {/* Action Buttons */}
+      <div className="flex items-center gap-3">
+        <Button variant="outline" asChild>
+          <Link href={`/participants/${participant.id}/edit`}>
+            <Pencil className="mr-2 h-4 w-4" />
+            Edit
+          </Link>
+        </Button>
+        {participant.is_active && (
+          <ArchiveDialog
+            participantId={participant.id}
+            participantName={`${participant.first_name} ${participant.last_name}`}
+          />
+        )}
       </div>
 
       {/* NDIS Plan Section */}
