@@ -5,21 +5,21 @@
 See: .planning/PROJECT.md (updated 2026-01-24)
 
 **Core value:** Schedule shifts, track check-ins, generate invoices from actual hours worked
-**Current focus:** Phase 2 in progress (Participant Management)
+**Current focus:** Phase 2 complete (Participant Management). Ready for Phase 3.
 
 ## Current Position
 
 Phase: 2 of 13 (Participant Management)
-Plan: 4 of 5 in current phase
-Status: In progress
-Last activity: 2026-01-24 -- Completed 02-04-PLAN.md (Participant Detail Page)
+Plan: 5 of 5 in current phase
+Status: Phase complete
+Last activity: 2026-01-24 -- Completed 02-05-PLAN.md (Edit and Archive)
 
-Progress: [█████░░░░░] 17%
+Progress: [██████░░░░] 18%
 
 ## Performance Metrics
 
 **Velocity:**
-- Total plans completed: 13 (Phase 1: 9, Phase 2: 4)
+- Total plans completed: 14 (Phase 1: 9, Phase 2: 5)
 - Average duration: --
 - Total execution time: --
 
@@ -28,7 +28,7 @@ Progress: [█████░░░░░] 17%
 | Phase | Plans | Total | Avg/Plan |
 |-------|-------|-------|----------|
 | 1 | 9/9 | -- | -- |
-| 2 | 4/5 | -- | -- |
+| 2 | 5/5 | -- | -- |
 
 **Recent Trend:**
 - Last 5 plans: --
@@ -56,6 +56,10 @@ Recent decisions affecting current work:
 - Custom amber badge class for plan countdown (avoids adding variant to shared Badge component)
 - plan_budgets queried with (as any) type assertion due to missing PostgREST type mapping
 - Budget bar caps at 100% display even when overspent (Math.min)
+- participantEditSchema omits ndis_number (separate from participantFullSchema used for creation)
+- NDIS number shown as locked static text with Lock icon (not disabled input)
+- Edit available for both active and archived participants; Archive only for active
+- Type-to-confirm archive requires exact case-sensitive full name match
 
 ### Pending Todos
 
@@ -68,7 +72,7 @@ None.
 ## Session Continuity
 
 Last session: 2026-01-24
-Stopped at: Completed 02-04-PLAN.md (Participant Detail Page)
+Stopped at: Completed 02-05-PLAN.md (Edit and Archive) -- Phase 2 complete
 Resume file: None
 
 ## Phase Progress
@@ -76,7 +80,7 @@ Resume file: None
 | Phase | Name | Status | Plans |
 |-------|------|--------|-------|
 | 1 | Foundation | Complete | 9/9 |
-| 2 | Participant Management | In Progress | 4/5 |
+| 2 | Participant Management | Complete | 5/5 |
 | 3 | Worker Management | Pending | 0/0 |
 | 4 | Shift Scheduling | Pending | 0/0 |
 | 5 | Worker Mobile App | Pending | 0/0 |
@@ -101,3 +105,4 @@ Resume file: None
 | 2026-01-24 | Phase 2 Plan 03 executed | Multi-step form, Zustand store, NDIS check, DB types fixed |
 | 2026-01-24 | Phase 2 Plan 02 executed | Participant list page, query hooks, search/filter, DataTable |
 | 2026-01-24 | Phase 2 Plan 04 executed | Detail page, budget progress bar, plan countdown badge |
+| 2026-01-24 | Phase 2 Plan 05 executed | Edit form (read-only NDIS), archive dialog, detail actions |
