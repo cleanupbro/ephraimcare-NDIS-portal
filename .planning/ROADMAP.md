@@ -15,8 +15,8 @@ This roadmap delivers a complete NDIS management platform across 13 phases, from
 - Integer phases (1, 2, 3...): Planned milestone work
 - Decimal phases (2.1, 2.2): Urgent insertions (marked with INSERTED)
 
-- [ ] **Phase 1: Foundation** - Database schema, RLS policies, audit trail, monorepo scaffold, and auth
-- [ ] **Phase 2: Participant Management** - CRUD for participants with NDIS plan info and budget tracking
+- [x] **Phase 1: Foundation** - Database schema, RLS policies, audit trail, monorepo scaffold, and auth
+- [x] **Phase 2: Participant Management** - CRUD for participants with NDIS plan info and budget tracking
 - [ ] **Phase 3: Worker Management** - CRUD for workers with qualifications and screening checks
 - [ ] **Phase 4: Shift Scheduling** - Create, edit, cancel shifts with conflict detection and validation
 - [ ] **Phase 5: Worker Mobile App** - Check-in/out with GPS, shift views, live timer, and offline cache

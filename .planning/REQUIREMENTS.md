@@ -18,15 +18,15 @@
 
 ### Participant Management (PART)
 
-- [ ] **PART-01**: Admin can view list of all participants with search by name/NDIS number and filter by status
-- [ ] **PART-02**: Admin can create participant using multi-step form (basic info, plan details, contacts, support needs)
-- [ ] **PART-03**: Admin can view participant detail page with personal info, NDIS plan, contacts, support needs, quick stats
-- [ ] **PART-04**: Admin can edit participant details (except NDIS number and plan dates which are read-only)
-- [ ] **PART-05**: Admin can archive participant (soft delete -- data preserved, hidden from active list)
-- [ ] **PART-06**: Participant record shows budget used percentage (calculated from invoiced amounts)
-- [ ] **PART-07**: Participant record shows days until plan ends
-- [ ] **PART-08**: Form validation enforces required fields, date logic, and format checks
-- [ ] **PART-09**: NDIS number is unique and validated (6-7 digits format)
+- [x] **PART-01**: Admin can view list of all participants with search by name/NDIS number and filter by status
+- [x] **PART-02**: Admin can create participant using multi-step form (basic info, plan details, contacts, support needs)
+- [x] **PART-03**: Admin can view participant detail page with personal info, NDIS plan, contacts, support needs, quick stats
+- [x] **PART-04**: Admin can edit participant details (except NDIS number and plan dates which are read-only)
+- [x] **PART-05**: Admin can archive participant (soft delete -- data preserved, hidden from active list)
+- [x] **PART-06**: Participant record shows budget used percentage (calculated from invoiced amounts)
+- [x] **PART-07**: Participant record shows days until plan ends
+- [x] **PART-08**: Form validation enforces required fields, date logic, and format checks
+- [x] **PART-09**: NDIS number is unique and validated (6-7 digits format)
 
 ### Worker Management (WORK)
 
@@ -213,15 +213,15 @@
 | AUTH-07 | Phase 1: Foundation | Pending |
 | AUTH-08 | Phase 1: Foundation | Pending |
 | AUTH-09 | Phase 11: Compliance and Incidents | Pending |
-| PART-01 | Phase 2: Participant Management | Pending |
-| PART-02 | Phase 2: Participant Management | Pending |
-| PART-03 | Phase 2: Participant Management | Pending |
-| PART-04 | Phase 2: Participant Management | Pending |
-| PART-05 | Phase 2: Participant Management | Pending |
-| PART-06 | Phase 2: Participant Management | Pending |
-| PART-07 | Phase 2: Participant Management | Pending |
-| PART-08 | Phase 2: Participant Management | Pending |
-| PART-09 | Phase 2: Participant Management | Pending |
+| PART-01 | Phase 2: Participant Management | Complete |
+| PART-02 | Phase 2: Participant Management | Complete |
+| PART-03 | Phase 2: Participant Management | Complete |
+| PART-04 | Phase 2: Participant Management | Complete |
+| PART-05 | Phase 2: Participant Management | Complete |
+| PART-06 | Phase 2: Participant Management | Complete |
+| PART-07 | Phase 2: Participant Management | Complete |
+| PART-08 | Phase 2: Participant Management | Complete |
+| PART-09 | Phase 2: Participant Management | Complete |
 | WORK-01 | Phase 3: Worker Management | Pending |
 | WORK-02 | Phase 3: Worker Management | Pending |
 | WORK-03 | Phase 3: Worker Management | Pending |
