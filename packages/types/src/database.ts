@@ -51,6 +51,7 @@ export interface Database {
           is_active?: boolean
           updated_at?: string
         }
+        Relationships: []
       }
       participants: {
         Row: {
@@ -77,8 +78,62 @@ export interface Database {
           created_at: string
           updated_at: string
         }
-        Insert: Omit<Database['public']['Tables']['participants']['Row'], 'id' | 'created_at' | 'updated_at'> & { id?: string; created_at?: string; updated_at?: string }
-        Update: Partial<Database['public']['Tables']['participants']['Row']>
+        Insert: {
+          id?: string
+          profile_id?: string | null
+          ndis_number: string
+          first_name: string
+          last_name: string
+          date_of_birth?: string | null
+          phone?: string | null
+          email?: string | null
+          address_line_1?: string | null
+          address_line_2?: string | null
+          suburb?: string | null
+          state?: string
+          postcode?: string | null
+          latitude?: number | null
+          longitude?: number | null
+          emergency_contact_name?: string | null
+          emergency_contact_phone?: string | null
+          notes?: string | null
+          organization_id: string
+          is_active?: boolean
+          created_at?: string
+          updated_at?: string
+        }
+        Update: {
+          id?: string
+          profile_id?: string | null
+          ndis_number?: string
+          first_name?: string
+          last_name?: string
+          date_of_birth?: string | null
+          phone?: string | null
+          email?: string | null
+          address_line_1?: string | null
+          address_line_2?: string | null
+          suburb?: string | null
+          state?: string
+          postcode?: string | null
+          latitude?: number | null
+          longitude?: number | null
+          emergency_contact_name?: string | null
+          emergency_contact_phone?: string | null
+          notes?: string | null
+          organization_id?: string
+          is_active?: boolean
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: 'participants_organization_id_fkey'
+            columns: ['organization_id']
+            isOneToOne: false
+            referencedRelation: 'organizations'
+            referencedColumns: ['id']
+          },
+        ]
       }
       workers: {
         Row: {
@@ -94,8 +149,32 @@ export interface Database {
           created_at: string
           updated_at: string
         }
-        Insert: Omit<Database['public']['Tables']['workers']['Row'], 'id' | 'created_at' | 'updated_at'> & { id?: string; created_at?: string; updated_at?: string }
-        Update: Partial<Database['public']['Tables']['workers']['Row']>
+        Insert: {
+          id?: string
+          profile_id: string
+          employee_id?: string | null
+          qualification?: string[]
+          services_provided?: string[]
+          hourly_rate?: number | null
+          max_hours_per_week?: number
+          organization_id: string
+          is_active?: boolean
+          created_at?: string
+          updated_at?: string
+        }
+        Update: {
+          id?: string
+          profile_id?: string
+          employee_id?: string | null
+          qualification?: string[]
+          services_provided?: string[]
+          hourly_rate?: number | null
+          max_hours_per_week?: number
+          organization_id?: string
+          is_active?: boolean
+          updated_at?: string
+        }
+        Relationships: []
       }
       shifts: {
         Row: {
@@ -119,8 +198,48 @@ export interface Database {
           created_at: string
           updated_at: string
         }
-        Insert: Omit<Database['public']['Tables']['shifts']['Row'], 'id' | 'created_at' | 'updated_at' | 'status'> & { id?: string; status?: string; created_at?: string; updated_at?: string }
-        Update: Partial<Database['public']['Tables']['shifts']['Row']>
+        Insert: {
+          id?: string
+          participant_id: string
+          worker_id: string
+          service_agreement_item_id?: string | null
+          scheduled_start: string
+          scheduled_end: string
+          actual_start?: string | null
+          actual_end?: string | null
+          status?: string
+          check_in_latitude?: number | null
+          check_in_longitude?: number | null
+          check_out_latitude?: number | null
+          check_out_longitude?: number | null
+          cancellation_reason?: string | null
+          notes?: string | null
+          organization_id: string
+          created_by?: string | null
+          created_at?: string
+          updated_at?: string
+        }
+        Update: {
+          id?: string
+          participant_id?: string
+          worker_id?: string
+          service_agreement_item_id?: string | null
+          scheduled_start?: string
+          scheduled_end?: string
+          actual_start?: string | null
+          actual_end?: string | null
+          status?: string
+          check_in_latitude?: number | null
+          check_in_longitude?: number | null
+          check_out_latitude?: number | null
+          check_out_longitude?: number | null
+          cancellation_reason?: string | null
+          notes?: string | null
+          organization_id?: string
+          created_by?: string | null
+          updated_at?: string
+        }
+        Relationships: []
       }
       invoices: {
         Row: {
@@ -141,8 +260,91 @@ export interface Database {
           created_at: string
           updated_at: string
         }
-        Insert: Omit<Database['public']['Tables']['invoices']['Row'], 'id' | 'created_at' | 'updated_at' | 'invoice_number'> & { id?: string; invoice_number?: string; created_at?: string; updated_at?: string }
-        Update: Partial<Database['public']['Tables']['invoices']['Row']>
+        Insert: {
+          id?: string
+          invoice_number?: string
+          participant_id: string
+          plan_id?: string | null
+          invoice_date: string
+          due_date?: string | null
+          subtotal: number
+          gst?: number
+          total: number
+          status?: string
+          payment_reference?: string | null
+          notes?: string | null
+          organization_id: string
+          created_by?: string | null
+          created_at?: string
+          updated_at?: string
+        }
+        Update: {
+          id?: string
+          invoice_number?: string
+          participant_id?: string
+          plan_id?: string | null
+          invoice_date?: string
+          due_date?: string | null
+          subtotal?: number
+          gst?: number
+          total?: number
+          status?: string
+          payment_reference?: string | null
+          notes?: string | null
+          organization_id?: string
+          created_by?: string | null
+          updated_at?: string
+        }
+        Relationships: []
+      }
+      ndis_plans: {
+        Row: {
+          id: string
+          participant_id: string
+          plan_number: string | null
+          start_date: string
+          end_date: string
+          total_budget: number
+          used_budget: number
+          status: string
+          organization_id: string | null
+          created_at: string
+          updated_at: string
+        }
+        Insert: {
+          id?: string
+          participant_id: string
+          plan_number?: string | null
+          start_date: string
+          end_date: string
+          total_budget: number
+          used_budget?: number
+          status?: string
+          organization_id?: string | null
+          created_at?: string
+          updated_at?: string
+        }
+        Update: {
+          id?: string
+          participant_id?: string
+          plan_number?: string | null
+          start_date?: string
+          end_date?: string
+          total_budget?: number
+          used_budget?: number
+          status?: string
+          organization_id?: string | null
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: 'ndis_plans_participant_id_fkey'
+            columns: ['participant_id']
+            isOneToOne: false
+            referencedRelation: 'participants'
+            referencedColumns: ['id']
+          },
+        ]
       }
       case_notes: {
         Row: {
@@ -162,8 +364,40 @@ export interface Database {
           created_at: string
           updated_at: string
         }
-        Insert: Omit<Database['public']['Tables']['case_notes']['Row'], 'id' | 'created_at' | 'updated_at'> & { id?: string; created_at?: string; updated_at?: string }
-        Update: Partial<Database['public']['Tables']['case_notes']['Row']>
+        Insert: {
+          id?: string
+          shift_id?: string | null
+          participant_id: string
+          worker_id: string
+          note_date: string
+          content: string
+          goals_addressed?: string[]
+          participant_response?: string | null
+          follow_up_required?: boolean
+          follow_up_notes?: string | null
+          is_draft?: boolean
+          attachments?: string[]
+          organization_id: string
+          created_at?: string
+          updated_at?: string
+        }
+        Update: {
+          id?: string
+          shift_id?: string | null
+          participant_id?: string
+          worker_id?: string
+          note_date?: string
+          content?: string
+          goals_addressed?: string[]
+          participant_response?: string | null
+          follow_up_required?: boolean
+          follow_up_notes?: string | null
+          is_draft?: boolean
+          attachments?: string[]
+          organization_id?: string
+          updated_at?: string
+        }
+        Relationships: []
       }
     }
     Functions: {
