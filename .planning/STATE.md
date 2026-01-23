@@ -5,21 +5,21 @@
 See: .planning/PROJECT.md (updated 2026-01-24)
 
 **Core value:** Schedule shifts, track check-ins, generate invoices from actual hours worked
-**Current focus:** Phase 1 complete, ready for Phase 2 (Participant Management)
+**Current focus:** Phase 2 in progress (Participant Management)
 
 ## Current Position
 
 Phase: 2 of 13 (Participant Management)
-Plan: 0 of 5 in current phase
-Status: Planned (5 plans in 4 waves, verified)
-Last activity: 2026-01-24 -- Phase 2 planned and verified
+Plan: 1 of 5 in current phase
+Status: In progress
+Last activity: 2026-01-24 -- Completed 02-01-PLAN.md (Foundation Schemas + DataTable)
 
-Progress: [█░░░░░░░░░] 8%
+Progress: [██░░░░░░░░] 10%
 
 ## Performance Metrics
 
 **Velocity:**
-- Total plans completed: 9 (Phase 1)
+- Total plans completed: 10 (Phase 1: 9, Phase 2: 1)
 - Average duration: --
 - Total execution time: --
 
@@ -44,6 +44,8 @@ Recent decisions affecting current work:
 - Build order: Shifts before mobile, invoicing before participant portal, screening before compliance dashboard
 - RLS helper functions use SECURITY DEFINER with COALESCE fallback (works without custom JWT hook enabled)
 - Cookie typing uses explicit CookieToSet[] for Supabase SSR v0.6.1 compatibility
+- Form schemas (apps/admin/lib/participants/schemas.ts) are separate from server schemas (packages/utils/src/validators.ts) -- stricter multi-step form validation vs basic server-side
+- shadcn/ui components created manually in monorepo (CLI doesn't work well with pnpm workspaces)
 
 ### Pending Todos
 
@@ -56,7 +58,7 @@ None.
 ## Session Continuity
 
 Last session: 2026-01-24
-Stopped at: Phase 1 UAT complete (12/12 passed), ready for Phase 2
+Stopped at: Completed 02-01-PLAN.md (Foundation Schemas + DataTable)
 Resume file: None
 
 ## Phase Progress
@@ -64,7 +66,7 @@ Resume file: None
 | Phase | Name | Status | Plans |
 |-------|------|--------|-------|
 | 1 | Foundation | Complete | 9/9 |
-| 2 | Participant Management | Planned | 0/5 |
+| 2 | Participant Management | In Progress | 1/5 |
 | 3 | Worker Management | Pending | 0/0 |
 | 4 | Shift Scheduling | Pending | 0/0 |
 | 5 | Worker Mobile App | Pending | 0/0 |
@@ -85,3 +87,4 @@ Resume file: None
 | 2026-01-24 | Roadmap created | 13 phases, 108 requirements mapped, ROADMAP.md + STATE.md written |
 | 2026-01-24 | Phase 1 built | Monorepo, migrations, auth, seed data, all pages, RLS fix |
 | 2026-01-24 | Phase 1 UAT | 12/12 tests passed, no issues |
+| 2026-01-24 | Phase 2 Plan 01 executed | Schemas + DataTable + 15 UI components installed |
