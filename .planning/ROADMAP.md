@@ -100,7 +100,14 @@ Plans:
 4. Attempting to create a participant with a duplicate NDIS number shows a validation error
 5. Archived participants disappear from the active list but their data remains accessible via filter
 
-**Plans:** TBD
+**Plans:** 5 plans
+
+Plans:
+- [ ] 02-01-PLAN.md -- Dependencies, Zod schemas, and reusable DataTable component
+- [ ] 02-02-PLAN.md -- Participant list page with search, filter, and sortable table
+- [ ] 02-03-PLAN.md -- Multi-step create form (4 steps with validation + NDIS uniqueness)
+- [ ] 02-04-PLAN.md -- Participant detail page with budget progress and plan countdown
+- [ ] 02-05-PLAN.md -- Edit form (read-only fields) and archive dialog (type-to-confirm)
 
 ---
 
@@ -410,7 +417,7 @@ Note: Phases 2 and 3 can execute in parallel (both depend only on Phase 1).
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
 | 1. Foundation | 0/9 | Planned | - |
-| 2. Participant Management | 0/0 | Not started | - |
+| 2. Participant Management | 0/5 | Planned | - |
 | 3. Worker Management | 0/0 | Not started | - |
 | 4. Shift Scheduling | 0/0 | Not started | - |
 | 5. Worker Mobile App | 0/0 | Not started | - |
