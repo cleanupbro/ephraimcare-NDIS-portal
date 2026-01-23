@@ -96,9 +96,16 @@ export const supportNeedsSchema = z.object({
   notes: z.string().max(2000, 'Notes must be 2000 characters or less').optional().or(z.literal('')),
 })
 
-// ─── Full Participant Schema (for edit form, excludes plan details) ──────────
+// ─── Full Participant Schema (for create form, includes ndis_number) ─────────
 
 export const participantFullSchema = basicInfoSchema
+  .merge(contactsSchema)
+  .merge(supportNeedsSchema)
+
+// ─── Edit Participant Schema (ndis_number excluded -- read-only field) ───────
+
+export const participantEditSchema = basicInfoSchema
+  .omit({ ndis_number: true })
   .merge(contactsSchema)
   .merge(supportNeedsSchema)
 
@@ -109,3 +116,4 @@ export type PlanDetailsData = z.infer<typeof planDetailsSchema>
 export type ContactsData = z.infer<typeof contactsSchema>
 export type SupportNeedsData = z.infer<typeof supportNeedsSchema>
 export type ParticipantFullData = z.infer<typeof participantFullSchema>
+export type ParticipantEditData = z.infer<typeof participantEditSchema>
