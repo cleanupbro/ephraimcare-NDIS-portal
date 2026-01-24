@@ -5,21 +5,21 @@
 See: .planning/PROJECT.md (updated 2026-01-24)
 
 **Core value:** Schedule shifts, track check-ins, generate invoices from actual hours worked
-**Current focus:** Phase 4 complete (Shift Scheduling). All 4 plans done. Ready for Phase 5.
+**Current focus:** Phase 5 in progress (Worker Mobile App). Plan 01 complete.
 
 ## Current Position
 
-Phase: 4 of 13 (Shift Scheduling)
-Plan: 4 of 4 in current phase
-Status: Phase complete
-Last activity: 2026-01-24 -- Completed 04-04-PLAN.md (Shift Filtering, Detail Sheet, Edit & Cancel)
+Phase: 5 of 13 (Worker Mobile App)
+Plan: 1 of 9 in current phase
+Status: In progress
+Last activity: 2026-01-24 -- Completed 05-01-PLAN.md (Database Migration and Supabase Client Setup)
 
-Progress: [████████████░░░░░░░░] 30%
+Progress: [████████████░░░░░░░░] 31%
 
 ## Performance Metrics
 
 **Velocity:**
-- Total plans completed: 23 (Phase 1: 9, Phase 2: 5, Phase 3: 5, Phase 4: 4)
+- Total plans completed: 24 (Phase 1: 9, Phase 2: 5, Phase 3: 5, Phase 4: 4, Phase 5: 1)
 - Average duration: --
 - Total execution time: --
 
@@ -31,6 +31,7 @@ Progress: [████████████░░░░░░░░] 30%
 | 2 | 5/5 | -- | -- |
 | 3 | 5/5 | -- | -- |
 | 4 | 4/4 | -- | -- |
+| 5 | 1/9 | -- | -- |
 
 **Recent Trend:**
 - Last 5 plans: --
@@ -83,6 +84,9 @@ Recent decisions affecting current work:
 - Inline edit mode within detail sheet (no page navigation; stays in list context)
 - PostgREST (as any) on .from('shifts') for update mutations (matches established pattern)
 - Support type mismatch is a hard form error (setError), NOT an overridable conflict warning (worker qualifications are data integrity, not operational flexibility)
+- expo-sqlite localStorage adapter for Supabase session persistence (SecureStore 2048-byte limit incompatible with JWT tokens)
+- pg_cron auto-checkout for stale shifts (server-side, works even if app closed/offline)
+- Separate shift_check_ins table (not columns on shifts) for cleaner offline sync and GPS tracking
 
 ### Pending Todos
 
@@ -95,7 +99,7 @@ None.
 ## Session Continuity
 
 Last session: 2026-01-24
-Stopped at: Completed 04-04-PLAN.md (Phase 4 complete)
+Stopped at: Completed 05-01-PLAN.md (Phase 5, Plan 1)
 Resume file: None
 
 ## Phase Progress
@@ -106,7 +110,7 @@ Resume file: None
 | 2 | Participant Management | Complete | 5/5 |
 | 3 | Worker Management | Complete | 5/5 |
 | 4 | Shift Scheduling | Complete | 4/4 |
-| 5 | Worker Mobile App | Pending | 0/0 |
+| 5 | Worker Mobile App | In Progress | 1/9 |
 | 6 | Case Notes | Pending | 0/0 |
 | 7 | Invoicing | Pending | 0/0 |
 | 8 | Participant Portal | Pending | 0/0 |
@@ -140,4 +144,5 @@ Resume file: None
 | 2026-01-24 | Phase 4 Plan 02 executed | Sheet UI component, shift list page (grouped by day, week nav) |
 | 2026-01-24 | Phase 4 Plan 03 executed | Create shift form, conflict detection, override dialogs |
 | 2026-01-24 | Phase 4 Plan 04 executed | Filter bar, detail sheet, inline edit, cancel flow |
-| 2026-01-24 | Phase 4 verified | 5/5 must-haves verified (support type validation fixed: warning → hard rejection) |
+| 2026-01-24 | Phase 4 verified | 5/5 must-haves verified (support type validation fixed: warning -> hard rejection) |
+| 2026-01-24 | Phase 5 Plan 01 executed | Migration (shift_check_ins, push_tokens, geo columns), Supabase client, constants |
