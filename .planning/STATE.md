@@ -5,7 +5,7 @@
 See: .planning/PROJECT.md (updated 2026-01-24)
 
 **Core value:** Schedule shifts, track check-ins, generate invoices from actual hours worked
-**Current focus:** Phase 4 in progress (Shift Scheduling). Plan 01 complete.
+**Current focus:** Phase 4 in progress (Shift Scheduling). Plans 01-03 complete.
 
 ## Current Position
 
