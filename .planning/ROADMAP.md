@@ -135,7 +135,14 @@ Plans:
 4. Worker can log in with the credentials they received (verifiable via auth system)
 5. Worker profile clearly displays NDIS check and WWCC expiry dates
 
-**Plans:** TBD
+**Plans:** 5 plans
+
+Plans:
+- [ ] 03-01-PLAN.md -- DB migration (compliance columns), Zod schemas, constants, domain types
+- [ ] 03-02-PLAN.md -- Worker list page (DataTable, search, filter, compliance dot)
+- [ ] 03-03-PLAN.md -- Worker create form and invite API route (auth + email)
+- [ ] 03-04-PLAN.md -- Worker detail page (stats, compliance section, qualifications)
+- [ ] 03-05-PLAN.md -- Worker edit form (read-only email) and resend invite
 
 ---
 
@@ -418,7 +425,7 @@ Note: Phases 2 and 3 can execute in parallel (both depend only on Phase 1).
 |-------|----------------|--------|-----------|
 | 1. Foundation | 0/9 | Planned | - |
 | 2. Participant Management | 0/5 | Planned | - |
-| 3. Worker Management | 0/0 | Not started | - |
+| 3. Worker Management | 0/5 | Planned | - |
 | 4. Shift Scheduling | 0/0 | Not started | - |
 | 5. Worker Mobile App | 0/0 | Not started | - |
 | 6. Case Notes | 0/0 | Not started | - |
