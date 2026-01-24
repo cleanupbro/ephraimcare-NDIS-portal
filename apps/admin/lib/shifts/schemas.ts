@@ -47,3 +47,11 @@ export const shiftCancelSchema = z.object({
 })
 
 export type ShiftCancelFormData = z.infer<typeof shiftCancelSchema>
+
+// ─── Override Checkout Schema ──────────────────────────────────────────────
+
+export const overrideCheckoutSchema = z.object({
+  check_out_time: z.string().datetime({ message: 'Valid ISO datetime required' }),
+})
+
+export type OverrideCheckoutData = z.infer<typeof overrideCheckoutSchema>
