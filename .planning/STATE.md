@@ -5,21 +5,21 @@
 See: .planning/PROJECT.md (updated 2026-01-24)
 
 **Core value:** Schedule shifts, track check-ins, generate invoices from actual hours worked
-**Current focus:** Phase 4 in progress (Shift Scheduling). Plans 01-03 complete.
+**Current focus:** Phase 4 complete (Shift Scheduling). All 4 plans done. Ready for Phase 5.
 
 ## Current Position
 
 Phase: 4 of 13 (Shift Scheduling)
-Plan: 1 of 4 in current phase
-Status: In progress
-Last activity: 2026-01-24 -- Completed 04-01-PLAN.md (Shift Scheduling Data Layer)
+Plan: 4 of 4 in current phase
+Status: Phase complete
+Last activity: 2026-01-24 -- Completed 04-04-PLAN.md (Shift Filtering, Detail Sheet, Edit & Cancel)
 
-Progress: [████████░░] 26%
+Progress: [████████████░░░░░░░░] 30%
 
 ## Performance Metrics
 
 **Velocity:**
-- Total plans completed: 20 (Phase 1: 9, Phase 2: 5, Phase 3: 5, Phase 4: 1)
+- Total plans completed: 23 (Phase 1: 9, Phase 2: 5, Phase 3: 5, Phase 4: 4)
 - Average duration: --
 - Total execution time: --
 
@@ -30,7 +30,7 @@ Progress: [████████░░] 26%
 | 1 | 9/9 | -- | -- |
 | 2 | 5/5 | -- | -- |
 | 3 | 5/5 | -- | -- |
-| 4 | 1/4 | -- | -- |
+| 4 | 4/4 | -- | -- |
 
 **Recent Trend:**
 - Last 5 plans: --
@@ -78,6 +78,10 @@ Recent decisions affecting current work:
 - Default shift status = pending (new shifts require coordinator confirmation)
 - support_type stored as text (not enum) for flexibility with NDIS category additions
 - Overlap detection index excludes cancelled shifts (partial index for performance)
+- Client-side filtering for shift list (week data is small; avoids API filter complexity)
+- Cancelled shifts hidden by default in list view (admin opts-in via status filter)
+- Inline edit mode within detail sheet (no page navigation; stays in list context)
+- PostgREST (as any) on .from('shifts') for update mutations (matches established pattern)
 
 ### Pending Todos
 
@@ -90,7 +94,7 @@ None.
 ## Session Continuity
 
 Last session: 2026-01-24
-Stopped at: Completed 04-01-PLAN.md (Shift Scheduling Data Layer)
+Stopped at: Completed 04-04-PLAN.md (Phase 4 complete)
 Resume file: None
 
 ## Phase Progress
@@ -100,7 +104,7 @@ Resume file: None
 | 1 | Foundation | Complete | 9/9 |
 | 2 | Participant Management | Complete | 5/5 |
 | 3 | Worker Management | Complete | 5/5 |
-| 4 | Shift Scheduling | In Progress | 1/4 |
+| 4 | Shift Scheduling | Complete | 4/4 |
 | 5 | Worker Mobile App | Pending | 0/0 |
 | 6 | Case Notes | Pending | 0/0 |
 | 7 | Invoicing | Pending | 0/0 |
@@ -132,3 +136,4 @@ Resume file: None
 | 2026-01-24 | Phase 3 Plan 05 executed | Edit form (read-only email), resend invite API, detail actions |
 | 2026-01-24 | Phase 3 verified | 3/5 must-haves verified (2 gaps are Phase 4/5 dependencies: worker mobile login, hours column) |
 | 2026-01-24 | Phase 4 Plan 01 executed | Migration, Zod schemas, constants, domain types for shift scheduling |
+| 2026-01-24 | Phase 4 Plan 04 executed | Filter bar, detail sheet, inline edit, cancel flow |
