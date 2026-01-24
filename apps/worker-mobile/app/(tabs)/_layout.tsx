@@ -1,11 +1,52 @@
 import { Tabs } from 'expo-router'
+import { MaterialCommunityIcons } from '@expo/vector-icons'
 
 export default function TabLayout() {
   return (
-    <Tabs screenOptions={{ headerShown: true }}>
-      <Tabs.Screen name="shifts" options={{ title: 'Shifts' }} />
-      <Tabs.Screen name="notes" options={{ title: 'Notes' }} />
-      <Tabs.Screen name="profile" options={{ title: 'Profile' }} />
+    <Tabs
+      screenOptions={{
+        tabBarActiveTintColor: '#66BB6A',
+        tabBarInactiveTintColor: '#999',
+        headerStyle: { backgroundColor: '#fff' },
+        headerTitleStyle: { fontWeight: '600' },
+      }}
+    >
+      <Tabs.Screen
+        name="index"
+        options={{
+          title: 'Home',
+          tabBarIcon: ({ color, size }) => (
+            <MaterialCommunityIcons name="home" size={size} color={color} />
+          ),
+        }}
+      />
+      <Tabs.Screen
+        name="schedule"
+        options={{
+          title: 'Schedule',
+          tabBarIcon: ({ color, size }) => (
+            <MaterialCommunityIcons name="calendar-week" size={size} color={color} />
+          ),
+        }}
+      />
+      <Tabs.Screen
+        name="notes"
+        options={{
+          title: 'My Notes',
+          tabBarIcon: ({ color, size }) => (
+            <MaterialCommunityIcons name="note-text" size={size} color={color} />
+          ),
+        }}
+      />
+      <Tabs.Screen
+        name="profile"
+        options={{
+          title: 'Profile',
+          tabBarIcon: ({ color, size }) => (
+            <MaterialCommunityIcons name="account" size={size} color={color} />
+          ),
+        }}
+      />
     </Tabs>
   )
 }
