@@ -5,21 +5,21 @@
 See: .planning/PROJECT.md (updated 2026-01-24)
 
 **Core value:** Schedule shifts, track check-ins, generate invoices from actual hours worked
-**Current focus:** Phase 2 complete (Participant Management). Ready for Phase 3.
+**Current focus:** Phase 3 in progress (Worker Management).
 
 ## Current Position
 
-Phase: 2 of 13 (Participant Management)
-Plan: 5 of 5 in current phase
-Status: Phase complete
-Last activity: 2026-01-24 -- Completed 02-05-PLAN.md (Edit and Archive)
+Phase: 3 of 13 (Worker Management)
+Plan: 1 of 5 in current phase
+Status: In progress
+Last activity: 2026-01-24 -- Completed 03-01-PLAN.md (Foundation: schemas, types, migration)
 
-Progress: [██████░░░░] 18%
+Progress: [██████░░░░] 19%
 
 ## Performance Metrics
 
 **Velocity:**
-- Total plans completed: 14 (Phase 1: 9, Phase 2: 5)
+- Total plans completed: 15 (Phase 1: 9, Phase 2: 5, Phase 3: 1)
 - Average duration: --
 - Total execution time: --
 
@@ -29,6 +29,7 @@ Progress: [██████░░░░] 18%
 |-------|-------|-------|----------|
 | 1 | 9/9 | -- | -- |
 | 2 | 5/5 | -- | -- |
+| 3 | 1/5 | -- | -- |
 
 **Recent Trend:**
 - Last 5 plans: --
@@ -60,6 +61,9 @@ Recent decisions affecting current work:
 - NDIS number shown as locked static text with Lock icon (not disabled input)
 - Edit available for both active and archived participants; Archive only for active
 - Type-to-confirm archive requires exact case-sensitive full name match
+- Worker compliance stored as columns on workers table (Option B) for MVP -- only 2 check types
+- 90-day threshold for compliance expiring status (industry standard)
+- workerEditSchema omits email (auth identity, matches participant pattern)
 
 ### Pending Todos
 
@@ -72,7 +76,7 @@ None.
 ## Session Continuity
 
 Last session: 2026-01-24
-Stopped at: Completed 02-05-PLAN.md (Edit and Archive) -- Phase 2 complete
+Stopped at: Completed 03-01-PLAN.md (Foundation: schemas, types, migration)
 Resume file: None
 
 ## Phase Progress
@@ -81,7 +85,7 @@ Resume file: None
 |-------|------|--------|-------|
 | 1 | Foundation | Complete | 9/9 |
 | 2 | Participant Management | Complete | 5/5 |
-| 3 | Worker Management | Pending | 0/0 |
+| 3 | Worker Management | In progress | 1/5 |
 | 4 | Shift Scheduling | Pending | 0/0 |
 | 5 | Worker Mobile App | Pending | 0/0 |
 | 6 | Case Notes | Pending | 0/0 |
@@ -107,3 +111,4 @@ Resume file: None
 | 2026-01-24 | Phase 2 Plan 04 executed | Detail page, budget progress bar, plan countdown badge |
 | 2026-01-24 | Phase 2 Plan 05 executed | Edit form (read-only NDIS), archive dialog, detail actions |
 | 2026-01-24 | Phase 2 verified | 9/9 requirements verified, VERIFICATION.md created |
+| 2026-01-24 | Phase 3 Plan 01 executed | Migration, Zod schemas, constants, domain types |
