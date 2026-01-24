@@ -1,3 +1,4 @@
+import Link from 'next/link'
 import { createClient } from '@/lib/supabase/server'
 
 export default async function ShiftsPage() {
@@ -48,9 +49,12 @@ export default async function ShiftsPage() {
             {shifts?.length ?? 0} shifts total
           </p>
         </div>
-        <button className="rounded-md bg-primary px-4 py-2 text-sm font-medium text-primary-foreground hover:bg-primary/90">
+        <Link
+          href="/shifts/new"
+          className="rounded-md bg-primary px-4 py-2 text-sm font-medium text-primary-foreground hover:bg-primary/90"
+        >
           + Schedule Shift
-        </button>
+        </Link>
       </div>
 
       <div className="rounded-lg border border-border">
