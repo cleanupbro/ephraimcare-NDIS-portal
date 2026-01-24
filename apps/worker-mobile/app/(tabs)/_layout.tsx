@@ -2,8 +2,13 @@ import { View } from 'react-native'
 import { Tabs } from 'expo-router'
 import { MaterialCommunityIcons } from '@expo/vector-icons'
 import { TimerBar } from '../../components/TimerBar'
+import { useSession } from '../../hooks/useAuth'
+import { usePendingNoteShifts } from '../../hooks/usePendingNoteShifts'
 
 export default function TabLayout() {
+  const { userId } = useSession()
+  const { data: pendingData } = usePendingNoteShifts(userId)
+  const pendingCount = pendingData?.length ?? 0
   return (
     <View style={{ flex: 1 }}>
     <TimerBar />
@@ -37,6 +42,8 @@ export default function TabLayout() {
         name="notes"
         options={{
           title: 'My Notes',
+          tabBarBadge: pendingCount > 0 ? pendingCount : undefined,
+          tabBarBadgeStyle: { backgroundColor: '#EF4444', fontSize: 10 },
           tabBarIcon: ({ color, size }) => (
             <MaterialCommunityIcons name="note-text" size={size} color={color} />
           ),
