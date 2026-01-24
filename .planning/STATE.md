@@ -10,16 +10,16 @@ See: .planning/PROJECT.md (updated 2026-01-24)
 ## Current Position
 
 Phase: 3 of 13 (Worker Management)
-Plan: 3 of 5 in current phase
+Plan: 4 of 5 in current phase
 Status: In progress
-Last activity: 2026-01-24 -- Completed 03-04-PLAN.md (Worker Detail Page)
+Last activity: 2026-01-24 -- Completed 03-03-PLAN.md (Worker Creation Form & Invite API)
 
-Progress: [███████░░░] 21%
+Progress: [███████░░░] 22%
 
 ## Performance Metrics
 
 **Velocity:**
-- Total plans completed: 17 (Phase 1: 9, Phase 2: 5, Phase 3: 3)
+- Total plans completed: 18 (Phase 1: 9, Phase 2: 5, Phase 3: 4)
 - Average duration: --
 - Total execution time: --
 
@@ -29,7 +29,7 @@ Progress: [███████░░░] 21%
 |-------|-------|-------|----------|
 | 1 | 9/9 | -- | -- |
 | 2 | 5/5 | -- | -- |
-| 3 | 3/5 | -- | -- |
+| 3 | 4/5 | -- | -- |
 
 **Recent Trend:**
 - Last 5 plans: --
@@ -68,6 +68,9 @@ Recent decisions affecting current work:
 - Worker status uses active/inactive/all (not archived -- different domain language)
 - PostgREST (as any) on shifts join query for next-shift in worker stats (same pattern as plan_budgets)
 - StatusBadge uses colored dot + Badge variant for dual visual compliance indicator
+- Qualifications stored as textarea split by newline (free-form, not multi-select)
+- Native checkbox with Tailwind for support type grid (no shadcn Checkbox component)
+- Worker invite API uses manual rollback cleanup (delete on insert failure)
 
 ### Pending Todos
 
@@ -80,7 +83,7 @@ None.
 ## Session Continuity
 
 Last session: 2026-01-24
-Stopped at: Completed 03-04-PLAN.md (Worker Detail Page)
+Stopped at: Completed 03-03-PLAN.md (Worker Creation Form & Invite API)
 Resume file: None
 
 ## Phase Progress
@@ -89,7 +92,7 @@ Resume file: None
 |-------|------|--------|-------|
 | 1 | Foundation | Complete | 9/9 |
 | 2 | Participant Management | Complete | 5/5 |
-| 3 | Worker Management | In progress | 3/5 |
+| 3 | Worker Management | In progress | 4/5 |
 | 4 | Shift Scheduling | Pending | 0/0 |
 | 5 | Worker Mobile App | Pending | 0/0 |
 | 6 | Case Notes | Pending | 0/0 |
@@ -118,3 +121,4 @@ Resume file: None
 | 2026-01-24 | Phase 3 Plan 01 executed | Migration, Zod schemas, constants, domain types |
 | 2026-01-24 | Phase 3 Plan 02 executed | Worker list page, DataTable, search/filter, compliance dot |
 | 2026-01-24 | Phase 3 Plan 04 executed | Worker detail page, stats hook, compliance badges |
+| 2026-01-24 | Phase 3 Plan 03 executed | Worker creation form, invite API, mutation hook |
