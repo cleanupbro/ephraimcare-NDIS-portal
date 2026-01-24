@@ -4,12 +4,13 @@ import AsyncStorage from '@react-native-async-storage/async-storage'
 
 export interface PendingAction {
   id: string
-  type: 'check_in' | 'check_out'
+  type: 'check_in' | 'check_out' | 'case_note'
   shiftId: string
   timestamp: string
   latitude: number
   longitude: number
   createdAt: string
+  payload?: Record<string, unknown>
 }
 
 interface SyncStoreState {
