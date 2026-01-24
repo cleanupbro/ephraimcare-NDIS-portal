@@ -30,14 +30,14 @@
 
 ### Worker Management (WORK)
 
-- [ ] **WORK-01**: Admin can view list of all workers with search by name/email and filter by status
-- [ ] **WORK-02**: Admin can create new worker with name, contact, support types, qualifications, compliance dates
-- [ ] **WORK-03**: Admin can view worker detail page with scheduling stats (hours this month/week, next shift)
-- [ ] **WORK-04**: Admin can edit worker details (except email which is primary key)
-- [ ] **WORK-05**: New worker receives welcome email with login credentials
-- [ ] **WORK-06**: Worker profile stores support types, certifications, years of experience
-- [ ] **WORK-07**: Worker profile stores NDIS Worker Check number and expiry date
-- [ ] **WORK-08**: Worker profile stores Working with Children Check expiry date
+- [x] **WORK-01**: Admin can view list of all workers with search by name/email and filter by status
+- [x] **WORK-02**: Admin can create new worker with name, contact, support types, qualifications, compliance dates
+- [x] **WORK-03**: Admin can view worker detail page with scheduling stats (hours this month/week, next shift)
+- [x] **WORK-04**: Admin can edit worker details (except email which is primary key)
+- [x] **WORK-05**: New worker receives welcome email with login credentials
+- [x] **WORK-06**: Worker profile stores support types, certifications, years of experience
+- [x] **WORK-07**: Worker profile stores NDIS Worker Check number and expiry date
+- [x] **WORK-08**: Worker profile stores Working with Children Check expiry date
 
 ### Worker Screening (SCRN)
 
@@ -222,14 +222,14 @@
 | PART-07 | Phase 2: Participant Management | Complete |
 | PART-08 | Phase 2: Participant Management | Complete |
 | PART-09 | Phase 2: Participant Management | Complete |
-| WORK-01 | Phase 3: Worker Management | Pending |
-| WORK-02 | Phase 3: Worker Management | Pending |
-| WORK-03 | Phase 3: Worker Management | Pending |
-| WORK-04 | Phase 3: Worker Management | Pending |
-| WORK-05 | Phase 3: Worker Management | Pending |
-| WORK-06 | Phase 3: Worker Management | Pending |
-| WORK-07 | Phase 3: Worker Management | Pending |
-| WORK-08 | Phase 3: Worker Management | Pending |
+| WORK-01 | Phase 3: Worker Management | Complete |
+| WORK-02 | Phase 3: Worker Management | Complete |
+| WORK-03 | Phase 3: Worker Management | Complete |
+| WORK-04 | Phase 3: Worker Management | Complete |
+| WORK-05 | Phase 3: Worker Management | Complete |
+| WORK-06 | Phase 3: Worker Management | Complete |
+| WORK-07 | Phase 3: Worker Management | Complete |
+| WORK-08 | Phase 3: Worker Management | Complete |
 | SCRN-01 | Phase 10: Worker Screening | Pending |
 | SCRN-02 | Phase 10: Worker Screening | Pending |
 | SCRN-03 | Phase 10: Worker Screening | Pending |
