@@ -1,7 +1,7 @@
 "use client"
 
 import Link from 'next/link'
-import { ArrowLeft, Pencil } from 'lucide-react'
+import { ArrowLeft, Pencil, Mail, Loader2 } from 'lucide-react'
 import type { WorkerWithProfile } from '@ephraimcare/types'
 import {
   Badge,
@@ -10,9 +10,11 @@ import {
   CardContent,
   CardHeader,
   CardTitle,
+  Separator,
 } from '@ephraimcare/ui'
 import { WorkerStats } from './worker-stats'
 import { WorkerCompliance } from './worker-compliance'
+import { useResendInvite } from '@/hooks/use-workers'
 
 interface WorkerDetailProps {
   worker: WorkerWithProfile
@@ -20,6 +22,7 @@ interface WorkerDetailProps {
 
 export function WorkerDetail({ worker }: WorkerDetailProps) {
   const fullName = `${worker.profiles.first_name} ${worker.profiles.last_name}`
+  const resendInvite = useResendInvite()
 
   return (
     <div className="space-y-6">
@@ -45,20 +48,39 @@ export function WorkerDetail({ worker }: WorkerDetailProps) {
       </div>
 
       {/* Action Buttons */}
-      <div className="flex items-center gap-3">
-        <Button variant="outline" size="sm" asChild>
+      <div className="flex items-center justify-between">
+        <Button variant="ghost" size="sm" asChild>
           <Link href="/workers">
             <ArrowLeft className="mr-2 h-4 w-4" />
-            Back
+            Back to Workers
           </Link>
         </Button>
-        <Button variant="outline" size="sm" asChild>
-          <Link href={`/workers/${worker.id}/edit`}>
-            <Pencil className="mr-2 h-4 w-4" />
-            Edit
-          </Link>
-        </Button>
+        <div className="flex items-center gap-2">
+          <Button variant="secondary" size="sm" asChild>
+            <Link href={`/workers/${worker.id}/edit`}>
+              <Pencil className="mr-2 h-4 w-4" />
+              Edit
+            </Link>
+          </Button>
+          {worker.is_active && (
+            <Button
+              variant="outline"
+              size="sm"
+              onClick={() => resendInvite.mutate({ email: worker.profiles.email })}
+              disabled={resendInvite.isPending}
+            >
+              {resendInvite.isPending ? (
+                <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+              ) : (
+                <Mail className="mr-2 h-4 w-4" />
+              )}
+              Resend Invite
+            </Button>
+          )}
+        </div>
       </div>
+
+      <Separator />
 
       {/* Stats Section */}
       <WorkerStats workerId={worker.id} />
