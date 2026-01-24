@@ -32,7 +32,7 @@ export function CaseNotesTab({ participantId, organizationId }: CaseNotesTabProp
   const filters = {
     dateFrom: dateFrom || undefined,
     dateTo: dateTo || undefined,
-    workerId: workerId || undefined,
+    workerId: workerId && workerId !== 'all' ? workerId : undefined,
   }
 
   const { data: notes, isLoading, error } = useParticipantCaseNotes(participantId, filters)
@@ -40,7 +40,7 @@ export function CaseNotesTab({ participantId, organizationId }: CaseNotesTabProp
   const reviewMutation = useReviewCaseNote()
   const commentMutation = useAddAdminComment()
 
-  const hasFilters = dateFrom || dateTo || workerId
+  const hasFilters = dateFrom || dateTo || (workerId && workerId !== 'all')
 
   const clearFilters = () => {
     setDateFrom('')
