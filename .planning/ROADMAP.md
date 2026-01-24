@@ -244,7 +244,13 @@ Plans:
 4. A worker viewing the mobile app cannot see case notes written by other workers
 5. Case notes are completely invisible in the participant portal (verified via RLS)
 
-**Plans:** TBD
+**Plans:** 4 plans
+
+Plans:
+- [ ] 06-01-PLAN.md -- DB migration (concern columns, admin comments table, RLS updates, notification trigger) + Zod schema
+- [ ] 06-02-PLAN.md -- Mobile case note creation (CaseNoteModal wiring, useCreateCaseNote, syncStore extension)
+- [ ] 06-03-PLAN.md -- Admin case notes tab (participant detail tabs, filters, review, private comments)
+- [ ] 06-04-PLAN.md -- Mobile My Notes tab (pending shifts list, tab badge, edit within 24h)
 
 ---
 
@@ -445,7 +451,7 @@ Note: Phases 2 and 3 can execute in parallel (both depend only on Phase 1).
 | 3. Worker Management | 5/5 | Complete | 2026-01-24 |
 | 4. Shift Scheduling | 4/4 | Complete | 2026-01-24 |
 | 5. Worker Mobile App | 0/9 | Planned | - |
-| 6. Case Notes | 0/0 | Not started | - |
+| 6. Case Notes | 0/4 | Planned | - |
 | 7. Invoicing | 0/0 | Not started | - |
 | 8. Participant Portal | 0/0 | Not started | - |
 | 9. Notifications | 0/0 | Not started | - |
