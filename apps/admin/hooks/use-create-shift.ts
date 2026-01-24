@@ -2,7 +2,7 @@
 
 import { useMutation, useQueryClient } from '@tanstack/react-query'
 import { useRouter } from 'next/navigation'
-import { toast } from 'sonner'
+import { toast } from '@/lib/toast'
 import { createClient } from '@/lib/supabase/client'
 
 // ─── Types ──────────────────────────────────────────────────────────────────
@@ -47,11 +47,11 @@ export function useCreateShift() {
     },
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['shifts'] })
-      toast.success('Shift scheduled successfully')
+      toast({ title: 'Shift scheduled successfully', variant: 'success' })
       router.push('/shifts')
     },
     onError: (error: Error) => {
-      toast.error(`Failed to create shift: ${error.message}`)
+      toast({ title: 'Failed to create shift', description: error.message, variant: 'error' })
     },
   })
 }

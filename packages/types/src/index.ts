@@ -11,6 +11,8 @@ export type {
   WorkerWithProfile,
   WorkerStats,
   Shift,
+  ShiftWithRelations,
+  OverlappingShift,
   CaseNote,
   Invoice,
   InvoiceLineItem,
