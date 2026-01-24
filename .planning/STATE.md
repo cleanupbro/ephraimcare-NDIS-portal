@@ -5,21 +5,21 @@
 See: .planning/PROJECT.md (updated 2026-01-24)
 
 **Core value:** Schedule shifts, track check-ins, generate invoices from actual hours worked
-**Current focus:** Phase 6 (Case Notes) complete. Ready for Phase 7 (Invoicing).
+**Current focus:** Phase 7 (Invoicing) in progress.
 
 ## Current Position
 
-Phase: 6 of 13 (Case Notes) — COMPLETE
-Plan: 4 of 4 in current phase
-Status: Complete (verified)
-Last activity: 2026-01-25 -- Phase 6 verified, all must-haves pass
+Phase: 7 of 13 (Invoicing)
+Plan: 1 of 7 in current phase
+Status: In progress
+Last activity: 2026-01-25 -- Completed 07-01-PLAN.md (schema + types)
 
-Progress: [██████████████████████░] 46%
+Progress: [███████████████████████░] 47%
 
 ## Performance Metrics
 
 **Velocity:**
-- Total plans completed: 36 (Phase 1: 9, Phase 2: 5, Phase 3: 5, Phase 4: 4, Phase 5: 9, Phase 6: 4)
+- Total plans completed: 37 (Phase 1: 9, Phase 2: 5, Phase 3: 5, Phase 4: 4, Phase 5: 9, Phase 6: 4, Phase 7: 1)
 - Average duration: --
 - Total execution time: --
 
@@ -33,6 +33,7 @@ Progress: [██████████████████████░
 | 4 | 4/4 | -- | -- |
 | 5 | 9/9 | -- | -- |
 | 6 | 4/4 | -- | -- |
+| 7 | 1/7 | -- | -- |
 
 **Recent Trend:**
 - Last 5 plans: --
@@ -106,6 +107,11 @@ Recent decisions affecting current work:
 - Offline case note error dismisses modal after 1.5s delay (user sees confirmation before close)
 - organizationId passed from participant object to CaseNotesTab for admin comment insertion (avoids extra DB lookup)
 - Worker filter Select uses 'all' placeholder value, filtered out before query to prevent DB mismatch
+- Gapless invoice counter uses INSERT ON CONFLICT DO UPDATE (atomic, no race conditions)
+- INV-YYYY-NNN format (3-digit padding, resets per year per org)
+- Finalization trigger blocks UPDATE on submitted/paid (not cancelled/overdue)
+- day_type uses CHECK constraint (not enum) for flexibility
+- support_type_rates effective_from with UNIQUE for rate versioning without deletion
 
 ### Pending Todos
 
@@ -118,7 +124,7 @@ None.
 ## Session Continuity
 
 Last session: 2026-01-25
-Stopped at: Phase 6 verified and complete
+Stopped at: Completed 07-01-PLAN.md (schema + types)
 Resume file: None
 
 ## Phase Progress
@@ -131,7 +137,7 @@ Resume file: None
 | 4 | Shift Scheduling | Complete | 4/4 |
 | 5 | Worker Mobile App | Complete | 9/9 |
 | 6 | Case Notes | Complete | 4/4 |
-| 7 | Invoicing | Pending | 0/0 |
+| 7 | Invoicing | In Progress | 1/7 |
 | 8 | Participant Portal | Pending | 0/0 |
 | 9 | Notifications | Pending | 0/0 |
 | 10 | Worker Screening | Pending | 0/0 |
@@ -172,3 +178,4 @@ Resume file: None
 | 2026-01-25 | Phase 6 Plan 03 executed | Admin case notes tab, hooks, filters, review/comments on participant detail |
 | 2026-01-25 | Phase 6 Plan 04 executed | My Notes tab, pending shifts list, tab bar badge, useEditCaseNote hook |
 | 2026-01-25 | Phase 6 verified | 5/5 success criteria passed, all 6 requirements verified |
+| 2026-01-25 | Phase 7 Plan 01 executed | Migration (rates, holidays, counter, finalization) + TypeScript types |
