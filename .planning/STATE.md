@@ -10,16 +10,16 @@ See: .planning/PROJECT.md (updated 2026-01-24)
 ## Current Position
 
 Phase: 3 of 13 (Worker Management)
-Plan: 1 of 5 in current phase
+Plan: 2 of 5 in current phase
 Status: In progress
-Last activity: 2026-01-24 -- Completed 03-01-PLAN.md (Foundation: schemas, types, migration)
+Last activity: 2026-01-24 -- Completed 03-02-PLAN.md (Worker List Page)
 
-Progress: [██████░░░░] 19%
+Progress: [██████░░░░] 20%
 
 ## Performance Metrics
 
 **Velocity:**
-- Total plans completed: 15 (Phase 1: 9, Phase 2: 5, Phase 3: 1)
+- Total plans completed: 16 (Phase 1: 9, Phase 2: 5, Phase 3: 2)
 - Average duration: --
 - Total execution time: --
 
@@ -29,7 +29,7 @@ Progress: [██████░░░░] 19%
 |-------|-------|-------|----------|
 | 1 | 9/9 | -- | -- |
 | 2 | 5/5 | -- | -- |
-| 3 | 1/5 | -- | -- |
+| 3 | 2/5 | -- | -- |
 
 **Recent Trend:**
 - Last 5 plans: --
@@ -64,6 +64,8 @@ Recent decisions affecting current work:
 - Worker compliance stored as columns on workers table (Option B) for MVP -- only 2 check types
 - 90-day threshold for compliance expiring status (industry standard)
 - workerEditSchema omits email (auth identity, matches participant pattern)
+- Client-side search for worker list (PostgREST cannot filter on joined profile fields)
+- Worker status uses active/inactive/all (not archived -- different domain language)
 
 ### Pending Todos
 
@@ -76,7 +78,7 @@ None.
 ## Session Continuity
 
 Last session: 2026-01-24
-Stopped at: Completed 03-01-PLAN.md (Foundation: schemas, types, migration)
+Stopped at: Completed 03-02-PLAN.md (Worker List Page)
 Resume file: None
 
 ## Phase Progress
@@ -85,7 +87,7 @@ Resume file: None
 |-------|------|--------|-------|
 | 1 | Foundation | Complete | 9/9 |
 | 2 | Participant Management | Complete | 5/5 |
-| 3 | Worker Management | In progress | 1/5 |
+| 3 | Worker Management | In progress | 2/5 |
 | 4 | Shift Scheduling | Pending | 0/0 |
 | 5 | Worker Mobile App | Pending | 0/0 |
 | 6 | Case Notes | Pending | 0/0 |
@@ -112,3 +114,4 @@ Resume file: None
 | 2026-01-24 | Phase 2 Plan 05 executed | Edit form (read-only NDIS), archive dialog, detail actions |
 | 2026-01-24 | Phase 2 verified | 9/9 requirements verified, VERIFICATION.md created |
 | 2026-01-24 | Phase 3 Plan 01 executed | Migration, Zod schemas, constants, domain types |
+| 2026-01-24 | Phase 3 Plan 02 executed | Worker list page, DataTable, search/filter, compliance dot |
