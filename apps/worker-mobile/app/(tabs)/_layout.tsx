@@ -1,8 +1,12 @@
+import { View } from 'react-native'
 import { Tabs } from 'expo-router'
 import { MaterialCommunityIcons } from '@expo/vector-icons'
+import { TimerBar } from '../../components/TimerBar'
 
 export default function TabLayout() {
   return (
+    <View style={{ flex: 1 }}>
+    <TimerBar />
     <Tabs
       screenOptions={{
         tabBarActiveTintColor: '#66BB6A',
@@ -48,5 +52,6 @@ export default function TabLayout() {
         }}
       />
     </Tabs>
+    </View>
   )
 }

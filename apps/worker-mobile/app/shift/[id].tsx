@@ -1,17 +1,23 @@
 import { View, ScrollView } from 'react-native'
 import { Text, Button, Card, ActivityIndicator } from 'react-native-paper'
-import { useLocalSearchParams } from 'expo-router'
+import { useLocalSearchParams, useRouter } from 'expo-router'
 import { format, parseISO } from 'date-fns'
 import { useShiftDetail } from '../../hooks/useShifts'
 import { useCheckIn } from '../../hooks/useCheckIn'
+import { useCheckOut } from '../../hooks/useCheckOut'
 import { AlertBadge, parseAlerts } from '../../components/AlertBadge'
+import { CaseNoteModal } from '../../components/CaseNoteModal'
 import { useState } from 'react'
 
 export default function ShiftDetailScreen() {
   const { id } = useLocalSearchParams<{ id: string }>()
+  const router = useRouter()
   const { data: shift, isLoading } = useShiftDetail(id ?? undefined)
   const { checkIn, loading: checkingIn } = useCheckIn()
+  const { checkOut, loading: checkingOut } = useCheckOut()
   const [checkInError, setCheckInError] = useState<string | null>(null)
+  const [showNoteModal, setShowNoteModal] = useState(false)
+  const [checkoutDuration, setCheckoutDuration] = useState<number | undefined>()
 
   if (isLoading || !shift) {
     return (
@@ -157,7 +163,15 @@ export default function ShiftDetailScreen() {
         {canCheckOut && (
           <Button
             mode="contained"
-            onPress={() => {}}
+            onPress={async () => {
+              const result = await checkOut()
+              if (result.success) {
+                setCheckoutDuration(result.durationMinutes)
+                setShowNoteModal(true)
+              }
+            }}
+            loading={checkingOut}
+            disabled={checkingOut}
             buttonColor="#42A5F5"
             style={{ borderRadius: 8, paddingVertical: 4 }}
           >
@@ -172,6 +186,17 @@ export default function ShiftDetailScreen() {
           </View>
         )}
       </View>
+
+      <CaseNoteModal
+        visible={showNoteModal}
+        shiftId={shift.id}
+        participantName={`${participant?.first_name ?? ''} ${participant?.last_name ?? ''}`}
+        durationMinutes={checkoutDuration}
+        onDismiss={() => {
+          setShowNoteModal(false)
+          router.back()
+        }}
+      />
     </ScrollView>
   )
 }
