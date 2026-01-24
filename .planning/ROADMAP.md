@@ -281,7 +281,16 @@ Plans:
 4. Finalized invoice can be downloaded as a branded PDF with correct GST calculation
 5. Admin can generate a PACE-compliant bulk payment CSV covering multiple invoices
 
-**Plans:** TBD
+**Plans:** 7 plans
+
+Plans:
+- [ ] 07-01-PLAN.md -- DB migration (new tables, schema additions, gapless counter, finalization trigger, RLS) + TypeScript types
+- [ ] 07-02-PLAN.md -- Billing calculations, Zod schemas, constants, PACE CSV export function
+- [ ] 07-03-PLAN.md -- Support type rates settings page + public holidays settings page
+- [ ] 07-04-PLAN.md -- Invoice generation API route + generate form page + invoice hooks
+- [ ] 07-05-PLAN.md -- Invoice list page + detail/preview page + finalize API + UI components
+- [ ] 07-06-PLAN.md -- PDF export (@react-pdf/renderer, fonts, branded PDF component, API route)
+- [ ] 07-07-PLAN.md -- PACE CSV export API route + ExportCsvButton component
 
 ---
 
@@ -452,7 +461,7 @@ Note: Phases 2 and 3 can execute in parallel (both depend only on Phase 1).
 | 4. Shift Scheduling | 4/4 | Complete | 2026-01-24 |
 | 5. Worker Mobile App | 0/9 | Planned | - |
 | 6. Case Notes | 0/4 | Planned | - |
-| 7. Invoicing | 0/0 | Not started | - |
+| 7. Invoicing | 0/7 | Planned | - |
 | 8. Participant Portal | 0/0 | Not started | - |
 | 9. Notifications | 0/0 | Not started | - |
 | 10. Worker Screening | 0/0 | Not started | - |
@@ -463,3 +472,4 @@ Note: Phases 2 and 3 can execute in parallel (both depend only on Phase 1).
 ---
 *Roadmap created: 2026-01-24*
 *Phase 1 planned: 2026-01-24*
+*Phase 7 planned: 2026-01-25*
