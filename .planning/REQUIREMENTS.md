@@ -47,15 +47,15 @@
 
 ### Shift Scheduling (SHFT)
 
-- [ ] **SHFT-01**: Admin can create shift with participant, worker, date, start/end time, support type, and notes
-- [ ] **SHFT-02**: Admin can edit shift details (time, worker, notes, status) if shift is not completed
-- [ ] **SHFT-03**: Admin can cancel shift with reason (shift preserved in database, status = cancelled)
-- [ ] **SHFT-04**: Shift list view shows shifts grouped by day with status color coding
-- [ ] **SHFT-05**: System warns on overlapping worker shifts (allows creation with admin override)
-- [ ] **SHFT-06**: System warns when scheduling outside participant plan dates (allows with override)
-- [ ] **SHFT-07**: System validates worker support types match shift support type
-- [ ] **SHFT-08**: Shift statuses: pending, proposed, confirmed, in_progress, completed, cancelled
-- [ ] **SHFT-09**: Filter shifts by participant, worker, status, or date range
+- [x] **SHFT-01**: Admin can create shift with participant, worker, date, start/end time, support type, and notes
+- [x] **SHFT-02**: Admin can edit shift details (time, worker, notes, status) if shift is not completed
+- [x] **SHFT-03**: Admin can cancel shift with reason (shift preserved in database, status = cancelled)
+- [x] **SHFT-04**: Shift list view shows shifts grouped by day with status color coding
+- [x] **SHFT-05**: System warns on overlapping worker shifts (allows creation with admin override)
+- [x] **SHFT-06**: System warns when scheduling outside participant plan dates (allows with override)
+- [x] **SHFT-07**: System validates worker support types match shift support type
+- [x] **SHFT-08**: Shift statuses: pending, proposed, confirmed, in_progress, completed, cancelled
+- [x] **SHFT-09**: Filter shifts by participant, worker, status, or date range
 
 ### Worker Mobile App (MOBL)
 
@@ -233,15 +233,15 @@
 | SCRN-01 | Phase 10: Worker Screening | Pending |
 | SCRN-02 | Phase 10: Worker Screening | Pending |
 | SCRN-03 | Phase 10: Worker Screening | Pending |
-| SHFT-01 | Phase 4: Shift Scheduling | Pending |
-| SHFT-02 | Phase 4: Shift Scheduling | Pending |
-| SHFT-03 | Phase 4: Shift Scheduling | Pending |
-| SHFT-04 | Phase 4: Shift Scheduling | Pending |
-| SHFT-05 | Phase 4: Shift Scheduling | Pending |
-| SHFT-06 | Phase 4: Shift Scheduling | Pending |
-| SHFT-07 | Phase 4: Shift Scheduling | Pending |
-| SHFT-08 | Phase 4: Shift Scheduling | Pending |
-| SHFT-09 | Phase 4: Shift Scheduling | Pending |
+| SHFT-01 | Phase 4: Shift Scheduling | Complete |
+| SHFT-02 | Phase 4: Shift Scheduling | Complete |
+| SHFT-03 | Phase 4: Shift Scheduling | Complete |
+| SHFT-04 | Phase 4: Shift Scheduling | Complete |
+| SHFT-05 | Phase 4: Shift Scheduling | Complete |
+| SHFT-06 | Phase 4: Shift Scheduling | Complete |
+| SHFT-07 | Phase 4: Shift Scheduling | Complete |
+| SHFT-08 | Phase 4: Shift Scheduling | Complete |
+| SHFT-09 | Phase 4: Shift Scheduling | Complete |
 | SHFT-10 | Phase 11: Compliance and Incidents | Pending |
 | SHFT-11 | Phase 11: Compliance and Incidents | Pending |
 | MOBL-01 | Phase 5: Worker Mobile App | Pending |

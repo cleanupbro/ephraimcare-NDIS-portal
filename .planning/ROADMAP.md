@@ -18,7 +18,7 @@ This roadmap delivers a complete NDIS management platform across 13 phases, from
 - [x] **Phase 1: Foundation** - Database schema, RLS policies, audit trail, monorepo scaffold, and auth
 - [x] **Phase 2: Participant Management** - CRUD for participants with NDIS plan info and budget tracking
 - [x] **Phase 3: Worker Management** - CRUD for workers with qualifications and screening checks
-- [ ] **Phase 4: Shift Scheduling** - Create, edit, cancel shifts with conflict detection and validation
+- [x] **Phase 4: Shift Scheduling** - Create, edit, cancel shifts with conflict detection and validation
 - [ ] **Phase 5: Worker Mobile App** - Check-in/out with GPS, shift views, live timer, and offline cache
 - [ ] **Phase 6: Case Notes** - Worker creates notes post-shift, admin reviews with filters
 - [ ] **Phase 7: Invoicing** - Generate invoices from completed shifts with NDIS-compliant billing
@@ -173,10 +173,10 @@ Plans:
 **Plans:** 4 plans
 
 Plans:
-- [ ] 04-01-PLAN.md -- DB migration (support_type column, enum values, overlap index), Zod schemas, constants
-- [ ] 04-02-PLAN.md -- Sheet UI component, shift list page (cards grouped by day, week navigation, useShifts hook)
-- [ ] 04-03-PLAN.md -- Create shift form (participant-first selection, duration presets, conflict detection dialogs)
-- [ ] 04-04-PLAN.md -- Shift filters, detail sheet (side panel), inline edit, cancel with reason
+- [x] 04-01-PLAN.md -- DB migration (support_type column, enum values, overlap index), Zod schemas, constants
+- [x] 04-02-PLAN.md -- Sheet UI component, shift list page (cards grouped by day, week navigation, useShifts hook)
+- [x] 04-03-PLAN.md -- Create shift form (participant-first selection, duration presets, conflict detection dialogs)
+- [x] 04-04-PLAN.md -- Shift filters, detail sheet (side panel), inline edit, cancel with reason
 
 ---
 
@@ -432,7 +432,7 @@ Note: Phases 2 and 3 can execute in parallel (both depend only on Phase 1).
 | 1. Foundation | 0/9 | Planned | - |
 | 2. Participant Management | 0/5 | Planned | - |
 | 3. Worker Management | 5/5 | Complete | 2026-01-24 |
-| 4. Shift Scheduling | 0/4 | Planned | - |
+| 4. Shift Scheduling | 4/4 | Complete | 2026-01-24 |
 | 5. Worker Mobile App | 0/0 | Not started | - |
 | 6. Case Notes | 0/0 | Not started | - |
 | 7. Invoicing | 0/0 | Not started | - |

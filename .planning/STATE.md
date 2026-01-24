@@ -82,6 +82,7 @@ Recent decisions affecting current work:
 - Cancelled shifts hidden by default in list view (admin opts-in via status filter)
 - Inline edit mode within detail sheet (no page navigation; stays in list context)
 - PostgREST (as any) on .from('shifts') for update mutations (matches established pattern)
+- Support type mismatch is a hard form error (setError), NOT an overridable conflict warning (worker qualifications are data integrity, not operational flexibility)
 
 ### Pending Todos
 
@@ -136,4 +137,7 @@ Resume file: None
 | 2026-01-24 | Phase 3 Plan 05 executed | Edit form (read-only email), resend invite API, detail actions |
 | 2026-01-24 | Phase 3 verified | 3/5 must-haves verified (2 gaps are Phase 4/5 dependencies: worker mobile login, hours column) |
 | 2026-01-24 | Phase 4 Plan 01 executed | Migration, Zod schemas, constants, domain types for shift scheduling |
+| 2026-01-24 | Phase 4 Plan 02 executed | Sheet UI component, shift list page (grouped by day, week nav) |
+| 2026-01-24 | Phase 4 Plan 03 executed | Create shift form, conflict detection, override dialogs |
 | 2026-01-24 | Phase 4 Plan 04 executed | Filter bar, detail sheet, inline edit, cancel flow |
+| 2026-01-24 | Phase 4 verified | 5/5 must-haves verified (support type validation fixed: warning → hard rejection) |
