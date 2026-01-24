@@ -1,0 +1,8 @@
+export const CHECK_IN_RADIUS_METERS = 500
+export const AUTO_CHECKOUT_MINUTES = 30
+export const GPS_TIMEOUT_MS = 5000
+export const GPS_MAX_ACCURACY_METERS = 100
+export const TIMER_INTERVAL_MS = 1000
+export const QUERY_GC_TIME_MS = 1000 * 60 * 60 * 24 // 24 hours
+export const PUSH_REMINDER_MINUTES_BEFORE = 60
+export const AUTO_CHECKOUT_WARNING_MINUTES = 20

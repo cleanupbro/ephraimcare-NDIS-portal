@@ -25,6 +25,13 @@
         {
           "locationWhenInUsePermission": "We need your location to verify shift check-in at the participant's address."
         }
+      ],
+      [
+        "expo-notifications",
+        {
+          "icon": "./assets/notification-icon.png",
+          "color": "#66BB6A"
+        }
       ]
     ]
   }
