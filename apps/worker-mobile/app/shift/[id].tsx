@@ -190,7 +190,10 @@ export default function ShiftDetailScreen() {
       <CaseNoteModal
         visible={showNoteModal}
         shiftId={shift.id}
+        participantId={shift.participant_id}
         participantName={`${participant?.first_name ?? ''} ${participant?.last_name ?? ''}`}
+        workerId={shift.worker_id}
+        organizationId={shift.organization_id}
         durationMinutes={checkoutDuration}
         onDismiss={() => {
           setShowNoteModal(false)
