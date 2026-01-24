@@ -19,7 +19,7 @@ This roadmap delivers a complete NDIS management platform across 13 phases, from
 - [x] **Phase 2: Participant Management** - CRUD for participants with NDIS plan info and budget tracking
 - [x] **Phase 3: Worker Management** - CRUD for workers with qualifications and screening checks
 - [x] **Phase 4: Shift Scheduling** - Create, edit, cancel shifts with conflict detection and validation
-- [ ] **Phase 5: Worker Mobile App** - Check-in/out with GPS, shift views, live timer, and offline cache
+- [x] **Phase 5: Worker Mobile App** - Check-in/out with GPS, shift views, live timer, and offline cache
 - [ ] **Phase 6: Case Notes** - Worker creates notes post-shift, admin reviews with filters
 - [ ] **Phase 7: Invoicing** - Generate invoices from completed shifts with NDIS-compliant billing
 - [ ] **Phase 8: Participant Portal** - Read-only dashboard with plan status, budget, and invoice downloads
@@ -208,7 +208,18 @@ Plans:
 4. Worker who forgets to check out is auto-checked-out 30 minutes after scheduled end time
 5. Admin can override a worker's check-out time from the admin portal
 
-**Plans:** TBD
+**Plans:** 9 plans
+
+Plans:
+- [ ] 05-01-PLAN.md -- DB migration (shift_check_ins, push tokens, geo columns, RLS, pg_cron) + Supabase client setup
+- [ ] 05-02-PLAN.md -- Auth system (SessionProvider, login screen, session persistence)
+- [ ] 05-03-PLAN.md -- Core data hooks (useShifts, shiftStore, syncStore, proximity utility)
+- [ ] 05-04-PLAN.md -- Home tab (today's shifts, ShiftCard, 4-tab bottom nav)
+- [ ] 05-05-PLAN.md -- Shift detail + GPS check-in (proximity enforcement, medical alerts, offline fallback)
+- [ ] 05-06-PLAN.md -- Live timer + check-out (AppState timer, duration calc, case note modal)
+- [ ] 05-07-PLAN.md -- Weekly schedule calendar + profile/logout + notes placeholder
+- [ ] 05-08-PLAN.md -- Admin override checkout API (POST /api/shifts/[id]/override-checkout)
+- [ ] 05-09-PLAN.md -- Offline caching + push notifications + sync engine + offline indicator
 
 ---
 
@@ -433,7 +444,7 @@ Note: Phases 2 and 3 can execute in parallel (both depend only on Phase 1).
 | 2. Participant Management | 0/5 | Planned | - |
 | 3. Worker Management | 5/5 | Complete | 2026-01-24 |
 | 4. Shift Scheduling | 4/4 | Complete | 2026-01-24 |
-| 5. Worker Mobile App | 0/0 | Not started | - |
+| 5. Worker Mobile App | 0/9 | Planned | - |
 | 6. Case Notes | 0/0 | Not started | - |
 | 7. Invoicing | 0/0 | Not started | - |
 | 8. Participant Portal | 0/0 | Not started | - |

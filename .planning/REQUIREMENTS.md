@@ -59,18 +59,18 @@
 
 ### Worker Mobile App (MOBL)
 
-- [ ] **MOBL-01**: Worker sees today's shifts on home screen ordered by time
-- [ ] **MOBL-02**: Worker can check in with GPS location capture and timestamp recording
-- [ ] **MOBL-03**: Worker sees live timer with elapsed time during active shift
-- [ ] **MOBL-04**: Worker can check out with automatic duration calculation
-- [ ] **MOBL-05**: Worker prompted to add case note after check-out (skip or add now)
-- [ ] **MOBL-06**: Worker can view weekly schedule with shift details
-- [ ] **MOBL-07**: Worker sees special instructions and medical alerts before check-in
-- [ ] **MOBL-08**: App persists login session between app closes (Expo SecureStore)
-- [ ] **MOBL-09**: App caches today's and upcoming shifts for offline viewing
-- [ ] **MOBL-10**: System auto-checks out worker 30 minutes after scheduled end time
-- [ ] **MOBL-11**: Admin can manually override/set check-out time for any shift
-- [ ] **MOBL-12**: Bottom navigation tabs: Home, Schedule, My Notes, Profile
+- [x] **MOBL-01**: Worker sees today's shifts on home screen ordered by time
+- [x] **MOBL-02**: Worker can check in with GPS location capture and timestamp recording
+- [x] **MOBL-03**: Worker sees live timer with elapsed time during active shift
+- [x] **MOBL-04**: Worker can check out with automatic duration calculation
+- [x] **MOBL-05**: Worker prompted to add case note after check-out (skip or add now)
+- [x] **MOBL-06**: Worker can view weekly schedule with shift details
+- [x] **MOBL-07**: Worker sees special instructions and medical alerts before check-in
+- [x] **MOBL-08**: App persists login session between app closes (Expo SecureStore)
+- [x] **MOBL-09**: App caches today's and upcoming shifts for offline viewing
+- [x] **MOBL-10**: System auto-checks out worker 30 minutes after scheduled end time
+- [x] **MOBL-11**: Admin can manually override/set check-out time for any shift
+- [x] **MOBL-12**: Bottom navigation tabs: Home, Schedule, My Notes, Profile
 
 ### Case Notes (NOTE)
 
@@ -244,18 +244,18 @@
 | SHFT-09 | Phase 4: Shift Scheduling | Complete |
 | SHFT-10 | Phase 11: Compliance and Incidents | Pending |
 | SHFT-11 | Phase 11: Compliance and Incidents | Pending |
-| MOBL-01 | Phase 5: Worker Mobile App | Pending |
-| MOBL-02 | Phase 5: Worker Mobile App | Pending |
-| MOBL-03 | Phase 5: Worker Mobile App | Pending |
-| MOBL-04 | Phase 5: Worker Mobile App | Pending |
-| MOBL-05 | Phase 5: Worker Mobile App | Pending |
-| MOBL-06 | Phase 5: Worker Mobile App | Pending |
-| MOBL-07 | Phase 5: Worker Mobile App | Pending |
-| MOBL-08 | Phase 5: Worker Mobile App | Pending |
-| MOBL-09 | Phase 5: Worker Mobile App | Pending |
-| MOBL-10 | Phase 5: Worker Mobile App | Pending |
-| MOBL-11 | Phase 5: Worker Mobile App | Pending |
-| MOBL-12 | Phase 5: Worker Mobile App | Pending |
+| MOBL-01 | Phase 5: Worker Mobile App | Complete |
+| MOBL-02 | Phase 5: Worker Mobile App | Complete |
+| MOBL-03 | Phase 5: Worker Mobile App | Complete |
+| MOBL-04 | Phase 5: Worker Mobile App | Complete |
+| MOBL-05 | Phase 5: Worker Mobile App | Complete |
+| MOBL-06 | Phase 5: Worker Mobile App | Complete |
+| MOBL-07 | Phase 5: Worker Mobile App | Complete |
+| MOBL-08 | Phase 5: Worker Mobile App | Complete |
+| MOBL-09 | Phase 5: Worker Mobile App | Complete |
+| MOBL-10 | Phase 5: Worker Mobile App | Complete |
+| MOBL-11 | Phase 5: Worker Mobile App | Complete |
+| MOBL-12 | Phase 5: Worker Mobile App | Complete |
 | NOTE-01 | Phase 6: Case Notes | Pending |
 | NOTE-02 | Phase 6: Case Notes | Pending |
 | NOTE-03 | Phase 6: Case Notes | Pending |

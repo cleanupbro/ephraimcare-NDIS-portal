@@ -5,21 +5,21 @@
 See: .planning/PROJECT.md (updated 2026-01-24)
 
 **Core value:** Schedule shifts, track check-ins, generate invoices from actual hours worked
-**Current focus:** Phase 5 in progress (Worker Mobile App). Plan 01 complete.
+**Current focus:** Phase 6 next (Case Notes). Phase 5 Worker Mobile App complete.
 
 ## Current Position
 
-Phase: 5 of 13 (Worker Mobile App)
-Plan: 1 of 9 in current phase
-Status: In progress
-Last activity: 2026-01-24 -- Completed 05-01-PLAN.md (Database Migration and Supabase Client Setup)
+Phase: 6 of 13 (Case Notes)
+Plan: 0 of 0 in current phase (not yet planned)
+Status: Ready to plan
+Last activity: 2026-01-25 -- Phase 5 verified (20/20 must-haves passed)
 
-Progress: [████████████░░░░░░░░] 31%
+Progress: [████████████████░░░░] 38%
 
 ## Performance Metrics
 
 **Velocity:**
-- Total plans completed: 24 (Phase 1: 9, Phase 2: 5, Phase 3: 5, Phase 4: 4, Phase 5: 1)
+- Total plans completed: 32 (Phase 1: 9, Phase 2: 5, Phase 3: 5, Phase 4: 4, Phase 5: 9)
 - Average duration: --
 - Total execution time: --
 
@@ -31,7 +31,7 @@ Progress: [████████████░░░░░░░░] 31%
 | 2 | 5/5 | -- | -- |
 | 3 | 5/5 | -- | -- |
 | 4 | 4/4 | -- | -- |
-| 5 | 1/9 | -- | -- |
+| 5 | 9/9 | -- | -- |
 
 **Recent Trend:**
 - Last 5 plans: --
@@ -87,6 +87,16 @@ Recent decisions affecting current work:
 - expo-sqlite localStorage adapter for Supabase session persistence (SecureStore 2048-byte limit incompatible with JWT tokens)
 - pg_cron auto-checkout for stale shifts (server-side, works even if app closed/offline)
 - Separate shift_check_ins table (not columns on shifts) for cleaner offline sync and GPS tracking
+- PersistQueryClientProvider with AsyncStorage persister for 24h offline query cache
+- NetInfo-based sync listener processes FIFO queue on reconnection (check-in before check-out ordering)
+- Timer uses absolute Date.now() - startTime calculation (not incrementing counter) for accuracy after backgrounding
+- AppState 'active' listener recalculates elapsed time on foreground resume
+- fontVariant: ['tabular-nums'] prevents timer digit width jumps
+- Check-out GPS is optional (doesn't block if permission denied)
+- Duration calculated from check_in_time (server truth, not client timer)
+- Case note minimum 10 characters to prevent empty submissions
+- Expo push token upserted on worker_id conflict (one token per worker)
+- Sync breaks on first failure to maintain FIFO order integrity
 
 ### Pending Todos
 
@@ -98,8 +108,8 @@ None.
 
 ## Session Continuity
 
-Last session: 2026-01-24
-Stopped at: Completed 05-01-PLAN.md (Phase 5, Plan 1)
+Last session: 2026-01-25
+Stopped at: Phase 5 complete, Phase 6 ready to plan
 Resume file: None
 
 ## Phase Progress
@@ -110,7 +120,7 @@ Resume file: None
 | 2 | Participant Management | Complete | 5/5 |
 | 3 | Worker Management | Complete | 5/5 |
 | 4 | Shift Scheduling | Complete | 4/4 |
-| 5 | Worker Mobile App | In Progress | 1/9 |
+| 5 | Worker Mobile App | Complete | 9/9 |
 | 6 | Case Notes | Pending | 0/0 |
 | 7 | Invoicing | Pending | 0/0 |
 | 8 | Participant Portal | Pending | 0/0 |
@@ -146,3 +156,5 @@ Resume file: None
 | 2026-01-24 | Phase 4 Plan 04 executed | Filter bar, detail sheet, inline edit, cancel flow |
 | 2026-01-24 | Phase 4 verified | 5/5 must-haves verified (support type validation fixed: warning -> hard rejection) |
 | 2026-01-24 | Phase 5 Plan 01 executed | Migration (shift_check_ins, push_tokens, geo columns), Supabase client, constants |
+| 2026-01-25 | Phase 5 Plans 02-09 executed | Auth, hooks, admin override, home tab, GPS check-in, schedule, timer, offline sync |
+| 2026-01-25 | Phase 5 verified | 20/20 must-haves passed, all worker mobile features implemented |
