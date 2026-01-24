@@ -18,7 +18,7 @@ export default function LoginScreen() {
     }
     setError(null)
     setLoading(true)
-    const { error: signInError } = await signIn(email.trim(), password)
+    const signInError = await signIn(email.trim(), password)
     if (signInError) setError(signInError)
     setLoading(false)
   }
