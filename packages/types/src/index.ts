@@ -8,6 +8,8 @@ export type {
   Profile,
   Participant,
   Worker,
+  WorkerWithProfile,
+  WorkerStats,
   Shift,
   CaseNote,
   Invoice,

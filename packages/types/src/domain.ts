@@ -75,10 +75,51 @@ export interface Worker {
   services_provided: string[]
   hourly_rate: number | null
   max_hours_per_week: number
+  ndis_check_number: string | null
+  ndis_check_expiry: string | null
+  wwcc_number: string | null
+  wwcc_expiry: string | null
   organization_id: string
   is_active: boolean
   created_at: string
   updated_at: string
+}
+
+/** Worker with joined profile data for list/detail queries */
+export interface WorkerWithProfile {
+  id: string
+  profile_id: string
+  employee_id: string | null
+  qualification: string[] | null
+  services_provided: string[] | null
+  hourly_rate: number | null
+  max_hours_per_week: number | null
+  organization_id: string
+  is_active: boolean
+  ndis_check_number: string | null
+  ndis_check_expiry: string | null
+  wwcc_number: string | null
+  wwcc_expiry: string | null
+  created_at: string
+  updated_at: string
+  profiles: {
+    first_name: string
+    last_name: string
+    email: string
+    phone: string | null
+  }
+}
+
+/** Stats for worker detail page cards */
+export interface WorkerStats {
+  hoursThisWeek: number
+  hoursThisMonth: number
+  nextShift: {
+    id: string
+    scheduled_start: string
+    scheduled_end: string
+    participants: { first_name: string; last_name: string }
+  } | null
 }
 
 export interface Shift {
