@@ -52,14 +52,14 @@ export function useReviewCaseNote() {
       if (!user) throw new Error('Not authenticated')
 
       const { data, error } = await (supabase
-        .from('case_notes')
+        .from('case_notes') as any)
         .update({
           reviewed_at: new Date().toISOString(),
           reviewed_by: user.id,
         })
         .eq('id', caseNoteId)
         .select()
-        .single() as any)
+        .single()
 
       if (error) throw error
       return data
@@ -88,7 +88,7 @@ export function useAddAdminComment() {
       if (!user) throw new Error('Not authenticated')
 
       const { data, error } = await (supabase
-        .from('case_note_admin_comments')
+        .from('case_note_admin_comments') as any)
         .insert({
           case_note_id: caseNoteId,
           admin_id: user.id,
@@ -96,7 +96,7 @@ export function useAddAdminComment() {
           organization_id: organizationId,
         })
         .select()
-        .single() as any)
+        .single()
 
       if (error) throw error
       return data

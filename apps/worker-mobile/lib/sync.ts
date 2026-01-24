@@ -89,7 +89,7 @@ export async function syncPendingActions(): Promise<void> {
 export function startSyncListener(): void {
   if (syncSubscription) return
 
-  syncSubscription = NetInfo.addEventListener((state) => {
+  syncSubscription = NetInfo.addEventListener((state: { isConnected: boolean | null }) => {
     if (state.isConnected) {
       syncPendingActions()
     }

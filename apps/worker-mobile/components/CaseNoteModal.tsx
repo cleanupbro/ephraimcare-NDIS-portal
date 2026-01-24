@@ -79,7 +79,7 @@ export function CaseNoteModal({
           resetForm()
           onDismiss()
         },
-        onError: (error) => {
+        onError: (_error) => {
           // Note was queued offline via hook's onError
           setSaveError('Saved offline - will sync when connected')
           setTimeout(() => {
