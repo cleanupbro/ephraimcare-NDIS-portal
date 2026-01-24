@@ -68,16 +68,18 @@ export function useUpdateWorker(workerId: string, profileId: string) {
         phone: data.phone || null,
       }
 
-      const workerFields = {
+      const workerFields: Record<string, unknown> = {
         services_provided: data.services_provided,
         qualification: data.qualification || [],
         hourly_rate: data.hourly_rate || null,
         max_hours_per_week: data.max_hours_per_week ?? 38,
-        ndis_check_number: data.ndis_check_number || null,
-        ndis_check_expiry: data.ndis_check_expiry || null,
-        wwcc_number: data.wwcc_number || null,
-        wwcc_expiry: data.wwcc_expiry || null,
       }
+
+      // Only include compliance fields if provided (columns may not exist pre-migration)
+      if (data.ndis_check_number) workerFields.ndis_check_number = data.ndis_check_number
+      if (data.ndis_check_expiry) workerFields.ndis_check_expiry = data.ndis_check_expiry
+      if (data.wwcc_number) workerFields.wwcc_number = data.wwcc_number
+      if (data.wwcc_expiry) workerFields.wwcc_expiry = data.wwcc_expiry
 
       // Update profile record
       const { error: profileError } = await (supabase

@@ -44,14 +44,16 @@ export async function POST(request: Request) {
       )
     }
 
-    // 3. Generate invite link using admin client
+    // 3. Generate link using admin client
+    // This is a RESEND function, so user should already exist — use 'magiclink'
+    // If user doesn't exist (edge case), fall back to 'invite'
     const admin = createAdminClient()
 
     const { error: linkError } = await admin.auth.admin.generateLink({
-      type: 'invite',
+      type: 'magiclink',
       email,
       options: {
-        redirectTo: `${process.env.NEXT_PUBLIC_SITE_URL}/auth/callback`,
+        redirectTo: `${process.env.NEXT_PUBLIC_SITE_URL || process.env.NEXT_PUBLIC_ADMIN_URL}/auth/callback`,
       },
     })
 

@@ -67,29 +67,64 @@ export async function POST(request: Request) {
       )
     }
 
-    // 3. Create auth user with invite
+    // 3. Create auth user directly (bypasses Supabase SMTP)
     const admin = createAdminClient()
 
-    const { data: authData, error: inviteError } = await admin.auth.admin.inviteUserByEmail(
+    const { data: authData, error: createError } = await admin.auth.admin.createUser({
       email,
-      {
-        data: {
-          first_name,
-          last_name,
-          role: 'worker',
-        },
-        redirectTo: `${process.env.NEXT_PUBLIC_SITE_URL}/auth/callback`,
-      }
-    )
+      email_confirm: true,
+      user_metadata: {
+        first_name,
+        last_name,
+        role: 'worker',
+      },
+    })
 
-    if (inviteError || !authData.user) {
+    if (createError || !authData.user) {
       return NextResponse.json(
-        { error: inviteError?.message ?? 'Failed to create user invitation' },
+        { error: createError?.message ?? 'Failed to create user' },
         { status: 500 }
       )
     }
 
     const userId = authData.user.id
+
+    // Generate a magic link for the worker to set up their account
+    const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || process.env.NEXT_PUBLIC_ADMIN_URL || 'http://localhost:3000'
+    const { data: linkData } = await admin.auth.admin.generateLink({
+      type: 'magiclink',
+      email,
+      options: { redirectTo: `${siteUrl}/auth/callback` },
+    })
+
+    // Send welcome email via Resend API
+    if (process.env.RESEND_API_KEY && linkData?.properties?.action_link) {
+      try {
+        await fetch('https://api.resend.com/emails', {
+          method: 'POST',
+          headers: {
+            'Authorization': `Bearer ${process.env.RESEND_API_KEY}`,
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            from: 'Ephraim Care <onboarding@resend.dev>',
+            to: [email],
+            subject: 'Welcome to Ephraim Care - Set Up Your Account',
+            html: `
+              <h2>Welcome to Ephraim Care, ${first_name}!</h2>
+              <p>You've been invited as a support worker. Click the link below to access your account:</p>
+              <p><a href="${linkData.properties.action_link}" style="background-color:#66BB6A;color:white;padding:12px 24px;text-decoration:none;border-radius:8px;display:inline-block;">Access My Account</a></p>
+              <p>If the button doesn't work, copy this link: ${linkData.properties.action_link}</p>
+              <br/>
+              <p style="color:#666;font-size:12px;">Powered by OpBros</p>
+            `,
+          }),
+        })
+      } catch (emailErr) {
+        // Email send failed but user was created - log but don't block
+        console.error('Welcome email failed:', emailErr)
+      }
+    }
 
     // 4. Create profile record
     const { error: profileError } = await admin
