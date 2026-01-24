@@ -5,21 +5,21 @@
 See: .planning/PROJECT.md (updated 2026-01-24)
 
 **Core value:** Schedule shifts, track check-ins, generate invoices from actual hours worked
-**Current focus:** Phase 3 complete (Worker Management). Ready for Phase 4.
+**Current focus:** Phase 4 in progress (Shift Scheduling). Plan 01 complete.
 
 ## Current Position
 
-Phase: 3 of 13 (Worker Management)
-Plan: 5 of 5 in current phase
-Status: Phase complete
-Last activity: 2026-01-24 -- Completed 03-05-PLAN.md (Worker Edit, Resend Invite, Detail Actions)
+Phase: 4 of 13 (Shift Scheduling)
+Plan: 1 of 4 in current phase
+Status: In progress
+Last activity: 2026-01-24 -- Completed 04-01-PLAN.md (Shift Scheduling Data Layer)
 
-Progress: [████████░░] 25%
+Progress: [████████░░] 26%
 
 ## Performance Metrics
 
 **Velocity:**
-- Total plans completed: 19 (Phase 1: 9, Phase 2: 5, Phase 3: 5)
+- Total plans completed: 20 (Phase 1: 9, Phase 2: 5, Phase 3: 5, Phase 4: 1)
 - Average duration: --
 - Total execution time: --
 
@@ -30,6 +30,7 @@ Progress: [████████░░] 25%
 | 1 | 9/9 | -- | -- |
 | 2 | 5/5 | -- | -- |
 | 3 | 5/5 | -- | -- |
+| 4 | 1/4 | -- | -- |
 
 **Recent Trend:**
 - Last 5 plans: --
@@ -74,6 +75,9 @@ Recent decisions affecting current work:
 - useUpdateWorker splits profile fields and worker fields for separate Supabase updates
 - Resend invite uses generateLink (not inviteUserByEmail) to avoid duplicate user creation
 - Resend Invite button only shown for active workers (is_active check)
+- Default shift status = pending (new shifts require coordinator confirmation)
+- support_type stored as text (not enum) for flexibility with NDIS category additions
+- Overlap detection index excludes cancelled shifts (partial index for performance)
 
 ### Pending Todos
 
@@ -86,7 +90,7 @@ None.
 ## Session Continuity
 
 Last session: 2026-01-24
-Stopped at: Completed 03-05-PLAN.md (Worker Edit, Resend Invite, Detail Actions) -- Phase 3 complete
+Stopped at: Completed 04-01-PLAN.md (Shift Scheduling Data Layer)
 Resume file: None
 
 ## Phase Progress
@@ -96,7 +100,7 @@ Resume file: None
 | 1 | Foundation | Complete | 9/9 |
 | 2 | Participant Management | Complete | 5/5 |
 | 3 | Worker Management | Complete | 5/5 |
-| 4 | Shift Scheduling | Pending | 0/0 |
+| 4 | Shift Scheduling | In Progress | 1/4 |
 | 5 | Worker Mobile App | Pending | 0/0 |
 | 6 | Case Notes | Pending | 0/0 |
 | 7 | Invoicing | Pending | 0/0 |
@@ -127,3 +131,4 @@ Resume file: None
 | 2026-01-24 | Phase 3 Plan 03 executed | Worker creation form, invite API, mutation hook |
 | 2026-01-24 | Phase 3 Plan 05 executed | Edit form (read-only email), resend invite API, detail actions |
 | 2026-01-24 | Phase 3 verified | 3/5 must-haves verified (2 gaps are Phase 4/5 dependencies: worker mobile login, hours column) |
+| 2026-01-24 | Phase 4 Plan 01 executed | Migration, Zod schemas, constants, domain types for shift scheduling |
