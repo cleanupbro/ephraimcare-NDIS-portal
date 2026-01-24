@@ -5,21 +5,21 @@
 See: .planning/PROJECT.md (updated 2026-01-24)
 
 **Core value:** Schedule shifts, track check-ins, generate invoices from actual hours worked
-**Current focus:** Phase 6 (Case Notes) in progress. Plans 01-02 complete.
+**Current focus:** Phase 6 (Case Notes) in progress. Plans 01-03 complete.
 
 ## Current Position
 
 Phase: 6 of 13 (Case Notes)
-Plan: 2 of 4 in current phase
+Plan: 3 of 4 in current phase
 Status: In progress
-Last activity: 2026-01-25 -- Completed 06-02-PLAN.md (Case note creation flow)
+Last activity: 2026-01-25 -- Completed 06-03-PLAN.md (Admin case notes review tab)
 
-Progress: [██████████████████░░] 40%
+Progress: [███████████████████░] 41%
 
 ## Performance Metrics
 
 **Velocity:**
-- Total plans completed: 34 (Phase 1: 9, Phase 2: 5, Phase 3: 5, Phase 4: 4, Phase 5: 9, Phase 6: 2)
+- Total plans completed: 35 (Phase 1: 9, Phase 2: 5, Phase 3: 5, Phase 4: 4, Phase 5: 9, Phase 6: 3)
 - Average duration: --
 - Total execution time: --
 
@@ -32,7 +32,7 @@ Progress: [██████████████████░░] 40%
 | 3 | 5/5 | -- | -- |
 | 4 | 4/4 | -- | -- |
 | 5 | 9/9 | -- | -- |
-| 6 | 2/4 | -- | -- |
+| 6 | 3/4 | -- | -- |
 
 **Recent Trend:**
 - Last 5 plans: --
@@ -104,6 +104,8 @@ Recent decisions affecting current work:
 - Participant case note visibility removed entirely (clinical privacy)
 - Upsert with onConflict: 'shift_id,worker_id' prevents duplicate case notes from offline sync replay
 - Offline case note error dismisses modal after 1.5s delay (user sees confirmation before close)
+- organizationId passed from participant object to CaseNotesTab for admin comment insertion (avoids extra DB lookup)
+- Worker filter Select uses 'all' placeholder value, filtered out before query to prevent DB mismatch
 
 ### Pending Todos
 
@@ -116,7 +118,7 @@ None.
 ## Session Continuity
 
 Last session: 2026-01-25
-Stopped at: Completed 06-02-PLAN.md (Case note creation flow)
+Stopped at: Completed 06-03-PLAN.md (Admin case notes review tab)
 Resume file: None
 
 ## Phase Progress
@@ -128,7 +130,7 @@ Resume file: None
 | 3 | Worker Management | Complete | 5/5 |
 | 4 | Shift Scheduling | Complete | 4/4 |
 | 5 | Worker Mobile App | Complete | 9/9 |
-| 6 | Case Notes | In Progress | 2/4 |
+| 6 | Case Notes | In Progress | 3/4 |
 | 7 | Invoicing | Pending | 0/0 |
 | 8 | Participant Portal | Pending | 0/0 |
 | 9 | Notifications | Pending | 0/0 |
@@ -167,3 +169,4 @@ Resume file: None
 | 2026-01-25 | Phase 5 verified | 20/20 must-haves passed, all worker mobile features implemented |
 | 2026-01-25 | Phase 6 Plan 01 executed | Migration (concern_flag, admin_comments, 24h RLS, trigger) + Zod schema |
 | 2026-01-25 | Phase 6 Plan 02 executed | CaseNoteModal form + useCreateCaseNote hook + syncStore case_note type |
+| 2026-01-25 | Phase 6 Plan 03 executed | Admin case notes tab, hooks, filters, review/comments on participant detail |
