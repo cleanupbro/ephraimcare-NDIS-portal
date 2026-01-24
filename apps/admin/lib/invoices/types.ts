@@ -1,8 +1,19 @@
-// ─── Invoice Domain Types ────────────────────────────────────────────────────
+// Phase 7: Invoice domain types
+// Pure type definitions -- no runtime code
+
+// ─── Day & Status Types ─────────────────────────────────────────────────────
 
 export type DayType = 'weekday' | 'saturday' | 'sunday' | 'public_holiday'
 
-export type InvoiceStatus = 'draft' | 'pending' | 'submitted' | 'paid' | 'overdue' | 'cancelled'
+export type InvoiceStatus =
+  | 'draft'
+  | 'pending'
+  | 'submitted'
+  | 'paid'
+  | 'overdue'
+  | 'cancelled'
+
+// ─── Support Type Rates ─────────────────────────────────────────────────────
 
 export interface SupportTypeRate {
   id: string
@@ -19,6 +30,8 @@ export interface SupportTypeRate {
   updated_at: string
 }
 
+// ─── Public Holidays ────────────────────────────────────────────────────────
+
 export interface PublicHoliday {
   id: string
   holiday_date: string
@@ -27,6 +40,8 @@ export interface PublicHoliday {
   created_by: string | null
   created_at: string
 }
+
+// ─── Invoice ────────────────────────────────────────────────────────────────
 
 export interface Invoice {
   id: string
@@ -51,6 +66,8 @@ export interface Invoice {
   updated_at: string
 }
 
+// ─── Invoice Line Item ──────────────────────────────────────────────────────
+
 export interface InvoiceLineItem {
   id: string
   invoice_id: string
@@ -69,11 +86,21 @@ export interface InvoiceLineItem {
   created_at: string
 }
 
-export type InvoiceWithLineItems = Invoice & { line_items: InvoiceLineItem[] }
+// ─── Composite Types ────────────────────────────────────────────────────────
+
+export type InvoiceWithLineItems = Invoice & {
+  line_items: InvoiceLineItem[]
+}
 
 export type InvoiceWithParticipant = Invoice & {
-  participants: { first_name: string; last_name: string; ndis_number: string } | null
+  participants: {
+    first_name: string
+    last_name: string
+    ndis_number: string
+  } | null
 }
+
+// ─── Generation Payloads ────────────────────────────────────────────────────
 
 export interface GenerateInvoicePayload {
   participant_id: string
