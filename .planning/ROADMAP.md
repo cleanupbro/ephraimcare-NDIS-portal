@@ -20,7 +20,7 @@ This roadmap delivers a complete NDIS management platform across 13 phases, from
 - [x] **Phase 3: Worker Management** - CRUD for workers with qualifications and screening checks
 - [x] **Phase 4: Shift Scheduling** - Create, edit, cancel shifts with conflict detection and validation
 - [x] **Phase 5: Worker Mobile App** - Check-in/out with GPS, shift views, live timer, and offline cache
-- [ ] **Phase 6: Case Notes** - Worker creates notes post-shift, admin reviews with filters
+- [x] **Phase 6: Case Notes** - Worker creates notes post-shift, admin reviews with filters
 - [ ] **Phase 7: Invoicing** - Generate invoices from completed shifts with NDIS-compliant billing
 - [ ] **Phase 8: Participant Portal** - Read-only dashboard with plan status, budget, and invoice downloads
 - [ ] **Phase 9: Notifications** - Email notifications for shift assignments, cancellations, and invoices

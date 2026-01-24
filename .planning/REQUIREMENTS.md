@@ -74,12 +74,12 @@
 
 ### Case Notes (NOTE)
 
-- [ ] **NOTE-01**: Worker can create case note linked to shift with required text (min 10 chars) and optional concerns
-- [ ] **NOTE-02**: Admin can view all case notes for a participant with timestamp and worker name
-- [ ] **NOTE-03**: Admin can filter case notes by date range and worker
-- [ ] **NOTE-04**: Case note automatically records shift duration, worker, participant, and timestamps
-- [ ] **NOTE-05**: Case notes are not visible to participants in their portal
-- [ ] **NOTE-06**: Worker cannot see other workers' case notes
+- [x] **NOTE-01**: Worker can create case note linked to shift with required text (min 10 chars) and optional concerns
+- [x] **NOTE-02**: Admin can view all case notes for a participant with timestamp and worker name
+- [x] **NOTE-03**: Admin can filter case notes by date range and worker
+- [x] **NOTE-04**: Case note automatically records shift duration, worker, participant, and timestamps
+- [x] **NOTE-05**: Case notes are not visible to participants in their portal
+- [x] **NOTE-06**: Worker cannot see other workers' case notes
 
 ### Invoicing (INVC)
 
@@ -256,12 +256,12 @@
 | MOBL-10 | Phase 5: Worker Mobile App | Complete |
 | MOBL-11 | Phase 5: Worker Mobile App | Complete |
 | MOBL-12 | Phase 5: Worker Mobile App | Complete |
-| NOTE-01 | Phase 6: Case Notes | Pending |
-| NOTE-02 | Phase 6: Case Notes | Pending |
-| NOTE-03 | Phase 6: Case Notes | Pending |
-| NOTE-04 | Phase 6: Case Notes | Pending |
-| NOTE-05 | Phase 6: Case Notes | Pending |
-| NOTE-06 | Phase 6: Case Notes | Pending |
+| NOTE-01 | Phase 6: Case Notes | Complete |
+| NOTE-02 | Phase 6: Case Notes | Complete |
+| NOTE-03 | Phase 6: Case Notes | Complete |
+| NOTE-04 | Phase 6: Case Notes | Complete |
+| NOTE-05 | Phase 6: Case Notes | Complete |
+| NOTE-06 | Phase 6: Case Notes | Complete |
 | INVC-01 | Phase 7: Invoicing | Pending |
 | INVC-02 | Phase 7: Invoicing | Pending |
 | INVC-03 | Phase 7: Invoicing | Pending |
