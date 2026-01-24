@@ -33,7 +33,7 @@ export function WorkerEditForm({ worker }: WorkerEditFormProps) {
       first_name: worker.profiles.first_name,
       last_name: worker.profiles.last_name,
       phone: worker.profiles.phone ?? '',
-      services_provided: worker.services_provided ?? [],
+      services_provided: (worker.services_provided ?? []) as WorkerEditData['services_provided'],
       qualification: worker.qualification ?? [],
       hourly_rate: worker.hourly_rate ?? undefined,
       max_hours_per_week: worker.max_hours_per_week ?? 38,
@@ -60,7 +60,7 @@ export function WorkerEditForm({ worker }: WorkerEditFormProps) {
   }
 
   return (
-    <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
+    <form onSubmit={form.handleSubmit(onSubmit as any)} className="space-y-6">
       {/* Read-only Email */}
       <Card>
         <CardHeader>
