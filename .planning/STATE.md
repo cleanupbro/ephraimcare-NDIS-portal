@@ -5,21 +5,21 @@
 See: .planning/PROJECT.md (updated 2026-01-24)
 
 **Core value:** Schedule shifts, track check-ins, generate invoices from actual hours worked
-**Current focus:** Phase 6 next (Case Notes). Phase 5 Worker Mobile App complete.
+**Current focus:** Phase 6 (Case Notes) in progress. Plan 01 complete.
 
 ## Current Position
 
 Phase: 6 of 13 (Case Notes)
-Plan: 0 of 0 in current phase (not yet planned)
-Status: Ready to plan
-Last activity: 2026-01-25 -- Phase 5 verified (20/20 must-haves passed)
+Plan: 1 of 4 in current phase
+Status: In progress
+Last activity: 2026-01-25 -- Completed 06-01-PLAN.md (DB foundation + Zod schema)
 
-Progress: [████████████████░░░░] 38%
+Progress: [█████████████████░░░] 39%
 
 ## Performance Metrics
 
 **Velocity:**
-- Total plans completed: 32 (Phase 1: 9, Phase 2: 5, Phase 3: 5, Phase 4: 4, Phase 5: 9)
+- Total plans completed: 33 (Phase 1: 9, Phase 2: 5, Phase 3: 5, Phase 4: 4, Phase 5: 9, Phase 6: 1)
 - Average duration: --
 - Total execution time: --
 
@@ -32,6 +32,7 @@ Progress: [████████████████░░░░] 38%
 | 3 | 5/5 | -- | -- |
 | 4 | 4/4 | -- | -- |
 | 5 | 9/9 | -- | -- |
+| 6 | 1/4 | -- | -- |
 
 **Recent Trend:**
 - Last 5 plans: --
@@ -97,6 +98,10 @@ Recent decisions affecting current work:
 - Case note minimum 10 characters to prevent empty submissions
 - Expo push token upserted on worker_id conflict (one token per worker)
 - Sync breaks on first failure to maintain FIFO order integrity
+- Unique (shift_id, worker_id) constraint on case_notes (one note per shift per worker)
+- 24h edit window uses shift_check_ins.check_out_time (not note created_at)
+- Admin comments in separate table for RLS isolation from workers
+- Participant case note visibility removed entirely (clinical privacy)
 
 ### Pending Todos
 
@@ -109,7 +114,7 @@ None.
 ## Session Continuity
 
 Last session: 2026-01-25
-Stopped at: Phase 5 complete, Phase 6 ready to plan
+Stopped at: Completed 06-01-PLAN.md (DB migration + Zod schema)
 Resume file: None
 
 ## Phase Progress
@@ -121,7 +126,7 @@ Resume file: None
 | 3 | Worker Management | Complete | 5/5 |
 | 4 | Shift Scheduling | Complete | 4/4 |
 | 5 | Worker Mobile App | Complete | 9/9 |
-| 6 | Case Notes | Pending | 0/0 |
+| 6 | Case Notes | In Progress | 1/4 |
 | 7 | Invoicing | Pending | 0/0 |
 | 8 | Participant Portal | Pending | 0/0 |
 | 9 | Notifications | Pending | 0/0 |
@@ -158,3 +163,4 @@ Resume file: None
 | 2026-01-24 | Phase 5 Plan 01 executed | Migration (shift_check_ins, push_tokens, geo columns), Supabase client, constants |
 | 2026-01-25 | Phase 5 Plans 02-09 executed | Auth, hooks, admin override, home tab, GPS check-in, schedule, timer, offline sync |
 | 2026-01-25 | Phase 5 verified | 20/20 must-haves passed, all worker mobile features implemented |
+| 2026-01-25 | Phase 6 Plan 01 executed | Migration (concern_flag, admin_comments, 24h RLS, trigger) + Zod schema |
