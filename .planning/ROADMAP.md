@@ -170,7 +170,13 @@ Plans:
 4. Admin can cancel a shift with a reason and see its status change to cancelled (data preserved)
 5. Shift list can be filtered by participant, worker, status, and date range simultaneously
 
-**Plans:** TBD
+**Plans:** 4 plans
+
+Plans:
+- [ ] 04-01-PLAN.md -- DB migration (support_type column, enum values, overlap index), Zod schemas, constants
+- [ ] 04-02-PLAN.md -- Sheet UI component, shift list page (cards grouped by day, week navigation, useShifts hook)
+- [ ] 04-03-PLAN.md -- Create shift form (participant-first selection, duration presets, conflict detection dialogs)
+- [ ] 04-04-PLAN.md -- Shift filters, detail sheet (side panel), inline edit, cancel with reason
 
 ---
 
@@ -426,7 +432,7 @@ Note: Phases 2 and 3 can execute in parallel (both depend only on Phase 1).
 | 1. Foundation | 0/9 | Planned | - |
 | 2. Participant Management | 0/5 | Planned | - |
 | 3. Worker Management | 5/5 | Complete | 2026-01-24 |
-| 4. Shift Scheduling | 0/0 | Not started | - |
+| 4. Shift Scheduling | 0/4 | Planned | - |
 | 5. Worker Mobile App | 0/0 | Not started | - |
 | 6. Case Notes | 0/0 | Not started | - |
 | 7. Invoicing | 0/0 | Not started | - |
