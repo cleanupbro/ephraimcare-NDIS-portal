@@ -3,6 +3,8 @@
 export type AppRole = 'admin' | 'coordinator' | 'worker' | 'participant'
 
 export type ShiftStatus =
+  | 'pending'
+  | 'proposed'
   | 'scheduled'
   | 'confirmed'
   | 'in_progress'
@@ -138,10 +140,39 @@ export interface Shift {
   check_out_longitude: number | null
   cancellation_reason: string | null
   notes: string | null
+  support_type?: string | null
   organization_id: string
   created_by: string | null
   created_at: string
   updated_at: string
+}
+
+/** Shift with joined participant and worker data for list/detail views */
+export interface ShiftWithRelations extends Shift {
+  participants: {
+    id: string
+    first_name: string
+    last_name: string
+  } | null
+  workers: {
+    id: string
+    services_provided: string[] | null
+    profiles: {
+      first_name: string
+      last_name: string
+    } | null
+  } | null
+}
+
+/** Minimal shift data for overlap/conflict detection */
+export interface OverlappingShift {
+  id: string
+  scheduled_start: string
+  scheduled_end: string
+  participants: {
+    first_name: string
+    last_name: string
+  } | null
 }
 
 export interface CaseNote {
