@@ -89,6 +89,7 @@ export function ShiftForm({ mode, defaultValues, shiftId }: ShiftFormProps) {
     handleSubmit,
     watch,
     setValue,
+    setError,
     formState: { errors, isSubmitting },
   } = useForm<ShiftCreateFormData>({
     resolver: zodResolver(shiftCreateSchema),
@@ -230,22 +231,21 @@ export function ShiftForm({ mode, defaultValues, shiftId }: ShiftFormProps) {
       }
     }
 
-    // 3. Check support type match
-    const selectedWorker = workers.find((w) => w.id === data.worker_id)
-    if (selectedWorker && !selectedWorker.services_provided?.includes(data.support_type)) {
-      detected.push({
-        type: 'support_type',
-        message: 'Support type mismatch',
-        details: `Worker does not list "${data.support_type}" in their services`,
-      })
-    }
-
     return detected
   }
 
   // ─── Form submission ──────────────────────────────────────────────────────
 
   async function onSubmit(data: ShiftCreateFormData) {
+    // Hard validation: support type must match worker's services (not overridable)
+    const selectedWorker = workers.find((w) => w.id === data.worker_id)
+    if (selectedWorker && !selectedWorker.services_provided?.includes(data.support_type)) {
+      setError('worker_id', {
+        message: `Worker does not provide "${data.support_type}" support. Select a qualified worker.`,
+      })
+      return
+    }
+
     setIsChecking(true)
     try {
       const detected = await checkConflicts(data)
