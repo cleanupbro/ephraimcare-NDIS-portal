@@ -5,21 +5,21 @@
 See: .planning/PROJECT.md (updated 2026-01-24)
 
 **Core value:** Schedule shifts, track check-ins, generate invoices from actual hours worked
-**Current focus:** Phase 3 in progress (Worker Management).
+**Current focus:** Phase 3 complete (Worker Management). Ready for Phase 4.
 
 ## Current Position
 
 Phase: 3 of 13 (Worker Management)
-Plan: 4 of 5 in current phase
-Status: In progress
-Last activity: 2026-01-24 -- Completed 03-03-PLAN.md (Worker Creation Form & Invite API)
+Plan: 5 of 5 in current phase
+Status: Phase complete
+Last activity: 2026-01-24 -- Completed 03-05-PLAN.md (Worker Edit, Resend Invite, Detail Actions)
 
-Progress: [███████░░░] 22%
+Progress: [████████░░] 25%
 
 ## Performance Metrics
 
 **Velocity:**
-- Total plans completed: 18 (Phase 1: 9, Phase 2: 5, Phase 3: 4)
+- Total plans completed: 19 (Phase 1: 9, Phase 2: 5, Phase 3: 5)
 - Average duration: --
 - Total execution time: --
 
@@ -29,7 +29,7 @@ Progress: [███████░░░] 22%
 |-------|-------|-------|----------|
 | 1 | 9/9 | -- | -- |
 | 2 | 5/5 | -- | -- |
-| 3 | 4/5 | -- | -- |
+| 3 | 5/5 | -- | -- |
 
 **Recent Trend:**
 - Last 5 plans: --
@@ -71,6 +71,9 @@ Recent decisions affecting current work:
 - Qualifications stored as textarea split by newline (free-form, not multi-select)
 - Native checkbox with Tailwind for support type grid (no shadcn Checkbox component)
 - Worker invite API uses manual rollback cleanup (delete on insert failure)
+- useUpdateWorker splits profile fields and worker fields for separate Supabase updates
+- Resend invite uses generateLink (not inviteUserByEmail) to avoid duplicate user creation
+- Resend Invite button only shown for active workers (is_active check)
 
 ### Pending Todos
 
@@ -83,7 +86,7 @@ None.
 ## Session Continuity
 
 Last session: 2026-01-24
-Stopped at: Completed 03-03-PLAN.md (Worker Creation Form & Invite API)
+Stopped at: Completed 03-05-PLAN.md (Worker Edit, Resend Invite, Detail Actions) -- Phase 3 complete
 Resume file: None
 
 ## Phase Progress
@@ -92,7 +95,7 @@ Resume file: None
 |-------|------|--------|-------|
 | 1 | Foundation | Complete | 9/9 |
 | 2 | Participant Management | Complete | 5/5 |
-| 3 | Worker Management | In progress | 4/5 |
+| 3 | Worker Management | Complete | 5/5 |
 | 4 | Shift Scheduling | Pending | 0/0 |
 | 5 | Worker Mobile App | Pending | 0/0 |
 | 6 | Case Notes | Pending | 0/0 |
@@ -122,3 +125,4 @@ Resume file: None
 | 2026-01-24 | Phase 3 Plan 02 executed | Worker list page, DataTable, search/filter, compliance dot |
 | 2026-01-24 | Phase 3 Plan 04 executed | Worker detail page, stats hook, compliance badges |
 | 2026-01-24 | Phase 3 Plan 03 executed | Worker creation form, invite API, mutation hook |
+| 2026-01-24 | Phase 3 Plan 05 executed | Edit form (read-only email), resend invite API, detail actions |
