@@ -1,8 +1,11 @@
 'use client'
 
-import { useQuery } from '@tanstack/react-query'
+import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query'
+import { useRouter } from 'next/navigation'
 import { createClient } from '@/lib/supabase/client'
 import type { WorkerWithProfile } from '@ephraimcare/types'
+import type { WorkerEditData } from '@/lib/workers/schemas'
+import { toast } from '@/lib/toast'
 
 interface UseWorkersOptions {
   search?: string
@@ -45,5 +48,104 @@ export function useWorkers({ search, status = 'active' }: UseWorkersOptions = {}
       return workers
     },
     staleTime: 30 * 1000,
+  })
+}
+
+// ─── Update Worker ────────────────────────────────────────────────────────────
+
+export function useUpdateWorker(workerId: string, profileId: string) {
+  const queryClient = useQueryClient()
+  const router = useRouter()
+
+  return useMutation({
+    mutationFn: async (data: WorkerEditData) => {
+      const supabase = createClient()
+
+      // Split into profile fields and worker fields
+      const profileFields = {
+        first_name: data.first_name,
+        last_name: data.last_name,
+        phone: data.phone || null,
+      }
+
+      const workerFields = {
+        services_provided: data.services_provided,
+        qualification: data.qualification || [],
+        hourly_rate: data.hourly_rate || null,
+        max_hours_per_week: data.max_hours_per_week ?? 38,
+        ndis_check_number: data.ndis_check_number || null,
+        ndis_check_expiry: data.ndis_check_expiry || null,
+        wwcc_number: data.wwcc_number || null,
+        wwcc_expiry: data.wwcc_expiry || null,
+      }
+
+      // Update profile record
+      const { error: profileError } = await (supabase
+        .from('profiles') as any)
+        .update(profileFields)
+        .eq('id', profileId)
+
+      if (profileError) throw new Error(`Profile update failed: ${profileError.message}`)
+
+      // Update worker record
+      const { error: workerError } = await (supabase
+        .from('workers') as any)
+        .update(workerFields)
+        .eq('id', workerId)
+
+      if (workerError) throw new Error(`Worker update failed: ${workerError.message}`)
+    },
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ['workers'] })
+      queryClient.invalidateQueries({ queryKey: ['worker', workerId] })
+      toast({
+        title: 'Worker updated',
+        description: 'Worker details have been saved successfully.',
+        variant: 'success',
+      })
+      router.push(`/workers/${workerId}`)
+    },
+    onError: (error: Error) => {
+      toast({
+        title: 'Failed to update worker',
+        description: error.message,
+        variant: 'error',
+      })
+    },
+  })
+}
+
+// ─── Resend Invite ────────────────────────────────────────────────────────────
+
+export function useResendInvite() {
+  return useMutation({
+    mutationFn: async ({ email }: { email: string }) => {
+      const response = await fetch('/api/workers/resend-invite', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email }),
+      })
+
+      if (!response.ok) {
+        const errorData = await response.json()
+        throw new Error(errorData.error || 'Failed to resend invite')
+      }
+
+      return response.json()
+    },
+    onSuccess: () => {
+      toast({
+        title: 'Invite resent',
+        description: 'Invite resent successfully.',
+        variant: 'success',
+      })
+    },
+    onError: (error: Error) => {
+      toast({
+        title: 'Failed to resend invite',
+        description: error.message,
+        variant: 'error',
+      })
+    },
   })
 }
