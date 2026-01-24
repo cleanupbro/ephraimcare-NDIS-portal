@@ -11,10 +11,15 @@ import {
   CardContent,
   CardHeader,
   CardTitle,
+  Tabs,
+  TabsContent,
+  TabsList,
+  TabsTrigger,
 } from '@ephraimcare/ui'
 import { BudgetProgress } from './participant-budget'
 import { PlanCountdown } from './participant-plan-badge'
 import { ArchiveDialog } from './archive-dialog'
+import { CaseNotesTab } from './case-notes-tab'
 
 interface ParticipantDetailProps {
   participant: Participant
@@ -104,152 +109,169 @@ export function ParticipantDetail({ participant, plan, budgets }: ParticipantDet
         )}
       </div>
 
-      {/* NDIS Plan Section */}
-      <Card>
-        <CardHeader>
-          <CardTitle>NDIS Plan</CardTitle>
-        </CardHeader>
-        <CardContent>
-          {plan ? (
-            <div className="space-y-4">
-              <div className="grid grid-cols-1 gap-4 sm:grid-cols-3">
+      {/* Tabbed Content */}
+      <Tabs defaultValue="details" className="w-full">
+        <TabsList>
+          <TabsTrigger value="details">Details</TabsTrigger>
+          <TabsTrigger value="case-notes">Case Notes</TabsTrigger>
+        </TabsList>
+
+        <TabsContent value="details" className="space-y-6 mt-4">
+          {/* NDIS Plan Section */}
+          <Card>
+            <CardHeader>
+              <CardTitle>NDIS Plan</CardTitle>
+            </CardHeader>
+            <CardContent>
+              {plan ? (
+                <div className="space-y-4">
+                  <div className="grid grid-cols-1 gap-4 sm:grid-cols-3">
+                    <div>
+                      <p className="text-sm font-medium text-muted-foreground">Plan Number</p>
+                      <p className="text-sm">{plan.plan_number ?? 'Not set'}</p>
+                    </div>
+                    <div>
+                      <p className="text-sm font-medium text-muted-foreground">Start Date</p>
+                      <p className="text-sm">{formatDate(plan.start_date)}</p>
+                    </div>
+                    <div>
+                      <p className="text-sm font-medium text-muted-foreground">End Date</p>
+                      <p className="text-sm">{formatDate(plan.end_date)}</p>
+                    </div>
+                  </div>
+                  <div>
+                    <p className="mb-2 text-sm font-medium text-muted-foreground">
+                      Budget Utilization
+                    </p>
+                    <BudgetProgress allocated={totalAllocated} used={totalUsed} />
+                  </div>
+                </div>
+              ) : (
+                <p className="text-sm text-muted-foreground">No active plan</p>
+              )}
+            </CardContent>
+          </Card>
+
+          {/* Budget Breakdown Section */}
+          {budgets.length > 0 && (
+            <Card>
+              <CardHeader>
+                <CardTitle>Budget Breakdown</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <div className="overflow-x-auto">
+                  <table className="w-full text-sm">
+                    <thead>
+                      <tr className="border-b text-left">
+                        <th className="pb-2 font-medium text-muted-foreground">Category</th>
+                        <th className="pb-2 font-medium text-muted-foreground">Subcategory</th>
+                        <th className="pb-2 text-right font-medium text-muted-foreground">Allocated</th>
+                        <th className="pb-2 text-right font-medium text-muted-foreground">Used</th>
+                        <th className="pb-2 text-right font-medium text-muted-foreground">Remaining</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {budgets.map((budget) => (
+                        <tr key={budget.id} className="border-b last:border-0">
+                          <td className="py-2">{budget.category}</td>
+                          <td className="py-2 text-muted-foreground">
+                            {budget.subcategory ?? '-'}
+                          </td>
+                          <td className="py-2 text-right">{formatAUD(budget.allocated_amount)}</td>
+                          <td className="py-2 text-right">{formatAUD(budget.used_amount)}</td>
+                          <td className="py-2 text-right">
+                            {formatAUD(budget.allocated_amount - budget.used_amount)}
+                          </td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
+              </CardContent>
+            </Card>
+          )}
+
+          {/* Personal Info Section */}
+          <Card>
+            <CardHeader>
+              <CardTitle>Personal Information</CardTitle>
+            </CardHeader>
+            <CardContent>
+              <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
                 <div>
-                  <p className="text-sm font-medium text-muted-foreground">Plan Number</p>
-                  <p className="text-sm">{plan.plan_number ?? 'Not set'}</p>
+                  <p className="text-sm font-medium text-muted-foreground">Date of Birth</p>
+                  <p className="text-sm">
+                    {formatDate(participant.date_of_birth)}{' '}
+                    <span className="text-muted-foreground">
+                      {calculateAge(participant.date_of_birth)}
+                    </span>
+                  </p>
                 </div>
                 <div>
-                  <p className="text-sm font-medium text-muted-foreground">Start Date</p>
-                  <p className="text-sm">{formatDate(plan.start_date)}</p>
+                  <p className="text-sm font-medium text-muted-foreground">Phone</p>
+                  <p className="text-sm">{participant.phone ?? 'Not provided'}</p>
                 </div>
                 <div>
-                  <p className="text-sm font-medium text-muted-foreground">End Date</p>
-                  <p className="text-sm">{formatDate(plan.end_date)}</p>
+                  <p className="text-sm font-medium text-muted-foreground">Email</p>
+                  <p className="text-sm">{participant.email ?? 'Not provided'}</p>
+                </div>
+                <div>
+                  <p className="text-sm font-medium text-muted-foreground">Address</p>
+                  <p className="text-sm">{formatAddress(participant)}</p>
                 </div>
               </div>
-              <div>
-                <p className="mb-2 text-sm font-medium text-muted-foreground">
-                  Budget Utilization
-                </p>
-                <BudgetProgress allocated={totalAllocated} used={totalUsed} />
-              </div>
-            </div>
-          ) : (
-            <p className="text-sm text-muted-foreground">No active plan</p>
-          )}
-        </CardContent>
-      </Card>
+            </CardContent>
+          </Card>
 
-      {/* Budget Breakdown Section */}
-      {budgets.length > 0 && (
-        <Card>
-          <CardHeader>
-            <CardTitle>Budget Breakdown</CardTitle>
-          </CardHeader>
-          <CardContent>
-            <div className="overflow-x-auto">
-              <table className="w-full text-sm">
-                <thead>
-                  <tr className="border-b text-left">
-                    <th className="pb-2 font-medium text-muted-foreground">Category</th>
-                    <th className="pb-2 font-medium text-muted-foreground">Subcategory</th>
-                    <th className="pb-2 text-right font-medium text-muted-foreground">Allocated</th>
-                    <th className="pb-2 text-right font-medium text-muted-foreground">Used</th>
-                    <th className="pb-2 text-right font-medium text-muted-foreground">Remaining</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {budgets.map((budget) => (
-                    <tr key={budget.id} className="border-b last:border-0">
-                      <td className="py-2">{budget.category}</td>
-                      <td className="py-2 text-muted-foreground">
-                        {budget.subcategory ?? '-'}
-                      </td>
-                      <td className="py-2 text-right">{formatAUD(budget.allocated_amount)}</td>
-                      <td className="py-2 text-right">{formatAUD(budget.used_amount)}</td>
-                      <td className="py-2 text-right">
-                        {formatAUD(budget.allocated_amount - budget.used_amount)}
-                      </td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
-            </div>
-          </CardContent>
-        </Card>
-      )}
+          {/* Emergency Contact Section */}
+          <Card>
+            <CardHeader>
+              <CardTitle>Emergency Contact</CardTitle>
+            </CardHeader>
+            <CardContent>
+              {participant.emergency_contact_name || participant.emergency_contact_phone ? (
+                <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
+                  <div>
+                    <p className="text-sm font-medium text-muted-foreground">Name</p>
+                    <p className="text-sm">
+                      {participant.emergency_contact_name ?? 'Not provided'}
+                    </p>
+                  </div>
+                  <div>
+                    <p className="text-sm font-medium text-muted-foreground">Phone</p>
+                    <p className="text-sm">
+                      {participant.emergency_contact_phone ?? 'Not provided'}
+                    </p>
+                  </div>
+                </div>
+              ) : (
+                <p className="text-sm text-muted-foreground">No emergency contact on file</p>
+              )}
+            </CardContent>
+          </Card>
 
-      {/* Personal Info Section */}
-      <Card>
-        <CardHeader>
-          <CardTitle>Personal Information</CardTitle>
-        </CardHeader>
-        <CardContent>
-          <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
-            <div>
-              <p className="text-sm font-medium text-muted-foreground">Date of Birth</p>
-              <p className="text-sm">
-                {formatDate(participant.date_of_birth)}{' '}
-                <span className="text-muted-foreground">
-                  {calculateAge(participant.date_of_birth)}
-                </span>
-              </p>
-            </div>
-            <div>
-              <p className="text-sm font-medium text-muted-foreground">Phone</p>
-              <p className="text-sm">{participant.phone ?? 'Not provided'}</p>
-            </div>
-            <div>
-              <p className="text-sm font-medium text-muted-foreground">Email</p>
-              <p className="text-sm">{participant.email ?? 'Not provided'}</p>
-            </div>
-            <div>
-              <p className="text-sm font-medium text-muted-foreground">Address</p>
-              <p className="text-sm">{formatAddress(participant)}</p>
-            </div>
-          </div>
-        </CardContent>
-      </Card>
+          {/* Support Notes Section */}
+          <Card>
+            <CardHeader>
+              <CardTitle>Support Notes</CardTitle>
+            </CardHeader>
+            <CardContent>
+              {participant.notes ? (
+                <p className="whitespace-pre-wrap text-sm">{participant.notes}</p>
+              ) : (
+                <p className="text-sm text-muted-foreground">No support notes recorded</p>
+              )}
+            </CardContent>
+          </Card>
+        </TabsContent>
 
-      {/* Emergency Contact Section */}
-      <Card>
-        <CardHeader>
-          <CardTitle>Emergency Contact</CardTitle>
-        </CardHeader>
-        <CardContent>
-          {participant.emergency_contact_name || participant.emergency_contact_phone ? (
-            <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
-              <div>
-                <p className="text-sm font-medium text-muted-foreground">Name</p>
-                <p className="text-sm">
-                  {participant.emergency_contact_name ?? 'Not provided'}
-                </p>
-              </div>
-              <div>
-                <p className="text-sm font-medium text-muted-foreground">Phone</p>
-                <p className="text-sm">
-                  {participant.emergency_contact_phone ?? 'Not provided'}
-                </p>
-              </div>
-            </div>
-          ) : (
-            <p className="text-sm text-muted-foreground">No emergency contact on file</p>
-          )}
-        </CardContent>
-      </Card>
-
-      {/* Support Notes Section */}
-      <Card>
-        <CardHeader>
-          <CardTitle>Support Notes</CardTitle>
-        </CardHeader>
-        <CardContent>
-          {participant.notes ? (
-            <p className="whitespace-pre-wrap text-sm">{participant.notes}</p>
-          ) : (
-            <p className="text-sm text-muted-foreground">No support notes recorded</p>
-          )}
-        </CardContent>
-      </Card>
+        <TabsContent value="case-notes" className="mt-4">
+          <CaseNotesTab
+            participantId={participant.id}
+            organizationId={participant.organization_id}
+          />
+        </TabsContent>
+      </Tabs>
     </div>
   )
 }
