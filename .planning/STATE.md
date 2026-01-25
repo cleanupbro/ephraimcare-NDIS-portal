@@ -10,16 +10,16 @@ See: .planning/PROJECT.md (updated 2026-01-24)
 ## Current Position
 
 Phase: 7 of 13 (Invoicing)
-Plan: 1 of 7 in current phase
+Plan: 3 of 7 in current phase
 Status: In progress
-Last activity: 2026-01-25 -- Completed 07-01-PLAN.md (schema + types)
+Last activity: 2026-01-25 -- Completed 07-03-PLAN.md (rates + holidays settings)
 
-Progress: [███████████████████████░] 47%
+Progress: [█████████████████████████░] 50%
 
 ## Performance Metrics
 
 **Velocity:**
-- Total plans completed: 37 (Phase 1: 9, Phase 2: 5, Phase 3: 5, Phase 4: 4, Phase 5: 9, Phase 6: 4, Phase 7: 1)
+- Total plans completed: 39 (Phase 1: 9, Phase 2: 5, Phase 3: 5, Phase 4: 4, Phase 5: 9, Phase 6: 4, Phase 7: 3)
 - Average duration: --
 - Total execution time: --
 
@@ -33,7 +33,7 @@ Progress: [███████████████████████
 | 4 | 4/4 | -- | -- |
 | 5 | 9/9 | -- | -- |
 | 6 | 4/4 | -- | -- |
-| 7 | 1/7 | -- | -- |
+| 7 | 3/7 | -- | -- |
 
 **Recent Trend:**
 - Last 5 plans: --
@@ -112,6 +112,8 @@ Recent decisions affecting current work:
 - Finalization trigger blocks UPDATE on submitted/paid (not cancelled/overdue)
 - day_type uses CHECK constraint (not enum) for flexibility
 - support_type_rates effective_from with UNIQUE for rate versioning without deletion
+- HTML datalist for support type suggestions (allows free text while suggesting from SUPPORT_TYPES)
+- Simple list layout for holidays (not DataTable) -- small list size (10-20 items)
 
 ### Pending Todos
 
@@ -124,7 +126,7 @@ None.
 ## Session Continuity
 
 Last session: 2026-01-25
-Stopped at: Completed 07-01-PLAN.md (schema + types)
+Stopped at: Completed 07-03-PLAN.md (rates + holidays settings)
 Resume file: None
 
 ## Phase Progress
@@ -137,7 +139,7 @@ Resume file: None
 | 4 | Shift Scheduling | Complete | 4/4 |
 | 5 | Worker Mobile App | Complete | 9/9 |
 | 6 | Case Notes | Complete | 4/4 |
-| 7 | Invoicing | In Progress | 1/7 |
+| 7 | Invoicing | In Progress | 3/7 |
 | 8 | Participant Portal | Pending | 0/0 |
 | 9 | Notifications | Pending | 0/0 |
 | 10 | Worker Screening | Pending | 0/0 |
@@ -179,3 +181,5 @@ Resume file: None
 | 2026-01-25 | Phase 6 Plan 04 executed | My Notes tab, pending shifts list, tab bar badge, useEditCaseNote hook |
 | 2026-01-25 | Phase 6 verified | 5/5 success criteria passed, all 6 requirements verified |
 | 2026-01-25 | Phase 7 Plan 01 executed | Migration (rates, holidays, counter, finalization) + TypeScript types |
+| 2026-01-25 | Phase 7 Plan 02 executed | Calculations, schemas, constants, CSV export helpers |
+| 2026-01-25 | Phase 7 Plan 03 executed | Rates settings page, holidays settings page, TanStack Query hooks |
