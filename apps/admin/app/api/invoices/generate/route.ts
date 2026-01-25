@@ -123,7 +123,7 @@ export async function POST(request: Request) {
     )
 
     // 9. Generate invoice number via RPC
-    const { data: invoiceNumber, error: rpcError } = await supabase.rpc(
+    const { data: invoiceNumber, error: rpcError } = await (supabase.rpc as any)(
       'next_invoice_number',
       { p_organization_id: orgId }
     )

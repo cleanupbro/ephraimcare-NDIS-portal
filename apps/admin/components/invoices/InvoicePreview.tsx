@@ -1,7 +1,7 @@
 'use client'
 
 import { format } from 'date-fns'
-import { Lock, CheckCircle2 } from 'lucide-react'
+import { Lock } from 'lucide-react'
 import { Badge, Card, Separator } from '@ephraimcare/ui'
 import { EPHRAIM_CARE_DETAILS, INVOICE_STATUS_COLORS, type InvoiceStatusKey } from '@/lib/invoices/constants'
 import { formatCurrency } from '@/lib/invoices/calculations'
