@@ -10,16 +10,16 @@ See: .planning/PROJECT.md (updated 2026-01-24)
 ## Current Position
 
 Phase: 8 of 13 (Participant Portal)
-Plan: 2 of 4 in current phase
+Plan: 3 of 4 in current phase
 Status: In progress
-Last activity: 2026-01-25 -- Completed 08-02-PLAN.md (Participant Dashboard)
+Last activity: 2026-01-25 -- Completed 08-03-PLAN.md (Invoices)
 
-Progress: [██████████████████████████████░] 59%
+Progress: [██████████████████████████████░] 60%
 
 ## Performance Metrics
 
 **Velocity:**
-- Total plans completed: 45 (Phase 1: 9, Phase 2: 5, Phase 3: 5, Phase 4: 4, Phase 5: 9, Phase 6: 4, Phase 7: 7, Phase 8: 2)
+- Total plans completed: 46 (Phase 1: 9, Phase 2: 5, Phase 3: 5, Phase 4: 4, Phase 5: 9, Phase 6: 4, Phase 7: 7, Phase 8: 3)
 - Average duration: --
 - Total execution time: --
 
@@ -34,7 +34,7 @@ Progress: [███████████████████████
 | 5 | 9/9 | -- | -- |
 | 6 | 4/4 | -- | -- |
 | 7 | 7/7 | -- | -- |
-| 8 | 2/4 | -- | -- |
+| 8 | 3/4 | -- | -- |
 
 **Recent Trend:**
 - Last 5 plans: --
@@ -131,6 +131,9 @@ Recent decisions affecting current work:
 - Participant dashboard budget bar uses 75%/90% thresholds (green/amber/red)
 - Days remaining <= 30 shows amber warning color in plan info card
 - Upcoming appointments capped at 5 shifts in dashboard
+- Participant invoice hooks filter status != draft (participants only see finalized)
+- PDF route verifies participant role before allowing download
+- Transform billable_minutes to quantity_hours in hook for display
 
 ### Pending Todos
 
@@ -143,7 +146,7 @@ None.
 ## Session Continuity
 
 Last session: 2026-01-25
-Stopped at: Completed 08-02-PLAN.md (Participant Dashboard)
+Stopped at: Completed 08-03-PLAN.md (Invoices)
 Resume file: None
 
 ## Phase Progress
@@ -157,7 +160,7 @@ Resume file: None
 | 5 | Worker Mobile App | Complete | 9/9 |
 | 6 | Case Notes | Complete | 4/4 |
 | 7 | Invoicing | Complete | 7/7 |
-| 8 | Participant Portal | In Progress | 2/4 |
+| 8 | Participant Portal | In Progress | 3/4 |
 | 9 | Notifications | Pending | 0/0 |
 | 10 | Worker Screening | Pending | 0/0 |
 | 11 | Compliance and Incidents | Pending | 0/0 |
@@ -207,3 +210,4 @@ Resume file: None
 | 2026-01-25 | Phase 7 complete | 7/7 plans executed, all invoicing features implemented |
 | 2026-01-25 | Phase 8 Plan 01 executed | Auth layout, login page, protected layout with sidebar, role verification |
 | 2026-01-25 | Phase 8 Plan 02 executed | Dashboard with budget hero, plan info, appointments card |
+| 2026-01-25 | Phase 8 Plan 03 executed | Invoice list, preview modal, PDF download for participants |
