@@ -313,7 +313,13 @@ Plans:
 3. Participant cannot see any data belonging to other participants (verified via different login)
 4. Portal has no edit, create, or delete actions available anywhere (purely read-only)
 
-**Plans:** TBD
+**Plans:** 4 plans
+
+Plans:
+- [ ] 08-01-PLAN.md -- Auth + layout setup (Supabase clients, login page, protected layout with participant role check, sidebar)
+- [ ] 08-02-PLAN.md -- Dashboard page (budget hero, plan info card, upcoming appointments)
+- [ ] 08-03-PLAN.md -- Invoices page (invoice list, preview modal, PDF route for participant access)
+- [ ] 08-04-PLAN.md -- Profile page + verification checkpoint (read-only profile, logout, final verification)
 
 ---
 
@@ -462,7 +468,7 @@ Note: Phases 2 and 3 can execute in parallel (both depend only on Phase 1).
 | 5. Worker Mobile App | 0/9 | Planned | - |
 | 6. Case Notes | 0/4 | Planned | - |
 | 7. Invoicing | 0/7 | Planned | - |
-| 8. Participant Portal | 0/0 | Not started | - |
+| 8. Participant Portal | 0/4 | Planned | - |
 | 9. Notifications | 0/0 | Not started | - |
 | 10. Worker Screening | 0/0 | Not started | - |
 | 11. Compliance and Incidents | 0/0 | Not started | - |
