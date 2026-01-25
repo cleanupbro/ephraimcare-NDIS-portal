@@ -83,18 +83,18 @@
 
 ### Invoicing (INVC)
 
-- [ ] **INVC-01**: Admin can generate invoice for a participant within a specified date range
-- [ ] **INVC-02**: Invoice calculates billable hours as lesser of scheduled duration vs actual check-in/out duration
-- [ ] **INVC-03**: Invoice uses exact minutes for billing (no rounding applied)
-- [ ] **INVC-04**: Invoice multiplies billable hours by the configured rate for each support type
-- [ ] **INVC-05**: Invoice displays line items with date, service type, hours, rate, and line total
-- [ ] **INVC-06**: Invoice calculates GST at 10% on subtotal
-- [ ] **INVC-07**: Invoice receives unique sequential number in INV-YYYY-NNN format
-- [ ] **INVC-08**: Admin can approve/finalize invoice (status: draft to final)
-- [ ] **INVC-09**: Finalized invoices cannot be edited (locked)
-- [ ] **INVC-10**: Admin can configure support type hourly rates in settings page
-- [ ] **INVC-11**: Invoice exportable as PDF with Ephraim Care branding (logo, ABN, colors)
-- [ ] **INVC-12**: System generates NDIS Bulk Payment CSV in PACE-compliant format
+- [x] **INVC-01**: Admin can generate invoice for a participant within a specified date range
+- [x] **INVC-02**: Invoice calculates billable hours as lesser of scheduled duration vs actual check-in/out duration
+- [x] **INVC-03**: Invoice uses exact minutes for billing (no rounding applied)
+- [x] **INVC-04**: Invoice multiplies billable hours by the configured rate for each support type
+- [x] **INVC-05**: Invoice displays line items with date, service type, hours, rate, and line total
+- [x] **INVC-06**: Invoice calculates GST at 10% on subtotal
+- [x] **INVC-07**: Invoice receives unique sequential number in INV-YYYY-NNN format
+- [x] **INVC-08**: Admin can approve/finalize invoice (status: draft to final)
+- [x] **INVC-09**: Finalized invoices cannot be edited (locked)
+- [x] **INVC-10**: Admin can configure support type hourly rates in settings page
+- [x] **INVC-11**: Invoice exportable as PDF with Ephraim Care branding (logo, ABN, colors)
+- [x] **INVC-12**: System generates NDIS Bulk Payment CSV in PACE-compliant format
 
 ### Participant Portal (PTPL)
 
