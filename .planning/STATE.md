@@ -10,16 +10,16 @@ See: .planning/PROJECT.md (updated 2026-01-24)
 ## Current Position
 
 Phase: 7 of 13 (Invoicing)
-Plan: 3 of 7 in current phase
+Plan: 4 of 7 in current phase
 Status: In progress
-Last activity: 2026-01-25 -- Completed 07-03-PLAN.md (rates + holidays settings)
+Last activity: 2026-01-25 -- Completed 07-04-PLAN.md (invoice generation flow)
 
-Progress: [█████████████████████████░] 50%
+Progress: [██████████████████████████░] 52%
 
 ## Performance Metrics
 
 **Velocity:**
-- Total plans completed: 39 (Phase 1: 9, Phase 2: 5, Phase 3: 5, Phase 4: 4, Phase 5: 9, Phase 6: 4, Phase 7: 3)
+- Total plans completed: 40 (Phase 1: 9, Phase 2: 5, Phase 3: 5, Phase 4: 4, Phase 5: 9, Phase 6: 4, Phase 7: 4)
 - Average duration: --
 - Total execution time: --
 
@@ -33,7 +33,7 @@ Progress: [███████████████████████
 | 4 | 4/4 | -- | -- |
 | 5 | 9/9 | -- | -- |
 | 6 | 4/4 | -- | -- |
-| 7 | 3/7 | -- | -- |
+| 7 | 4/7 | -- | -- |
 
 **Recent Trend:**
 - Last 5 plans: --
@@ -114,6 +114,9 @@ Recent decisions affecting current work:
 - support_type_rates effective_from with UNIQUE for rate versioning without deletion
 - HTML datalist for support type suggestions (allows free text while suggesting from SUPPORT_TYPES)
 - Simple list layout for holidays (not DataTable) -- small list size (10-20 items)
+- Lesser-of rule for billing: billable_minutes = min(scheduled, actual)
+- Rate snapshot stored in line item unit_price at generation time
+- Shifts without configured rates are skipped (not failed) during invoice generation
 
 ### Pending Todos
 
@@ -126,7 +129,7 @@ None.
 ## Session Continuity
 
 Last session: 2026-01-25
-Stopped at: Completed 07-03-PLAN.md (rates + holidays settings)
+Stopped at: Completed 07-04-PLAN.md (invoice generation flow)
 Resume file: None
 
 ## Phase Progress
@@ -183,3 +186,4 @@ Resume file: None
 | 2026-01-25 | Phase 7 Plan 01 executed | Migration (rates, holidays, counter, finalization) + TypeScript types |
 | 2026-01-25 | Phase 7 Plan 02 executed | Calculations, schemas, constants, CSV export helpers |
 | 2026-01-25 | Phase 7 Plan 03 executed | Rates settings page, holidays settings page, TanStack Query hooks |
+| 2026-01-25 | Phase 7 Plan 04 executed | Invoice generation API + form page + useGenerateInvoice hook |
