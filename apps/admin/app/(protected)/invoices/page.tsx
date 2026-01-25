@@ -26,6 +26,19 @@ import type { InvoiceStatus } from '@/lib/invoices/types'
 
 type StatusFilter = InvoiceStatus | 'all'
 
+// Helper to safely parse date strings (handles YYYY-MM-DD format)
+function safeFormatDate(dateStr: string | null | undefined): string {
+  if (!dateStr) return '—'
+  try {
+    // Append time to avoid timezone issues with date-only strings
+    const date = new Date(dateStr + 'T00:00:00')
+    if (isNaN(date.getTime())) return '—'
+    return format(date, 'dd/MM/yyyy')
+  } catch {
+    return '—'
+  }
+}
+
 export default function InvoicesPage() {
   const [statusFilter, setStatusFilter] = useState<StatusFilter>('all')
   const { data: invoices, isLoading, error } = useInvoices({ status: statusFilter })
@@ -41,13 +54,13 @@ export default function InvoicesPage() {
       <div className="flex items-center justify-between">
         <div>
           <h1 className="font-heading text-2xl font-bold">Invoices</h1>
-          <p className="text-sm text-muted-foreground">
+          <span className="text-sm text-muted-foreground block">
             {isLoading ? (
               <Skeleton className="h-4 w-20 inline-block" />
             ) : (
               `${invoices?.length ?? 0} invoice${invoices?.length !== 1 ? 's' : ''}`
             )}
-          </p>
+          </span>
         </div>
         <div className="flex items-center gap-3">
           <ExportCsvButton invoiceIds={finalizedInvoiceIds} />
@@ -132,11 +145,11 @@ export default function InvoicesPage() {
                       </Link>
                     </TableCell>
                     <TableCell className="text-muted-foreground">
-                      {format(new Date(invoice.period_start), 'dd/MM/yyyy')} -{' '}
-                      {format(new Date(invoice.period_end), 'dd/MM/yyyy')}
+                      {safeFormatDate(invoice.period_start)} -{' '}
+                      {safeFormatDate(invoice.period_end)}
                     </TableCell>
                     <TableCell className="text-muted-foreground">
-                      {format(new Date(invoice.invoice_date), 'dd/MM/yyyy')}
+                      {safeFormatDate(invoice.invoice_date)}
                     </TableCell>
                     <TableCell className="text-right font-mono font-medium">
                       {formatCurrency(invoice.total)}
