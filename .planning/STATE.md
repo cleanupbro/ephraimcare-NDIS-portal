@@ -120,6 +120,10 @@ Recent decisions affecting current work:
 - use-invoices.ts created as blocking deviation when 07-04 ran in parallel
 - Invoice preview uses DRAFT watermark with absolute positioning for draft status
 - Finalize confirmation uses AlertDialog with explicit locked state warning
+- PDF export uses toBlob() + arrayBuffer() (more portable than toBuffer() which may return ReadableStream)
+- InvoicePDF called as function to get Document element directly (pdf() type requirement)
+- Inter fonts downloaded from jsDelivr fontsource CDN (Google Fonts/GitHub LFS don't allow direct curl)
+- Placeholder logo created; real Ephraim Care logo should replace ephraim-care-logo.png
 
 ### Pending Todos
 
@@ -192,4 +196,5 @@ Resume file: None
 | 2026-01-25 | Phase 7 Plan 04 executed | Invoice generation API + form page + useGenerateInvoice hook |
 | 2026-01-25 | Phase 7 Plan 05 executed | Invoice list page, detail page, preview component, finalize API |
 | 2026-01-25 | Phase 7 Plan 07 executed | PACE CSV export API + ExportCsvButton component |
+| 2026-01-25 | Phase 7 Plan 06 executed | PDF export API + InvoicePDF component + Inter fonts |
 | 2026-01-25 | Phase 7 complete | 7/7 plans executed, all invoicing features implemented |
