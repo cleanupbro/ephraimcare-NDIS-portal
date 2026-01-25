@@ -9,6 +9,7 @@ const nextConfig: NextConfig = {
     '@ephraimcare/supabase',
     '@ephraimcare/types',
   ],
+  serverExternalPackages: ['@react-pdf/renderer'],
 }
 
 export default nextConfig
