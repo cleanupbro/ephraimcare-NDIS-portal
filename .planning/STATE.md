@@ -10,16 +10,16 @@ See: .planning/PROJECT.md (updated 2026-01-24)
 ## Current Position
 
 Phase: 7 of 13 (Invoicing)
-Plan: 4 of 7 in current phase
+Plan: 5 of 7 in current phase
 Status: In progress
-Last activity: 2026-01-25 -- Completed 07-04-PLAN.md (invoice generation flow)
+Last activity: 2026-01-25 -- Completed 07-05-PLAN.md (invoice list, detail, finalize)
 
-Progress: [██████████████████████████░] 52%
+Progress: [███████████████████████████░] 54%
 
 ## Performance Metrics
 
 **Velocity:**
-- Total plans completed: 40 (Phase 1: 9, Phase 2: 5, Phase 3: 5, Phase 4: 4, Phase 5: 9, Phase 6: 4, Phase 7: 4)
+- Total plans completed: 41 (Phase 1: 9, Phase 2: 5, Phase 3: 5, Phase 4: 4, Phase 5: 9, Phase 6: 4, Phase 7: 5)
 - Average duration: --
 - Total execution time: --
 
@@ -33,7 +33,7 @@ Progress: [███████████████████████
 | 4 | 4/4 | -- | -- |
 | 5 | 9/9 | -- | -- |
 | 6 | 4/4 | -- | -- |
-| 7 | 4/7 | -- | -- |
+| 7 | 5/7 | -- | -- |
 
 **Recent Trend:**
 - Last 5 plans: --
@@ -117,6 +117,9 @@ Recent decisions affecting current work:
 - Lesser-of rule for billing: billable_minutes = min(scheduled, actual)
 - Rate snapshot stored in line item unit_price at generation time
 - Shifts without configured rates are skipped (not failed) during invoice generation
+- use-invoices.ts created as blocking deviation when 07-04 ran in parallel
+- Invoice preview uses DRAFT watermark with absolute positioning for draft status
+- Finalize confirmation uses AlertDialog with explicit locked state warning
 
 ### Pending Todos
 
@@ -129,7 +132,7 @@ None.
 ## Session Continuity
 
 Last session: 2026-01-25
-Stopped at: Completed 07-04-PLAN.md (invoice generation flow)
+Stopped at: Completed 07-05-PLAN.md (invoice list, detail, finalize)
 Resume file: None
 
 ## Phase Progress
@@ -142,7 +145,7 @@ Resume file: None
 | 4 | Shift Scheduling | Complete | 4/4 |
 | 5 | Worker Mobile App | Complete | 9/9 |
 | 6 | Case Notes | Complete | 4/4 |
-| 7 | Invoicing | In Progress | 3/7 |
+| 7 | Invoicing | In Progress | 5/7 |
 | 8 | Participant Portal | Pending | 0/0 |
 | 9 | Notifications | Pending | 0/0 |
 | 10 | Worker Screening | Pending | 0/0 |
@@ -187,3 +190,4 @@ Resume file: None
 | 2026-01-25 | Phase 7 Plan 02 executed | Calculations, schemas, constants, CSV export helpers |
 | 2026-01-25 | Phase 7 Plan 03 executed | Rates settings page, holidays settings page, TanStack Query hooks |
 | 2026-01-25 | Phase 7 Plan 04 executed | Invoice generation API + form page + useGenerateInvoice hook |
+| 2026-01-25 | Phase 7 Plan 05 executed | Invoice list page, detail page, preview component, finalize API |
