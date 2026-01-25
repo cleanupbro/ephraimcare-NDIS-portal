@@ -2,7 +2,7 @@
 
 import Link from 'next/link'
 import { format } from 'date-fns'
-import { Plus, FileText, Loader2 } from 'lucide-react'
+import { Plus, FileText } from 'lucide-react'
 import {
   Button,
   Badge,
@@ -21,6 +21,7 @@ import { useState } from 'react'
 import { useInvoices } from '@/hooks/use-invoices'
 import { INVOICE_STATUS_COLORS, type InvoiceStatusKey } from '@/lib/invoices/constants'
 import { formatCurrency } from '@/lib/invoices/calculations'
+import { ExportCsvButton } from '@/components/invoices/ExportCsvButton'
 import type { InvoiceStatus } from '@/lib/invoices/types'
 
 type StatusFilter = InvoiceStatus | 'all'
@@ -28,6 +29,11 @@ type StatusFilter = InvoiceStatus | 'all'
 export default function InvoicesPage() {
   const [statusFilter, setStatusFilter] = useState<StatusFilter>('all')
   const { data: invoices, isLoading, error } = useInvoices({ status: statusFilter })
+
+  // Get IDs of finalized invoices for CSV export
+  const finalizedInvoiceIds = invoices
+    ?.filter((i) => ['submitted', 'paid'].includes(i.status))
+    .map((i) => i.id) ?? []
 
   return (
     <div className="space-y-6">
@@ -43,12 +49,15 @@ export default function InvoicesPage() {
             )}
           </p>
         </div>
-        <Button asChild>
-          <Link href="/invoices/generate">
-            <Plus className="mr-2 h-4 w-4" />
-            Generate Invoice
-          </Link>
-        </Button>
+        <div className="flex items-center gap-3">
+          <ExportCsvButton invoiceIds={finalizedInvoiceIds} />
+          <Button asChild>
+            <Link href="/invoices/generate">
+              <Plus className="mr-2 h-4 w-4" />
+              Generate Invoice
+            </Link>
+          </Button>
+        </div>
       </div>
 
       {/* Status Filter Tabs */}

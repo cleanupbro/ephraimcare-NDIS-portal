@@ -2,7 +2,7 @@
 
 import { useParams, useRouter } from 'next/navigation'
 import Link from 'next/link'
-import { ArrowLeft, FileDown, Lock, Loader2, Trash2 } from 'lucide-react'
+import { ArrowLeft, Lock, Loader2, Trash2 } from 'lucide-react'
 import { useState } from 'react'
 import {
   Button,
@@ -19,6 +19,7 @@ import {
 } from '@ephraimcare/ui'
 import { useInvoice, useFinalizeInvoice, useDeleteInvoice } from '@/hooks/use-invoices'
 import { InvoicePreview } from '@/components/invoices/InvoicePreview'
+import { ExportCsvButton } from '@/components/invoices/ExportCsvButton'
 
 export default function InvoiceDetailPage() {
   const params = useParams()
@@ -174,13 +175,8 @@ export default function InvoiceDetailPage() {
 
           {isFinalized && (
             <>
-              {/* Download PDF */}
-              <Button variant="outline" size="sm" asChild>
-                <Link href={`/api/invoices/${id}/pdf`} target="_blank">
-                  <FileDown className="mr-2 h-4 w-4" />
-                  Download PDF
-                </Link>
-              </Button>
+              {/* Export CSV */}
+              <ExportCsvButton invoiceIds={[invoice.id]} />
             </>
           )}
         </div>
