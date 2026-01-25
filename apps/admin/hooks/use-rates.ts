@@ -64,7 +64,7 @@ export function useCreateRate() {
       if (!profile?.organization_id) throw new Error('No organization found')
 
       const { error } = await (supabase
-        .from('support_type_rates')
+        .from('support_type_rates') as any)
         .insert({
           organization_id: profile.organization_id,
           support_type: data.support_type,
@@ -75,7 +75,7 @@ export function useCreateRate() {
           public_holiday_rate: data.public_holiday_rate,
           effective_from: data.effective_from,
           is_active: true,
-        }) as any)
+        })
 
       if (error) throw error
     },
@@ -107,7 +107,7 @@ export function useUpdateRate() {
       const supabase = createClient()
 
       const { error } = await (supabase
-        .from('support_type_rates')
+        .from('support_type_rates') as any)
         .update({
           support_type: data.support_type,
           ndis_item_number: data.ndis_item_number || null,
@@ -117,7 +117,7 @@ export function useUpdateRate() {
           public_holiday_rate: data.public_holiday_rate,
           effective_from: data.effective_from,
         })
-        .eq('id', id) as any)
+        .eq('id', id)
 
       if (error) throw error
     },

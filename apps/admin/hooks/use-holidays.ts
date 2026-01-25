@@ -57,13 +57,13 @@ export function useCreateHoliday() {
       if (!profile?.organization_id) throw new Error('No organization found')
 
       const { error } = await (supabase
-        .from('public_holidays')
+        .from('public_holidays') as any)
         .insert({
           organization_id: profile.organization_id,
           holiday_date: data.holiday_date,
           name: data.name,
           created_by: user.id,
-        }) as any)
+        })
 
       if (error) throw error
     },
