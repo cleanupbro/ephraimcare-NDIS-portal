@@ -3,7 +3,7 @@
 import { useState } from 'react'
 import { Download, Loader2 } from 'lucide-react'
 import { Button } from '@ephraimcare/ui'
-import { toast } from 'sonner'
+import { toast } from '@/lib/toast'
 
 interface ExportCsvButtonProps {
   /** Invoice IDs to export (finalized invoices only) */
@@ -29,7 +29,7 @@ export function ExportCsvButton({
 
   const handleExport = async () => {
     if (!hasInvoices) {
-      toast.error('No finalized invoices to export')
+      toast({ title: 'No finalized invoices to export', variant: 'error' })
       return
     }
 
@@ -72,10 +72,10 @@ export function ExportCsvButton({
       document.body.removeChild(a)
       URL.revokeObjectURL(url)
 
-      toast.success(`Exported ${invoiceIds.length} invoice${invoiceIds.length !== 1 ? 's' : ''} to CSV`)
+      toast({ title: `Exported ${invoiceIds.length} invoice${invoiceIds.length !== 1 ? 's' : ''} to CSV`, variant: 'success' })
     } catch (error) {
       console.error('CSV export error:', error)
-      toast.error(error instanceof Error ? error.message : 'Failed to export CSV')
+      toast({ title: error instanceof Error ? error.message : 'Failed to export CSV', variant: 'error' })
     } finally {
       setIsExporting(false)
     }
