@@ -19,7 +19,7 @@ import type { CsvColumn } from './types'
  * ])
  * ```
  */
-export function generateCsv<T extends Record<string, unknown>>(
+export function generateCsv<T extends object>(
   data: T[],
   columns: CsvColumn<T>[]
 ): string {
