@@ -19,6 +19,9 @@ import { ReportLayout } from '@/components/reports/ReportLayout'
 import { useWorkerHoursReport } from '@/hooks/use-worker-hours-report'
 import { useWorkers } from '@/hooks/use-workers'
 import { generateCsv, downloadCsv } from '@/lib/reports/csv-export'
+import { exportToExcel } from '@/lib/reports/excel-export'
+import { downloadPdf } from '@/lib/reports/pdf-export'
+import { ReportPdfDocument, type ReportColumn } from '@/components/reports/pdf/ReportPdfDocument'
 import type { DateRangeFilter, ExportFormat, WorkerHoursRow, CsvColumn } from '@/lib/reports/types'
 
 // ─── CSV Columns ────────────────────────────────────────────────────────────
@@ -28,6 +31,14 @@ const CSV_COLUMNS: CsvColumn<WorkerHoursRow>[] = [
   { header: 'Shift Count', key: 'shiftCount' },
   { header: 'Total Hours', key: 'totalHours', format: (v) => (v as number).toFixed(2) },
   { header: 'Avg Hours/Shift', key: 'averageHoursPerShift', format: (v) => (v as number).toFixed(2) },
+]
+
+// PDF column definitions
+const PDF_COLUMNS: ReportColumn<WorkerHoursRow>[] = [
+  { header: 'Worker Name', key: 'workerName', width: '40%' },
+  { header: 'Shift Count', key: 'shiftCount', width: '20%', align: 'right' },
+  { header: 'Total Hours', key: 'totalHours', width: '20%', align: 'right', format: (v) => (v as number).toFixed(2) },
+  { header: 'Avg Hours/Shift', key: 'averageHoursPerShift', width: '20%', align: 'right', format: (v) => (v as number).toFixed(2) },
 ]
 
 // ─── Page ───────────────────────────────────────────────────────────────────
@@ -64,12 +75,25 @@ export default function WorkerHoursReportPage() {
   function handleExport(exportFormat: ExportFormat) {
     if (!report?.data.length) return
 
+    const filename = `worker-hours-${formatDate(dateRange.from, 'yyyy-MM-dd')}-to-${formatDate(dateRange.to, 'yyyy-MM-dd')}`
+
     if (exportFormat === 'csv') {
       const csv = generateCsv(report.data, CSV_COLUMNS)
-      const filename = `worker-hours-${formatDate(dateRange.from, 'yyyy-MM-dd')}-to-${formatDate(dateRange.to, 'yyyy-MM-dd')}`
       downloadCsv(csv, filename)
+    } else if (exportFormat === 'excel') {
+      exportToExcel(report.data, CSV_COLUMNS, filename, 'Worker Hours')
+    } else if (exportFormat === 'pdf') {
+      downloadPdf(
+        <ReportPdfDocument
+          title="Worker Hours Report"
+          dateRange={dateRange}
+          summaries={summaries}
+          columns={PDF_COLUMNS}
+          data={report.data}
+        />,
+        filename
+      )
     }
-    // Excel and PDF can be added later
   }
 
   // Worker filter slot
