@@ -5,21 +5,21 @@
 See: .planning/PROJECT.md (updated 2026-01-24)
 
 **Core value:** Schedule shifts, track check-ins, generate invoices from actual hours worked
-**Current focus:** Phase 12 (Reporting and Export) in progress. Plans 01-05 complete.
+**Current focus:** Phase 12 (Reporting and Export) complete. Ready for Phase 13.
 
 ## Current Position
 
 Phase: 12 of 13 (Reporting and Export)
-Plan: 5 of 6 in current phase
-Status: In progress
-Last activity: 2026-01-27 -- Completed 12-05-PLAN.md (Excel and PDF Export)
+Plan: 6 of 6 in current phase
+Status: Phase complete
+Last activity: 2026-01-27 -- Completed 12-06-PLAN.md (Accounting Exports)
 
-Progress: [██████████████████████████████████████████████████░] 93%
+Progress: [████████████████████████████████████████████████████] 95%
 
 ## Performance Metrics
 
 **Velocity:**
-- Total plans completed: 64 (Phase 1: 9, Phase 2: 5, Phase 3: 5, Phase 4: 4, Phase 5: 9, Phase 6: 4, Phase 7: 7, Phase 8: 4, Phase 9: 3, Phase 10: 2, Phase 11: 7, Phase 12: 5)
+- Total plans completed: 65 (Phase 1: 9, Phase 2: 5, Phase 3: 5, Phase 4: 4, Phase 5: 9, Phase 6: 4, Phase 7: 7, Phase 8: 4, Phase 9: 3, Phase 10: 2, Phase 11: 7, Phase 12: 6)
 - Average duration: --
 - Total execution time: --
 
@@ -38,7 +38,7 @@ Progress: [███████████████████████
 | 9 | 3/3 | -- | -- |
 | 10 | 2/2 | -- | -- |
 | 11 | 7/7 | -- | -- |
-| 12 | 5/6 | -- | -- |
+| 12 | 6/6 | -- | -- |
 
 **Recent Trend:**
 - Last 5 plans: --
@@ -160,6 +160,9 @@ Recent decisions affecting current work:
 - SheetJS Excel export with auto-column sizing based on content width
 - Generic ReportPdfDocument component reuses invoice brand colors and Inter fonts
 - ReportColumn interface adds width/align/format options for PDF customization beyond CsvColumn
+- DD/MM/YYYY Australian date format for all accounting exports (Xero, MYOB compatibility)
+- Xero uses GST Free Income tax type; MYOB uses FRE tax code (NDIS GST-exempt)
+- Server-side CSV generation for accounting exports (RLS enforced)
 
 ### Pending Todos
 
@@ -172,7 +175,7 @@ None.
 ## Session Continuity
 
 Last session: 2026-01-27
-Stopped at: Completed 12-05-PLAN.md (Excel and PDF Export)
+Stopped at: Completed 12-06-PLAN.md (Accounting Exports)
 Resume file: None
 
 ## Phase Progress
@@ -190,7 +193,7 @@ Resume file: None
 | 9 | Notifications | Complete | 3/3 |
 | 10 | Worker Screening | Complete | 2/2 |
 | 11 | Compliance and Incidents | Complete | 7/7 |
-| 12 | Reporting and Export | In progress | 5/6 |
+| 12 | Reporting and Export | Complete | 6/6 |
 | 13 | Scale Features | Pending | 0/0 |
 
 ## Session Log
@@ -252,3 +255,5 @@ Resume file: None
 | 2026-01-27 | Phase 12 Plan 04 executed | Worker hours + participant activity hooks, report pages with CSV export |
 | 2026-01-27 | Phase 12 Plan 03 executed | Revenue report hook, RevenueLineChart, /reports/revenue page |
 | 2026-01-27 | Phase 12 Plan 05 executed | Excel export helper, PDF report template, all 4 reports export-enabled |
+| 2026-01-27 | Phase 12 Plan 06 executed | Xero/MYOB formatters, invoice/participant/worker-hours export APIs, accounting-exports page |
+| 2026-01-27 | Phase 12 complete | 6/6 plans executed, all reporting and export features implemented |
