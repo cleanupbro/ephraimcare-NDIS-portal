@@ -466,7 +466,21 @@ Plans:
 4. Invoices can be submitted directly to NDIA via API without manual CSV upload
 5. Invoice and payment data syncs automatically to Xero without manual export/import
 
-**Plans:** TBD
+**Plans:** 12 plans
+
+Plans:
+- [ ] 13-01-PLAN.md -- Multi-org schema + platform admin foundation (RLS, organizations table, platform_admin role)
+- [ ] 13-02-PLAN.md -- Organization registration + onboarding flow (signup, Stripe checkout, provisioning)
+- [ ] 13-03-PLAN.md -- Organization settings + API credentials (settings page, encrypted credential storage)
+- [ ] 13-04-PLAN.md -- Twilio SMS infrastructure (service, delivery tracking, phone validation)
+- [ ] 13-05-PLAN.md -- Shift SMS reminders (24h + 2h before shift, cron jobs)
+- [ ] 13-06-PLAN.md -- Xero OAuth2 connection flow (connect, token refresh, disconnect)
+- [ ] 13-07-PLAN.md -- Xero invoice sync on finalize (contact mapping, invoice push, error handling)
+- [ ] 13-08-PLAN.md -- Participant goal tracking (goals table, progress notes, NDIS domains)
+- [ ] 13-09-PLAN.md -- Mobile biometrics + PIN fallback (FaceID/TouchID, secure PIN storage)
+- [ ] 13-10-PLAN.md -- Offline photo capture + sync (3 photos per shift, compression, auto-delete)
+- [ ] 13-11-PLAN.md -- Bulk shift creation with preview (conflict detection, single notification)
+- [ ] 13-12-PLAN.md -- NDIA CSV auto-generate + one-click download (PACE format, validation)
 
 ---
 
@@ -490,7 +504,7 @@ Note: Phases 2 and 3 can execute in parallel (both depend only on Phase 1).
 | 10. Worker Screening | 2/2 | Complete | 2026-01-26 |
 | 11. Compliance and Incidents | 7/7 | Complete | 2026-01-26 |
 | 12. Reporting and Export | 6/6 | Complete | 2026-01-27 |
-| 13. Scale Features | 0/0 | Not started | - |
+| 13. Scale Features | 1/12 | In progress | - |
 
 ---
 *Roadmap created: 2026-01-24*
@@ -501,3 +515,4 @@ Note: Phases 2 and 3 can execute in parallel (both depend only on Phase 1).
 *Phase 10 complete: 2026-01-26*
 *Phase 11 complete: 2026-01-26*
 *Phase 12 complete: 2026-01-27*
+*Phase 13 planned: 2026-01-27*
