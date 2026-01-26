@@ -22,6 +22,9 @@ import { ChartCard } from '@/components/reports/charts/ChartCard'
 import { RevenueLineChart } from '@/components/reports/charts/RevenueLineChart'
 import { useRevenueReport, type SupportTypeBreakdown } from '@/hooks/use-revenue-report'
 import { generateCsv, downloadCsv } from '@/lib/reports/csv-export'
+import { exportToExcel } from '@/lib/reports/excel-export'
+import { downloadPdf } from '@/lib/reports/pdf-export'
+import { ReportPdfDocument, type ReportColumn } from '@/components/reports/pdf/ReportPdfDocument'
 import { DATE_RANGE_PRESETS } from '@/lib/reports/constants'
 import type { DateRangeFilter, ExportFormat, RevenueReportRow, CsvColumn } from '@/lib/reports/types'
 import { subMonths, startOfMonth, endOfMonth } from 'date-fns'
@@ -55,6 +58,15 @@ const CSV_COLUMNS: CsvColumn<RevenueReportRow>[] = [
   { header: 'Subtotal (ex GST)', key: 'subtotal', format: (v) => String(v) },
   { header: 'GST', key: 'gst', format: (v) => String(v) },
   { header: 'Total Revenue', key: 'totalRevenue', format: (v) => String(v) },
+]
+
+// PDF column definitions
+const PDF_COLUMNS: ReportColumn<RevenueReportRow>[] = [
+  { header: 'Month', key: 'month', width: '25%', format: (v) => formatMonth(String(v)) },
+  { header: 'Invoices', key: 'invoiceCount', width: '15%', align: 'right' },
+  { header: 'Subtotal (ex GST)', key: 'subtotal', width: '20%', align: 'right', format: (v) => formatCurrency(v as number) },
+  { header: 'GST', key: 'gst', width: '15%', align: 'right', format: (v) => formatCurrency(v as number) },
+  { header: 'Total Revenue', key: 'totalRevenue', width: '25%', align: 'right', format: (v) => formatCurrency(v as number) },
 ]
 
 // ─── Support Type Card ──────────────────────────────────────────────────────
@@ -209,16 +221,24 @@ export default function RevenueReportPage() {
 
   // Handle export
   function handleExport(exportFormat: ExportFormat) {
+    const filename = `revenue-report-${format(dateRange.from, 'yyyy-MM-dd')}-to-${format(dateRange.to, 'yyyy-MM-dd')}`
+
     if (exportFormat === 'csv') {
       const csv = generateCsv(rows, CSV_COLUMNS)
-      const filename = `revenue-report-${format(dateRange.from, 'yyyy-MM-dd')}-to-${format(dateRange.to, 'yyyy-MM-dd')}`
       downloadCsv(csv, filename)
     } else if (exportFormat === 'excel') {
-      // Excel export - placeholder for plan 05
-      console.log('Excel export not yet implemented')
+      exportToExcel(rows, CSV_COLUMNS, filename, 'Revenue Report')
     } else if (exportFormat === 'pdf') {
-      // PDF export - placeholder for plan 05
-      console.log('PDF export not yet implemented')
+      downloadPdf(
+        <ReportPdfDocument
+          title="Revenue Trends Report"
+          dateRange={dateRange}
+          summaries={summaries}
+          columns={PDF_COLUMNS}
+          data={rows}
+        />,
+        filename
+      )
     }
   }
 

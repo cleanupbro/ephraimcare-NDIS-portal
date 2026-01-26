@@ -23,6 +23,9 @@ import { BudgetBarChart } from '@/components/reports/charts/BudgetBarChart'
 import { useBudgetReport, calculateBudgetSummaries } from '@/hooks/use-budget-report'
 import { useParticipants } from '@/hooks/use-participants'
 import { generateCsv, downloadCsv } from '@/lib/reports/csv-export'
+import { exportToExcel } from '@/lib/reports/excel-export'
+import { downloadPdf } from '@/lib/reports/pdf-export'
+import { ReportPdfDocument, type ReportColumn } from '@/components/reports/pdf/ReportPdfDocument'
 import { DATE_RANGE_PRESETS } from '@/lib/reports/constants'
 import type { DateRangeFilter, ExportFormat, BudgetReportRow, CsvColumn } from '@/lib/reports/types'
 
@@ -78,6 +81,17 @@ const CSV_COLUMNS: CsvColumn<BudgetReportRow>[] = [
   { header: 'Status', key: 'alert' },
 ]
 
+// PDF column definitions (wider for readability)
+const PDF_COLUMNS: ReportColumn<BudgetReportRow>[] = [
+  { header: 'Participant', key: 'participantName', width: '25%' },
+  { header: 'NDIS Number', key: 'ndisNumber', width: '18%' },
+  { header: 'Allocated', key: 'allocatedBudget', width: '14%', align: 'right', format: (v) => formatCurrency(v as number) },
+  { header: 'Used', key: 'usedBudget', width: '14%', align: 'right', format: (v) => formatCurrency(v as number) },
+  { header: 'Remaining', key: 'remainingBudget', width: '14%', align: 'right', format: (v) => formatCurrency(v as number) },
+  { header: 'Util %', key: 'utilizationPercent', width: '8%', align: 'right', format: (v) => `${v}%` },
+  { header: 'Status', key: 'alert', width: '7%' },
+]
+
 // ─── Page Component ─────────────────────────────────────────────────────────
 
 export default function BudgetReportPage() {
@@ -121,16 +135,24 @@ export default function BudgetReportPage() {
 
   // Handle export
   function handleExport(exportFormat: ExportFormat) {
+    const filename = `budget-report-${format(dateRange.from, 'yyyy-MM-dd')}-to-${format(dateRange.to, 'yyyy-MM-dd')}`
+
     if (exportFormat === 'csv') {
       const csv = generateCsv(reportData, CSV_COLUMNS)
-      const filename = `budget-report-${format(dateRange.from, 'yyyy-MM-dd')}-to-${format(dateRange.to, 'yyyy-MM-dd')}`
       downloadCsv(csv, filename)
     } else if (exportFormat === 'excel') {
-      // Excel export - placeholder for plan 05
-      console.log('Excel export not yet implemented')
+      exportToExcel(reportData, CSV_COLUMNS, filename, 'Budget Report')
     } else if (exportFormat === 'pdf') {
-      // PDF export - placeholder for plan 05
-      console.log('PDF export not yet implemented')
+      downloadPdf(
+        <ReportPdfDocument
+          title="Budget Utilization Report"
+          dateRange={dateRange}
+          summaries={summaries}
+          columns={PDF_COLUMNS}
+          data={reportData}
+        />,
+        filename
+      )
     }
   }
 
