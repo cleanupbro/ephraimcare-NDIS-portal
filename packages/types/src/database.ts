@@ -23,6 +23,7 @@ export interface Database {
           avatar_url: string | null
           organization_id: string
           is_active: boolean
+          is_platform_admin: boolean | null
           created_at: string
           updated_at: string
         }
@@ -36,6 +37,7 @@ export interface Database {
           avatar_url?: string | null
           organization_id: string
           is_active?: boolean
+          is_platform_admin?: boolean | null
           created_at?: string
           updated_at?: string
         }
@@ -49,6 +51,33 @@ export interface Database {
           avatar_url?: string | null
           organization_id?: string
           is_active?: boolean
+          is_platform_admin?: boolean | null
+          updated_at?: string
+        }
+        Relationships: []
+      }
+      organizations: {
+        Row: {
+          id: string
+          name: string
+          abn: string | null
+          settings: Json | null
+          created_at: string
+          updated_at: string
+        }
+        Insert: {
+          id?: string
+          name: string
+          abn?: string | null
+          settings?: Json | null
+          created_at?: string
+          updated_at?: string
+        }
+        Update: {
+          id?: string
+          name?: string
+          abn?: string | null
+          settings?: Json | null
           updated_at?: string
         }
         Relationships: []
@@ -195,6 +224,8 @@ export interface Database {
           notes: string | null
           organization_id: string
           created_by: string | null
+          reminder_24h_sent: boolean | null
+          reminder_2h_sent: boolean | null
           created_at: string
           updated_at: string
         }
@@ -216,6 +247,8 @@ export interface Database {
           notes?: string | null
           organization_id: string
           created_by?: string | null
+          reminder_24h_sent?: boolean | null
+          reminder_2h_sent?: boolean | null
           created_at?: string
           updated_at?: string
         }
@@ -237,6 +270,8 @@ export interface Database {
           notes?: string | null
           organization_id?: string
           created_by?: string | null
+          reminder_24h_sent?: boolean | null
+          reminder_2h_sent?: boolean | null
           updated_at?: string
         }
         Relationships: []
@@ -412,6 +447,10 @@ export interface Database {
       get_user_organization_id: {
         Args: Record<string, never>
         Returns: string
+      }
+      is_platform_admin: {
+        Args: Record<string, never>
+        Returns: boolean
       }
     }
     Views: {
