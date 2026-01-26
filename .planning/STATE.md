@@ -5,21 +5,21 @@
 See: .planning/PROJECT.md (updated 2026-01-24)
 
 **Core value:** Schedule shifts, track check-ins, generate invoices from actual hours worked
-**Current focus:** Phase 8 (Participant Portal) complete. Ready for Phase 9.
+**Current focus:** Phase 9 (Notifications) in progress.
 
 ## Current Position
 
-Phase: 8 of 13 (Participant Portal)
-Plan: 4 of 4 in current phase
-Status: Phase complete
-Last activity: 2026-01-26 -- Completed 08-04-PLAN.md (Profile + Logout)
+Phase: 9 of 13 (Notifications)
+Plan: 1 of 3 in current phase
+Status: In progress
+Last activity: 2026-01-26 -- Completed 09-01-PLAN.md (Notification Infrastructure)
 
-Progress: [████████████████████████████████░] 62%
+Progress: [██████████████████████████████████░] 64%
 
 ## Performance Metrics
 
 **Velocity:**
-- Total plans completed: 47 (Phase 1: 9, Phase 2: 5, Phase 3: 5, Phase 4: 4, Phase 5: 9, Phase 6: 4, Phase 7: 7, Phase 8: 4)
+- Total plans completed: 48 (Phase 1: 9, Phase 2: 5, Phase 3: 5, Phase 4: 4, Phase 5: 9, Phase 6: 4, Phase 7: 7, Phase 8: 4, Phase 9: 1)
 - Average duration: --
 - Total execution time: --
 
@@ -35,6 +35,7 @@ Progress: [███████████████████████
 | 6 | 4/4 | -- | -- |
 | 7 | 7/7 | -- | -- |
 | 8 | 4/4 | -- | -- |
+| 9 | 1/3 | -- | -- |
 
 **Recent Trend:**
 - Last 5 plans: --
@@ -138,6 +139,9 @@ Recent decisions affecting current work:
 - Sidebar extracted as client component for usePathname access
 - Logout uses router.refresh() after signOut to clear server-side cache
 - Active link highlighting uses pathname comparison with startsWith for nested routes
+- Fire-and-forget email pattern: no await on fetch, .catch() for silent error logging
+- ADMIN_EMAIL constant for CC on all notification emails
+- Notification templates use inline CSS for email client compatibility
 
 ### Pending Todos
 
@@ -150,7 +154,7 @@ None.
 ## Session Continuity
 
 Last session: 2026-01-26
-Stopped at: Completed Phase 8 (Participant Portal)
+Stopped at: Completed 09-01-PLAN.md (Notification Infrastructure)
 Resume file: None
 
 ## Phase Progress
@@ -165,7 +169,7 @@ Resume file: None
 | 6 | Case Notes | Complete | 4/4 |
 | 7 | Invoicing | Complete | 7/7 |
 | 8 | Participant Portal | Complete | 4/4 |
-| 9 | Notifications | Pending | 0/0 |
+| 9 | Notifications | In Progress | 1/3 |
 | 10 | Worker Screening | Pending | 0/0 |
 | 11 | Compliance and Incidents | Pending | 0/0 |
 | 12 | Reporting and Export | Pending | 0/0 |
@@ -218,3 +222,4 @@ Resume file: None
 | 2026-01-26 | Phase 8 Plan 04 executed | Profile page, sidebar with logout, human verification passed |
 | 2026-01-26 | Phase 8 verified | 4/4 success criteria passed, VERIFICATION.md created |
 | 2026-01-26 | Phase 8 complete | 4/4 plans executed, participant portal ready for production |
+| 2026-01-26 | Phase 9 Plan 01 executed | Notification types, templates, fire-and-forget email helpers |
