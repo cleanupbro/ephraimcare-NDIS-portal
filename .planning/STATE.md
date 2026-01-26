@@ -10,16 +10,16 @@ See: .planning/PROJECT.md (updated 2026-01-24)
 ## Current Position
 
 Phase: 13 of 13 (Scale Features)
-Plan: 7 of 12 in current phase
+Plan: 8 of 12 in current phase
 Status: In progress
-Last activity: 2026-01-27 -- Completed 13-12-PLAN.md (NDIA PACE CSV Export)
+Last activity: 2026-01-27 -- Completed 13-08-PLAN.md (Participant Goal Tracking)
 
 Progress: [█████████████████████████████████████████████████████] 98%
 
 ## Performance Metrics
 
 **Velocity:**
-- Total plans completed: 71 (Phase 1: 9, Phase 2: 5, Phase 3: 5, Phase 4: 4, Phase 5: 9, Phase 6: 4, Phase 7: 7, Phase 8: 4, Phase 9: 3, Phase 10: 2, Phase 11: 7, Phase 12: 6, Phase 13: 6)
+- Total plans completed: 72 (Phase 1: 9, Phase 2: 5, Phase 3: 5, Phase 4: 4, Phase 5: 9, Phase 6: 4, Phase 7: 7, Phase 8: 4, Phase 9: 3, Phase 10: 2, Phase 11: 7, Phase 12: 6, Phase 13: 7)
 - Average duration: --
 - Total execution time: --
 
@@ -39,7 +39,7 @@ Progress: [███████████████████████
 | 10 | 2/2 | -- | -- |
 | 11 | 7/7 | -- | -- |
 | 12 | 6/6 | -- | -- |
-| 13 | 6/12 | -- | -- |
+| 13 | 7/12 | -- | -- |
 
 **Recent Trend:**
 - Last 5 plans: --
@@ -176,6 +176,10 @@ Recent decisions affecting current work:
 - Token refresh triggered 60 seconds before expiry (buffer)
 - First Xero tenant used for multi-org Xero accounts (most common case)
 - Connection cleanup on refresh failure: clear tokens and set xero_connected=false
+- Goal categories aligned with NDIS support domains (daily_living, community, employment, relationships, health, learning, other)
+- Progress notes use 1-5 rating scale (No progress to Excellent progress)
+- Workers can add progress notes, only admin/coordinator can create/delete goals
+- Progress notes optionally linked to shifts for shift-based tracking
 
 ### Pending Todos
 
@@ -207,7 +211,7 @@ Resume file: None
 | 10 | Worker Screening | Complete | 2/2 |
 | 11 | Compliance and Incidents | Complete | 7/7 |
 | 12 | Reporting and Export | Verified | 6/6 |
-| 13 | Scale Features | In progress | 5/12 |
+| 13 | Scale Features | In progress | 7/12 |
 
 ## Session Log
 
@@ -278,3 +282,4 @@ Resume file: None
 | 2026-01-27 | Phase 13 Plan 04 executed | Twilio SMS: sendSms, templates, test endpoint |
 | 2026-01-27 | Phase 13 Plan 05 executed | Shift reminders: sendShiftReminders, cron endpoint, pg_cron migration |
 | 2026-01-27 | Phase 13 Plan 06 executed | Xero OAuth2: connect, callback, disconnect endpoints, client factory with token refresh |
+| 2026-01-27 | Phase 13 Plan 12 executed | NDIA PACE CSV: CSV generation library, download API, export UI, page |
