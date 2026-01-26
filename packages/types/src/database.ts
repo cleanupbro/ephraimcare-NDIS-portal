@@ -62,6 +62,9 @@ export interface Database {
           name: string
           abn: string | null
           settings: Json | null
+          xero_token_set: Json | null
+          xero_tenant_id: string | null
+          xero_contact_mapping: Json | null
           created_at: string
           updated_at: string
         }
@@ -70,6 +73,9 @@ export interface Database {
           name: string
           abn?: string | null
           settings?: Json | null
+          xero_token_set?: Json | null
+          xero_tenant_id?: string | null
+          xero_contact_mapping?: Json | null
           created_at?: string
           updated_at?: string
         }
@@ -78,6 +84,9 @@ export interface Database {
           name?: string
           abn?: string | null
           settings?: Json | null
+          xero_token_set?: Json | null
+          xero_tenant_id?: string | null
+          xero_contact_mapping?: Json | null
           updated_at?: string
         }
         Relationships: []
@@ -292,6 +301,10 @@ export interface Database {
           notes: string | null
           organization_id: string
           created_by: string | null
+          xero_invoice_id: string | null
+          xero_sync_status: 'pending' | 'synced' | 'failed' | 'not_applicable' | null
+          xero_sync_error: string | null
+          xero_synced_at: string | null
           created_at: string
           updated_at: string
         }
@@ -310,6 +323,10 @@ export interface Database {
           notes?: string | null
           organization_id: string
           created_by?: string | null
+          xero_invoice_id?: string | null
+          xero_sync_status?: 'pending' | 'synced' | 'failed' | 'not_applicable' | null
+          xero_sync_error?: string | null
+          xero_synced_at?: string | null
           created_at?: string
           updated_at?: string
         }
@@ -328,6 +345,10 @@ export interface Database {
           notes?: string | null
           organization_id?: string
           created_by?: string | null
+          xero_invoice_id?: string | null
+          xero_sync_status?: 'pending' | 'synced' | 'failed' | 'not_applicable' | null
+          xero_sync_error?: string | null
+          xero_synced_at?: string | null
           updated_at?: string
         }
         Relationships: []
