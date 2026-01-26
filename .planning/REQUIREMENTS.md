@@ -156,20 +156,20 @@
 
 ### Reporting (REPT)
 
-- **REPT-01**: Budget utilization report with participant breakdown and alerts
-- **REPT-02**: Revenue report with monthly trends and support type breakdown
-- **REPT-03**: Worker hours report with per-worker stats and averages
-- **REPT-04**: Participant activity report with shift history and budget projections
-- **REPT-05**: All reports filterable by date range, participant, worker, support type
-- **REPT-06**: All reports exportable as CSV and Excel
-- **REPT-07**: All reports exportable as PDF
-- **REPT-08**: Charts and data visualization (budget bars, revenue trends, hours distribution)
+- [x] **REPT-01**: Budget utilization report with participant breakdown and alerts
+- [x] **REPT-02**: Revenue report with monthly trends and support type breakdown
+- [x] **REPT-03**: Worker hours report with per-worker stats and averages
+- [x] **REPT-04**: Participant activity report with shift history and budget projections
+- [x] **REPT-05**: All reports filterable by date range, participant, worker, support type
+- [x] **REPT-06**: All reports exportable as CSV and Excel
+- [x] **REPT-07**: All reports exportable as PDF
+- [x] **REPT-08**: Charts and data visualization (budget bars, revenue trends, hours distribution)
 
 ### Data Export (EXPRT)
 
-- **EXPRT-01**: Export invoices to CSV for accounting software import (Xero/MYOB compatible)
-- **EXPRT-02**: Export participant list to CSV
-- **EXPRT-03**: Export worker hours to CSV
+- [x] **EXPRT-01**: Export invoices to CSV for accounting software import (Xero/MYOB compatible)
+- [x] **EXPRT-02**: Export participant list to CSV
+- [x] **EXPRT-03**: Export worker hours to CSV
 
 ## v4 Requirements (Future/Optional)
 

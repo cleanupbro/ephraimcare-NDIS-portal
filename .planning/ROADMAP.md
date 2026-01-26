@@ -26,7 +26,7 @@ This roadmap delivers a complete NDIS management platform across 13 phases, from
 - [x] **Phase 9: Notifications** - Email notifications for shift assignments, cancellations, and invoices
 - [x] **Phase 10: Worker Screening** - Block expired checks, warn on expiring, compliance dashboard widget
 - [x] **Phase 11: Compliance and Incidents** - Incident reporting, compliance dashboard, portal extensions
-- [ ] **Phase 12: Reporting and Export** - Budget, revenue, worker hours, and activity reports with CSV/PDF export
+- [x] **Phase 12: Reporting and Export** - Budget, revenue, worker hours, and activity reports with CSV/PDF export
 - [ ] **Phase 13: Scale Features** - Multi-org, SMS, goal tracking, API integrations, advanced mobile
 
 ## Phase Details
@@ -489,7 +489,7 @@ Note: Phases 2 and 3 can execute in parallel (both depend only on Phase 1).
 | 9. Notifications | 3/3 | Complete | 2026-01-26 |
 | 10. Worker Screening | 2/2 | Complete | 2026-01-26 |
 | 11. Compliance and Incidents | 7/7 | Complete | 2026-01-26 |
-| 12. Reporting and Export | 0/0 | Not started | - |
+| 12. Reporting and Export | 6/6 | Complete | 2026-01-27 |
 | 13. Scale Features | 0/0 | Not started | - |
 
 ---
@@ -500,3 +500,4 @@ Note: Phases 2 and 3 can execute in parallel (both depend only on Phase 1).
 *Phase 9 complete: 2026-01-26*
 *Phase 10 complete: 2026-01-26*
 *Phase 11 complete: 2026-01-26*
+*Phase 12 complete: 2026-01-27*
