@@ -94,6 +94,13 @@ export const REPORT_TYPES = [
     href: '/reports/participant-activity',
     icon: 'Users',
   },
+  {
+    id: 'accounting-exports',
+    name: 'Accounting Exports',
+    description: 'Export invoices for Xero, MYOB, and payroll integration',
+    href: '/reports/accounting-exports',
+    icon: 'FileSpreadsheet',
+  },
 ] as const
 
 /** Report type ID union */

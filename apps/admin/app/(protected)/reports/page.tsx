@@ -1,6 +1,6 @@
 import Link from 'next/link'
 import { Card, CardContent, CardHeader, CardTitle } from '@ephraimcare/ui'
-import { DollarSign, TrendingUp, Clock, Users } from 'lucide-react'
+import { DollarSign, TrendingUp, Clock, Users, FileSpreadsheet } from 'lucide-react'
 import { REPORT_TYPES } from '@/lib/reports/constants'
 
 // ─── Icon Map ───────────────────────────────────────────────────────────────
@@ -10,6 +10,7 @@ const ICON_MAP: Record<string, typeof DollarSign> = {
   TrendingUp,
   Clock,
   Users,
+  FileSpreadsheet,
 }
 
 // ─── Page ───────────────────────────────────────────────────────────────────
