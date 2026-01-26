@@ -247,3 +247,4 @@ Resume file: None
 | 2026-01-27 | Phase 12 Plan 01 executed | recharts/xlsx deps, ReportLayout, DateRangePicker, CSV export, /reports page |
 | 2026-01-27 | Phase 12 Plan 02 executed | Budget report hook, BudgetBarChart, ChartCard, /reports/budget page |
 | 2026-01-27 | Phase 12 Plan 04 executed | Worker hours + participant activity hooks, report pages with CSV export |
+| 2026-01-27 | Phase 12 Plan 03 executed | Revenue report hook, RevenueLineChart, /reports/revenue page |
