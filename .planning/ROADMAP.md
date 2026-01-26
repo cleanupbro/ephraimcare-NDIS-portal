@@ -365,7 +365,11 @@ Plans:
 2. Assigning a worker whose check expires within 90 days shows a yellow warning but allows override
 3. Admin dashboard displays a widget listing all workers with expired or soon-to-expire checks
 
-**Plans:** TBD
+**Plans:** 2 plans
+
+Plans:
+- [ ] 10-01-PLAN.md -- Shift form NDIS validation (blocking expired, warning expiring)
+- [ ] 10-02-PLAN.md -- Dashboard compliance widget (workers with expired/expiring checks)
 
 ---
 
@@ -475,7 +479,7 @@ Note: Phases 2 and 3 can execute in parallel (both depend only on Phase 1).
 | 7. Invoicing | 7/7 | Complete | 2026-01-25 |
 | 8. Participant Portal | 4/4 | Complete | 2026-01-26 |
 | 9. Notifications | 3/3 | Complete | 2026-01-26 |
-| 10. Worker Screening | 0/0 | Not started | - |
+| 10. Worker Screening | 0/2 | Planned | - |
 | 11. Compliance and Incidents | 0/0 | Not started | - |
 | 12. Reporting and Export | 0/0 | Not started | - |
 | 13. Scale Features | 0/0 | Not started | - |
