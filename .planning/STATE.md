@@ -144,6 +144,7 @@ Recent decisions affecting current work:
 - Notification templates use inline CSS for email client compatibility
 - Participant email comes from participants.email (not profiles join)
 - Emergency contact email not in schema - passed as null for invoice notifications
+- Notification data fetched via select join (create-shift) or separate query (cancel-shift) to keep mutation signatures unchanged
 
 ### Pending Todos
 
@@ -225,4 +226,5 @@ Resume file: None
 | 2026-01-26 | Phase 8 verified | 4/4 success criteria passed, VERIFICATION.md created |
 | 2026-01-26 | Phase 8 complete | 4/4 plans executed, participant portal ready for production |
 | 2026-01-26 | Phase 9 Plan 01 executed | Notification types, templates, fire-and-forget email helpers |
+| 2026-01-26 | Phase 9 Plan 02 executed | Shift assignment and cancellation notifications wired to hooks |
 | 2026-01-26 | Phase 9 Plan 03 executed | Invoice finalized notification wired to finalize route |
