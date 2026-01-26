@@ -116,8 +116,8 @@ export function useReviewCancellationRequest() {
 
       // If approved, cancel the shift
       if (input.status === 'approved' && request?.shift_id) {
-        const { error: shiftError } = await supabase
-          .from('shifts')
+        const { error: shiftError } = await (supabase
+          .from('shifts') as any)
           .update({ status: 'cancelled' })
           .eq('id', request.shift_id)
 

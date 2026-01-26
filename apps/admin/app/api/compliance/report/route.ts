@@ -34,8 +34,8 @@ export async function GET() {
         .from('ndis_plans')
         .select('participant_id')
         .eq('is_current', true),
-      supabase
-        .from('organizations')
+      (supabase
+        .from('organizations') as any)
         .select('name')
         .single(),
     ])
