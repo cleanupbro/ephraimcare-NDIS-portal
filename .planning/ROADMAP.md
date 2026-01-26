@@ -431,7 +431,15 @@ Plans:
 4. Exported invoice CSV is importable into Xero or MYOB without manual reformatting
 5. Charts and data visualizations render correctly for budget bars and revenue trends
 
-**Plans:** TBD
+**Plans:** 6 plans
+
+Plans:
+- [ ] 12-01-PLAN.md -- Report foundation (dependencies, ReportLayout, DateRangePicker, CSV export helper)
+- [ ] 12-02-PLAN.md -- Budget utilization report (bar chart, alerts, CSV export)
+- [ ] 12-03-PLAN.md -- Revenue trends report (line chart, support type breakdown, CSV export)
+- [ ] 12-04-PLAN.md -- Worker hours and participant activity reports (tabular data, CSV export)
+- [ ] 12-05-PLAN.md -- Excel and PDF export for all reports (SheetJS, @react-pdf/renderer)
+- [ ] 12-06-PLAN.md -- Accounting exports (Xero/MYOB CSV, participant list, worker hours)
 
 ---
 
