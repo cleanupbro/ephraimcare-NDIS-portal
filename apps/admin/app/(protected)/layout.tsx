@@ -60,6 +60,9 @@ export default async function ProtectedLayout({
           <a href="/compliance" className="block rounded-md px-3 py-2 text-sm hover:bg-accent">
             Compliance
           </a>
+          <a href="/cancellation-requests" className="block rounded-md px-3 py-2 text-sm hover:bg-accent">
+            Cancellations
+          </a>
           <a href="/settings" className="block rounded-md px-3 py-2 text-sm hover:bg-accent">
             Settings
           </a>

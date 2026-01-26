@@ -2,7 +2,7 @@
 
 import { usePathname, useRouter } from 'next/navigation'
 import { createClient } from '@/lib/supabase/client'
-import { LayoutDashboard, FileText, User, LogOut } from 'lucide-react'
+import { LayoutDashboard, FileText, User, LogOut, Calendar } from 'lucide-react'
 
 // ─── Types ────────────────────────────────────────────────────────────────────
 
@@ -20,6 +20,7 @@ interface SidebarProps {
 
 const navItems = [
   { href: '/dashboard', label: 'Dashboard', icon: LayoutDashboard },
+  { href: '/appointments', label: 'Appointments', icon: Calendar },
   { href: '/invoices', label: 'Invoices', icon: FileText },
   { href: '/profile', label: 'Profile', icon: User },
 ]
