@@ -10,16 +10,16 @@ See: .planning/PROJECT.md (updated 2026-01-24)
 ## Current Position
 
 Phase: 13 of 13 (Scale Features)
-Plan: 1 of 12 in current phase
+Plan: 2 of 12 in current phase
 Status: In progress
-Last activity: 2026-01-27 -- Completed 13-01-PLAN.md (Multi-Org Foundation)
+Last activity: 2026-01-27 -- Completed 13-02-PLAN.md (Organization Registration)
 
 Progress: [█████████████████████████████████████████████████████] 97%
 
 ## Performance Metrics
 
 **Velocity:**
-- Total plans completed: 66 (Phase 1: 9, Phase 2: 5, Phase 3: 5, Phase 4: 4, Phase 5: 9, Phase 6: 4, Phase 7: 7, Phase 8: 4, Phase 9: 3, Phase 10: 2, Phase 11: 7, Phase 12: 6, Phase 13: 1)
+- Total plans completed: 67 (Phase 1: 9, Phase 2: 5, Phase 3: 5, Phase 4: 4, Phase 5: 9, Phase 6: 4, Phase 7: 7, Phase 8: 4, Phase 9: 3, Phase 10: 2, Phase 11: 7, Phase 12: 6, Phase 13: 2)
 - Average duration: --
 - Total execution time: --
 
@@ -39,7 +39,7 @@ Progress: [███████████████████████
 | 10 | 2/2 | -- | -- |
 | 11 | 7/7 | -- | -- |
 | 12 | 6/6 | -- | -- |
-| 13 | 1/12 | -- | -- |
+| 13 | 2/12 | -- | -- |
 
 **Recent Trend:**
 - Last 5 plans: --
@@ -167,6 +167,8 @@ Recent decisions affecting current work:
 - Created organizations table (was previously implicit UUID only) to store settings and org metadata
 - Platform admin uses is_platform_admin boolean column + SQL function (not separate role enum)
 - RLS policies use OR is_platform_admin() pattern for cross-org read access
+- Service role used for registration API (auth.admin.createUser requires it)
+- Manual rollback pattern for org registration (auth is external to DB, no transaction)
 
 ### Pending Todos
 
@@ -179,7 +181,7 @@ None.
 ## Session Continuity
 
 Last session: 2026-01-27
-Stopped at: Completed 13-01-PLAN.md (Multi-Org Foundation)
+Stopped at: Completed 13-02-PLAN.md (Organization Registration)
 Resume file: None
 
 ## Phase Progress
@@ -198,7 +200,7 @@ Resume file: None
 | 10 | Worker Screening | Complete | 2/2 |
 | 11 | Compliance and Incidents | Complete | 7/7 |
 | 12 | Reporting and Export | Verified | 6/6 |
-| 13 | Scale Features | In progress | 1/12 |
+| 13 | Scale Features | In progress | 2/12 |
 
 ## Session Log
 
@@ -263,3 +265,4 @@ Resume file: None
 | 2026-01-27 | Phase 12 complete | 6/6 plans executed, all reporting and export features implemented |
 | 2026-01-27 | Phase 12 verified | 29/29 must-haves passed, VERIFICATION.md created |
 | 2026-01-27 | Phase 13 Plan 01 executed | Multi-org foundation: organizations table, platform admin, RLS policies |
+| 2026-01-27 | Phase 13 Plan 02 executed | Organization registration: schema + API + form page |
