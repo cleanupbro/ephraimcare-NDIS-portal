@@ -54,6 +54,9 @@ export default async function ProtectedLayout({
           <a href="/case-notes" className="block rounded-md px-3 py-2 text-sm hover:bg-accent">
             Case Notes
           </a>
+          <a href="/incidents" className="block rounded-md px-3 py-2 text-sm hover:bg-accent">
+            Incidents
+          </a>
           <a href="/settings" className="block rounded-md px-3 py-2 text-sm hover:bg-accent">
             Settings
           </a>
