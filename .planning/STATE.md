@@ -10,16 +10,16 @@ See: .planning/PROJECT.md (updated 2026-01-24)
 ## Current Position
 
 Phase: 13 of 13 (Scale Features)
-Plan: 5 of 12 in current phase
+Plan: 7 of 12 in current phase
 Status: In progress
-Last activity: 2026-01-27 -- Completed 13-05-PLAN.md (Shift SMS Reminders)
+Last activity: 2026-01-27 -- Completed 13-12-PLAN.md (NDIA PACE CSV Export)
 
-Progress: [█████████████████████████████████████████████████████] 97%
+Progress: [█████████████████████████████████████████████████████] 98%
 
 ## Performance Metrics
 
 **Velocity:**
-- Total plans completed: 70 (Phase 1: 9, Phase 2: 5, Phase 3: 5, Phase 4: 4, Phase 5: 9, Phase 6: 4, Phase 7: 7, Phase 8: 4, Phase 9: 3, Phase 10: 2, Phase 11: 7, Phase 12: 6, Phase 13: 5)
+- Total plans completed: 71 (Phase 1: 9, Phase 2: 5, Phase 3: 5, Phase 4: 4, Phase 5: 9, Phase 6: 4, Phase 7: 7, Phase 8: 4, Phase 9: 3, Phase 10: 2, Phase 11: 7, Phase 12: 6, Phase 13: 6)
 - Average duration: --
 - Total execution time: --
 
@@ -39,7 +39,7 @@ Progress: [███████████████████████
 | 10 | 2/2 | -- | -- |
 | 11 | 7/7 | -- | -- |
 | 12 | 6/6 | -- | -- |
-| 13 | 5/12 | -- | -- |
+| 13 | 6/12 | -- | -- |
 
 **Recent Trend:**
 - Last 5 plans: --
@@ -172,6 +172,10 @@ Recent decisions affecting current work:
 - Auth token is write-only - not returned in queries for security
 - Alert UI component added to packages/ui for integration info messages
 - Manual rollback pattern for org registration (auth is external to DB, no transaction)
+- OAuth2 state parameter encodes organizationId + timestamp for CSRF protection
+- Token refresh triggered 60 seconds before expiry (buffer)
+- First Xero tenant used for multi-org Xero accounts (most common case)
+- Connection cleanup on refresh failure: clear tokens and set xero_connected=false
 
 ### Pending Todos
 
@@ -184,7 +188,7 @@ None.
 ## Session Continuity
 
 Last session: 2026-01-27
-Stopped at: Completed 13-05-PLAN.md (Shift SMS Reminders)
+Stopped at: Completed 13-06-PLAN.md (Xero OAuth2 Connection)
 Resume file: None
 
 ## Phase Progress
@@ -273,3 +277,4 @@ Resume file: None
 | 2026-01-27 | Phase 13 Plan 04 executed | SMS infrastructure: Twilio SDK, sendSms function, templates, test endpoint |
 | 2026-01-27 | Phase 13 Plan 04 executed | Twilio SMS: sendSms, templates, test endpoint |
 | 2026-01-27 | Phase 13 Plan 05 executed | Shift reminders: sendShiftReminders, cron endpoint, pg_cron migration |
+| 2026-01-27 | Phase 13 Plan 06 executed | Xero OAuth2: connect, callback, disconnect endpoints, client factory with token refresh |
