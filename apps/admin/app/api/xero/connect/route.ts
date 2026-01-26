@@ -17,13 +17,11 @@ export async function GET() {
     }
 
     // Get user's profile
-    const { data: profileData } = await supabase
+    const { data: profile } = await supabase
       .from('profiles')
       .select('organization_id, role')
       .eq('id', user.id)
       .single()
-
-    const profile = profileData as { organization_id: string | null; role: string } | null
 
     if (!profile?.organization_id || profile.role !== 'admin') {
       return NextResponse.redirect(
