@@ -192,7 +192,7 @@ None.
 ## Session Continuity
 
 Last session: 2026-01-27
-Stopped at: Completed 13-06-PLAN.md (Xero OAuth2 Connection)
+Stopped at: Completed 13-08-PLAN.md (Participant Goal Tracking)
 Resume file: None
 
 ## Phase Progress
@@ -283,3 +283,4 @@ Resume file: None
 | 2026-01-27 | Phase 13 Plan 05 executed | Shift reminders: sendShiftReminders, cron endpoint, pg_cron migration |
 | 2026-01-27 | Phase 13 Plan 06 executed | Xero OAuth2: connect, callback, disconnect endpoints, client factory with token refresh |
 | 2026-01-27 | Phase 13 Plan 12 executed | NDIA PACE CSV: CSV generation library, download API, export UI, page |
+| 2026-01-27 | Phase 13 Plan 08 executed | Participant goals: schema, hooks, GoalCard, progress modal, goals page |
