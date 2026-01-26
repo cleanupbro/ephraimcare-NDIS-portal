@@ -5,21 +5,21 @@
 See: .planning/PROJECT.md (updated 2026-01-24)
 
 **Core value:** Schedule shifts, track check-ins, generate invoices from actual hours worked
-**Current focus:** Phase 11 (Compliance and Incidents) complete. Ready for Phase 12.
+**Current focus:** Phase 12 (Reporting and Export) in progress. Plan 01 complete.
 
 ## Current Position
 
-Phase: 11 of 13 (Compliance and Incidents)
-Plan: 7 of 7 in current phase
-Status: Phase complete
-Last activity: 2026-01-26 -- Phase 11 executed and complete
+Phase: 12 of 13 (Reporting and Export)
+Plan: 1 of ? in current phase
+Status: In progress
+Last activity: 2026-01-27 -- Completed 12-01-PLAN.md (Report Infrastructure Foundation)
 
-Progress: [██████████████████████████████████████████████░] 85%
+Progress: [███████████████████████████████████████████████░] 87%
 
 ## Performance Metrics
 
 **Velocity:**
-- Total plans completed: 59 (Phase 1: 9, Phase 2: 5, Phase 3: 5, Phase 4: 4, Phase 5: 9, Phase 6: 4, Phase 7: 7, Phase 8: 4, Phase 9: 3, Phase 10: 2, Phase 11: 7)
+- Total plans completed: 60 (Phase 1: 9, Phase 2: 5, Phase 3: 5, Phase 4: 4, Phase 5: 9, Phase 6: 4, Phase 7: 7, Phase 8: 4, Phase 9: 3, Phase 10: 2, Phase 11: 7, Phase 12: 1)
 - Average duration: --
 - Total execution time: --
 
@@ -38,6 +38,7 @@ Progress: [███████████████████████
 | 9 | 3/3 | -- | -- |
 | 10 | 2/2 | -- | -- |
 | 11 | 7/7 | -- | -- |
+| 12 | 1/? | -- | -- |
 
 **Recent Trend:**
 - Last 5 plans: --
@@ -147,6 +148,10 @@ Recent decisions affecting current work:
 - Participant email comes from participants.email (not profiles join)
 - Emergency contact email not in schema - passed as null for invoice notifications
 - Notification data fetched via select join (create-shift) or separate query (cancel-shift) to keep mutation signatures unchanged
+- DATE_RANGE_PRESETS use getValue() functions for dynamic calculation (not static dates that would become stale)
+- CSV export includes UTF-8 BOM for Excel compatibility
+- ReportLayout uses slot pattern for filterSlot - reports can inject custom filters
+- DateRangePicker is custom component using date-fns (no react-day-picker dependency)
 
 ### Pending Todos
 
@@ -158,8 +163,8 @@ None.
 
 ## Session Continuity
 
-Last session: 2026-01-26
-Stopped at: Completed Phase 9 (Notifications)
+Last session: 2026-01-27
+Stopped at: Completed 12-01-PLAN.md (Report Infrastructure Foundation)
 Resume file: None
 
 ## Phase Progress
@@ -177,7 +182,7 @@ Resume file: None
 | 9 | Notifications | Complete | 3/3 |
 | 10 | Worker Screening | Complete | 2/2 |
 | 11 | Compliance and Incidents | Complete | 7/7 |
-| 12 | Reporting and Export | Pending | 0/0 |
+| 12 | Reporting and Export | In progress | 1/? |
 | 13 | Scale Features | Pending | 0/0 |
 
 ## Session Log
@@ -234,3 +239,4 @@ Resume file: None
 | 2026-01-26 | Phase 9 complete | 3/3 plans executed, email notifications for shifts + invoices |
 | 2026-01-26 | Phase 10 executed | 2/2 plans executed, NDIS validation + compliance widget |
 | 2026-01-26 | Phase 11 executed | 7/7 plans: incidents, NDIA workflow, compliance dashboard, appointments, magic link, calendar |
+| 2026-01-27 | Phase 12 Plan 01 executed | recharts/xlsx deps, ReportLayout, DateRangePicker, CSV export, /reports page |
