@@ -2,7 +2,7 @@ import Link from 'next/link'
 import { startOfWeek, endOfWeek } from 'date-fns'
 import { createClient } from '@/lib/supabase/server'
 import { Button } from '@ephraimcare/ui'
-import { Plus } from 'lucide-react'
+import { Plus, Calendar, Repeat } from 'lucide-react'
 import { ShiftList } from '@/components/shifts/shift-list'
 import type { ShiftWithRelations } from '@ephraimcare/types'
 
@@ -34,12 +34,26 @@ export default async function ShiftsPage() {
             Weekly shift schedule
           </p>
         </div>
-        <Button asChild>
-          <Link href="/shifts/new">
-            <Plus className="mr-2 h-4 w-4" />
-            Schedule Shift
-          </Link>
-        </Button>
+        <div className="flex items-center gap-2">
+          <Button variant="outline" asChild>
+            <Link href="/shifts/calendar">
+              <Calendar className="mr-2 h-4 w-4" />
+              Calendar
+            </Link>
+          </Button>
+          <Button variant="outline" asChild>
+            <Link href="/shifts/recurring">
+              <Repeat className="mr-2 h-4 w-4" />
+              Recurring
+            </Link>
+          </Button>
+          <Button asChild>
+            <Link href="/shifts/new">
+              <Plus className="mr-2 h-4 w-4" />
+              New Shift
+            </Link>
+          </Button>
+        </div>
       </div>
 
       <ShiftList initialData={shifts} />
