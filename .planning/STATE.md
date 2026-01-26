@@ -5,21 +5,21 @@
 See: .planning/PROJECT.md (updated 2026-01-24)
 
 **Core value:** Schedule shifts, track check-ins, generate invoices from actual hours worked
-**Current focus:** Phase 12 (Reporting and Export) in progress. Plans 01-02 complete.
+**Current focus:** Phase 12 (Reporting and Export) in progress. Plans 01-04 complete.
 
 ## Current Position
 
 Phase: 12 of 13 (Reporting and Export)
-Plan: 2 of 6 in current phase
+Plan: 4 of 6 in current phase
 Status: In progress
-Last activity: 2026-01-27 -- Completed 12-02-PLAN.md (Budget Utilization Report)
+Last activity: 2026-01-27 -- Completed 12-04-PLAN.md (Worker Hours and Participant Activity Reports)
 
-Progress: [████████████████████████████████████████████████░] 88%
+Progress: [█████████████████████████████████████████████████░] 91%
 
 ## Performance Metrics
 
 **Velocity:**
-- Total plans completed: 61 (Phase 1: 9, Phase 2: 5, Phase 3: 5, Phase 4: 4, Phase 5: 9, Phase 6: 4, Phase 7: 7, Phase 8: 4, Phase 9: 3, Phase 10: 2, Phase 11: 7, Phase 12: 2)
+- Total plans completed: 63 (Phase 1: 9, Phase 2: 5, Phase 3: 5, Phase 4: 4, Phase 5: 9, Phase 6: 4, Phase 7: 7, Phase 8: 4, Phase 9: 3, Phase 10: 2, Phase 11: 7, Phase 12: 4)
 - Average duration: --
 - Total execution time: --
 
@@ -38,7 +38,7 @@ Progress: [███████████████████████
 | 9 | 3/3 | -- | -- |
 | 10 | 2/2 | -- | -- |
 | 11 | 7/7 | -- | -- |
-| 12 | 2/6 | -- | -- |
+| 12 | 4/6 | -- | -- |
 
 **Recent Trend:**
 - Last 5 plans: --
@@ -155,6 +155,8 @@ Recent decisions affecting current work:
 - Budget bar chart shows top 10 participants by utilization (sorted highest first)
 - Alert thresholds for budget: ok (<75%), warning (75-90%), critical (>90%)
 - ChartCard reusable wrapper for chart sections in reports
+- Report hooks return { data, totals } structure for unified consumption
+- generateCsv uses T extends object (not Record<string,unknown>) for typed interfaces
 
 ### Pending Todos
 
@@ -167,7 +169,7 @@ None.
 ## Session Continuity
 
 Last session: 2026-01-27
-Stopped at: Completed 12-02-PLAN.md (Budget Utilization Report)
+Stopped at: Completed 12-04-PLAN.md (Worker Hours and Participant Activity Reports)
 Resume file: None
 
 ## Phase Progress
@@ -185,7 +187,7 @@ Resume file: None
 | 9 | Notifications | Complete | 3/3 |
 | 10 | Worker Screening | Complete | 2/2 |
 | 11 | Compliance and Incidents | Complete | 7/7 |
-| 12 | Reporting and Export | In progress | 2/6 |
+| 12 | Reporting and Export | In progress | 4/6 |
 | 13 | Scale Features | Pending | 0/0 |
 
 ## Session Log
@@ -244,3 +246,4 @@ Resume file: None
 | 2026-01-26 | Phase 11 executed | 7/7 plans: incidents, NDIA workflow, compliance dashboard, appointments, magic link, calendar |
 | 2026-01-27 | Phase 12 Plan 01 executed | recharts/xlsx deps, ReportLayout, DateRangePicker, CSV export, /reports page |
 | 2026-01-27 | Phase 12 Plan 02 executed | Budget report hook, BudgetBarChart, ChartCard, /reports/budget page |
+| 2026-01-27 | Phase 12 Plan 04 executed | Worker hours + participant activity hooks, report pages with CSV export |
