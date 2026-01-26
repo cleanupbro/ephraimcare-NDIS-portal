@@ -14,6 +14,7 @@ export {
 } from './components/table'
 export { Input } from './components/input'
 export { Badge, badgeVariants, type BadgeProps } from './components/badge'
+export { Alert, AlertTitle, AlertDescription } from './components/alert'
 export { Progress } from './components/progress'
 export {
   Card,
