@@ -106,9 +106,9 @@
 
 ### Notifications (NOTF)
 
-- [ ] **NOTF-01**: Worker receives email when assigned a new shift
-- [ ] **NOTF-02**: Worker receives email when their shift is cancelled
-- [ ] **NOTF-03**: Participant receives email when an invoice is finalized
+- [x] **NOTF-01**: Worker receives email when assigned a new shift
+- [x] **NOTF-02**: Worker receives email when their shift is cancelled
+- [x] **NOTF-03**: Participant receives email when an invoice is finalized
 
 ### Foundation & Infrastructure (INFR)
 
@@ -281,9 +281,9 @@
 | PTPL-05 | Phase 8: Participant Portal | Complete |
 | PTPL-06 | Phase 11: Compliance and Incidents | Pending |
 | PTPL-07 | Phase 11: Compliance and Incidents | Pending |
-| NOTF-01 | Phase 9: Notifications | Pending |
-| NOTF-02 | Phase 9: Notifications | Pending |
-| NOTF-03 | Phase 9: Notifications | Pending |
+| NOTF-01 | Phase 9: Notifications | Complete |
+| NOTF-02 | Phase 9: Notifications | Complete |
+| NOTF-03 | Phase 9: Notifications | Complete |
 | INFR-01 | Phase 1: Foundation | Pending |
 | INFR-02 | Phase 1: Foundation | Pending |
 | INFR-03 | Phase 1: Foundation | Pending |

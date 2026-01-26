@@ -23,7 +23,7 @@ This roadmap delivers a complete NDIS management platform across 13 phases, from
 - [x] **Phase 6: Case Notes** - Worker creates notes post-shift, admin reviews with filters
 - [x] **Phase 7: Invoicing** - Generate invoices from completed shifts with NDIS-compliant billing
 - [x] **Phase 8: Participant Portal** - Read-only dashboard with plan status, budget, and invoice downloads
-- [ ] **Phase 9: Notifications** - Email notifications for shift assignments, cancellations, and invoices
+- [x] **Phase 9: Notifications** - Email notifications for shift assignments, cancellations, and invoices
 - [ ] **Phase 10: Worker Screening** - Block expired checks, warn on expiring, compliance dashboard widget
 - [ ] **Phase 11: Compliance and Incidents** - Incident reporting, compliance dashboard, portal extensions
 - [ ] **Phase 12: Reporting and Export** - Budget, revenue, worker hours, and activity reports with CSV/PDF export
@@ -340,7 +340,12 @@ Plans:
 3. Finalizing an invoice triggers an email to the participant with a link to view it
 4. Emails arrive within 60 seconds of the triggering action
 
-**Plans:** TBD
+**Plans:** 3 plans
+
+Plans:
+- [ ] 09-01-PLAN.md -- Notification infrastructure (send-email helper, HTML templates, types)
+- [ ] 09-02-PLAN.md -- Shift notifications (assignment email, cancellation email, dialog update)
+- [ ] 09-03-PLAN.md -- Invoice notification (finalize route triggers participant email)
 
 ---
 
@@ -469,7 +474,7 @@ Note: Phases 2 and 3 can execute in parallel (both depend only on Phase 1).
 | 6. Case Notes | 4/4 | Complete | 2026-01-25 |
 | 7. Invoicing | 7/7 | Complete | 2026-01-25 |
 | 8. Participant Portal | 4/4 | Complete | 2026-01-26 |
-| 9. Notifications | 0/0 | Not started | - |
+| 9. Notifications | 3/3 | Complete | 2026-01-26 |
 | 10. Worker Screening | 0/0 | Not started | - |
 | 11. Compliance and Incidents | 0/0 | Not started | - |
 | 12. Reporting and Export | 0/0 | Not started | - |
@@ -480,3 +485,4 @@ Note: Phases 2 and 3 can execute in parallel (both depend only on Phase 1).
 *Phase 1 planned: 2026-01-24*
 *Phase 7 planned: 2026-01-25*
 *Phase 8 complete: 2026-01-26*
+*Phase 9 complete: 2026-01-26*
