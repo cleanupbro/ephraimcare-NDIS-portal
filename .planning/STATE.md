@@ -5,21 +5,21 @@
 See: .planning/PROJECT.md (updated 2026-01-24)
 
 **Core value:** Schedule shifts, track check-ins, generate invoices from actual hours worked
-**Current focus:** Phase 9 (Notifications) complete. Ready for Phase 10.
+**Current focus:** Phase 11 (Compliance and Incidents) complete. Ready for Phase 12.
 
 ## Current Position
 
-Phase: 9 of 13 (Notifications)
-Plan: 3 of 3 in current phase
+Phase: 11 of 13 (Compliance and Incidents)
+Plan: 7 of 7 in current phase
 Status: Phase complete
-Last activity: 2026-01-26 -- Phase 9 verified and complete
+Last activity: 2026-01-26 -- Phase 11 executed and complete
 
-Progress: [██████████████████████████████████████░] 69%
+Progress: [██████████████████████████████████████████████░] 85%
 
 ## Performance Metrics
 
 **Velocity:**
-- Total plans completed: 50 (Phase 1: 9, Phase 2: 5, Phase 3: 5, Phase 4: 4, Phase 5: 9, Phase 6: 4, Phase 7: 7, Phase 8: 4, Phase 9: 3)
+- Total plans completed: 59 (Phase 1: 9, Phase 2: 5, Phase 3: 5, Phase 4: 4, Phase 5: 9, Phase 6: 4, Phase 7: 7, Phase 8: 4, Phase 9: 3, Phase 10: 2, Phase 11: 7)
 - Average duration: --
 - Total execution time: --
 
@@ -36,6 +36,8 @@ Progress: [███████████████████████
 | 7 | 7/7 | -- | -- |
 | 8 | 4/4 | -- | -- |
 | 9 | 3/3 | -- | -- |
+| 10 | 2/2 | -- | -- |
+| 11 | 7/7 | -- | -- |
 
 **Recent Trend:**
 - Last 5 plans: --
@@ -173,8 +175,8 @@ Resume file: None
 | 7 | Invoicing | Complete | 7/7 |
 | 8 | Participant Portal | Complete | 4/4 |
 | 9 | Notifications | Complete | 3/3 |
-| 10 | Worker Screening | Pending | 0/0 |
-| 11 | Compliance and Incidents | Pending | 0/0 |
+| 10 | Worker Screening | Complete | 2/2 |
+| 11 | Compliance and Incidents | Complete | 7/7 |
 | 12 | Reporting and Export | Pending | 0/0 |
 | 13 | Scale Features | Pending | 0/0 |
 
@@ -230,3 +232,5 @@ Resume file: None
 | 2026-01-26 | Phase 9 Plan 03 executed | Invoice finalized notification wired to finalize route |
 | 2026-01-26 | Phase 9 verified | 13/13 must-haves passed, VERIFICATION.md created |
 | 2026-01-26 | Phase 9 complete | 3/3 plans executed, email notifications for shifts + invoices |
+| 2026-01-26 | Phase 10 executed | 2/2 plans executed, NDIS validation + compliance widget |
+| 2026-01-26 | Phase 11 executed | 7/7 plans: incidents, NDIA workflow, compliance dashboard, appointments, magic link, calendar |
