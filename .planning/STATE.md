@@ -10,16 +10,16 @@ See: .planning/PROJECT.md (updated 2026-01-24)
 ## Current Position
 
 Phase: 9 of 13 (Notifications)
-Plan: 1 of 3 in current phase
+Plan: 2 of 3 in current phase
 Status: In progress
-Last activity: 2026-01-26 -- Completed 09-01-PLAN.md (Notification Infrastructure)
+Last activity: 2026-01-26 -- Completed 09-03-PLAN.md (Invoice Finalized Notification)
 
-Progress: [██████████████████████████████████░] 64%
+Progress: [███████████████████████████████████░] 66%
 
 ## Performance Metrics
 
 **Velocity:**
-- Total plans completed: 48 (Phase 1: 9, Phase 2: 5, Phase 3: 5, Phase 4: 4, Phase 5: 9, Phase 6: 4, Phase 7: 7, Phase 8: 4, Phase 9: 1)
+- Total plans completed: 50 (Phase 1: 9, Phase 2: 5, Phase 3: 5, Phase 4: 4, Phase 5: 9, Phase 6: 4, Phase 7: 7, Phase 8: 4, Phase 9: 3)
 - Average duration: --
 - Total execution time: --
 
@@ -35,7 +35,7 @@ Progress: [███████████████████████
 | 6 | 4/4 | -- | -- |
 | 7 | 7/7 | -- | -- |
 | 8 | 4/4 | -- | -- |
-| 9 | 1/3 | -- | -- |
+| 9 | 3/3 | -- | -- |
 
 **Recent Trend:**
 - Last 5 plans: --
@@ -142,6 +142,8 @@ Recent decisions affecting current work:
 - Fire-and-forget email pattern: no await on fetch, .catch() for silent error logging
 - ADMIN_EMAIL constant for CC on all notification emails
 - Notification templates use inline CSS for email client compatibility
+- Participant email comes from participants.email (not profiles join)
+- Emergency contact email not in schema - passed as null for invoice notifications
 
 ### Pending Todos
 
@@ -154,7 +156,7 @@ None.
 ## Session Continuity
 
 Last session: 2026-01-26
-Stopped at: Completed 09-01-PLAN.md (Notification Infrastructure)
+Stopped at: Completed 09-03-PLAN.md (Invoice Finalized Notification)
 Resume file: None
 
 ## Phase Progress
@@ -169,7 +171,7 @@ Resume file: None
 | 6 | Case Notes | Complete | 4/4 |
 | 7 | Invoicing | Complete | 7/7 |
 | 8 | Participant Portal | Complete | 4/4 |
-| 9 | Notifications | In Progress | 1/3 |
+| 9 | Notifications | In Progress | 3/3 |
 | 10 | Worker Screening | Pending | 0/0 |
 | 11 | Compliance and Incidents | Pending | 0/0 |
 | 12 | Reporting and Export | Pending | 0/0 |
@@ -223,3 +225,4 @@ Resume file: None
 | 2026-01-26 | Phase 8 verified | 4/4 success criteria passed, VERIFICATION.md created |
 | 2026-01-26 | Phase 8 complete | 4/4 plans executed, participant portal ready for production |
 | 2026-01-26 | Phase 9 Plan 01 executed | Notification types, templates, fire-and-forget email helpers |
+| 2026-01-26 | Phase 9 Plan 03 executed | Invoice finalized notification wired to finalize route |
