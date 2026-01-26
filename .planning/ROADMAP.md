@@ -22,7 +22,7 @@ This roadmap delivers a complete NDIS management platform across 13 phases, from
 - [x] **Phase 5: Worker Mobile App** - Check-in/out with GPS, shift views, live timer, and offline cache
 - [x] **Phase 6: Case Notes** - Worker creates notes post-shift, admin reviews with filters
 - [x] **Phase 7: Invoicing** - Generate invoices from completed shifts with NDIS-compliant billing
-- [ ] **Phase 8: Participant Portal** - Read-only dashboard with plan status, budget, and invoice downloads
+- [x] **Phase 8: Participant Portal** - Read-only dashboard with plan status, budget, and invoice downloads
 - [ ] **Phase 9: Notifications** - Email notifications for shift assignments, cancellations, and invoices
 - [ ] **Phase 10: Worker Screening** - Block expired checks, warn on expiring, compliance dashboard widget
 - [ ] **Phase 11: Compliance and Incidents** - Incident reporting, compliance dashboard, portal extensions
@@ -461,14 +461,14 @@ Note: Phases 2 and 3 can execute in parallel (both depend only on Phase 1).
 
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
-| 1. Foundation | 0/9 | Planned | - |
-| 2. Participant Management | 0/5 | Planned | - |
+| 1. Foundation | 9/9 | Complete | 2026-01-24 |
+| 2. Participant Management | 5/5 | Complete | 2026-01-24 |
 | 3. Worker Management | 5/5 | Complete | 2026-01-24 |
 | 4. Shift Scheduling | 4/4 | Complete | 2026-01-24 |
-| 5. Worker Mobile App | 0/9 | Planned | - |
-| 6. Case Notes | 0/4 | Planned | - |
-| 7. Invoicing | 0/7 | Planned | - |
-| 8. Participant Portal | 0/4 | Planned | - |
+| 5. Worker Mobile App | 9/9 | Complete | 2026-01-25 |
+| 6. Case Notes | 4/4 | Complete | 2026-01-25 |
+| 7. Invoicing | 7/7 | Complete | 2026-01-25 |
+| 8. Participant Portal | 4/4 | Complete | 2026-01-26 |
 | 9. Notifications | 0/0 | Not started | - |
 | 10. Worker Screening | 0/0 | Not started | - |
 | 11. Compliance and Incidents | 0/0 | Not started | - |
@@ -479,3 +479,4 @@ Note: Phases 2 and 3 can execute in parallel (both depend only on Phase 1).
 *Roadmap created: 2026-01-24*
 *Phase 1 planned: 2026-01-24*
 *Phase 7 planned: 2026-01-25*
+*Phase 8 complete: 2026-01-26*

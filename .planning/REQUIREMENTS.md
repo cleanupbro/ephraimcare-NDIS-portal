@@ -98,11 +98,11 @@
 
 ### Participant Portal (PTPL)
 
-- [ ] **PTPL-01**: Participant sees dashboard with plan period, days remaining, and budget status
-- [ ] **PTPL-02**: Participant sees budget utilization progress bar with used/remaining amounts
-- [ ] **PTPL-03**: Participant can download finalized invoices as PDF
-- [ ] **PTPL-04**: Participant cannot access other participants' data (RLS enforced)
-- [ ] **PTPL-05**: Portal is read-only (no edit or request capabilities in v1)
+- [x] **PTPL-01**: Participant sees dashboard with plan period, days remaining, and budget status
+- [x] **PTPL-02**: Participant sees budget utilization progress bar with used/remaining amounts
+- [x] **PTPL-03**: Participant can download finalized invoices as PDF
+- [x] **PTPL-04**: Participant cannot access other participants' data (RLS enforced)
+- [x] **PTPL-05**: Portal is read-only (no edit or request capabilities in v1)
 
 ### Notifications (NOTF)
 
@@ -274,11 +274,11 @@
 | INVC-10 | Phase 7: Invoicing | Pending |
 | INVC-11 | Phase 7: Invoicing | Pending |
 | INVC-12 | Phase 7: Invoicing | Pending |
-| PTPL-01 | Phase 8: Participant Portal | Pending |
-| PTPL-02 | Phase 8: Participant Portal | Pending |
-| PTPL-03 | Phase 8: Participant Portal | Pending |
-| PTPL-04 | Phase 8: Participant Portal | Pending |
-| PTPL-05 | Phase 8: Participant Portal | Pending |
+| PTPL-01 | Phase 8: Participant Portal | Complete |
+| PTPL-02 | Phase 8: Participant Portal | Complete |
+| PTPL-03 | Phase 8: Participant Portal | Complete |
+| PTPL-04 | Phase 8: Participant Portal | Complete |
+| PTPL-05 | Phase 8: Participant Portal | Complete |
 | PTPL-06 | Phase 11: Compliance and Incidents | Pending |
 | PTPL-07 | Phase 11: Compliance and Incidents | Pending |
 | NOTF-01 | Phase 9: Notifications | Pending |
