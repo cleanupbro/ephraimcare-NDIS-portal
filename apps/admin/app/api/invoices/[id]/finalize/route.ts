@@ -1,5 +1,6 @@
 import { NextResponse } from 'next/server'
 import { createClient } from '@/lib/supabase/server'
+import { sendInvoiceFinalizedEmail } from '@/lib/notifications'
 
 export async function POST(
   _request: Request,
@@ -38,10 +39,20 @@ export async function POST(
       )
     }
 
-    // 3. Fetch invoice to verify it exists and is a draft
+    // 3. Fetch invoice with participant data for notification
     const { data: invoice, error: invoiceError } = await (supabase
       .from('invoices') as any)
-      .select('id, status')
+      .select(`
+        id,
+        status,
+        invoice_number,
+        total,
+        participants(
+          first_name,
+          last_name,
+          email
+        )
+      `)
       .eq('id', invoiceId)
       .single()
 
@@ -79,7 +90,20 @@ export async function POST(
       )
     }
 
-    // 6. Return success
+    // 6. Send notification email (fire-and-forget)
+    const participant = invoice.participants
+    if (participant?.email) {
+      sendInvoiceFinalizedEmail({
+        participantEmail: participant.email,
+        participantName: `${participant.first_name} ${participant.last_name}`,
+        emergencyContactEmail: null, // Not stored in participants table
+        invoiceNumber: invoice.invoice_number,
+        invoiceId: invoiceId,
+        total: invoice.total,
+      })
+    }
+
+    // 7. Return success
     return NextResponse.json({
       success: true,
       status: 'submitted',
