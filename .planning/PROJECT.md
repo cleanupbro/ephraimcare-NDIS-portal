@@ -2,124 +2,120 @@
 
 ## What This Is
 
-A web and mobile platform for Ephraim Care — an NDIS (National Disability Insurance Scheme) provider in Australia — to manage participants, workers, shifts, case notes, invoicing, and compliance. Replaces their current Excel/email/phone-based workflow with a unified system that scales from 20 to 200+ participants. This is a client project delivered by OpBros.ai.
+A web and mobile platform for Ephraim Care — an NDIS (National Disability Insurance Scheme) provider in Australia — to manage participants, workers, shifts, case notes, invoicing, and compliance. The platform replaces Excel/email/phone workflows with a unified system that scales from 20 to 200+ participants. Delivered by OpBros.ai.
+
+**v1.0 shipped:** 2026-01-27 — Full-featured platform with admin portal, worker mobile app, and participant portal.
 
 ## Core Value
 
 Ephraim Care can schedule shifts, track worker check-ins, and generate accurate invoices from actual hours worked — without spreadsheets, duplicate data entry, or compliance gaps.
 
+## Current State
+
+**Version:** v1.0 (shipped)
+**Codebase:** ~36,649 LOC TypeScript across 324 files
+**Architecture:** Monorepo with 3 apps + 5 packages
+
+### Apps
+- **apps/admin** — Next.js 14 admin portal (participant, worker, shift, invoice management)
+- **apps/participant** — Next.js 14 participant portal (budget tracking, invoices, appointments)
+- **apps/worker-mobile** — React Native/Expo worker app (check-in/out, case notes, schedule)
+
+### Packages
+- **packages/types** — Shared TypeScript types
+- **packages/supabase** — Supabase client configuration
+- **packages/ui** — Shared UI components (shadcn/ui based)
+- **packages/utils** — Shared utilities and validators
+- **packages/config** — Shared configuration (ESLint, TypeScript)
+
 ## Requirements
 
 ### Validated
 
-(None yet — ship to validate)
+- ✓ Auth system with 4 roles (Admin, Coordinator, Worker, Participant) — v1.0
+- ✓ Participant management (CRUD, NDIS plan, budget tracking) — v1.0
+- ✓ Worker management (CRUD, qualifications, compliance dates) — v1.0
+- ✓ Shift scheduling with validation (conflicts, plan dates, qualifications) — v1.0
+- ✓ Worker mobile app (GPS check-in/out, case notes, offline sync) — v1.0
+- ✓ Automatic invoice generation (lesser-of billing rule) — v1.0
+- ✓ Participant portal (dashboard, invoices, appointments) — v1.0
+- ✓ Email notifications (shift assignment, cancellation, invoice) — v1.0
+- ✓ Worker screening validation (block expired, warn expiring) — v1.0
+- ✓ Incident reporting with NDIA workflow — v1.0
+- ✓ Compliance dashboard with health score — v1.0
+- ✓ Comprehensive reporting (budget, revenue, hours, activity) — v1.0
+- ✓ CSV/Excel/PDF export — v1.0
+- ✓ Multi-organization foundation — v1.0
+- ✓ SMS reminders via Twilio — v1.0
+- ✓ Xero OAuth2 integration foundation — v1.0
+- ✓ Participant goal tracking — v1.0
+- ✓ Bulk shift creation with recurring patterns — v1.0
+- ✓ Mobile biometric auth (Face ID/Touch ID) — v1.0
+- ✓ Offline photo capture and sync — v1.0
+- ✓ PACE-compliant NDIA CSV export — v1.0
 
 ### Active
 
-#### Phase 1: Core Operations (MVP — Week 1-2)
-- [ ] Auth system with 4 roles (Admin, Coordinator, Worker, Participant)
-- [ ] Participant management (CRUD, NDIS plan info, budget tracking)
-- [ ] Worker management (CRUD, qualifications, compliance dates)
-- [ ] Shift scheduling with validation (conflicts, plan dates, qualifications)
-- [ ] Worker mobile app with check-in/out and case notes
-- [ ] Case notes management (worker creates, admin reviews)
-- [ ] Automatic invoice generation from completed shifts
-- [ ] Participant portal (dashboard, plan view, appointments, invoices, cancellation requests)
-
-#### Phase 2: Compliance & Safety (Week 3-4)
-- [ ] Incident reporting and tracking (with NDIA reporting workflow)
-- [ ] Worker screening validation (block expired checks, warn on expiring)
-- [ ] Compliance dashboard with health score
-
-#### Phase 3: Integrations & Reporting (Week 5-8)
-- [ ] Budget utilization report
-- [ ] Revenue report
-- [ ] Worker hours report
-- [ ] Participant activity report
-- [ ] CSV/Excel export for accounting (Xero/MYOB compatible)
-- [ ] PDF export for reports and invoices
-
-#### Phase 4: Scale & Nice-to-Haves (Optional/Ongoing)
-- [ ] Multi-organization support
-- [ ] SMS reminders for shifts
-- [ ] Goal tracking for participants
-- [ ] NDIA API integration
-- [ ] Xero API integration
-- [ ] Advanced mobile features (offline photos, etc.)
+(None — v1.0 feature-complete. Future requirements to be defined in next milestone.)
 
 ### Out of Scope
 
-- Payment processing (Stripe/PayPal) — invoices generated but payment collected externally
-- Video conferencing — not relevant to care delivery workflow
-- Real-time chat — complexity not justified for MVP; use existing phone/email
-- OAuth login (Google/GitHub) — email/password + magic links sufficient for NDIS context
-- Custom branding per organization — single-tenant for Ephraim Care only (multi-org in Phase 4)
-- Travel time tracking — not billed, adds complexity without value for MVP
+| Feature | Reason |
+|---------|--------|
+| Payment processing | Invoices generated but payment collected externally via NDIS/plan managers |
+| Video conferencing | Not relevant to care delivery workflow |
+| Real-time chat | Complexity not justified; phone/email sufficient |
+| OAuth login (Google) | Email/password + magic links sufficient for NDIS context |
+| Travel time tracking | Not billed by Ephraim Care |
+| Payroll processing | Out of scope; workers paid separately |
+| App Store submission | Expo Go distribution for now; app store deferred |
 
 ## Context
 
-### Business Context
-- **Client:** Ephraim Care (NDIS provider, Australia)
-- **Current state:** Under 20 participants, managing via Excel/email/phone
-- **Pain points:** Lost data, duplicate entry, billing errors, compliance gaps, staff confusion
-- **Delivered by:** OpBros.ai (Shamal Krishna) — first client project
+### Business
+- **Client:** Ephraim Care (NDIS provider, Liverpool NSW, Australia)
+- **Delivered by:** OpBros.ai (Shamal Krishna)
+- **Current scale:** Under 20 participants, scaling to 200+
 - **Footer branding:** "Powered by OpBros" on all portals
 
 ### Technical Environment
-- Greenfield project — no existing codebase
-- Team: 1 AI developer (Claude Code) + project lead
-- Infrastructure budget: ~$50-100/month (Supabase + Vercel)
+- **Hosting:** Vercel (web apps) + Expo Go (mobile)
+- **Backend:** Supabase (PostgreSQL, Auth, RLS, Storage)
+- **Infrastructure cost:** ~$50-100/month
 
 ### Brand Guidelines
-- **Primary color:** #66BB6A (green)
-- **Accent color:** #00BFA5 (teal)
-- **Background:** #FFFFFF
-- **Heading font:** Montserrat
-- **Body font:** Inter
+- **Primary:** #66BB6A (green)
+- **Accent:** #00BFA5 (teal)
+- **Fonts:** Montserrat (headings), Inter (body)
 - **Border radius:** 8px
-- **Logo:** Available from ephraimcare.com.au
-- **Footer:** "Powered by OpBros" linking to opbros.online
-
-### NDIS Compliance Context
-- Worker screening checks (NDIS Worker Check, Working with Children Check) must be validated
-- Incidents must be reportable to NDIA within 24 hours
-- Case notes provide evidence of care delivered
-- Audit trail required (created_at, updated_at on all records)
-- Row Level Security enforces data isolation
-
-## Constraints
-
-- **Tech Stack:** Next.js 14+ (web), React Native/Expo (mobile), Supabase (backend), Vercel (hosting)
-- **Structure:** Monorepo — apps/admin, apps/participant, apps/worker-mobile, packages/shared
-- **Timeline:** 8 weeks (4 phases), Phase 1 MVP in 2 weeks
-- **Budget:** Minimal — Supabase free/pro tier, Vercel free tier, Expo Go distribution
-- **Environments:** Dev + Prod (two Supabase projects)
-- **Migrations:** SQL files checked into Git, repeatable from scratch
-- **Testing:** Full automated test coverage (Jest, React Testing Library)
-- **Observability:** Error log table in Supabase for day-1 debugging
-- **Mobile distribution:** Expo Go (QR code) for testing phase
-- **Email:** Supabase built-in auth emails + basic operational notifications
-- **GST:** Always 10% on all invoices (Ephraim Care is GST-registered)
 
 ## Key Decisions
 
 | Decision | Rationale | Outcome |
 |----------|-----------|---------|
-| Monorepo structure | Shared types, utilities, and Supabase client across 3 apps | — Pending |
-| Supabase over custom backend | Auth + RLS + realtime built-in, no custom API needed | — Pending |
-| Expo Go over app store | Fastest path to testing; app store submission deferred | — Pending |
-| Shift conflicts: warn not block | Some workers legitimately do back-to-back/overlapping shifts | — Pending |
-| Billing: lesser of scheduled vs actual | Prevents overbilling while respecting scheduled agreements | — Pending |
-| Exact minute rounding | Most accurate billing; no disputes over rounding direction | — Pending |
-| Plan validity: warn not block | Plans get extended informally; hard block causes friction | — Pending |
-| Auto-checkout + admin override | Handles forgotten checkouts without blocking invoicing | — Pending |
-| Case notes internal only | Participants should not see clinical/behavioral observations | — Pending |
-| Participant can request cancellations | Better UX than phone-only; admin still approves | — Pending |
-| Configurable support type rates | Rates change; admin needs to update without code changes | — Pending |
-| SQL migrations in Git | Repeatable, auditable schema changes across environments | — Pending |
-| Full demo seed data | 5 participants, 5 workers, 20 shifts, 2 invoices for testing | — Pending |
-| Error log table over Sentry | Simpler for MVP; upgrade to Sentry if needed later | — Pending |
-| Dev + Prod environments | Cheapest multi-env setup; staging added if needed | — Pending |
+| Monorepo (Turborepo + pnpm) | Shared types and utilities across 3 apps | ✓ Good |
+| Supabase over custom backend | Auth + RLS + realtime built-in | ✓ Good |
+| Expo Go over app store | Fastest path to testing | ✓ Good |
+| Shift conflicts: warn not block | Workers do back-to-back shifts | ✓ Good |
+| Billing: lesser of scheduled vs actual | Prevents overbilling | ✓ Good |
+| Support type mismatch: hard error | Data integrity for qualifications | ✓ Good |
+| Auto-checkout + admin override | Handles forgotten checkouts | ✓ Good |
+| Case notes internal only | Clinical privacy | ✓ Good |
+| RLS helper with COALESCE fallback | Works without custom JWT hook | ✓ Good |
+| Per-step useForm (not shared FormProvider) | React 19 compatibility | ✓ Good |
+| expo-sqlite for session storage | SecureStore 2048-byte limit | ✓ Good |
+| pg_cron for auto-checkout | Works even if app closed | ✓ Good |
+| Gapless invoice counter (atomic upsert) | No race conditions | ✓ Good |
+| Fire-and-forget notifications | Don't block user operations | ✓ Good |
+| Multi-org RLS with platform admin override | Scalable foundation | ✓ Good |
+
+## Constraints
+
+- **Tech Stack:** Next.js 14 (web), Expo SDK 53 (mobile), Supabase, Vercel
+- **GST:** Always 10% on all invoices
+- **Environments:** Dev + Prod (separate Supabase projects)
+- **Migrations:** SQL files in Git, repeatable from scratch
+- **Mobile distribution:** Expo Go for testing phase
 
 ---
-*Last updated: 2026-01-24 after initialization*
+*Last updated: 2026-01-27 after v1.0 milestone*
