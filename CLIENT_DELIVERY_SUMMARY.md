@@ -425,6 +425,29 @@ If you grow beyond free tiers:
 
 ## Known Issues & Improvements
 
+### ⚠️ Database Migration Required (Critical)
+
+**Issue:** Shift creation fails with "support_type column not found" error.
+
+**Cause:** Migration `20260124200001_add_shift_scheduling_columns.sql` was not run on production database.
+
+**Fix:** Run this SQL in your Supabase SQL Editor:
+
+```sql
+-- Fix: Add missing shift scheduling columns
+-- Run this ONCE in Supabase → SQL Editor
+
+ALTER TYPE public.shift_status ADD VALUE IF NOT EXISTS 'pending';
+ALTER TYPE public.shift_status ADD VALUE IF NOT EXISTS 'proposed';
+ALTER TABLE public.shifts ADD COLUMN IF NOT EXISTS support_type text;
+ALTER TABLE public.shifts ALTER COLUMN status SET DEFAULT 'pending';
+CREATE INDEX IF NOT EXISTS idx_shifts_worker_timerange
+ON public.shifts(worker_id, scheduled_start, scheduled_end)
+WHERE status NOT IN ('cancelled');
+```
+
+After running this SQL, shift creation will work correctly.
+
 ### Must Fix Before Production
 
 | Issue | Location | Fix Required |
