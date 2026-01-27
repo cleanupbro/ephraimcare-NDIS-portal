@@ -1,140 +1,224 @@
-# Ephraim Care NDIS Management Platform
+# Ephraim Care NDIS Platform
 
-A comprehensive web and mobile platform for **Ephraim Care** — an NDIS (National Disability Insurance Scheme) provider in Western Sydney, Australia — to manage participants, workers, shifts, case notes, invoicing, and compliance.
+A **free, open-source** NDIS (National Disability Insurance Scheme) management platform for disability service providers in Australia. Built with Next.js 14, React Native/Expo, and Supabase.
 
+![License](https://img.shields.io/badge/license-MIT-blue.svg)
+![TypeScript](https://img.shields.io/badge/TypeScript-5.0-blue.svg)
+![Next.js](https://img.shields.io/badge/Next.js-14-black.svg)
+![Expo](https://img.shields.io/badge/Expo-SDK_53-white.svg)
+![Supabase](https://img.shields.io/badge/Supabase-PostgreSQL-green.svg)
+
+> **Originally built for [Ephraim Care](https://ephraimcare.com.au)** — NDIS provider in Western Sydney, Australia
+>
 > **Delivered by [OpBros.ai](https://opbros.online)** — AI-powered automation solutions
 
 ---
 
-## Overview
+## What Can This Platform Do?
 
-This platform replaces Ephraim Care's Excel/email/phone-based workflow with a unified system designed to scale from 20 to 200+ participants while maintaining full NDIS compliance.
-
-### Core Value
-
-> Schedule shifts, track worker check-ins, and generate accurate invoices from actual hours worked — without spreadsheets, duplicate data entry, or compliance gaps.
-
----
-
-## Features
-
-### Admin Portal (`apps/admin`)
-- **Participant Management** — Full CRUD with NDIS plan details, budget tracking, and archive functionality
-- **Worker Management** — Staff profiles with qualifications, compliance dates (NDIS Check, WWCC), and invite system
-- **Shift Scheduling** — Create and manage shifts with conflict detection, validation, and status tracking
-- **Case Notes Review** — View and filter worker-submitted case notes with admin comments
-- **Invoicing** — Generate invoices from completed shifts with lesser-of billing, GST calculation, and PDF export
-- **PACE CSV Export** — NDIS bulk payment file generation for claims submission
-
-### Participant Portal (`apps/participant`)
-- **Dashboard** — Plan status, budget utilization with color-coded progress bar, upcoming appointments
-- **Invoice Downloads** — View and download finalized invoices as PDF
-- **Read-Only Access** — Secure, participant-isolated view of their own data
-
-### Worker Mobile App (`apps/worker-mobile`)
-- **Today's Shifts** — View scheduled shifts with participant details and medical alerts
-- **GPS Check-In/Out** — Location-verified attendance with live timer
-- **Case Notes** — Document care delivered after each shift
-- **Weekly Schedule** — Calendar view of upcoming shifts
-- **Offline Support** — Cached data and queued sync for poor connectivity
+- 📋 **Manage participants** with NDIS plan tracking and budget monitoring
+- 👷 **Manage workers** with compliance tracking (NDIS Worker Check, WWCC expiry)
+- 📅 **Schedule shifts** with conflict detection, calendar views, and bulk creation
+- 📱 **Mobile app for workers** with GPS check-in/out, offline support, and biometric auth
+- 💰 **Generate invoices** with NDIS-compliant billing (lesser-of rule, PACE CSV export)
+- 📊 **Run reports** on budget, revenue, hours, and activity with CSV/Excel/PDF export
+- 🏢 **Multi-organization support** for agencies managing multiple NDIS providers
+- 📧 **Email & SMS notifications** for shift assignments and reminders
+- 🔗 **Xero integration** for accounting sync
 
 ---
 
-## Tech Stack
+## Quick Start
 
-| Layer | Technology |
-|-------|------------|
-| **Web Framework** | Next.js 15.5 (App Router) |
-| **Mobile** | React Native + Expo SDK 52 |
-| **Database** | Supabase (PostgreSQL + RLS) |
-| **Auth** | Supabase Auth (email/password) |
-| **State Management** | TanStack Query (React Query) + Zustand |
-| **UI Components** | shadcn/ui + Tailwind CSS |
-| **PDF Generation** | @react-pdf/renderer |
-| **Hosting** | Vercel (web), Expo Go (mobile) |
-| **Monorepo** | Turborepo + pnpm |
+### Prerequisites
+
+- **Node.js 18+** and **pnpm** (we use pnpm workspaces)
+- **Supabase account** (free tier works for development)
+- **Expo Go app** on your phone (for mobile testing)
+
+### Step 1: Clone the Repository
+
+```bash
+git clone https://github.com/YOUR_USERNAME/ephraimcare-portal.git
+cd ephraimcare-portal
+```
+
+### Step 2: Install Dependencies
+
+```bash
+pnpm install
+```
+
+### Step 3: Set Up Supabase
+
+1. Create a new project at [supabase.com](https://supabase.com)
+2. Go to **Settings > API** and copy your:
+   - Project URL (e.g., `https://abc123.supabase.co`)
+   - Anon public key
+   - Service role key (keep this secret!)
+
+3. Run the database migrations:
+   ```bash
+   # Option A: Using Supabase CLI
+   supabase link --project-ref YOUR_PROJECT_REF
+   supabase db push
+
+   # Option B: Manually via SQL Editor
+   # Copy each file from supabase/migrations/ into the Supabase SQL Editor
+   # and run them in numerical order (001, 002, 003...)
+   ```
+
+### Step 4: Configure Environment Variables
+
+Create `.env.local` files in each app:
+
+**apps/admin/.env.local:**
+```env
+NEXT_PUBLIC_SUPABASE_URL=https://YOUR_PROJECT.supabase.co
+NEXT_PUBLIC_SUPABASE_ANON_KEY=your_anon_key_here
+SUPABASE_SERVICE_ROLE_KEY=your_service_role_key_here
+
+# Optional: Email notifications
+RESEND_API_KEY=re_xxxxxxxxxxxx
+
+# Optional: SMS notifications
+TWILIO_ACCOUNT_SID=your_account_sid
+TWILIO_AUTH_TOKEN=your_auth_token
+TWILIO_PHONE_NUMBER=+1234567890
+
+# Optional: Xero integration
+XERO_CLIENT_ID=your_client_id
+XERO_CLIENT_SECRET=your_client_secret
+```
+
+**apps/participant/.env.local:**
+```env
+NEXT_PUBLIC_SUPABASE_URL=https://YOUR_PROJECT.supabase.co
+NEXT_PUBLIC_SUPABASE_ANON_KEY=your_anon_key_here
+```
+
+**apps/worker-mobile/.env:**
+```env
+EXPO_PUBLIC_SUPABASE_URL=https://YOUR_PROJECT.supabase.co
+EXPO_PUBLIC_SUPABASE_ANON_KEY=your_anon_key_here
+```
+
+### Step 5: Run the Development Servers
+
+```bash
+# Start all apps at once
+pnpm dev
+
+# Or start individually:
+pnpm --filter admin dev          # Admin portal at http://localhost:3000
+pnpm --filter participant dev    # Participant portal at http://localhost:3001
+pnpm --filter worker-mobile start # Mobile app via Expo Go
+```
+
+### Step 6: Seed Demo Data (Optional)
+
+```bash
+pnpm --filter admin db:seed
+```
+
+Creates 5 participants, 5 workers, 20 shifts, and 2 invoices for testing.
 
 ---
 
 ## Project Structure
 
 ```
-ephraimcare-portal-2026/
+ephraimcare-portal/
 ├── apps/
-│   ├── admin/              # Admin web portal (Next.js)
-│   ├── participant/        # Participant web portal (Next.js)
-│   └── worker-mobile/      # Worker mobile app (Expo)
+│   ├── admin/              # Next.js 14 admin portal
+│   │   ├── app/            # App Router pages
+│   │   ├── components/     # UI components
+│   │   ├── hooks/          # React Query hooks
+│   │   └── lib/            # Utilities and constants
+│   ├── participant/        # Next.js 14 participant portal
+│   │   └── app/            # Dashboard, invoices, profile
+│   └── worker-mobile/      # Expo SDK 53 React Native app
+│       ├── app/            # Expo Router screens
+│       ├── components/     # Mobile UI components
+│       └── lib/            # Offline sync, GPS, biometrics
 ├── packages/
-│   ├── config/             # Shared ESLint, TypeScript configs
-│   ├── supabase/           # Database types, migrations
 │   ├── types/              # Shared TypeScript types
+│   ├── supabase/           # Supabase client configuration
 │   ├── ui/                 # Shared UI components (shadcn/ui)
-│   └── utils/              # Shared utilities, validators
+│   ├── utils/              # Shared utilities and validators
+│   └── config/             # Shared ESLint, TypeScript config
 ├── supabase/
-│   ├── migrations/         # SQL migration files
-│   └── seed.sql            # Demo data for testing
-└── .planning/              # GSD workflow planning files
+│   └── migrations/         # 15+ SQL migration files
+└── .planning/              # Project documentation
+    ├── PROJECT.md          # Requirements and decisions
+    ├── STATE.md            # Current progress
+    └── milestones/         # Archived milestone records
 ```
 
 ---
 
-## Getting Started
+## Features by App
 
-### Prerequisites
+### Admin Portal (apps/admin)
 
-- Node.js 18+
-- pnpm 8+
-- Supabase account
-- Expo Go app (for mobile testing)
+| Page | Features |
+|------|----------|
+| **Dashboard** | Shift overview, compliance widget, quick actions |
+| **Participants** | List, create (multi-step form), edit, archive, budget tracking |
+| **Workers** | List, create with invite email, compliance status, resend invites |
+| **Shifts** | List (grouped by day), calendar view, create, edit, cancel, bulk create |
+| **Case Notes** | Review notes by participant, filter by worker/date, admin comments |
+| **Invoices** | Generate from shifts, preview, finalize, PDF export, PACE CSV |
+| **Incidents** | Report incidents, NDIA notification workflow, severity tracking |
+| **Compliance** | Health score dashboard, expiring checks, documentation status |
+| **Reports** | Budget utilization, revenue trends, worker hours, activity reports |
+| **Settings** | Support type rates, public holidays, Xero connection, SMS setup |
 
-### Installation
+### Participant Portal (apps/participant)
 
-```bash
-# Clone the repository
-git clone https://github.com/cleanupbro/ephraimcare-NDIS-portal.git
-cd ephraimcare-NDIS-portal
+| Page | Features |
+|------|----------|
+| **Dashboard** | Budget progress bar, plan info, days remaining, alerts |
+| **Appointments** | Upcoming shifts with worker name and time |
+| **Invoices** | View finalized invoices, download as PDF |
+| **Profile** | Personal information (read-only), logout |
 
-# Install dependencies
-pnpm install
+### Worker Mobile App (apps/worker-mobile)
 
-# Set up environment variables
-cp apps/admin/.env.example apps/admin/.env.local
-cp apps/participant/.env.example apps/participant/.env.local
-cp apps/worker-mobile/.env.example apps/worker-mobile/.env
+| Screen | Features |
+|--------|----------|
+| **Login** | Email/password, biometric auth (Face ID/Touch ID) |
+| **Home** | Today's shifts, quick check-in, active timer |
+| **Shift Detail** | Participant info, medical alerts, GPS check-in/out |
+| **Live Timer** | Elapsed time during shift, check-out button |
+| **Case Notes** | Add note after checkout, edit within 24h |
+| **Schedule** | Weekly calendar, upcoming shifts |
+| **My Notes** | Pending notes badge, submitted notes list |
+| **Profile** | Personal info, logout |
 
-# Run database migrations
-pnpm db:migrate
+**Offline Features:**
+- Cached shift data for 24 hours
+- Offline check-in/out with sync queue
+- Photo capture with local storage
+- Automatic sync on reconnection
 
-# Seed demo data (optional)
-pnpm db:seed
-```
+---
 
-### Environment Variables
+## API Keys & Services
 
-Each app requires Supabase credentials:
+### Required (Free Tier Available)
 
-```env
-NEXT_PUBLIC_SUPABASE_URL=your-project-url
-NEXT_PUBLIC_SUPABASE_ANON_KEY=your-anon-key
-```
+| Service | Purpose | Sign Up |
+|---------|---------|---------|
+| **Supabase** | Database, Auth, Storage, RLS | [supabase.com](https://supabase.com) |
 
-### Development
+### Optional (For Full Functionality)
 
-```bash
-# Start all apps
-pnpm dev
-
-# Start specific app
-pnpm dev --filter admin
-pnpm dev --filter participant
-pnpm dev --filter worker-mobile
-```
-
-| App | URL |
-|-----|-----|
-| Admin Portal | http://localhost:3000 |
-| Participant Portal | http://localhost:3001 |
-| Worker Mobile | Expo Go QR code |
+| Service | Purpose | Sign Up | Notes |
+|---------|---------|---------|-------|
+| **Resend** | Email notifications | [resend.com](https://resend.com) | 3,000 emails/month free |
+| **Twilio** | SMS shift reminders | [twilio.com](https://twilio.com) | Pay-as-you-go |
+| **Xero** | Accounting sync | [developer.xero.com](https://developer.xero.com) | OAuth2 app required |
 
 ---
 
@@ -144,58 +228,30 @@ pnpm dev --filter worker-mobile
 
 | Table | Purpose |
 |-------|---------|
+| `organizations` | Multi-tenant org data, API credentials |
 | `profiles` | User accounts with role (admin, coordinator, worker, participant) |
-| `participants` | NDIS participant records |
-| `ndis_plans` | Plan details with budget and dates |
-| `workers` | Staff profiles with compliance dates |
-| `shifts` | Scheduled appointments |
-| `shift_check_ins` | GPS-verified attendance records |
-| `case_notes` | Worker-submitted care documentation |
-| `invoices` | Generated invoices with line items |
+| `participants` | Participant records with NDIS number, contacts |
+| `ndis_plans` | Plan details (budget, start/end dates) |
+| `plan_budgets` | Budget allocations by support category |
+| `workers` | Worker profiles with compliance dates |
+| `shifts` | Scheduled shifts with status tracking |
+| `shift_check_ins` | GPS location and timestamps |
+| `case_notes` | Worker documentation after shifts |
+| `case_note_admin_comments` | Private admin comments |
+| `invoices` | Invoice headers with totals |
+| `invoice_line_items` | Shift-based billing lines |
+| `invoice_counter` | Gapless sequential numbering |
 | `support_type_rates` | Configurable hourly rates |
 | `public_holidays` | Holiday calendar for rate adjustments |
+| `incidents` | Incident reports with NDIA workflow |
+| `participant_goals` | Goal tracking with progress notes |
 
-### Row Level Security (RLS)
+### Security
 
-All tables are protected by RLS policies ensuring:
-- **Organization isolation** — Users only see their organization's data
-- **Participant isolation** — Participants only see their own records
-- **Worker isolation** — Workers only see their assigned shifts and own case notes
-
----
-
-## Phases & Progress
-
-| Phase | Name | Status | Plans |
-|-------|------|--------|-------|
-| 1 | Foundation | ✅ Complete | 9/9 |
-| 2 | Participant Management | ✅ Complete | 5/5 |
-| 3 | Worker Management | ✅ Complete | 5/5 |
-| 4 | Shift Scheduling | ✅ Complete | 4/4 |
-| 5 | Worker Mobile App | ✅ Complete | 9/9 |
-| 6 | Case Notes | ✅ Complete | 4/4 |
-| 7 | Invoicing | ✅ Complete | 7/7 |
-| 8 | Participant Portal | 🔄 Planning | 4 plans |
-| 9 | Notifications | ⏳ Pending | — |
-| 10 | Worker Screening | ⏳ Pending | — |
-| 11 | Compliance & Incidents | ⏳ Pending | — |
-| 12 | Reporting & Export | ⏳ Pending | — |
-| 13 | Scale Features | ⏳ Pending | — |
-
-**Overall Progress:** 57% (43 of ~75 plans completed)
-
----
-
-## NDIS Compliance
-
-This platform is built with NDIS compliance requirements in mind:
-
-- **Worker Screening** — Validates NDIS Worker Check and WWCC expiry dates
-- **Incident Reporting** — Tracks incidents with NDIA 24-hour notification deadlines
-- **Case Notes** — Provides evidence trail for care delivered
-- **Audit Trail** — All records include `created_at`, `updated_at`, `created_by`
-- **Data Isolation** — RLS ensures participants cannot access other participants' data
-- **Billing Accuracy** — Lesser-of-scheduled-vs-actual prevents overbilling
+- **Row Level Security (RLS)** on all tables
+- Organization-level data isolation
+- Participant-only access to own data
+- Worker-only access to assigned shifts
 
 ---
 
@@ -203,69 +259,155 @@ This platform is built with NDIS compliance requirements in mind:
 
 | Rule | Implementation |
 |------|---------------|
-| Billing calculation | Lesser of scheduled vs actual duration |
-| GST | Always 10% on all invoices |
-| Invoice numbering | Gapless sequential (INV-YYYY-NNN) |
-| Shift conflicts | Warning with admin override (not blocking) |
-| Plan validity | Warning if outside plan dates (not blocking) |
-| Auto-checkout | 30 minutes after scheduled end via pg_cron |
-| Case note visibility | Internal only (not visible to participants) |
+| **Billing calculation** | Lesser of scheduled vs actual duration |
+| **GST** | Always 10% on all invoices (Australian requirement) |
+| **Invoice numbering** | Gapless sequential: INV-2026-001, INV-2026-002... |
+| **Shift conflicts** | Warning with override (workers can do back-to-back) |
+| **Plan validity** | Warning if outside plan dates (plans get extended) |
+| **Auto-checkout** | 30 minutes after scheduled end (pg_cron job) |
+| **Case notes** | Internal only — not visible to participants |
+| **Support type mismatch** | Hard error if worker not qualified |
+| **Screening expiry** | Block if expired, warn if within 90 days |
+
+---
+
+## Customization
+
+### Branding
+
+Update colors in these files:
+
+```typescript
+// apps/admin/app/globals.css - CSS variables
+:root {
+  --primary: #66BB6A;  // Green
+  --accent: #00BFA5;   // Teal
+}
+
+// apps/admin/components/pdf/pdf-styles.ts - PDF export
+const BRAND = {
+  primaryColor: '#66BB6A',
+  accentColor: '#00BFA5',
+}
+
+// apps/worker-mobile/constants/colors.ts - Mobile app
+export const COLORS = {
+  primary: '#66BB6A',
+  accent: '#00BFA5',
+}
+```
+
+### Support Types
+
+Edit `packages/utils/src/constants.ts`:
+
+```typescript
+export const SUPPORT_TYPES = [
+  'personal_care',
+  'community_access',
+  'respite',
+  'domestic_assistance',
+  'transport',
+  // Add your support types...
+] as const
+```
+
+### Rates & Holidays
+
+Configure in the admin portal:
+- **Settings > Support Type Rates** — Hourly rates by support type
+- **Settings > Public Holidays** — Holiday dates for rate adjustments
 
 ---
 
 ## Deployment
 
-### Web Apps (Vercel)
+### Vercel (Web Apps)
 
 ```bash
+# Install Vercel CLI
+npm i -g vercel
+
 # Deploy admin portal
-vercel --prod --cwd apps/admin
+cd apps/admin
+vercel --prod
 
 # Deploy participant portal
-vercel --prod --cwd apps/participant
+cd apps/participant
+vercel --prod
 ```
 
-### Mobile App (Expo)
+Set environment variables in Vercel dashboard for each project.
 
+### Expo (Mobile App)
+
+**For testing (Expo Go):**
 ```bash
-# Development build
 cd apps/worker-mobile
-eas build --platform ios --profile development
-eas build --platform android --profile development
-
-# Production (Expo Go for now)
-expo start
+npx expo start
+# Scan QR code with Expo Go app
 ```
 
----
-
-## Brand Guidelines
-
-| Element | Value |
-|---------|-------|
-| Primary Color | `#66BB6A` (green) |
-| Accent Color | `#00BFA5` (teal) |
-| Heading Font | Montserrat |
-| Body Font | Inter |
-| Border Radius | 8px |
-| Footer | "Powered by OpBros" |
+**For production (App Store / Play Store):**
+```bash
+# Requires Apple/Google developer accounts
+npx expo build:ios
+npx expo build:android
+```
 
 ---
 
 ## Contributing
 
-This is a client project managed by OpBros.ai. For questions or support:
+This is now **open-source** and contributions are welcome!
 
-- **Client:** Ephraim Care (Liverpool, NSW)
-- **Developer:** OpBros.ai ([opbros.online](https://opbros.online))
-- **Contact:** cleanupbros.au@gmail.com
+1. Fork the repository
+2. Create a feature branch: `git checkout -b feature/amazing-feature`
+3. Make your changes
+4. Run tests: `pnpm test`
+5. Commit: `git commit -m 'Add amazing feature'`
+6. Push: `git push origin feature/amazing-feature`
+7. Open a Pull Request
+
+### Development Guidelines
+
+- TypeScript strict mode
+- ESLint + Prettier for code style
+- TanStack Query for server state
+- Zod for validation
+- shadcn/ui components
 
 ---
 
 ## License
 
-Private — All rights reserved. This software is proprietary to Ephraim Care.
+This project is licensed under the **MIT License** — see [LICENSE](LICENSE) for details.
+
+You are free to:
+- Use this commercially
+- Modify and distribute
+- Use privately
+
+Just keep the attribution.
 
 ---
 
-*Built with Claude Code by OpBros.ai*
+## Credits
+
+- **Originally built for:** [Ephraim Care](https://ephraimcare.com.au)
+- **Developed by:** [OpBros.ai](https://opbros.online)
+- **Built with:** [Claude Code](https://claude.ai/code) + GSD Workflow
+
+---
+
+**"Powered by OpBros"** — If you use this project, we'd appreciate keeping the footer link!
+
+## Support
+
+- **Issues:** Open a GitHub issue for bugs or feature requests
+- **Discussions:** Use GitHub Discussions for questions
+- **Email:** contact@opbros.online
+
+---
+
+*This project was built in 4 days using Claude Code and the GSD (Get Shit Done) workflow — 13 phases, 77 plans, ~36,649 lines of TypeScript.*

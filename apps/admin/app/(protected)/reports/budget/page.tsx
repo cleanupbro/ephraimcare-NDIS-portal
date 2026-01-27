@@ -144,7 +144,7 @@ export default function BudgetReportPage() {
       exportToExcel(reportData, CSV_COLUMNS, filename, 'Budget Report')
     } else if (exportFormat === 'pdf') {
       downloadPdf(
-        <ReportPdfDocument
+        <ReportPdfDocument<BudgetReportRow>
           title="Budget Utilization Report"
           dateRange={dateRange}
           summaries={summaries}

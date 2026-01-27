@@ -41,7 +41,8 @@ export interface ReportPdfData<T = unknown> {
 export async function generateReportPdf(
   document: ReactElement
 ): Promise<Blob> {
-  const instance = pdf(document)
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const instance = pdf(document as any)
   const blob = await instance.toBlob()
   return blob
 }

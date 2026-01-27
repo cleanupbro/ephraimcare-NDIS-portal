@@ -18,7 +18,8 @@ import {
 } from '@ephraimcare/ui'
 import { createClient } from '@/lib/supabase/client'
 import { shiftCreateSchema, type ShiftCreateFormData } from '@/lib/shifts/schemas'
-import { SUPPORT_TYPES } from '@/lib/workers/constants'
+import { SUPPORT_TYPES, getComplianceStatus } from '@/lib/workers/constants'
+import { format, parseISO } from 'date-fns'
 import { TIME_SLOTS, DURATION_PRESETS } from '@/lib/shifts/constants'
 import { ShiftConflictDialog, type ConflictWarning } from './shift-conflict-dialog'
 import { useCreateShift } from '@/hooks/use-create-shift'
@@ -35,6 +36,7 @@ interface Participant {
 interface Worker {
   id: string
   services_provided: string[] | null
+  ndis_check_expiry: string | null
   profiles: { first_name: string; last_name: string } | null
 }
 
@@ -70,6 +72,16 @@ function getTodayString(): string {
   const mm = (now.getMonth() + 1).toString().padStart(2, '0')
   const dd = now.getDate().toString().padStart(2, '0')
   return `${yyyy}-${mm}-${dd}`
+}
+
+/** Format expiry date for display */
+function formatExpiryDate(dateStr: string | null | undefined): string {
+  if (!dateStr) return 'Not set'
+  try {
+    return format(parseISO(dateStr), 'd MMM yyyy')
+  } catch {
+    return 'Invalid date'
+  }
 }
 
 // ─── Component ──────────────────────────────────────────────────────────────
@@ -125,7 +137,7 @@ export function ShiftForm({ mode, defaultValues, shiftId }: ShiftFormProps) {
           .order('first_name'),
         supabase
           .from('workers')
-          .select('id, services_provided, profiles(first_name, last_name)')
+          .select('id, services_provided, ndis_check_expiry, profiles(first_name, last_name)')
           .eq('is_active', true)
           .order('created_at'),
       ])
@@ -246,9 +258,27 @@ export function ShiftForm({ mode, defaultValues, shiftId }: ShiftFormProps) {
       return
     }
 
+    // Hard validation: expired NDIS check blocks assignment (SCRN-01)
+    const ndisStatus = getComplianceStatus(selectedWorker?.ndis_check_expiry ?? null)
+    if (ndisStatus === 'expired') {
+      setError('worker_id', {
+        message: `Worker's NDIS check has expired (${formatExpiryDate(selectedWorker?.ndis_check_expiry)}). Cannot assign to new shifts until renewed.`,
+      })
+      return
+    }
+
     setIsChecking(true)
     try {
       const detected = await checkConflicts(data)
+
+      // Soft validation: expiring NDIS check shows warning (SCRN-02)
+      if (ndisStatus === 'expiring') {
+        detected.push({
+          type: 'screening_expiring',
+          message: `Worker's NDIS check expires soon`,
+          details: `Expiry date: ${formatExpiryDate(selectedWorker?.ndis_check_expiry)}. Consider scheduling check renewal.`,
+        })
+      }
 
       if (detected.length > 0) {
         setConflicts(detected)

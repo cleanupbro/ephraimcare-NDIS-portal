@@ -18,7 +18,7 @@ export async function isPlatformAdmin(): Promise<boolean> {
     .from('profiles')
     .select('is_platform_admin')
     .eq('id', user.id)
-    .single()
+    .single() as { data: { is_platform_admin: boolean | null } | null }
 
   // Handle null profile or null is_platform_admin
   if (!profile) return false
@@ -70,7 +70,7 @@ export async function getCurrentUserOrganizationId(): Promise<string | null> {
     .from('profiles')
     .select('organization_id')
     .eq('id', user.id)
-    .single()
+    .single() as { data: { organization_id: string | null } | null }
 
   // Handle null profile
   if (!profile) return null

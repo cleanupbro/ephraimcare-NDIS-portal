@@ -1,4 +1,6 @@
+import { addDays } from 'date-fns'
 import { createClient } from '@/lib/supabase/server'
+import { ComplianceWidget } from '@/components/dashboard/compliance-widget'
 
 export default async function DashboardPage() {
   const supabase = await createClient()
@@ -25,6 +27,16 @@ export default async function DashboardPage() {
     .select('id', { count: 'exact', head: true })
     .gte('scheduled_start', `${today}T00:00:00`)
     .lt('scheduled_start', `${today}T23:59:59`)
+
+  // Compliance check - workers with expired or expiring NDIS checks
+  const ninetyDaysFromNow = addDays(new Date(), 90).toISOString().split('T')[0]
+  const { data: complianceWorkers } = await supabase
+    .from('workers')
+    .select('id, ndis_check_expiry, wwcc_expiry, profiles!inner(first_name, last_name)')
+    .eq('is_active', true)
+    .or(`ndis_check_expiry.lt.${today},ndis_check_expiry.lte.${ninetyDaysFromNow}`)
+    .order('ndis_check_expiry', { ascending: true, nullsFirst: false })
+    .limit(10)
 
   return (
     <div className="space-y-6">
@@ -60,6 +72,10 @@ export default async function DashboardPage() {
           </div>
         </div>
 
+        <ComplianceWidget workers={(complianceWorkers ?? []) as any} />
+      </div>
+
+      <div className="grid gap-4 md:grid-cols-2">
         <div className="rounded-lg border border-border p-6">
           <h2 className="font-heading text-lg font-semibold mb-3">Upcoming Shifts</h2>
           <p className="text-sm text-muted-foreground">

@@ -258,8 +258,8 @@ export default function AccountingExportsPage() {
             <div className="flex-1 min-w-[200px]">
               <label className="text-sm font-medium mb-1 block">Date Range</label>
               <DateRangePicker
-                dateRange={invoiceDateRange}
-                onDateRangeChange={setInvoiceDateRange}
+                value={invoiceDateRange}
+                onChange={setInvoiceDateRange}
               />
             </div>
             <div className="w-[150px]">
@@ -421,8 +421,8 @@ export default function AccountingExportsPage() {
             <div className="flex-1 min-w-[200px] max-w-[400px]">
               <label className="text-sm font-medium mb-1 block">Date Range</label>
               <DateRangePicker
-                dateRange={workerDateRange}
-                onDateRangeChange={setWorkerDateRange}
+                value={workerDateRange}
+                onChange={setWorkerDateRange}
               />
             </div>
           </div>

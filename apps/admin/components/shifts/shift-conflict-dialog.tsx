@@ -15,7 +15,7 @@ import {
 // ─── Types ──────────────────────────────────────────────────────────────────
 
 export type ConflictWarning = {
-  type: 'overlap' | 'plan_dates' | 'support_type'
+  type: 'overlap' | 'plan_dates' | 'support_type' | 'screening_expiring'
   message: string
   details?: string
 }
@@ -33,12 +33,14 @@ const CONFLICT_LABELS: Record<ConflictWarning['type'], string> = {
   overlap: 'Schedule Overlap',
   plan_dates: 'Plan Period',
   support_type: 'Service Mismatch',
+  screening_expiring: 'Compliance Warning',
 }
 
 const CONFLICT_COLORS: Record<ConflictWarning['type'], string> = {
   overlap: 'text-red-600',
   plan_dates: 'text-amber-600',
   support_type: 'text-orange-600',
+  screening_expiring: 'text-amber-500',
 }
 
 // ─── Component ──────────────────────────────────────────────────────────────

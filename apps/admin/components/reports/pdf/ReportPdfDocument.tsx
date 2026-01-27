@@ -251,7 +251,7 @@ function getCellStyle(align?: 'left' | 'right' | 'center') {
  * />
  * ```
  */
-export function ReportPdfDocument<T extends Record<string, unknown>>({
+export function ReportPdfDocument<T extends object>({
   title,
   dateRange,
   summaries = [],
@@ -304,8 +304,8 @@ export function ReportPdfDocument<T extends Record<string, unknown>>({
                 style={[
                   styles.headerCell,
                   { width: col.width || defaultWidth },
-                  col.align === 'right' && { textAlign: 'right' },
-                  col.align === 'center' && { textAlign: 'center' },
+                  col.align === 'right' ? { textAlign: 'right' } : {},
+                  col.align === 'center' ? { textAlign: 'center' } : {},
                 ]}
               >
                 {col.header}
