@@ -1,12 +1,44 @@
-# Ephraim Care NDIS Platform
+```
+┌──────────────────────────────────────────────────────────────────────────────┐
+│                                                                              │
+│   ▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄   │
+│   █ EPHRAIM CARE █████████████████████████████████████████████████████████   │
+│   █▄▄▄▄▄▄▄▄▄▄▄▄▄█                                                            │
+│                                                                              │
+│   ███╗   ██╗██████╗ ██╗███████╗    ██████╗  ██████╗ ██████╗ ████████╗       │
+│   ████╗  ██║██╔══██╗██║██╔════╝    ██╔══██╗██╔═══██╗██╔══██╗╚══██╔══╝       │
+│   ██╔██╗ ██║██║  ██║██║███████╗    ██████╔╝██║   ██║██████╔╝   ██║          │
+│   ██║╚██╗██║██║  ██║██║╚════██║    ██╔═══╝ ██║   ██║██╔══██╗   ██║          │
+│   ██║ ╚████║██████╔╝██║███████║    ██║     ╚██████╔╝██║  ██║   ██║          │
+│   ╚═╝  ╚═══╝╚═════╝ ╚═╝╚══════╝    ╚═╝      ╚═════╝ ╚═╝  ╚═╝   ╚═╝          │
+│                                                                              │
+│   ─────────────────────────────────────────────────────────────────────────  │
+│   DISABILITY SUPPORT MANAGEMENT SYSTEM                          v1.0.0      │
+│   ─────────────────────────────────────────────────────────────────────────  │
+│                                                                              │
+│   > STATUS: LIVE                                                             │
+│   > BUILD:  PASSING                                                          │
+│   > STACK:  NEXT.JS + SUPABASE + EXPO                                       │
+│                                                                              │
+└──────────────────────────────────────────────────────────────────────────────┘
+```
 
-A **free, open-source** NDIS (National Disability Insurance Scheme) management platform for disability service providers in Australia. Built with Next.js 14, React Native/Expo, and Supabase.
+<div align="center">
 
 ![License](https://img.shields.io/badge/license-MIT-blue.svg)
-![TypeScript](https://img.shields.io/badge/TypeScript-5.0-blue.svg)
-![Next.js](https://img.shields.io/badge/Next.js-14-black.svg)
+![TypeScript](https://img.shields.io/badge/TypeScript-5.7-blue.svg)
+![Next.js](https://img.shields.io/badge/Next.js-15.5-black.svg)
 ![Expo](https://img.shields.io/badge/Expo-SDK_53-white.svg)
 ![Supabase](https://img.shields.io/badge/Supabase-PostgreSQL-green.svg)
+![Build](https://img.shields.io/badge/build-passing-brightgreen.svg)
+
+**A free, open-source NDIS management platform for Australian disability service providers**
+
+[Live Demo](https://ephraimcare-ndis-portal-admin.vercel.app) • [Documentation](./CLIENT_DELIVERY_SUMMARY.md) • [Handoff Guide](./HANDOFF.md)
+
+</div>
+
+---
 
 > **Originally built for [Ephraim Care](https://ephraimcare.com.au)** — NDIS provider in Western Sydney, Australia
 >
@@ -410,4 +442,37 @@ Just keep the attribution.
 
 ---
 
-*This project was built in 4 days using Claude Code and the GSD (Get Shit Done) workflow — 13 phases, 77 plans, ~36,649 lines of TypeScript.*
+```
+┌──────────────────────────────────────────────────────────────────────────────┐
+│                                                                              │
+│   ██████╗ ██╗   ██╗██╗██╗  ████████╗    ██╗    ██╗██╗████████╗██╗  ██╗      │
+│   ██╔══██╗██║   ██║██║██║  ╚══██╔══╝    ██║    ██║██║╚══██╔══╝██║  ██║      │
+│   ██████╔╝██║   ██║██║██║     ██║       ██║ █╗ ██║██║   ██║   ███████║      │
+│   ██╔══██╗██║   ██║██║██║     ██║       ██║███╗██║██║   ██║   ██╔══██║      │
+│   ██████╔╝╚██████╔╝██║███████╗██║       ╚███╔███╔╝██║   ██║   ██║  ██║      │
+│   ╚═════╝  ╚═════╝ ╚═╝╚══════╝╚═╝        ╚══╝╚══╝ ╚═╝   ╚═╝   ╚═╝  ╚═╝      │
+│                                                                              │
+│   ░█████╗░██╗░░░░░░█████╗░██╗░░░██╗██████╗░███████╗  ░█████╗░░█████╗░██████╗ │
+│   ██╔══██╗██║░░░░░██╔══██╗██║░░░██║██╔══██╗██╔════╝  ██╔══██╗██╔══██╗██╔══██╗│
+│   ██║░░╚═╝██║░░░░░███████║██║░░░██║██║░░██║█████╗░░  ██║░░╚═╝██║░░██║██║░░██║│
+│   ██║░░██╗██║░░░░░██╔══██║██║░░░██║██║░░██║██╔══╝░░  ██║░░██╗██║░░██║██║░░██║│
+│   ╚█████╔╝███████╗██║░░██║╚██████╔╝██████╔╝███████╗  ╚█████╔╝╚█████╔╝██████╔╝│
+│   ░╚════╝░╚══════╝╚═╝░░╚═╝░╚═════╝░╚═════╝░╚══════╝  ░╚════╝░░╚════╝░╚═════╝░│
+│                                                                              │
+│   ─────────────────────────────────────────────────────────────────────────  │
+│                                                                              │
+│   > 13 PHASES COMPLETED                                                      │
+│   > 77 PLANS EXECUTED                                                        │
+│   > ~36,649 LINES OF TYPESCRIPT                                             │
+│   > 4 DAYS BUILD TIME                                                        │
+│                                                                              │
+│   GSD WORKFLOW (GET SHIT DONE) + OPBROS.AI                                  │
+│                                                                              │
+└──────────────────────────────────────────────────────────────────────────────┘
+```
+
+<div align="center">
+
+**Made with ❤️ in Sydney, Australia**
+
+</div>

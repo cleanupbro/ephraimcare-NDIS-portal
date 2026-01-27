@@ -327,6 +327,23 @@ Test each account:
 - **Worker**: Open Expo Go app → Login
 - **Participant**: Go to `portal.ephraimcare.com.au` → Login
 
+#### Demo Account (Already Active on Vercel Deployment)
+
+The current Vercel deployment has a demo admin account pre-configured:
+
+| Field | Value |
+|-------|-------|
+| **URL** | https://ephraimcare-ndis-portal-admin.vercel.app |
+| **Email** | admin@ephraimcare.com.au |
+| **Password** | (contact developer for demo password) |
+
+**Demo Data Includes:**
+- 6 participants (Alice, Bob, Carol, Daniel, Eve, Test Participant)
+- 7 workers (James, Maria, David, Emma, Liam, Test Worker)
+- 8 scheduled shifts for the current week
+- 2 NDIS plans with budget breakdowns
+- 2 invoices (1 Pending, 1 Draft)
+
 ---
 
 ## Support Type Rates to Configure
