@@ -187,22 +187,11 @@ This is a database schema mismatch - the API expects `support_type` but the data
 
 ### Critical
 
-1. **Shift Creation Fails** — MIGRATION NOT RUN
+1. **Shift Creation Fails** — ✅ FIXED (2026-01-27)
    - **Error:** "Could not find the 'support_type' column of 'shifts' in the schema cache"
-   - **Location:** /shifts/new form submission
-   - **Impact:** Cannot create new shifts
-   - **Root Cause:** Migration `20260124200001_add_shift_scheduling_columns.sql` was not run on production Supabase
-   - **Fix:** Run the following SQL in Supabase SQL Editor:
-   ```sql
-   -- Add missing shift scheduling columns (migration 20260124200001)
-   ALTER TYPE public.shift_status ADD VALUE IF NOT EXISTS 'pending';
-   ALTER TYPE public.shift_status ADD VALUE IF NOT EXISTS 'proposed';
-   ALTER TABLE public.shifts ADD COLUMN IF NOT EXISTS support_type text;
-   ALTER TABLE public.shifts ALTER COLUMN status SET DEFAULT 'pending';
-   CREATE INDEX IF NOT EXISTS idx_shifts_worker_timerange
-   ON public.shifts(worker_id, scheduled_start, scheduled_end)
-   WHERE status NOT IN ('cancelled');
-   ```
+   - **Root Cause:** Migration `20260124200001_add_shift_scheduling_columns.sql` was not run on production
+   - **Resolution:** Applied via Supabase Management API on 2026-01-27
+   - **Status:** Verified working - shift creation with support_type now succeeds
 
 ### Medium
 
