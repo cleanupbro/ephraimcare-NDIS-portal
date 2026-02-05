@@ -5,6 +5,9 @@ import { QueryProvider } from '@/providers/query-provider'
 export const metadata: Metadata = {
   title: 'Ephraim Care - Participant Portal',
   description: 'View your shifts, case notes, and invoices',
+  icons: {
+    icon: '/favicon.svg',
+  },
 }
 
 export default function RootLayout({
