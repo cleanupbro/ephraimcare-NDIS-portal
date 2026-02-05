@@ -17,7 +17,7 @@ import {
 } from './templates'
 
 /** Admin email for CC on all notifications */
-export const ADMIN_EMAIL = 'ephraimcare252@gmail.com'
+export const ADMIN_EMAIL = process.env.ADMIN_EMAIL || 'ephraimcare252@gmail.com'
 
 /**
  * Send notification email via Resend API

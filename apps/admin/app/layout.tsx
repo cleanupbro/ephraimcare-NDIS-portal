@@ -6,6 +6,12 @@ import { Toaster } from '@/components/ui/toaster'
 export const metadata: Metadata = {
   title: 'Ephraim Care - Admin Portal',
   description: 'NDIS participant management portal for Ephraim Care',
+  icons: {
+    icon: [
+      { url: '/favicon.ico', sizes: '32x32' },
+      { url: '/favicon.svg', type: 'image/svg+xml' },
+    ],
+  },
 }
 
 export default function RootLayout({

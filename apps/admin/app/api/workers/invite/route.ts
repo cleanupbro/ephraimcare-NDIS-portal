@@ -90,7 +90,14 @@ export async function POST(request: Request) {
     const userId = authData.user.id
 
     // Generate a magic link for the worker to set up their account
-    const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || process.env.NEXT_PUBLIC_ADMIN_URL || 'http://localhost:3000'
+    const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || process.env.NEXT_PUBLIC_ADMIN_URL
+    if (!siteUrl) {
+      console.error('NEXT_PUBLIC_SITE_URL or NEXT_PUBLIC_ADMIN_URL must be set')
+      return NextResponse.json(
+        { error: 'Server configuration error: site URL not configured' },
+        { status: 500 }
+      )
+    }
     const { data: linkData } = await admin.auth.admin.generateLink({
       type: 'magiclink',
       email,
@@ -107,7 +114,7 @@ export async function POST(request: Request) {
             'Content-Type': 'application/json',
           },
           body: JSON.stringify({
-            from: 'Ephraim Care <onboarding@resend.dev>',
+            from: process.env.RESEND_FROM_EMAIL || 'Ephraim Care <noreply@ephraimcare.com.au>',
             to: [email],
             subject: 'Welcome to Ephraim Care - Set Up Your Account',
             html: `
