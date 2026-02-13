@@ -1,153 +1,313 @@
-# Ephraim Care Portal — Client Testing Guide
+# Ephraim Care Portal — Complete Test Guide & Platform Overview
+
+**Last Tested:** February 6, 2026
+**Tested By:** OpBros.ai (Automated Playwright + Manual)
+**Built By:** OpBros.ai for Ephraim Care
 
 ---
 
-## Portal URLs & Login Credentials
+## Login Credentials — All Portals
 
-### 1. Admin Portal (Live)
-- **URL:** https://ephraimcare-ndis-portal-admin.vercel.app
-- **Email:** `admin@ephraimcare.com.au`
-- **Password:** `EphraimAdmin2026`
-- **Role:** Full admin access
+### Admin Portal (Full Business Management)
 
-### 2. Coordinator Account
-- **URL:** Same admin portal (above)
-- **Email:** `sarah@ephraimcare.com.au`
-- **Password:** `EphraimCoord2026`
-- **Role:** Coordinator (manage shifts, participants, workers — no billing settings)
+| Role | URL | Email | Password |
+|------|-----|-------|----------|
+| **Admin** | https://ephraimcare-ndis-portal-admin.vercel.app | `admin@ephraimcare.com.au` | `EphraimAdmin2026` |
+| **Coordinator** | Same URL as above | `sarah@ephraimcare.com.au` | `EphraimCoord2026` |
 
-### 3. Worker Account (for testing mobile app + admin worker views)
-- **Email:** `james@ephraimcare.com.au`
-- **Password:** `EphraimWorker2026`
-- **Role:** Worker
+### Participant Portal (Client-Facing)
 
-### 4. Participant Portal (Live)
-- **URL:** https://ephraimcare-participant-portal.vercel.app
-- **Email:** `client@ephraimcare.com.au`
-- **Password:** `EphraimClient2026`
-- **Role:** Participant (view-only: appointments, invoices, budget)
+| Role | URL | Email | Password |
+|------|-----|-------|----------|
+| **Participant** | https://ephraimcare-participant-portal.vercel.app | `client@ephraimcare.com.au` | `EphraimClient2026` |
+
+### Worker Accounts (For Admin Portal Worker Views + Mobile App)
+
+| Worker | Email | Password |
+|--------|-------|----------|
+| James Wilson | `james@ephraimcare.com.au` | `EphraimWorker2026` |
+| Emma Thompson | `emma@ephraimcare.com.au` | `EphraimWorker2026` |
+| Maria Garcia | `maria@ephraimcare.com.au` | `EphraimWorker2026` |
+| Liam Patel | `liam@ephraimcare.com.au` | `EphraimWorker2026` |
+| David Chen | `david@ephraimcare.com.au` | `EphraimWorker2026` |
 
 ---
 
-## What This App Is
+## Automated Test Results (February 6, 2026)
 
-Ephraim Care Portal is a **complete NDIS disability support management system** built specifically for your business. It replaces spreadsheets, paper forms, and manual tracking with a connected digital platform that your admin team, support workers, and participants can all access.
+### Admin Portal — All Pages Tested
+
+| Page | URL | Status | Data Loaded |
+|------|-----|--------|-------------|
+| **Dashboard** | `/` | PASS | 6 participants, 7 workers, 34 upcoming shifts, 1 pending invoice, compliance status |
+| **Participants** | `/participants` | PASS | 6 active participants with NDIS numbers, search + filter working |
+| **Workers** | `/workers` | PASS | 7 active workers with support types, email, compliance status |
+| **Shifts (List)** | `/shifts` | PASS | Weekly view with scheduled shifts, filters for participant/worker/status/type |
+| **Shifts (Calendar)** | `/shifts/calendar` | PASS | Day/Week/Month views, navigation working |
+| **NDIS Plans** | `/plans` | PASS | 2 plans showing (Alice $85K, Bob $62K) with full budget category breakdown |
+| **Invoices** | `/invoices` | PASS | 2 invoices (INV-202601-0001 $340, INV-202601-0002 $360), tabs for status filter |
+| **Case Notes** | `/case-notes` | PASS | Empty state — "Workers create case notes after completing shifts" |
+| **Incidents** | `/incidents` | PASS | Incident reporting with severity/type/status filters |
+| **Compliance** | `/compliance` | PASS | Dashboard with weighted score (Worker 40%, Incident 30%, Docs 30%) |
+| **Cancellations** | `/cancellation-requests` | BUG | Page stuck on "Loading requests..." — API error on cancellation_requests table |
+| **Settings** | `/settings` | PASS | Profile info, change password, sign out |
+
+**Result: 11/12 pages working (1 minor bug on Cancellations page)**
+
+### Participant Portal — All Pages Tested
+
+| Page | URL | Status | Notes |
+|------|-----|--------|-------|
+| **Login** | `/login` | PASS | Password + Magic Link options, clean UI |
+| **Dashboard** | `/dashboard` | PASS | Welcome message, budget status, plan period, upcoming appointments |
+| **Appointments** | `/appointments` | PASS | Shows scheduled support sessions, cancel request feature |
+| **Invoices** | `/invoices` | PASS | Shows finalized invoices from coordinator |
+| **Profile** | `/profile` | BUG | Page loads but profile data cards are empty — API error fetching participant details |
+
+**Result: 4/5 pages working (1 bug on Profile page — fixable)**
+
+### Bugs Found
+
+| # | Portal | Page | Issue | Severity |
+|---|--------|------|-------|----------|
+| 1 | Admin | Cancellations | API error loading cancellation_requests — page stuck on "Loading..." | Medium |
+| 2 | Participant | Profile | Profile data cards load empty — API 400 error fetching participant details | Medium |
+
+---
+
+## What This Platform Is
+
+Ephraim Care Portal is a **complete NDIS disability support management system** — a full mini-admin app that replaces spreadsheets, paper forms, and manual tracking with one connected digital platform.
 
 ### The 3 Portals
 
-| Portal | Who Uses It | Purpose |
-|--------|------------|---------|
-| **Admin Portal** | You + coordinators | Run the business — manage participants, schedule shifts, generate invoices, track compliance, run reports |
-| **Worker Mobile App** | Support workers | Clock in/out shifts with GPS verification, write case notes, view their schedule |
-| **Participant Portal** | NDIS participants (+ families) | View upcoming appointments, check invoices, see budget remaining |
+| Portal | Who Uses It | What They Do |
+|--------|------------|--------------|
+| **Admin Portal** | Meshach + coordinators | Run the entire business from one dashboard |
+| **Participant Portal** | NDIS participants + families | View appointments, invoices, budget — builds trust |
+| **Worker Mobile App** | Support workers | Clock in/out with GPS, write case notes, view schedule |
 
 ---
 
-## What It Does & How It Helps Your Business
+## Full Feature Breakdown — What's Built & Working
 
-### Participant Management
-- Store all participant info: NDIS number, plan details, contacts, support needs
-- Track NDIS plan budgets in real-time (know exactly how much funding is left)
-- 4-step onboarding form makes adding new participants fast and error-free
-- Archive participants when they leave
+### 1. Dashboard (Admin Home Screen)
+- Live counts: participants, workers, today's shifts, pending invoices
+- Quick actions: schedule shift, add participant, create invoice
+- Compliance status at a glance
+- Upcoming shifts counter
 
-### Shift Scheduling
-- Create one-off or recurring shifts
-- Calendar view shows your whole week at a glance
-- Bulk shift creation — schedule a whole week in minutes
-- Conflict detection warns if a worker is double-booked
-- Workers get email/SMS notifications when assigned
+### 2. Participant Management
+- Full participant profiles: NDIS number, contact info, address, emergency contact, notes
+- 4-step onboarding wizard for adding new participants
+- Search by name or NDIS number
+- Filter by active/archived status
+- Click into any participant to see their full details, shifts, invoices, NDIS plan
 
-### GPS Clock In/Out (Worker Mobile App)
+### 3. Worker Management
+- Worker profiles: email, support types, qualifications, hourly rate
+- Add new workers with email invite (they receive a signup link)
+- Track support types per worker (Personal Care, Community Access, Transport, etc.)
+- Compliance screening status per worker
+- Worker hours tracking
+
+### 4. Shift Scheduling
+- **List view** — see all shifts for the week with participant, worker, time, type, status
+- **Calendar view** — day/week/month visual calendar
+- **New shift creation** — assign participant + worker, set time, choose support type
+- **Recurring shifts** — set up weekly repeating shifts
+- **Conflict detection** — warns if a worker is double-booked
+- **Status tracking** — pending → scheduled → in progress → completed → cancelled
+- Filter by participant, worker, status, or support type
+
+### 5. GPS Clock In/Out (Worker Mobile App)
 - Workers check in from their phone at the participant's location
-- GPS verification records WHERE they checked in (accountability)
-- Live timer tracks shift duration
-- Check out records exact end time and location
-- All data feeds directly into invoicing
+- GPS records exact check-in coordinates (accountability)
+- Live timer while shift is in progress
+- Check out records end time + end location
+- All times feed directly into invoicing
 
-### Invoicing & Billing
-- Generate invoices directly from completed shifts
-- Automatic rate calculation based on day type (weekday, Saturday, Sunday, public holiday)
-- Uses the NDIS "lesser of" rule — bills the shorter of scheduled vs actual time
-- 10% GST automatically calculated
-- Download PDF invoices
-- Export NDIA-format CSV for claiming through the NDIA portal (PACE format)
-- Xero accounting integration for automatic bookkeeping sync
+### 6. NDIS Plans & Budget Tracking
+- Create and manage NDIS plans per participant
+- Full budget category breakdown: Core, Capacity Building, Capital
+- Track spending against plan budget in real-time
+- Plan period dates and status (Current/Expired)
+- Budget utilization visible to participants in their portal
 
-### Compliance & NDIA Requirements
-- Compliance dashboard scores your organisation's NDIA readiness
-- Tracks worker screening expiry dates (NDIS Worker Check, WWCC)
-- Warns when screenings are about to expire (90-day warning)
+### 7. Invoicing & Billing
+- **Generate invoices** directly from completed shifts
+- **Automatic rate calculation** based on day type (weekday, Saturday, Sunday, public holiday)
+- **NDIS "lesser of" rule** — bills the shorter of scheduled vs actual time
+- **10% GST** automatically calculated
+- **Invoice numbering** — sequential format: INV-YYYYMM-####
+- **Status workflow** — Draft → Pending → Submitted → Paid / Overdue
+- **PDF download** — generate professional PDF invoices
+- **PACE CSV export** — NDIA-format bulk payment file for claiming through the NDIA portal
+- **Xero integration** — sync invoices to Xero for accounting
+
+### 8. Case Notes
+- Workers document each shift with case notes
+- Concern flag for raising issues
+- 24-hour edit window (can't change notes after 24 hours)
+- Admin can view all case notes across the organization
+
+### 9. Incident Reporting
+- Report incidents with type, severity (low/medium/high/critical), description
+- NDIA 5-day deadline countdown for mandatory reporting
+- Filter by status, severity, type
+- Track resolution status
+
+### 10. Compliance Dashboard
+- **Organization compliance score** — weighted average:
+  - Worker Compliance (40%)
+  - Incident Resolution (30%)
+  - Documentation (30%)
+- Color-coded: Green (80%+), Amber (60-79%), Red (<60%)
+- Worker screening tracking: NDIS Worker Check, WWCC, First Aid, Police Check
+- Expiry warnings (90 days before expiry)
 - Blocks shifts for workers with expired checks
-- Incident reporting with NDIA 5-day deadline countdown
-- Case notes system for documenting participant interactions
 
-### Reports & Analytics
-- **Revenue report** — See monthly income trends with charts
-- **Worker hours report** — Track hours by worker and support type
-- **Budget report** — See how each participant's funding is being used
-- **Participant activity report** — Track service delivery metrics
-- **Accounting exports** — BAS-ready CSV, Excel, and PDF exports
+### 11. Cancellation Requests
+- Participants can request appointment cancellations from their portal
+- Admin reviews and approves/denies requests
+- *(Currently has a loading bug — being fixed)*
 
----
+### 12. Settings & Security
+- Profile management (name, email, phone)
+- Password change
+- Organization ID display
+- Role-based display
+- Sign out
 
-## How It Will Help Your Business Grow
-
-1. **Save hours every week** — No more manual timesheets, spreadsheet invoicing, or paper forms. Everything is automated.
-
-2. **Get paid faster** — Generate NDIA-compliant invoices in seconds. Export CSV directly to the NDIA portal for claiming. No more missed claims.
-
-3. **Stay compliant** — The compliance dashboard tells you exactly where you stand. Never miss a worker screening renewal or NDIA deadline again.
-
-4. **Scale with confidence** — The system handles 5 participants or 500 the same way. As you grow, the platform grows with you. Multi-organization support is built in.
-
-5. **Professional client experience** — Participants and their families can log into their own portal to see appointments and invoices. This builds trust and reduces support calls.
-
-6. **Accurate billing** — GPS verification + automatic time tracking means no more disputes about hours. The "lesser of" rule is applied automatically.
-
-7. **Real-time visibility** — The dashboard shows you shifts, revenue, compliance, and worker status at a glance. Know the state of your business in 10 seconds.
+### 13. Participant Portal (Client-Facing)
+- **Dashboard** — budget status, plan period, upcoming appointments
+- **Appointments** — view scheduled support sessions, request cancellations
+- **Invoices** — view finalized invoices from coordinator
+- **Profile** — view personal info and NDIS details
+- **Sidebar** — shows participant name + NDIS number
+- **Sign out** — secure logout
 
 ---
 
-## What to Test in Each Portal
+## How This Replaces Your Current Workflow
 
-### Admin Portal (Priority)
-1. **Login** with admin credentials
-2. **Dashboard** — check that widgets load (shifts, compliance, revenue)
-3. **Participants** — browse the list, click into a participant, view their details
-4. **Workers** — browse the list, view worker details and compliance status
-5. **Shifts** — view shift list and calendar, try creating a new shift
-6. **Invoices** — view invoice list, try generating an invoice
-7. **Reports** — check revenue and worker hours reports
-8. **Settings** — view rates, holidays, integrations
-
-### Participant Portal (Once Deployed)
-1. **Login** with participant credentials
-2. **Dashboard** — check budget display and upcoming appointments
-3. **Invoices** — view invoice list
-4. **Profile** — view participant info
-
-### Worker Mobile App (Expo Go)
-1. Download "Expo Go" from App Store / Play Store
-2. Login with worker credentials
-3. View today's shifts
-4. Test check-in/out flow
+| Before (Manual) | After (Ephraim Care Portal) |
+|-----------------|----------------------------|
+| Participant info in spreadsheets | Digital profiles with NDIS numbers, plans, contacts |
+| Paper timesheets | GPS clock in/out with live tracking |
+| Manual invoicing in Excel | One-click invoice generation from completed shifts |
+| Emailing NDIA claims | PACE CSV export ready for NDIA portal upload |
+| Checking worker screenings manually | Automated expiry tracking with 90-day warnings |
+| Phone calls to check shift status | Live dashboard shows everything in real-time |
+| No visibility for participants | Participants see their own appointments + invoices |
 
 ---
 
-## Known Limitations / Notes
+## What's Ready Now vs Coming Next
 
-- **Participant portal** is now live at https://ephraimcare-participant-portal.vercel.app
-- **Worker mobile app** requires Expo Go for testing (not yet published to App Store)
-- **SMS notifications** require Twilio config (currently disabled)
-- **Xero integration** requires Xero developer app setup
-- **Email sender** uses Resend sandbox unless a verified domain is configured
-- Some seed data is pre-loaded (5 sample participants, 5 workers, sample shifts)
+### Ready Now (v1.0 — Live)
+- Full admin portal with all 12 sections
+- Participant portal with dashboard, appointments, invoices
+- 6 sample participants, 7 workers, sample shifts/invoices pre-loaded
+- Auto-deploy on push to GitHub (both portals)
+
+### Coming Next (When Configured)
+- **SMS notifications** — enable with Twilio API keys (shift reminders to workers)
+- **Xero accounting sync** — connect your Xero account in Settings > Integrations
+- **Custom email domain** — replace sandbox sender with `@ephraimcare.com.au`
+- **Worker mobile app** — currently testable via Expo Go, can be published to App Store/Play Store
+
+### Future Growth (v2.0 Ideas)
+- Document management (upload participant documents)
+- AI-suggested shift assignments (rostering optimization)
+- Family portal (read-only access for participant families)
+- Bulk SMS to multiple workers
+- REST API for third-party integrations
+
+---
+
+## How to Test Each Portal
+
+### Admin Portal — Step by Step
+1. Go to https://ephraimcare-ndis-portal-admin.vercel.app
+2. Login: `admin@ephraimcare.com.au` / `EphraimAdmin2026`
+3. **Dashboard** — verify counts load (6 participants, 7 workers)
+4. **Participants** — click the list, open "Alice Johnson", check details
+5. **Workers** — check worker list, view support types
+6. **Shifts** — view weekly list, click Calendar button for visual view
+7. **NDIS Plans** — verify 2 plans show with budget breakdowns
+8. **Invoices** — verify 2 invoices show, try "Generate Invoice"
+9. **Compliance** — view compliance score dashboard
+10. **Settings** — verify your profile info displays
+
+### Coordinator Login — Step by Step
+1. Same URL: https://ephraimcare-ndis-portal-admin.vercel.app
+2. Login: `sarah@ephraimcare.com.au` / `EphraimCoord2026`
+3. Should see same pages but with coordinator role displayed
+4. Can manage shifts, participants, workers — no billing settings access
+
+### Participant Portal — Step by Step
+1. Go to https://ephraimcare-participant-portal.vercel.app
+2. Login: `client@ephraimcare.com.au` / `EphraimClient2026`
+3. **Dashboard** — verify welcome message and NDIS number shows
+4. **Appointments** — view upcoming support sessions
+5. **Invoices** — view any finalized invoices
+6. **Profile** — view personal info *(currently has a display bug being fixed)*
+
+---
+
+## Sample Data Pre-Loaded
+
+### Participants (6)
+| Name | NDIS Number |
+|------|-------------|
+| Alice Johnson | 431000001 |
+| Bob Smith | 431000002 |
+| Carol Williams | 431000003 |
+| Daniel Brown | 431000004 |
+| Eve Davis | 431000005 |
+| Test Participant | 431999999 |
+
+### Workers (7)
+| Name | Support Types |
+|------|--------------|
+| James Wilson | Personal Care, Community Access |
+| Emma Thompson | Personal Care, Capacity Building |
+| Maria Garcia | Personal Care, Domestic Assistance |
+| Liam Patel | Domestic Assistance, Community Access |
+| David Chen | Community Access, Transport |
+| Test Worker | Personal Care, Community Access |
+| James Wilson (alt) | Personal Care, Transport +2 |
+
+### NDIS Plans (2)
+| Participant | Plan Budget | Categories |
+|-------------|-------------|------------|
+| Alice Johnson | $85,000 | Core ($45K + $5K), Capacity Building ($25K), Capital ($10K) |
+| Bob Smith | $62,000 | Core ($35K + $12K), Capacity Building ($15K) |
+
+### Invoices (2)
+| Invoice # | Participant | Amount | Status |
+|-----------|-------------|--------|--------|
+| INV-202601-0001 | Alice Johnson | $340.00 | Pending |
+| INV-202601-0002 | Bob Smith | $360.00 | Draft |
+
+---
+
+## Technical Info
+
+| Detail | Value |
+|--------|-------|
+| **Admin URL** | https://ephraimcare-ndis-portal-admin.vercel.app |
+| **Participant URL** | https://ephraimcare-participant-portal.vercel.app |
+| **GitHub** | https://github.com/cleanupbro/ephraimcare-NDIS-portal |
+| **Database** | Supabase PostgreSQL (Sydney region) |
+| **Hosting** | Vercel (auto-deploy on push to main) |
+| **Framework** | Next.js 15, React 19, Tailwind CSS v4 |
 
 ---
 
 ## Support
 
-Built by **OpBros.ai** — contact@opbros.online
+Built by **OpBros.ai** — contact@opbros.online | https://opbros.online
 
-For issues or changes, contact your developer.
+For issues, changes, or new features — contact your developer.

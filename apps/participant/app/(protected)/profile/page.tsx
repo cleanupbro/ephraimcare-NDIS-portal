@@ -2,7 +2,7 @@
 
 import { useParticipantProfile } from '@/hooks/use-participant-profile'
 import { format, parseISO } from 'date-fns'
-import { User, Phone, MapPin, AlertCircle, Heart } from 'lucide-react'
+import { User, Phone, AlertCircle, Heart } from 'lucide-react'
 
 /**
  * Read-only profile page for participants.
@@ -93,11 +93,12 @@ export default function ProfilePage() {
               <p className="text-sm text-muted-foreground italic">No phone number on file</p>
             </div>
           )}
-          {profile.address && (
+          {profile.address_line_1 && (
             <div className="sm:col-span-2">
               <dt className="text-sm text-muted-foreground">Address</dt>
               <dd className="font-medium">
-                {profile.address}
+                {profile.address_line_1}
+                {profile.address_line_2 && `, ${profile.address_line_2}`}
                 {profile.suburb && `, ${profile.suburb}`}
                 {profile.state && ` ${profile.state}`}
                 {profile.postcode && ` ${profile.postcode}`}
@@ -125,24 +126,18 @@ export default function ProfilePage() {
                 <dd className="font-medium">{profile.emergency_contact_phone}</dd>
               </div>
             )}
-            {profile.emergency_contact_relationship && (
-              <div>
-                <dt className="text-sm text-muted-foreground">Relationship</dt>
-                <dd className="font-medium">{profile.emergency_contact_relationship}</dd>
-              </div>
-            )}
           </dl>
         </div>
       )}
 
-      {/* Support Needs (if populated) */}
-      {profile.support_needs && (
+      {/* Notes (if populated) */}
+      {profile.notes && (
         <div className="rounded-xl border bg-card p-6">
           <div className="flex items-center gap-2 mb-4">
             <Heart className="h-5 w-5 text-muted-foreground" />
-            <h2 className="font-medium">Support Needs</h2>
+            <h2 className="font-medium">Notes</h2>
           </div>
-          <p className="text-sm whitespace-pre-wrap">{profile.support_needs}</p>
+          <p className="text-sm whitespace-pre-wrap">{profile.notes}</p>
         </div>
       )}
 

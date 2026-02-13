@@ -17,15 +17,14 @@ export interface ParticipantProfile {
   date_of_birth: string | null
   phone: string | null
   email: string | null
-  address: string | null
+  address_line_1: string | null
+  address_line_2: string | null
   suburb: string | null
   state: string | null
   postcode: string | null
   emergency_contact_name: string | null
   emergency_contact_phone: string | null
-  emergency_contact_relationship: string | null
-  medical_notes: string | null
-  support_needs: string | null
+  notes: string | null
 }
 
 // ─── Profile Hook ─────────────────────────────────────────────────────────────
@@ -50,9 +49,9 @@ export function useParticipantProfile() {
         .from('participants')
         .select(`
           id, first_name, last_name, ndis_number,
-          date_of_birth, phone, email, address, suburb, state, postcode,
-          emergency_contact_name, emergency_contact_phone, emergency_contact_relationship,
-          medical_notes, support_needs
+          date_of_birth, phone, email, address_line_1, address_line_2,
+          suburb, state, postcode,
+          emergency_contact_name, emergency_contact_phone, notes
         `)
         .eq('profile_id', user.id)
         .single() as any)
