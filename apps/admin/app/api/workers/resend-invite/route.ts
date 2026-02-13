@@ -44,16 +44,15 @@ export async function POST(request: Request) {
       )
     }
 
-    // 3. Generate link using admin client
-    // This is a RESEND function, so user should already exist — use 'magiclink'
-    // If user doesn't exist (edge case), fall back to 'invite'
+    // 3. Generate magic link using admin client
     const admin = createAdminClient()
+    const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || process.env.NEXT_PUBLIC_ADMIN_URL
 
-    const { error: linkError } = await admin.auth.admin.generateLink({
+    const { data: linkData, error: linkError } = await admin.auth.admin.generateLink({
       type: 'magiclink',
       email,
       options: {
-        redirectTo: `${process.env.NEXT_PUBLIC_SITE_URL || process.env.NEXT_PUBLIC_ADMIN_URL}/auth/callback`,
+        redirectTo: `${siteUrl}/auth/callback`,
       },
     })
 
@@ -62,6 +61,43 @@ export async function POST(request: Request) {
         { error: linkError.message },
         { status: 500 }
       )
+    }
+
+    // 4. Send the magic link via Resend API
+    if (process.env.RESEND_API_KEY && linkData?.properties?.action_link) {
+      // Look up worker name for a personalized email
+      const { data: workerProfile } = await admin
+        .from('profiles')
+        .select('first_name')
+        .eq('email', email)
+        .single()
+
+      const firstName = (workerProfile as any)?.first_name || 'there'
+
+      try {
+        await fetch('https://api.resend.com/emails', {
+          method: 'POST',
+          headers: {
+            'Authorization': `Bearer ${process.env.RESEND_API_KEY}`,
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            from: process.env.RESEND_FROM_EMAIL || 'Ephraim Care <noreply@ephraimcare.com.au>',
+            to: [email],
+            subject: 'Ephraim Care - Your Login Link',
+            html: `
+              <h2>Hi ${firstName}!</h2>
+              <p>Here's your login link for Ephraim Care:</p>
+              <p><a href="${linkData.properties.action_link}" style="background-color:#66BB6A;color:white;padding:12px 24px;text-decoration:none;border-radius:8px;display:inline-block;">Access My Account</a></p>
+              <p>If the button doesn't work, copy this link: ${linkData.properties.action_link}</p>
+              <br/>
+              <p style="color:#666;font-size:12px;">Powered by OpBros</p>
+            `,
+          }),
+        })
+      } catch (emailErr) {
+        console.error('Resend invite email failed:', emailErr)
+      }
     }
 
     return NextResponse.json({ success: true })
