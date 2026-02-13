@@ -1,0 +1,23 @@
+---
+name: ui-ux-design
+description: Expert guidance for ui ux design. Use when tasks involve ui ux design.
+---
+
+# ui ux design
+
+## Overview
+
+This is a starter skill for ui ux design. It provides the structure for the agent to follow.
+
+## How to Expand This Skill
+
+Ask the agent: "Use the skill-creator skill to build a comprehensive ui-ux-design skill"
+
+Or install community skills:
+- `npx antigravity-awesome-skills` (700+ skills)
+- `/plugin marketplace add anthropics/skills` (official Anthropic skills)
+
+## Quick References
+
+- https://github.com/anthropics/skills
+- https://github.com/sickn33/antigravity-awesome-skills

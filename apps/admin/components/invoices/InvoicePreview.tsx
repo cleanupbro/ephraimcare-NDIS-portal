@@ -46,7 +46,7 @@ export function InvoicePreview({ invoice }: InvoicePreviewProps) {
               </Badge>
               {isFinalized && invoice.finalized_at && (
                 <span className="text-xs text-muted-foreground">
-                  Finalized {format(new Date(invoice.finalized_at), 'dd/MM/yyyy HH:mm')}
+                  Finalized {format(new Date(invoice.finalized_at + (invoice.finalized_at.includes(' ') ? ' UTC' : '')), 'dd/MM/yyyy HH:mm')}
                 </span>
               )}
             </div>
@@ -56,10 +56,10 @@ export function InvoicePreview({ invoice }: InvoicePreviewProps) {
               {invoice.invoice_number}
             </p>
             <p className="mt-1 text-sm text-muted-foreground">
-              Date: {format(new Date(invoice.invoice_date), 'dd MMMM yyyy')}
+              Date: {format(new Date(invoice.invoice_date + (invoice.invoice_date.includes(' ') ? ' UTC' : '')), 'dd MMMM yyyy')}
             </p>
             <p className="text-sm text-muted-foreground">
-              Period: {format(new Date(invoice.period_start), 'dd/MM/yyyy')} - {format(new Date(invoice.period_end), 'dd/MM/yyyy')}
+              Period: {format(new Date(invoice.period_start + (invoice.period_start.includes(' ') ? ' UTC' : '')), 'dd/MM/yyyy')} - {format(new Date(invoice.period_end + (invoice.period_end.includes(' ') ? ' UTC' : '')), 'dd/MM/yyyy')}
             </p>
           </div>
         </div>

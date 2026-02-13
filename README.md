@@ -187,6 +187,21 @@ ephraimcare-portal/
     └── milestones/         # Archived milestone records
 ```
 
+### Workspace Intelligence
+
+This project uses a standardized workspace layout for AI agents.
+
+| Folder | What's Inside |
+|--------|--------------|
+| `memory/` | Persistent context — survives between sessions (project identity, decisions, lessons, stack, deployment links) |
+| `skills/` | Agent skills library — modular SKILL.md files agents load dynamically for specialized tasks |
+| `api-keys/` | API key registry — documents what keys are needed, where to get them (never actual values) |
+| `docs/` | Documentation and architecture decision records |
+
+**Memory & Skills:**
+- **Memory:** `memory/context.md` (What/Why), `stack.md` (Tech), `decisions.md` (Log), `lessons.md` (Learnings).
+- **Skills:** `skills/` contains `SKILL.md` files that teach agents specialized tasks.
+
 ---
 
 ## Features by App

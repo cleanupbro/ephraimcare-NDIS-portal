@@ -1,10 +1,26 @@
 # GEMINI PROTOCOL: EphraimCare Portal v2
 *Strategic Intelligence for the Ephraim Care NDIS Portal monorepo.*
 
+# GEMINI PROTOCOL: EphraimCare Portal v2
+*Strategic Intelligence for the Ephraim Care NDIS Portal monorepo.*
+
 ## FIRST COMMANDS (ALWAYS)
 1. Read this file — understand project structure
 2. Read the relevant `README.md` in the folder you're working in
 3. Check `CLIENT_TEST_GUIDE.md` for live URLs and credentials
+4. **Always use github repo for pushing: https://github.com/cleanupbro/ephraimcare-NDIS-portal**
+
+## ON EVERY SESSION START (Standard Workspace)
+1. Read `AGENTS.md` and follow all rules.
+2. Read every file in `memory/`
+3. Read `progress.md`
+4. Scan `skills/README.md` for available skills
+
+## ON EVERY SESSION END
+1. Update `progress.md` with what was done
+2. Append any decisions to `memory/decisions.md`
+3. Append any lessons to `memory/lessons.md`
+4. Update `memory/stack.md` or `memory/deployment.md` if anything changed
 
 ## PROJECT OVERVIEW
 
