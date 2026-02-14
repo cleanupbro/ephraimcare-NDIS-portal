@@ -66,8 +66,8 @@
 | **NDIS Plans** | `/plans` | ✅ PASS | 2 plans: Alice Johnson (PLAN-2026-001), Bob Smith (PLAN-2026-002). Budget breakdowns visible |
 | **Invoices** | `/invoices` | ✅ PASS | 2 invoices: INV-202601-0001 ($340.00, Pending), INV-202601-0002 ($360.00, Draft) |
 | **Case Notes** | `/case-notes` | ✅ PASS | Empty state: "No case notes yet" — correct behavior |
-| **Incidents** | `/incidents` | ✅ PASS | Empty state: "No incidents found". Filters for Status/Severity/Type functional |
-| **Compliance** | `/compliance` | ✅ PASS | Compliance Health Score: 80% (Excellent). Worker Compliance: 100%. Donut chart functional |
+| **Incidents** | `/incidents` | ✅ PASS | Empty state: "No incidents found". Filters for Status/Severity/Type functional. **DB table created Feb 15** |
+| **Compliance** | `/compliance` | ✅ PASS | Compliance Health Score displayed. Worker Compliance tracking with NDIS/WWCC/First Aid expiry |
 | **Cancellations** | `/cancellation-requests` | ✅ PASS | Empty state: "No pending cancellation requests" — **BUG FIXED** (was stuck on "Loading..." on Feb 6) |
 | **Settings** | `/settings` | ✅ PASS | Profile: Ephraim Admin, Role: admin. Organization ID and Change Password visible |
 
@@ -83,10 +83,10 @@
 | Page | URL | Status | Data Observed |
 |------|-----|--------|---------------|
 | **Login** | `/login` | ✅ PASS | Email/Password fields, Password + Magic Link tabs, Sign In button — login successful |
-| **Dashboard** | `/dashboard` | ✅ PASS | Welcome message, NDIS number in sidebar (431999999), Budget Status, Plan Period, Upcoming Appointments sections |
-| **Appointments** | `/appointments` | ✅ PASS | "Upcoming Appointments" heading loads correctly |
-| **Invoices** | `/invoices` | ✅ PASS | "View and download your finalized invoices" — page loads correctly |
-| **Profile** | `/profile` | ✅ PASS | Profile heading loads, sidebar shows participant name + NDIS number |
+| **Dashboard** | `/dashboard` | ✅ PASS | Welcome message, NDIS number in sidebar (431999999), Budget Status, Plan Period, Upcoming Appointments. **Query fix applied Feb 15** |
+| **Appointments** | `/appointments` | ✅ PASS | "No Upcoming Appointments" with helpful messaging. Cancellation request info shown |
+| **Invoices** | `/invoices` | ✅ PASS | "No invoices yet" — page loads correctly. Invoice columns fixed in DB (Feb 15) |
+| **Profile** | `/profile` | ✅ PASS | Full profile: name, NDIS#, DOB, email, phone, address, emergency contact, notes |
 
 **Result: 4/4 pages working — 0 bugs found**
 
@@ -127,6 +127,13 @@
 | 1 | Admin | Cancellations | API error loading cancellation_requests — page stuck on "Loading..." | Feb 6, 2026 | ✅ **FIXED** |
 | 2 | Participant | Profile | Profile data cards load empty — API 400 error | Feb 6, 2026 | ✅ **FIXED** — Profile page loads correctly (Feb 15) |
 | 3 | Participant | All Pages | Vercel deployment `DEPLOYMENT_NOT_FOUND` | Feb 12, 2026 | ✅ **FIXED** — Portal redeployed and verified live (Feb 15) |
+| 4 | Admin | Incidents | 404 error — `incidents` table missing from database | Feb 15, 2026 | ✅ **FIXED** — Table created with RLS + indexes |
+| 5 | Admin | Incidents | 400 error — FK referenced `auth.users` instead of `public.profiles` | Feb 15, 2026 | ✅ **FIXED** — FKs updated to `profiles` table |
+| 6 | Admin | Compliance | Missing `first_aid_expiry` column on `workers` table | Feb 15, 2026 | ✅ **FIXED** — Column added via migration |
+| 7 | Admin | RLS | `service_agreement_items` had RLS enabled but zero policies (locked out) | Feb 15, 2026 | ✅ **FIXED** — 2 RLS policies added |
+| 8 | Participant | Dashboard | 400 error — queried `status=eq.active` but column is `is_current` (boolean) | Feb 15, 2026 | ✅ **FIXED** — Hook updated to use `is_current` |
+| 9 | Participant | Dashboard | Build error — `used_budget` property removed but still referenced in page | Feb 15, 2026 | ✅ **FIXED** — Page component updated |
+| 10 | Participant | Invoices | Missing DB columns: `period_start`, `period_end`, `support_type`, `billable_minutes` | Feb 15, 2026 | ✅ **FIXED** — Columns added via migration |
 
 ---
 

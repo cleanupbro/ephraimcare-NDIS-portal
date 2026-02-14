@@ -10,6 +10,21 @@ Format:
 
 ---
 
+### 2026-02-15 — PostgREST FK Joins Require FKs to public Schema Tables
+**What happened:** Created `incidents` table with `reported_by` FK pointing to `auth.users(id)`. The hook tried to join via `reporter:profiles!reported_by(first_name, last_name)` which requires a FK to `public.profiles`, not `auth.users`.
+**Outcome:** 400 error on the incidents page. Fixed by dropping and recreating FKs to reference `public.profiles(id)`.
+**Lesson:** Supabase PostgREST FK joins (`table!fk_column(...)`) only work when the FK points to a table in the `public` schema. Always FK to `public.profiles`, never directly to `auth.users`, when you need joined data.
+
+### 2026-02-15 — Always Update ALL Consumers When Changing a Hook's Type Interface
+**What happened:** Fixed `use-participant-dashboard.ts` by removing `used_budget` and `status` from the type (replaced with `is_current`). But forgot to update `dashboard/page.tsx` which still referenced `plan?.used_budget`.
+**Outcome:** Participant portal build failed on Vercel. Required a follow-up commit to fix.
+**Lesson:** When changing a React Query hook's return type, grep for all usages of removed fields across the codebase before committing. A type change in a hook ripples to every component that consumes it.
+
+### 2026-02-15 — RLS Enabled + Zero Policies = Complete Lockout
+**What happened:** `service_agreement_items` table had RLS enabled but zero policies. This means ALL queries are blocked — the table is completely inaccessible.
+**Outcome:** Added admin ALL + org member SELECT policies.
+**Lesson:** After enabling RLS on a new table, always verify at least one policy exists. Use the health check query: `SELECT tablename FROM pg_tables WHERE schemaname='public' AND tablename NOT IN (SELECT tablename FROM pg_policies WHERE schemaname='public')`.
+
 ### 2026-02-15 — Participant Portal Was Reported DOWN But Was Actually Live
 **What happened:** CLIENT_TEST_GUIDE.md and HANDOVER.md both said participant portal was down with DEPLOYMENT_NOT_FOUND. This was stale info from Feb 12 — the portal had already been redeployed on Feb 14.
 **Outcome:** Wasted investigation time before discovering it was already working.

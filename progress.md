@@ -25,6 +25,14 @@
 | 15 | Filled all memory/ files with real data (stack, deployment, lessons, decisions) | 2026-02-15 |
 | 16 | Updated CLAUDE.md with handover-ready status section | 2026-02-15 |
 | 17 | Rewrote GEMINI.md — fixed duplicate header, added credentials/status/key files | 2026-02-15 |
+| 18 | Created `incidents` table (22 columns, indexes, RLS, trigger) — fixed admin Incidents page | 2026-02-15 |
+| 19 | Fixed incidents FK to reference `public.profiles` instead of `auth.users` | 2026-02-15 |
+| 20 | Added `first_aid_expiry` column to `workers` table for compliance tracking | 2026-02-15 |
+| 21 | Fixed `service_agreement_items` RLS — added 2 missing policies (was locked out) | 2026-02-15 |
+| 22 | Fixed participant dashboard `ndis_plans` query (`is_current` not `status`) | 2026-02-15 |
+| 23 | Added missing invoice columns (`period_start`, `period_end`, `support_type`, `billable_minutes`) | 2026-02-15 |
+| 24 | Fixed participant dashboard build error (`used_budget` removed from type) | 2026-02-15 |
+| 25 | Full re-verification — Admin 11/11 PASS (0 errors), Participant 4/4 PASS (0 errors) | 2026-02-15 |
 
 ## In Progress
 
@@ -39,13 +47,15 @@
 | # | Task | Priority |
 |---|------|----------|
 | 1 | Fix invoice detail page date parsing bug | MEDIUM |
-| 2 | Share Participant Portal URL with clients | LOW (client action) |
-| 3 | Provide workers with Expo app instructions | LOW (client action) |
+| 2 | Wire up budget usage calculation (sum invoices against plan) | LOW |
+| 3 | Share Participant Portal URL with clients | LOW (client action) |
+| 4 | Provide workers with Expo app instructions | LOW (client action) |
 
 ## Session Log
 
 | Date | Agent | What Was Done |
 |------|-------|---------------|
+| 2026-02-15 | Claude Opus 4.6 | DB fixes + full re-verification: Created incidents table, fixed FK references, added first_aid_expiry to workers, fixed service_agreement_items RLS (2 policies), fixed participant dashboard ndis_plans query (is_current not status), added 4 missing invoice columns, fixed used_budget build error. Re-tested both portals: Admin 11/11 PASS, Participant 4/4 PASS — zero console errors across all pages. 5 Supabase migrations applied. |
 | 2026-02-15 | Claude Opus 4.6 | Full workspace documentation pass: Rewrote HANDOVER.md (823 lines), created all 13 README.md files, filled all memory/ files, updated CLAUDE.md + GEMINI.md with handover-ready status. Fixed participant README stale deployment info. All tasks complete. |
 | 2026-02-15 | Claude Opus 4.6 | Full portal verification via Playwright: Admin Portal 11/11 pages PASS, Participant Portal 4/4 pages PASS. Updated CLIENT_TEST_GUIDE.md — removed all "deployment down" warnings, added participant portal test results, marked bugs #2 and #3 as FIXED. Updated progress.md. Project is HANDOVER READY. |
 | 2026-02-13 | Claude Opus 4.6 | Fixed participant profile, fixed resend-invite email, verified DB migration, captured 22 screenshots, updated HANDOVER.md v1.1, pushed to main. Participant portal deploy blocked by Vercel project config. |
