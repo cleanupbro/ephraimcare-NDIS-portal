@@ -48,4 +48,5 @@ Same Supabase vars as root `.env.local`. The participant portal uses the same Su
 
 ## Deployment
 
-Not yet deployed. Needs a separate Vercel project pointing to `apps/participant/` as root directory.
+**Live URL:** https://ephraimcare-participant-portal.vercel.app
+Deployed on Vercel as a separate project (`ephraimcare-participant-portal`) with root directory `apps/participant/`. Auto-deploys on push to `main`.

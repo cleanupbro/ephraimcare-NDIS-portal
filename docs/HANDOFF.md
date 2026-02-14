@@ -50,7 +50,7 @@ A complete **NDIS management platform** with 3 applications:
 | App | Type | Purpose | Status |
 |-----|------|---------|--------|
 | **Admin Portal** | Web (Next.js) | Staff management of participants, workers, shifts, invoices | ✅ LIVE |
-| **Participant Portal** | Web (Next.js) | Participants view their plan, invoices, appointments | 🔧 Needs deployment |
+| **Participant Portal** | Web (Next.js) | Participants view their plan, invoices, appointments | ✅ LIVE |
 | **Worker Mobile App** | Mobile (Expo) | GPS check-in/out, case notes, shift management | 📱 Expo Go ready |
 
 ### Features Completed (13 Phases)
@@ -80,12 +80,13 @@ A complete **NDIS management platform** with 3 applications:
 | Application | URL | Status |
 |-------------|-----|--------|
 | **Admin Portal** | https://ephraimcare-ndis-portal-admin.vercel.app | ✅ LIVE |
-| **Participant Portal** | *Needs separate Vercel deployment* | 🔧 Pending |
+| **Participant Portal** | https://ephraimcare-participant-portal.vercel.app | ✅ LIVE |
 | **GitHub Repository** | https://github.com/cleanupbro/ephraimcare-NDIS-portal | ✅ Public |
 
-### Vercel Dashboard
+### Vercel Dashboards
 
-- **Project**: https://vercel.com/sams-projects-3dc6d62d/ephraimcare-ndis-portal-admin
+- **Admin Portal**: https://vercel.com/sams-projects-3dc6d62d/ephraimcare-ndis-portal-admin
+- **Participant Portal**: https://vercel.com/sams-projects-3dc6d62d/ephraimcare-participant-portal
 - **Deployments**: Auto-deploy on push to `main` branch
 
 ---
