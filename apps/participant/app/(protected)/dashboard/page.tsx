@@ -52,7 +52,7 @@ export default function DashboardPage() {
       {/* Budget Hero - large progress bar */}
       <BudgetHero
         allocated={plan?.total_budget ?? 0}
-        used={plan?.used_budget ?? 0}
+        used={0}
       />
 
       {/* Two column grid: Plan info | Upcoming appointments */}
