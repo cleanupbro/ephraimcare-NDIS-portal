@@ -15,8 +15,7 @@ interface DashboardData {
     start_date: string
     end_date: string
     total_budget: number
-    used_budget: number
-    status: string
+    is_current: boolean
   } | null
   upcomingShifts: Array<{
     id: string
@@ -51,9 +50,9 @@ export function useParticipantDashboard() {
       // Get active NDIS plan (may not exist)
       const { data: plan } = await (supabase
         .from('ndis_plans')
-        .select('id, start_date, end_date, total_budget, used_budget, status')
+        .select('id, start_date, end_date, total_budget, is_current')
         .eq('participant_id', participant.id)
-        .eq('status', 'active')
+        .eq('is_current', true)
         .maybeSingle() as any)
 
       // Get upcoming shifts (next 5, status = scheduled/confirmed)
