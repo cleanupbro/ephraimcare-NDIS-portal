@@ -1,6 +1,6 @@
 # Progress
 
-> Last updated: 2026-02-15
+> Last updated: 2026-02-16
 
 ## 🟢 Status: HANDOVER READY
 
@@ -33,6 +33,8 @@
 | 23 | Added missing invoice columns (`period_start`, `period_end`, `support_type`, `billable_minutes`) | 2026-02-15 |
 | 24 | Fixed participant dashboard build error (`used_budget` removed from type) | 2026-02-15 |
 | 25 | Full re-verification — Admin 11/11 PASS (0 errors), Participant 4/4 PASS (0 errors) | 2026-02-15 |
+| 26 | Created `client-handover/` folder with 6 guides + screenshots for Meshach | 2026-02-16 |
+| 27 | Password management audit — documented Change Password (non-functional), Reset Password (partial), Supabase workarounds | 2026-02-16 |
 
 ## In Progress
 
@@ -55,6 +57,7 @@
 
 | Date | Agent | What Was Done |
 |------|-------|---------------|
+| 2026-02-16 | Claude Opus 4.6 | Final handover prep: Created `client-handover/` folder with 6 files (Quick Start, Admin Guide, Participant Guide, Password Management, Support & Costs, Test Results). Copied 22 screenshots. Audited password code — confirmed Change Password button is non-functional, Reset Password sends email but callback route missing. Documented all limitations with Supabase dashboard workarounds for Meshach. |
 | 2026-02-15 | Claude Opus 4.6 | DB fixes + full re-verification: Created incidents table, fixed FK references, added first_aid_expiry to workers, fixed service_agreement_items RLS (2 policies), fixed participant dashboard ndis_plans query (is_current not status), added 4 missing invoice columns, fixed used_budget build error. Re-tested both portals: Admin 11/11 PASS, Participant 4/4 PASS — zero console errors across all pages. 5 Supabase migrations applied. |
 | 2026-02-15 | Claude Opus 4.6 | Full workspace documentation pass: Rewrote HANDOVER.md (823 lines), created all 13 README.md files, filled all memory/ files, updated CLAUDE.md + GEMINI.md with handover-ready status. Fixed participant README stale deployment info. All tasks complete. |
 | 2026-02-15 | Claude Opus 4.6 | Full portal verification via Playwright: Admin Portal 11/11 pages PASS, Participant Portal 4/4 pages PASS. Updated CLIENT_TEST_GUIDE.md — removed all "deployment down" warnings, added participant portal test results, marked bugs #2 and #3 as FIXED. Updated progress.md. Project is HANDOVER READY. |
