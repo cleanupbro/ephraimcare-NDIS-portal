@@ -44,6 +44,7 @@
 | 34 | Updated `06-TEST-RESULTS.md` — 20/20 tests pass, access control section, mobile app feature review | 2026-02-16 |
 | 35 | Final pre-handover Playwright test — Admin 12/12 PASS, Participant 4/4 PASS (all data verified) | 2026-02-16 |
 | 36 | Created `00-PRESENTATION-SCRIPT.md` — 8-part demo script with LOC stats, cost comparisons, talking points | 2026-02-16 |
+| 37 | Deleted old handover files (`HANDOVER.md`, `HANDOVER_CHECKLIST.md`, `CLIENT_TEST_GUIDE.md`) — replaced by `client-handover/` | 2026-02-16 |
 
 ## In Progress
 
