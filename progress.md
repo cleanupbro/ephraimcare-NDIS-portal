@@ -42,6 +42,8 @@
 | 32 | Created `07-STAFF-MANAGEMENT-GUIDE.md` — full worker lifecycle (invite, compliance, shifts, invoicing) | 2026-02-16 |
 | 33 | Created `08-WORKER-APP-SETUP.md` — Expo Go setup, GPS clock in/out, case notes, troubleshooting | 2026-02-16 |
 | 34 | Updated `06-TEST-RESULTS.md` — 20/20 tests pass, access control section, mobile app feature review | 2026-02-16 |
+| 35 | Final pre-handover Playwright test — Admin 12/12 PASS, Participant 4/4 PASS (all data verified) | 2026-02-16 |
+| 36 | Created `00-PRESENTATION-SCRIPT.md` — 8-part demo script with LOC stats, cost comparisons, talking points | 2026-02-16 |
 
 ## In Progress
 
@@ -64,6 +66,7 @@
 
 | Date | Agent | What Was Done |
 |------|-------|---------------|
+| 2026-02-16 | Claude Opus 4.6 | Presentation prep: Created `00-PRESENTATION-SCRIPT.md` with 8-part demo script, project stats (34,886 LOC, 303 files, 291 commits, 24 days), agency cost comparison ($80K-$150K saved), SaaS comparison ($6K-$12K/year saved, $45K+ over 5 years), and emergency cheat sheet. Final Playwright sweep: Admin 12/12 PASS, Participant 4/4 PASS — all data verified live. |
 | 2026-02-16 | Claude Opus 4.6 | Final handover prep + E2E testing: Created `client-handover/` folder with 8 files (Quick Start, Admin Guide, Participant Guide, Password Management, Support & Costs, Test Results, Staff Management Guide, Worker App Setup). Copied 22 screenshots. Playwright E2E: Admin 12/12 PASS, Participant 4/4 PASS with live data verification. Access control: worker blocked from both web portals (correct). Coordinator login verified. Worker mobile app code review: 13 features built (GPS check-in 500m radius, case notes 24h window, offline sync, timer bar, biometrics, push notifications). Password audit: Change Password non-functional, Reset Password callback missing. All documented with Supabase workarounds. |
 | 2026-02-15 | Claude Opus 4.6 | DB fixes + full re-verification: Created incidents table, fixed FK references, added first_aid_expiry to workers, fixed service_agreement_items RLS (2 policies), fixed participant dashboard ndis_plans query (is_current not status), added 4 missing invoice columns, fixed used_budget build error. Re-tested both portals: Admin 11/11 PASS, Participant 4/4 PASS — zero console errors across all pages. 5 Supabase migrations applied. |
 | 2026-02-15 | Claude Opus 4.6 | Full workspace documentation pass: Rewrote HANDOVER.md (823 lines), created all 13 README.md files, filled all memory/ files, updated CLAUDE.md + GEMINI.md with handover-ready status. Fixed participant README stale deployment info. All tasks complete. |
