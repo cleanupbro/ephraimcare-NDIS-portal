@@ -1,3 +1,14 @@
+<!-- CLAWD_REPO_LABEL_START -->
+## Repository Ownership & Purpose
+
+- **Repository:** `cleanupbro/ephraimcare-NDIS-portal`
+- **Owner:** **cleanupbro**
+- **Visibility:** **Public**
+- **Purpose:** Monorepo for Ephraim Care’s NDIS portal, integrating ephraimcare.com.au with a secure web app for participant onboarding, plan and funding views, service booking workflows, and internal care team tools across Liverpool and Western Sydney.
+- **Maintainer Note:** This README is labeled for clear ownership and repository intent.
+
+<!-- CLAWD_REPO_LABEL_END -->
+
 ```
 ┌──────────────────────────────────────────────────────────────────────────────┐
 │                                                                              │
