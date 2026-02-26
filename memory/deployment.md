@@ -54,6 +54,9 @@ pnpm turbo build --filter=@ephraimcare/participant
 ```
 
 ## Last Verified
-- Admin Portal: LIVE, 11/11 pages PASS (Feb 15, 2026)
-- Participant Portal: LIVE, 4/4 pages PASS (Feb 15, 2026)
-- All known bugs: FIXED
+- Admin Portal: LIVE, 12/12 pages PASS (Feb 16, 2026) — Playwright E2E with data verification
+- Participant Portal: LIVE, 4/4 pages PASS (Feb 16, 2026) — full profile data confirmed
+- Access Control: Worker blocked from Admin + Participant portals (correct)
+- Coordinator: sarah@ephraimcare.com.au has full admin portal access
+- All known bugs: FIXED (10/10)
+- Total tests: 20/20 PASS

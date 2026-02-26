@@ -1,0 +1,38 @@
+[   39908ms] Error: Minified React error #418; visit https://react.dev/errors/418?args[]=text&args[]= for the full message or use the non-minified dev environment for full errors and additional helpful warnings.
+    at rD (https://ephraimcare-ndis-portal-admin.vercel.app/_next/static/chunks/87c73c54-09e1ba5c70e60a51.js:1:35060)
+    at https://ephraimcare-ndis-portal-admin.vercel.app/_next/static/chunks/87c73c54-09e1ba5c70e60a51.js:1:119649
+    at ix (https://ephraimcare-ndis-portal-admin.vercel.app/_next/static/chunks/87c73c54-09e1ba5c70e60a51.js:1:122953)
+    at ik (https://ephraimcare-ndis-portal-admin.vercel.app/_next/static/chunks/87c73c54-09e1ba5c70e60a51.js:1:114741)
+    at https://ephraimcare-ndis-portal-admin.vercel.app/_next/static/chunks/87c73c54-09e1ba5c70e60a51.js:1:110728
+    at iu (https://ephraimcare-ndis-portal-admin.vercel.app/_next/static/chunks/87c73c54-09e1ba5c70e60a51.js:1:110829)
+    at iX (https://ephraimcare-ndis-portal-admin.vercel.app/_next/static/chunks/87c73c54-09e1ba5c70e60a51.js:1:132932)
+    at MessagePort.w (https://ephraimcare-ndis-portal-admin.vercel.app/_next/static/chunks/18-a1a838a171ca5a88.js:1:44411)
+[   42797ms] Error: Minified React error #418; visit https://react.dev/errors/418?args[]=text&args[]= for the full message or use the non-minified dev environment for full errors and additional helpful warnings.
+    at rD (https://ephraimcare-ndis-portal-admin.vercel.app/_next/static/chunks/87c73c54-09e1ba5c70e60a51.js:1:35060)
+    at rO (https://ephraimcare-ndis-portal-admin.vercel.app/_next/static/chunks/87c73c54-09e1ba5c70e60a51.js:1:36093)
+    at https://ephraimcare-ndis-portal-admin.vercel.app/_next/static/chunks/87c73c54-09e1ba5c70e60a51.js:1:118081
+    at ix (https://ephraimcare-ndis-portal-admin.vercel.app/_next/static/chunks/87c73c54-09e1ba5c70e60a51.js:1:122953)
+    at ik (https://ephraimcare-ndis-portal-admin.vercel.app/_next/static/chunks/87c73c54-09e1ba5c70e60a51.js:1:114741)
+    at https://ephraimcare-ndis-portal-admin.vercel.app/_next/static/chunks/87c73c54-09e1ba5c70e60a51.js:1:110728
+    at iu (https://ephraimcare-ndis-portal-admin.vercel.app/_next/static/chunks/87c73c54-09e1ba5c70e60a51.js:1:110829)
+    at iX (https://ephraimcare-ndis-portal-admin.vercel.app/_next/static/chunks/87c73c54-09e1ba5c70e60a51.js:1:132932)
+    at MessagePort.w (https://ephraimcare-ndis-portal-admin.vercel.app/_next/static/chunks/18-a1a838a171ca5a88.js:1:44411)
+[   83497ms] Error: Minified React error #418; visit https://react.dev/errors/418?args[]=text&args[]= for the full message or use the non-minified dev environment for full errors and additional helpful warnings.
+    at rD (https://ephraimcare-ndis-portal-admin.vercel.app/_next/static/chunks/87c73c54-09e1ba5c70e60a51.js:1:35060)
+    at https://ephraimcare-ndis-portal-admin.vercel.app/_next/static/chunks/87c73c54-09e1ba5c70e60a51.js:1:119649
+    at ix (https://ephraimcare-ndis-portal-admin.vercel.app/_next/static/chunks/87c73c54-09e1ba5c70e60a51.js:1:122953)
+    at ik (https://ephraimcare-ndis-portal-admin.vercel.app/_next/static/chunks/87c73c54-09e1ba5c70e60a51.js:1:114741)
+    at https://ephraimcare-ndis-portal-admin.vercel.app/_next/static/chunks/87c73c54-09e1ba5c70e60a51.js:1:110728
+    at iu (https://ephraimcare-ndis-portal-admin.vercel.app/_next/static/chunks/87c73c54-09e1ba5c70e60a51.js:1:110829)
+    at iX (https://ephraimcare-ndis-portal-admin.vercel.app/_next/static/chunks/87c73c54-09e1ba5c70e60a51.js:1:132932)
+    at MessagePort.w (https://ephraimcare-ndis-portal-admin.vercel.app/_next/static/chunks/18-a1a838a171ca5a88.js:1:44411)
+[   85290ms] Error: Minified React error #418; visit https://react.dev/errors/418?args[]=text&args[]= for the full message or use the non-minified dev environment for full errors and additional helpful warnings.
+    at rD (https://ephraimcare-ndis-portal-admin.vercel.app/_next/static/chunks/87c73c54-09e1ba5c70e60a51.js:1:35060)
+    at rO (https://ephraimcare-ndis-portal-admin.vercel.app/_next/static/chunks/87c73c54-09e1ba5c70e60a51.js:1:36093)
+    at https://ephraimcare-ndis-portal-admin.vercel.app/_next/static/chunks/87c73c54-09e1ba5c70e60a51.js:1:118081
+    at ix (https://ephraimcare-ndis-portal-admin.vercel.app/_next/static/chunks/87c73c54-09e1ba5c70e60a51.js:1:122953)
+    at ik (https://ephraimcare-ndis-portal-admin.vercel.app/_next/static/chunks/87c73c54-09e1ba5c70e60a51.js:1:114741)
+    at https://ephraimcare-ndis-portal-admin.vercel.app/_next/static/chunks/87c73c54-09e1ba5c70e60a51.js:1:110728
+    at iu (https://ephraimcare-ndis-portal-admin.vercel.app/_next/static/chunks/87c73c54-09e1ba5c70e60a51.js:1:110829)
+    at iX (https://ephraimcare-ndis-portal-admin.vercel.app/_next/static/chunks/87c73c54-09e1ba5c70e60a51.js:1:132932)
+    at MessagePort.w (https://ephraimcare-ndis-portal-admin.vercel.app/_next/static/chunks/18-a1a838a171ca5a88.js:1:44411)

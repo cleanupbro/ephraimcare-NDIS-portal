@@ -45,7 +45,45 @@ Format:
 **Outcome:** Fixed the API route and database query. Page now loads correctly.
 **Lesson:** Always handle API errors gracefully — show "No data" instead of hanging on "Loading..." forever. Empty state is better than infinite loading.
 
+### 2026-02-16 — Playwright Error Detection False Positives
+**What happened:** Checked for "500" in page body text to detect server errors. Matched dollar amounts like "$500" and "500MB" on every page.
+**Outcome:** All pages falsely reported as having errors. Had to re-run the entire test suite.
+**Lesson:** Never use generic status codes as body text matchers. Use precise selectors: `text="Application error"`, `text="Internal Server Error"`, `#__next-error`. Or check `response.status()` instead of body content.
+
+### 2026-02-16 — Playwright Login Requires networkidle Wait
+**What happened:** After filling login form and clicking submit, `page.waitForURL` timed out because the redirect hadn't completed.
+**Outcome:** Test failed at login step.
+**Lesson:** After Supabase auth login, use `page.waitForLoadState('networkidle')` with a generous timeout (15s+). Supabase auth redirects involve multiple hops (auth callback → dashboard).
+
+### 2026-02-16 — Stale Playwright Snapshot Refs
+**What happened:** After navigating to a new page, tried to click an element using a ref from a previous snapshot. Got "Ref e8 not found".
+**Outcome:** Had to take a fresh snapshot after each navigation.
+**Lesson:** Playwright MCP snapshot refs are invalidated on navigation. Always take a fresh `browser_snapshot` after `browser_navigate` or `browser_click` that triggers navigation.
+
+### 2026-02-16 — Cookie Clearing for Auth Testing
+**What happened:** Needed to test multiple user logins (admin → worker → coordinator). `signOut()` via API returned 404.
+**Outcome:** Used `page.context().clearCookies()` via `browser_run_code` instead.
+**Lesson:** For Playwright multi-user testing with Supabase, clear cookies directly via `page.context().clearCookies()` rather than calling the signOut API endpoint.
+
 ### 2026-02-06 — next lint Deprecated in Next.js 15
 **What happened:** Running `next lint` threw a deprecation warning. Next.js 15 no longer bundles its own ESLint integration.
 **Outcome:** Lint command needs to be migrated to standalone ESLint CLI.
 **Lesson:** When upgrading Next.js, check the migration guide for breaking changes in developer tooling, not just runtime APIs.
+
+### 2026-02-27 — Build: Missing dependency breaks all Vercel deployments silently
+**Context:** Admin portal Vercel builds were failing with `Module not found: Can't resolve 'sonner'` for weeks.
+**Problem:** `use-delete-shift.ts` imported `toast` from `sonner` (not in package.json). This broke every build but the live site still served the last working build — making it look like the site was fine but all changes were invisible.
+**Fix:** Replaced with the project's own `toast` from `@/lib/toast`. Required matching the different API signature: `toast({ title, variant })` not `toast.success(msg)`.
+**Rule:** ALWAYS check Vercel deployment status after pushing. Use the Vercel API (`EPHRAIM_VERCEL_API_KEY`) to poll deployment state. A 'READY' status ≠ your code is deployed — check the commit SHA. If state is 'ERROR', fetch & read the build logs immediately.
+
+### 2026-02-27 — Next.js: Client components don't render in RSC if import is broken
+**Context:** `AdminLogoutButton` was imported in the server layout but the file wasn't being compiled (build was broken).
+**Problem:** The sidebar HTML showed zero buttons because the `use client` component couldn't be bundled.
+**Fix:** Replaced with an inline Next.js server action `<form>` — renders as native HTML, no JS hydration required.
+**Rule:** When a UI element is missing from the live site's HTML, check Vercel build logs (not just the page). A broken bundle = no component renders.
+
+### 2026-02-27 — Dates: `new Date('YYYY-MM-DD')` is UTC midnight, not local midnight
+**Context:** Invoice dates displayed one day earlier in AEST (+11) timezone.
+**Problem:** `new Date('2026-02-15')` parses as UTC midnight → 2026-02-14 11:00 PM AEST.
+**Fix:** Always append `T00:00:00` when parsing date-only strings: `new Date('2026-02-15T00:00:00')`.
+**Rule:** When displaying date-only strings from Postgres, always append `T00:00:00` before passing to `new Date()`. Never use string concatenation to add ' UTC' — it's fragile and breaks for ISO timestamps.

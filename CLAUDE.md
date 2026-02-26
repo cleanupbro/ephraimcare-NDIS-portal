@@ -89,11 +89,11 @@ Every major folder has a README.md explaining its contents. Read these instead o
 | Worker invite + email | `apps/admin/app/api/workers/invite/route.ts` |
 | Email sender config | `apps/admin/lib/notifications/send-email.ts` |
 | Invoice calculations | `apps/admin/lib/invoices/calculations.ts` |
-| Database types | `packages/types/src/database.ts` |
-| Domain types | `packages/types/src/domain.ts` |
-| Shared constants | `packages/utils/src/constants.ts` |
-| Date utilities | `packages/utils/src/dates.ts` |
-| Root layout (admin) | `apps/admin/app/layout.tsx` |
+| Admin toast helper | `apps/admin/lib/toast.ts` |
+| Delete shift hook | `apps/admin/hooks/use-delete-shift.ts` |
+| Invoice preview | `apps/admin/components/invoices/InvoicePreview.tsx` |
+| Participant budget | `apps/participant/app/(protected)/dashboard/page.tsx` |
+| Protected layout + logout | `apps/admin/app/(protected)/layout.tsx` |
 | Auth middleware | `apps/admin/lib/supabase/middleware.ts` |
 | Env var template | `.env.production.example` |
 
@@ -141,24 +141,35 @@ Required in Vercel for each project:
 - All data fetching uses hooks in `hooks/` directory
 - Emails are fire-and-forget (never block the request)
 
-## PROJECT STATUS — HANDOVER READY
+## PROJECT STATUS — LIVE & MAINTAINED
 
-**Status:** HANDOVER READY (verified Feb 15, 2026)
+**Status:** LIVE (maintained Feb 27, 2026)
 
 | Item | Status |
 |------|--------|
-| Admin Portal (11 pages) | LIVE, all pages verified |
-| Participant Portal (4 pages) | LIVE, all pages verified |
+| Admin Portal (11 pages) | LIVE, 19/19 tests passing |
+| Participant Portal (4 pages) | LIVE, 4/4 tests passing |
 | Worker Mobile App | Built, testing via Expo Go |
-| All known bugs | FIXED |
-| Documentation | Complete — HANDOVER.md, CLIENT_TEST_GUIDE.md, all READMEs |
-| Memory files | Filled with real data |
-| Environment variables | Configured on Vercel |
+| Playwright E2E Tests | 23/23 PASS (admin auth, workflow, worker flow, participant) |
+| Invoice date parsing bug | FIXED (UTC shift → T00:00:00) |
+| Participant budget usage | FIXED (pulls from paid invoices) |
+| Admin logout | FIXED (server action form, renders without JS hydration) |
+| Vercel build | FIXED (removed illegal `sonner` import) |
+| Documentation | client-handover/ updated with 19 screenshots + plain-English guide |
 
-**What's NOT yet configured (optional):**
-- Twilio SMS integration (env vars not set)
-- Xero accounting sync (OAuth not connected)
-- Worker mobile app store publishing (using Expo Go for testing)
+**Run E2E tests:**
+```bash
+# Admin tests
+cd apps/admin && npx playwright test
+
+# Participant tests
+cd apps/participant && npx playwright test
+```
+
+**Take fresh screenshots:**
+```bash
+node take-screenshots.mjs  # saves to client-handover/screenshots/
+```
 
 ## CLIENT INFO
 - **Client:** Meshach (Ephraim Care)
