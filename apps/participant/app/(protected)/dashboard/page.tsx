@@ -36,7 +36,7 @@ export default function DashboardPage() {
     )
   }
 
-  const { plan, upcomingShifts } = data
+  const { plan, upcomingShifts, usedBudget } = data
   const isPlanExpired = plan && isPast(parseISO(plan.end_date))
   const hasNoPlan = !plan
 
@@ -52,7 +52,7 @@ export default function DashboardPage() {
       {/* Budget Hero - large progress bar */}
       <BudgetHero
         allocated={plan?.total_budget ?? 0}
-        used={0}
+        used={usedBudget}
       />
 
       {/* Two column grid: Plan info | Upcoming appointments */}

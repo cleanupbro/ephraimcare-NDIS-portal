@@ -18,6 +18,20 @@ interface InvoicePreviewProps {
   }
 }
 
+// Safely format a date string from Postgres (YYYY-MM-DD or ISO) without UTC shift issues
+function safeFormatDate(dateStr: string | null | undefined, fmt: string): string {
+  if (!dateStr) return '—'
+  try {
+    // Use T00:00:00 to parse as local midnight, not UTC midnight
+    const dateOnly = dateStr.split('T')[0].split(' ')[0]
+    const date = new Date(dateOnly + 'T00:00:00')
+    if (isNaN(date.getTime())) return '—'
+    return format(date, fmt)
+  } catch {
+    return '—'
+  }
+}
+
 export function InvoicePreview({ invoice }: InvoicePreviewProps) {
   const isDraft = invoice.status === 'draft'
   const isFinalized = invoice.status === 'submitted' || invoice.status === 'paid'
@@ -46,7 +60,7 @@ export function InvoicePreview({ invoice }: InvoicePreviewProps) {
               </Badge>
               {isFinalized && invoice.finalized_at && (
                 <span className="text-xs text-muted-foreground">
-                  Finalized {format(new Date(invoice.finalized_at + (invoice.finalized_at.includes(' ') ? ' UTC' : '')), 'dd/MM/yyyy HH:mm')}
+                  Finalized {safeFormatDate(invoice.finalized_at, 'dd/MM/yyyy')}
                 </span>
               )}
             </div>
@@ -56,10 +70,10 @@ export function InvoicePreview({ invoice }: InvoicePreviewProps) {
               {invoice.invoice_number}
             </p>
             <p className="mt-1 text-sm text-muted-foreground">
-              Date: {format(new Date(invoice.invoice_date + (invoice.invoice_date.includes(' ') ? ' UTC' : '')), 'dd MMMM yyyy')}
+              Date: {safeFormatDate(invoice.invoice_date, 'dd MMMM yyyy')}
             </p>
             <p className="text-sm text-muted-foreground">
-              Period: {format(new Date(invoice.period_start + (invoice.period_start.includes(' ') ? ' UTC' : '')), 'dd/MM/yyyy')} - {format(new Date(invoice.period_end + (invoice.period_end.includes(' ') ? ' UTC' : '')), 'dd/MM/yyyy')}
+              Period: {safeFormatDate(invoice.period_start, 'dd/MM/yyyy')} - {safeFormatDate(invoice.period_end, 'dd/MM/yyyy')}
             </p>
           </div>
         </div>

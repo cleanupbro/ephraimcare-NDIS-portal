@@ -17,6 +17,7 @@ interface DashboardData {
     total_budget: number
     is_current: boolean
   } | null
+  usedBudget: number
   upcomingShifts: Array<{
     id: string
     scheduled_start: string
@@ -83,7 +84,18 @@ export function useParticipantDashboard() {
         } : null,
       }))
 
-      return { participant, plan, upcomingShifts }
+      // Sum paid invoices to calculate budget usage
+      let usedBudget = 0
+      if (participant) {
+        const { data: paidInvoices } = await (supabase
+          .from('invoices')
+          .select('total')
+          .eq('participant_id', participant.id)
+          .in('status', ['submitted', 'paid']) as any)
+        usedBudget = (paidInvoices || []).reduce((sum: number, inv: any) => sum + (inv.total ?? 0), 0)
+      }
+
+      return { participant, plan, usedBudget, upcomingShifts }
     },
     staleTime: 60 * 1000, // 1 minute - data is mostly static
   })
