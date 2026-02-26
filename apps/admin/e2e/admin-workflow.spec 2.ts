@@ -89,14 +89,11 @@ test.describe('Admin Full E2E Workflow', () => {
     await page.getByRole('button', { name: /sign in/i }).click();
     await expect(page.getByRole('heading', { name: /Welcome back/i })).toBeVisible({ timeout: 20000 });
 
-    // Scroll Sign out button into view and click it (button may be near bottom of sidebar)
-    const signOutBtn = page.locator('button', { hasText: 'Sign out' });
-    await signOutBtn.scrollIntoViewIfNeeded();
-    await signOutBtn.click({ force: true });
+    // Click Sign out button
+    await page.click('button:has-text("Sign out")');
 
     // Should return to login page
     await expect(page.getByRole('heading', { name: /Ephraim Care/i })).toBeVisible({ timeout: 15000 });
     await expect(page).toHaveURL(/\/login/);
   });
 });
-

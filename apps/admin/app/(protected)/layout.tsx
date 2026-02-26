@@ -27,13 +27,13 @@ export default async function ProtectedLayout({
   return (
     <div className="flex min-h-screen">
       {/* Sidebar */}
-      <aside className="w-64 border-r border-border bg-card p-6">
+      <aside className="flex flex-col w-64 border-r border-border bg-card p-6">
         <div className="mb-8">
           <h2 className="font-heading text-lg font-bold text-primary">Ephraim Care</h2>
           <p className="text-xs text-muted-foreground">Admin Portal</p>
         </div>
 
-        <nav className="space-y-1">
+        <nav className="flex-1 overflow-y-auto space-y-1">
           <a href="/" className="block rounded-md px-3 py-2 text-sm hover:bg-accent">
             Dashboard
           </a>
