@@ -1,6 +1,5 @@
 import { redirect } from 'next/navigation'
 import { createClient } from '@/lib/supabase/server'
-import { AdminLogoutButton } from '@/components/auth/admin-logout-button'
 
 export default async function ProtectedLayout({
   children,
@@ -76,7 +75,19 @@ export default async function ProtectedLayout({
           <p className="text-xs font-medium capitalize text-secondary">
             {profile.role}
           </p>
-          <AdminLogoutButton />
+          <form action={async () => {
+            'use server'
+            const supabase = await createClient()
+            await supabase.auth.signOut()
+            redirect('/login')
+          }}>
+            <button
+              type="submit"
+              className="flex w-full items-center gap-2 rounded-md px-3 py-2 text-sm text-muted-foreground hover:bg-destructive/10 hover:text-destructive transition-colors mt-2"
+            >
+              Sign out
+            </button>
+          </form>
         </div>
       </aside>
 
