@@ -1,5 +1,6 @@
 import { redirect } from 'next/navigation'
 import { createClient } from '@/lib/supabase/server'
+import { AdminLogoutButton } from '@/components/auth/admin-logout-button'
 
 export default async function ProtectedLayout({
   children,
@@ -75,6 +76,7 @@ export default async function ProtectedLayout({
           <p className="text-xs font-medium capitalize text-secondary">
             {profile.role}
           </p>
+          <AdminLogoutButton />
         </div>
       </aside>
 

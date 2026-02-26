@@ -1,8 +1,9 @@
 'use client'
 
-import { usePathname, useRouter } from 'next/navigation'
+import { usePathname } from 'next/navigation'
 import { createClient } from '@/lib/supabase/client'
 import { LayoutDashboard, FileText, User, LogOut, Calendar } from 'lucide-react'
+import { useQueryClient } from '@tanstack/react-query'
 
 // ─── Types ────────────────────────────────────────────────────────────────────
 
@@ -35,13 +36,19 @@ const navItems = [
  */
 export function Sidebar({ participant }: SidebarProps) {
   const pathname = usePathname()
-  const router = useRouter()
+
+  const queryClient = useQueryClient()
 
   const handleLogout = async () => {
-    const supabase = createClient()
-    await supabase.auth.signOut()
-    router.push('/login')
-    router.refresh()
+    try {
+      const supabase = createClient()
+      await supabase.auth.signOut()
+    } catch (error) {
+      console.error('Logout error:', error)
+    } finally {
+      queryClient.clear()
+      window.location.href = '/login'
+    }
   }
 
   return (

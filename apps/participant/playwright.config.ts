@@ -9,7 +9,7 @@ export default defineConfig({
   timeout: 60_000,
   reporter: [['html', { open: 'never' }]],
   use: {
-    baseURL: 'https://ephraimcare-ndis-portal-admin.vercel.app',
+    baseURL: 'https://ephraimcare-participant-portal.vercel.app',
     trace: 'on',
     screenshot: 'on',
     video: 'on',

@@ -17,7 +17,7 @@ import {
   TabsTrigger,
   Skeleton,
 } from '@ephraimcare/ui'
-import { useState } from 'react'
+import { useState, useMemo } from 'react'
 import { useInvoices } from '@/hooks/use-invoices'
 import { INVOICE_STATUS_COLORS, type InvoiceStatusKey } from '@/lib/invoices/constants'
 import { formatCurrency } from '@/lib/invoices/calculations'
@@ -41,7 +41,27 @@ function safeFormatDate(dateStr: string | null | undefined): string {
 
 export default function InvoicesPage() {
   const [statusFilter, setStatusFilter] = useState<StatusFilter>('all')
+  const [currentPage, setCurrentPage] = useState(1)
+  const itemsPerPage = 10
+
   const { data: invoices, isLoading, error } = useInvoices({ status: statusFilter })
+
+  // Handle filter changes (reset page)
+  const handleFilterChange = (v: string) => {
+    setStatusFilter(v as StatusFilter)
+    setCurrentPage(1)
+  }
+
+  // Calculate pagination
+  const totalItems = invoices?.length ?? 0
+  const totalPages = Math.ceil(totalItems / itemsPerPage)
+  
+  const paginatedInvoices = useMemo(() => {
+    if (!invoices) return []
+    const start = (currentPage - 1) * itemsPerPage
+    const end = start + itemsPerPage
+    return invoices.slice(start, end)
+  }, [invoices, currentPage])
 
   // Get IDs of finalized invoices for CSV export
   const finalizedInvoiceIds = invoices
@@ -74,7 +94,7 @@ export default function InvoicesPage() {
       </div>
 
       {/* Status Filter Tabs */}
-      <Tabs value={statusFilter} onValueChange={(v) => setStatusFilter(v as StatusFilter)}>
+      <Tabs value={statusFilter} onValueChange={handleFilterChange}>
         <TabsList>
           <TabsTrigger value="all">All</TabsTrigger>
           <TabsTrigger value="draft">Draft</TabsTrigger>
@@ -118,9 +138,9 @@ export default function InvoicesPage() {
                   <p className="text-sm text-red-500">{error instanceof Error ? error.message : 'Unknown error'}</p>
                 </TableCell>
               </TableRow>
-            ) : invoices && invoices.length > 0 ? (
+            ) : paginatedInvoices && paginatedInvoices.length > 0 ? (
               // Invoice rows
-              invoices.map((invoice) => {
+              paginatedInvoices.map((invoice) => {
                 const statusConfig = INVOICE_STATUS_COLORS[invoice.status as InvoiceStatusKey] ?? INVOICE_STATUS_COLORS.draft
                 const participantName = invoice.participants
                   ? `${invoice.participants.first_name} ${invoice.participants.last_name}`
@@ -187,6 +207,42 @@ export default function InvoicesPage() {
           </TableBody>
         </Table>
       </div>
+
+      {/* Pagination Controls */}
+      {totalPages > 1 && (
+        <div className="flex items-center justify-between">
+          <p className="text-sm text-muted-foreground">
+            Showing <span className="font-medium">{((currentPage - 1) * itemsPerPage) + 1}</span> to{' '}
+            <span className="font-medium">
+              {Math.min(currentPage * itemsPerPage, totalItems)}
+            </span>{' '}
+            of <span className="font-medium">{totalItems}</span> invoices
+          </p>
+          <div className="flex items-center gap-2">
+            <Button
+              variant="outline"
+              size="sm"
+              onClick={() => setCurrentPage((p) => Math.max(1, p - 1))}
+              disabled={currentPage === 1}
+            >
+              Previous
+            </Button>
+            <div className="flex items-center gap-1">
+              <span className="text-sm font-medium border border-border rounded-md px-3 py-1.5 bg-background">
+                {currentPage} / {totalPages}
+              </span>
+            </div>
+            <Button
+              variant="outline"
+              size="sm"
+              onClick={() => setCurrentPage((p) => Math.min(totalPages, p + 1))}
+              disabled={currentPage === totalPages}
+            >
+              Next
+            </Button>
+          </div>
+        </div>
+      )}
     </div>
   )
 }

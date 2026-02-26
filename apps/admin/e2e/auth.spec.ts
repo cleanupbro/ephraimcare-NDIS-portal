@@ -3,7 +3,8 @@ import { test, expect } from '@playwright/test';
 test.describe('Authentication', () => {
   test('login page is accessible', async ({ page }) => {
     await page.goto('/login');
-    await expect(page.getByRole('heading', { name: /sign in/i })).toBeVisible();
+    await expect(page.getByRole('heading', { name: /Ephraim Care/i })).toBeVisible();
+    await expect(page.getByText('Admin Portal')).toBeVisible();
   });
 
   test('shows email and password fields', async ({ page }) => {
@@ -26,8 +27,8 @@ test.describe('Authentication', () => {
     await expect(page).toHaveURL(/\/login/);
   });
 
-  test('reset password page is accessible', async ({ page }) => {
-    await page.goto('/reset-password');
-    await expect(page.getByRole('heading', { name: /reset|password/i })).toBeVisible();
+  test('forgot password link is visible', async ({ page }) => {
+    await page.goto('/login');
+    await expect(page.getByText(/forgot your password/i)).toBeVisible();
   });
 });

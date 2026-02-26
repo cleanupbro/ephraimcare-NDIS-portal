@@ -21,6 +21,7 @@ import { format } from 'date-fns'
 import { Pencil, XCircle } from 'lucide-react'
 import { createClient } from '@/lib/supabase/client'
 import { useUpdateShift } from '@/hooks/use-update-shift'
+import { useDeleteShift } from '@/hooks/use-delete-shift'
 import { ShiftCancelDialog } from './shift-cancel-dialog'
 import { SHIFT_STATUS_COLORS, TIME_SLOTS, DURATION_PRESETS, type ShiftStatusKey } from '@/lib/shifts/constants'
 import type { ShiftWithRelations } from '@ephraimcare/types'
@@ -92,6 +93,7 @@ function extractDate(iso: string): string {
 export function ShiftDetailSheet({ shift, open, onClose }: ShiftDetailSheetProps) {
   const [isEditing, setIsEditing] = useState(false)
   const [showCancel, setShowCancel] = useState(false)
+  const [showDelete, setShowDelete] = useState(false)
   const [workers, setWorkers] = useState<WorkerOption[]>([])
   const [editForm, setEditForm] = useState<EditFormState>({
     worker_id: '',
@@ -102,6 +104,7 @@ export function ShiftDetailSheet({ shift, open, onClose }: ShiftDetailSheetProps
   })
 
   const updateMutation = useUpdateShift(shift?.id ?? '')
+  const deleteMutation = useDeleteShift()
 
   // Fetch workers for edit mode
   useEffect(() => {
@@ -140,6 +143,7 @@ export function ShiftDetailSheet({ shift, open, onClose }: ShiftDetailSheetProps
     if (!open) {
       setIsEditing(false)
       setShowCancel(false)
+      setShowDelete(false)
     }
   }, [open])
 
@@ -180,6 +184,17 @@ export function ShiftDetailSheet({ shift, open, onClose }: ShiftDetailSheetProps
         },
       }
     )
+  }
+
+  function handleDelete() {
+    if (!shift || !showDelete) return
+    
+    deleteMutation.mutate(shift.id, {
+      onSuccess: () => {
+        setShowDelete(false)
+        onClose()
+      }
+    })
   }
 
   return (
@@ -347,6 +362,36 @@ export function ShiftDetailSheet({ shift, open, onClose }: ShiftDetailSheetProps
                   <XCircle className="h-3.5 w-3.5 mr-1.5" />
                   Cancel Shift
                 </Button>
+                {!showDelete ? (
+                  <Button
+                    variant="ghost"
+                    size="sm"
+                    className="ml-auto text-destructive hover:bg-destructive/10"
+                    onClick={() => setShowDelete(true)}
+                  >
+                    Delete Shift
+                  </Button>
+                ) : (
+                  <div className="ml-auto flex items-center gap-2">
+                    <span className="text-xs text-destructive font-medium">Are you sure?</span>
+                    <Button
+                      variant="destructive"
+                      size="sm"
+                      onClick={handleDelete}
+                      disabled={deleteMutation.isPending}
+                    >
+                      {deleteMutation.isPending ? 'Deleting...' : 'Yes, Delete'}
+                    </Button>
+                    <Button
+                      variant="outline"
+                      size="sm"
+                      onClick={() => setShowDelete(false)}
+                      disabled={deleteMutation.isPending}
+                    >
+                      Cancel
+                    </Button>
+                  </div>
+                )}
               </div>
             )}
           </div>
