@@ -1,69 +1,167 @@
 "use client"
 
 import * as React from "react"
-import * as DialogPrimitive from "@radix-ui/react-dialog"
 import { X } from "lucide-react"
 import { cn } from "../lib/utils"
 
-const Sheet = DialogPrimitive.Root
+// ─── Simple Sheet implementation using CSS transitions ────────────────────
+// Radix Dialog's mount/unmount cycle prevents CSS transitions from playing
+// on mobile (element is removed before close animation, and appears without
+// open animation). This implementation keeps the DOM mounted and uses
+// translate + opacity transitions directly.
 
-const SheetTrigger = DialogPrimitive.Trigger
+interface SheetContextValue {
+  open: boolean
+  onOpenChange: (open: boolean) => void
+}
+const SheetContext = React.createContext<SheetContextValue>({
+  open: false,
+  onOpenChange: () => {},
+})
 
-const SheetClose = DialogPrimitive.Close
+function Sheet({ open = false, onOpenChange, children }: {
+  open?: boolean
+  onOpenChange?: (open: boolean) => void
+  children: React.ReactNode
+}) {
+  const handleOpenChange = React.useCallback((v: boolean) => {
+    onOpenChange?.(v)
+  }, [onOpenChange])
 
-const SheetPortal = DialogPrimitive.Portal
+  return (
+    <SheetContext.Provider value={{ open, onOpenChange: handleOpenChange }}>
+      {children}
+    </SheetContext.Provider>
+  )
+}
+
+const SheetTrigger = React.forwardRef<
+  HTMLButtonElement,
+  React.ButtonHTMLAttributes<HTMLButtonElement>
+>(({ onClick, ...props }, ref) => {
+  const { onOpenChange } = React.useContext(SheetContext)
+  return (
+    <button
+      ref={ref}
+      type="button"
+      onClick={(e) => {
+        onOpenChange(true)
+        onClick?.(e)
+      }}
+      {...props}
+    />
+  )
+})
+SheetTrigger.displayName = "SheetTrigger"
+
+const SheetClose = React.forwardRef<
+  HTMLButtonElement,
+  React.ButtonHTMLAttributes<HTMLButtonElement>
+>(({ onClick, ...props }, ref) => {
+  const { onOpenChange } = React.useContext(SheetContext)
+  return (
+    <button
+      ref={ref}
+      type="button"
+      onClick={(e) => {
+        onOpenChange(false)
+        onClick?.(e)
+      }}
+      {...props}
+    />
+  )
+})
+SheetClose.displayName = "SheetClose"
+
+const SheetPortal = ({ children }: { children: React.ReactNode }) => <>{children}</>
 
 const SheetOverlay = React.forwardRef<
-  React.ComponentRef<typeof DialogPrimitive.Overlay>,
-  React.ComponentPropsWithoutRef<typeof DialogPrimitive.Overlay>
->(({ className, ...props }, ref) => (
-  <DialogPrimitive.Overlay
-    ref={ref}
-    className={cn(
-      "fixed inset-0 z-50 bg-black/50 transition-opacity duration-300 data-[state=open]:opacity-100 data-[state=closed]:opacity-0",
-      className
-    )}
-    {...props}
-  />
-))
-SheetOverlay.displayName = DialogPrimitive.Overlay.displayName
-
-interface SheetContentProps
-  extends React.ComponentPropsWithoutRef<typeof DialogPrimitive.Content> {
-  side?: "left" | "right"
-}
-
-const sheetSideVariants = {
-  left: "inset-y-0 left-0 border-r data-[state=closed]:-translate-x-full data-[state=open]:translate-x-0",
-  right: "inset-y-0 right-0 border-l data-[state=closed]:translate-x-full data-[state=open]:translate-x-0",
-}
-
-const SheetContent = React.forwardRef<
-  React.ComponentRef<typeof DialogPrimitive.Content>,
-  SheetContentProps
->(({ className, children, side = "right", ...props }, ref) => (
-  <SheetPortal>
-    <SheetOverlay />
-    <DialogPrimitive.Content
+  HTMLDivElement,
+  React.HTMLAttributes<HTMLDivElement>
+>(({ className, ...props }, ref) => {
+  const { open, onOpenChange } = React.useContext(SheetContext)
+  return (
+    <div
       ref={ref}
+      aria-hidden="true"
+      onClick={() => onOpenChange(false)}
       className={cn(
-        "fixed z-50 flex w-[280px] flex-col bg-background shadow-lg transition-transform duration-300 ease-in-out sm:max-w-sm",
-        sheetSideVariants[side],
+        "fixed inset-0 z-50 bg-black/50 transition-opacity duration-300",
+        open ? "opacity-100" : "opacity-0 pointer-events-none",
         className
       )}
       {...props}
-    >
-      <div className="flex-1 overflow-y-auto">
-        {children}
-      </div>
-      <DialogPrimitive.Close className="absolute right-4 top-4 flex h-11 w-11 items-center justify-center rounded-md opacity-70 ring-offset-background transition-opacity hover:opacity-100 focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 disabled:pointer-events-none">
-        <X className="h-4 w-4" />
-        <span className="sr-only">Close</span>
-      </DialogPrimitive.Close>
-    </DialogPrimitive.Content>
-  </SheetPortal>
-))
-SheetContent.displayName = DialogPrimitive.Content.displayName
+    />
+  )
+})
+SheetOverlay.displayName = "SheetOverlay"
+
+interface SheetContentProps extends React.HTMLAttributes<HTMLDivElement> {
+  side?: "left" | "right"
+}
+
+const SheetContent = React.forwardRef<HTMLDivElement, SheetContentProps>(
+  ({ className, children, side = "right", ...props }, ref) => {
+    const { open, onOpenChange } = React.useContext(SheetContext)
+
+    // Lock body scroll when open
+    React.useEffect(() => {
+      if (open) {
+        const original = document.body.style.overflow
+        document.body.style.overflow = "hidden"
+        return () => { document.body.style.overflow = original }
+      }
+    }, [open])
+
+    // Close on Escape
+    React.useEffect(() => {
+      if (!open) return
+      const handleKey = (e: KeyboardEvent) => {
+        if (e.key === "Escape") onOpenChange(false)
+      }
+      document.addEventListener("keydown", handleKey)
+      return () => document.removeEventListener("keydown", handleKey)
+    }, [open, onOpenChange])
+
+    return (
+      <>
+        <SheetOverlay />
+        <div
+          ref={ref}
+          role="dialog"
+          aria-modal={open}
+          className={cn(
+            "fixed inset-y-0 z-50 flex w-[280px] flex-col bg-background shadow-lg transition-transform duration-300 ease-in-out sm:max-w-sm",
+            side === "left" && "left-0 border-r",
+            side === "right" && "right-0 border-l",
+            // Slide position
+            open
+              ? "translate-x-0"
+              : side === "left"
+                ? "-translate-x-full"
+                : "translate-x-full",
+            !open && "pointer-events-none",
+            className
+          )}
+          {...props}
+        >
+          <div className="flex-1 overflow-y-auto">
+            {children}
+          </div>
+          <button
+            type="button"
+            onClick={() => onOpenChange(false)}
+            className="absolute right-4 top-4 flex h-11 w-11 items-center justify-center rounded-md opacity-70 ring-offset-background transition-opacity hover:opacity-100 focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2"
+          >
+            <X className="h-4 w-4" />
+            <span className="sr-only">Close</span>
+          </button>
+        </div>
+      </>
+    )
+  }
+)
+SheetContent.displayName = "SheetContent"
 
 const SheetHeader = ({
   className,
@@ -91,10 +189,10 @@ const SheetFooter = ({
 SheetFooter.displayName = "SheetFooter"
 
 const SheetTitle = React.forwardRef<
-  React.ComponentRef<typeof DialogPrimitive.Title>,
-  React.ComponentPropsWithoutRef<typeof DialogPrimitive.Title>
+  HTMLHeadingElement,
+  React.HTMLAttributes<HTMLHeadingElement>
 >(({ className, ...props }, ref) => (
-  <DialogPrimitive.Title
+  <h2
     ref={ref}
     className={cn(
       "text-lg font-semibold leading-none tracking-tight",
@@ -103,19 +201,19 @@ const SheetTitle = React.forwardRef<
     {...props}
   />
 ))
-SheetTitle.displayName = DialogPrimitive.Title.displayName
+SheetTitle.displayName = "SheetTitle"
 
 const SheetDescription = React.forwardRef<
-  React.ComponentRef<typeof DialogPrimitive.Description>,
-  React.ComponentPropsWithoutRef<typeof DialogPrimitive.Description>
+  HTMLParagraphElement,
+  React.HTMLAttributes<HTMLParagraphElement>
 >(({ className, ...props }, ref) => (
-  <DialogPrimitive.Description
+  <p
     ref={ref}
     className={cn("text-sm text-muted-foreground", className)}
     {...props}
   />
 ))
-SheetDescription.displayName = DialogPrimitive.Description.displayName
+SheetDescription.displayName = "SheetDescription"
 
 export {
   Sheet,
