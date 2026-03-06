@@ -64,7 +64,7 @@ export function useParticipantDashboard() {
           scheduled_start,
           scheduled_end,
           support_type,
-          workers!inner(profiles!inner(first_name, last_name))
+          workers(profiles(first_name, last_name))
         `)
         .eq('participant_id', participant.id)
         .in('status', ['scheduled', 'confirmed'])

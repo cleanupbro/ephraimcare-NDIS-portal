@@ -1,3 +1,4 @@
+import Link from 'next/link'
 import { Card, CardContent, CardHeader, CardTitle } from '@ephraimcare/ui'
 import { ParticipantForm } from '@/components/participants/participant-form'
 
@@ -8,9 +9,9 @@ export default function NewParticipantPage() {
       <nav className="text-sm text-muted-foreground">
         <ol className="flex items-center gap-1.5">
           <li>
-            <a href="/participants" className="hover:text-foreground transition-colors">
+            <Link href="/participants" className="hover:text-foreground transition-colors">
               Participants
-            </a>
+            </Link>
           </li>
           <li className="text-muted-foreground/50">/</li>
           <li className="text-foreground font-medium">New</li>

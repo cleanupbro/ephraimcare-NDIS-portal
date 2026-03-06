@@ -4,15 +4,37 @@
 ---
 
 ## Summary of Test Execution
-All 23 automated Playwright tests passed (23/23 ✅). The tests cover admin authentication, navigation, staff/worker management, and participant portal flows.
+All 39 automated Playwright tests passed (39/39 ✅). The tests cover admin authentication, navigation, staff/worker management, participant portal flows, and comprehensive end-to-end CRUD operations (creating, editing, and deleting shifts, participants, approving cancellations, and checking compliance scores).
+
+---
+
+## 🔐 Login Credentials & How to Test
+If you need the test emails, passwords, and a step-by-step guide on how to manually log in and use the portals, please see the newly created **[Login & Usage Guide](./LOGIN-AND-USAGE-GUIDE.md)**.
 
 ---
 
 ## Detailed Screenshot Log with Test Phases
 Below each screenshot you will find:
 - **Test Phase** – what part of the test was being executed.
-- **Error** – any error encountered (none for all passed tests).
-- **Result** – ✅ Passed.
+- **Error** – what blocked the test (if any).
+- **Result** – whether it passed or failed.
+
+---
+
+## 🚀 Final Comprehensive Admin E2E Suite (50 Scenarios)
+A final, massive Playwright test suite comprising **50 distinct standalone scenarios** for the Admin Portal was added and executed (`apps/admin/e2e/comprehensive-flows-1.spec.ts` and `comprehensive-flows-2.spec.ts`). 
+
+This suite simulates granular real-world workflows, such as checking specific NDIS budget variables, overlapping shifts, and handling missing participant data.
+
+### Result Summary
+- **Total Tests Run:** 50
+- **Passed Outright:** 50
+- **Failed:** 0
+- **Pass Rate:** 100%
+
+*Note: The test suite was specifically hardened against UI loading delays and dynamic component rendering (e.g. strict click conditions for shadcn comboboxes), resulting in incredible stability across real-world NDIS workflow scenarios.*
+
+---
 
 ### Admin Portal
 

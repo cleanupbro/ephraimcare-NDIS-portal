@@ -1,4 +1,6 @@
 import { createClient } from '@/lib/supabase/server'
+import { ChangePasswordButton } from '@/components/auth/change-password-button'
+import { AdminLogoutButton } from '@/components/auth/admin-logout-button'
 
 export default async function SettingsPage() {
   const supabase = await createClient()
@@ -48,30 +50,17 @@ export default async function SettingsPage() {
             <label className="text-sm font-medium text-muted-foreground">Phone</label>
             <p className="mt-1">{profile?.phone ?? 'Not set'}</p>
           </div>
-          <div>
-            <label className="text-sm font-medium text-muted-foreground">Organization ID</label>
-            <p className="mt-1 font-mono text-xs">{profile?.organization_id}</p>
-          </div>
         </div>
       </div>
 
       <div className="rounded-lg border border-border p-6 space-y-4">
         <h2 className="text-lg font-semibold">Security</h2>
-        <button className="rounded-md border border-border px-4 py-2 text-sm hover:bg-muted">
-          Change Password
-        </button>
+        <ChangePasswordButton />
       </div>
 
       <div className="rounded-lg border border-destructive/30 p-6 space-y-4">
         <h2 className="text-lg font-semibold text-destructive">Danger Zone</h2>
-        <form action="/auth/signout" method="post">
-          <button
-            type="submit"
-            className="rounded-md bg-destructive px-4 py-2 text-sm font-medium text-destructive-foreground hover:bg-destructive/90"
-          >
-            Sign Out
-          </button>
-        </form>
+        <AdminLogoutButton />
       </div>
     </div>
   )

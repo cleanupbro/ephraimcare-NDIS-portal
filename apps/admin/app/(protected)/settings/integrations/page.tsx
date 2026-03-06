@@ -1,6 +1,7 @@
 'use client'
 
 import { useState, useEffect } from 'react'
+import Link from 'next/link'
 import { useForm } from 'react-hook-form'
 import { Loader2, CheckCircle, XCircle, ExternalLink, Info } from 'lucide-react'
 
@@ -327,9 +328,9 @@ export default function IntegrationsPage() {
             <AlertDescription>
               NDIA bulk claims are submitted via CSV upload to the myplace portal.
               Generate PACE-compliant CSV files from the{' '}
-              <a href="/invoices" className="text-primary hover:underline font-medium">
+              <Link href="/invoices" className="text-primary hover:underline font-medium">
                 Invoices page
-              </a>{' '}
+              </Link>{' '}
               when ready to submit.
             </AlertDescription>
           </Alert>

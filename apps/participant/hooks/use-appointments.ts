@@ -101,8 +101,9 @@ export function useCreateCancellationRequest() {
       if (error) throw error
       return data
     },
-    onSuccess: () => {
+    onSuccess: (_data, variables) => {
       queryClient.invalidateQueries({ queryKey: appointmentKeys.all })
+      queryClient.invalidateQueries({ queryKey: ['cancellation-request', variables.shift_id] })
     },
   })
 }

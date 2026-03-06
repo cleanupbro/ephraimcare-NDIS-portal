@@ -20,6 +20,7 @@ import { createClient } from '@/lib/supabase/client'
 import { shiftCreateSchema, type ShiftCreateFormData } from '@/lib/shifts/schemas'
 import { SUPPORT_TYPES, getComplianceStatus } from '@/lib/workers/constants'
 import { format, parseISO } from 'date-fns'
+import { sydneyDateTimeToISO } from '@ephraimcare/utils'
 import { TIME_SLOTS, DURATION_PRESETS } from '@/lib/shifts/constants'
 import { ShiftConflictDialog, type ConflictWarning } from './shift-conflict-dialog'
 import { useCreateShift } from '@/hooks/use-create-shift'
@@ -186,10 +187,10 @@ export function ShiftForm({ mode, defaultValues, shiftId }: ShiftFormProps) {
     const supabase = createClient()
     const detected: ConflictWarning[] = []
 
-    // Calculate scheduled start and end as ISO timestamps
-    const scheduledStart = new Date(`${data.date}T${data.start_time}:00`).toISOString()
+    // Calculate scheduled start and end in Sydney timezone
+    const scheduledStart = sydneyDateTimeToISO(data.date, data.start_time)
     const endTime = calculateEndTime(data.start_time, data.duration_hours)
-    const scheduledEnd = new Date(`${data.date}T${endTime}:00`).toISOString()
+    const scheduledEnd = sydneyDateTimeToISO(data.date, endTime)
 
     // 1. Check worker overlaps
     const { data: overlaps } = await supabase
@@ -293,9 +294,9 @@ export function ShiftForm({ mode, defaultValues, shiftId }: ShiftFormProps) {
   }
 
   async function createShiftFromData(data: ShiftCreateFormData) {
-    const scheduledStart = new Date(`${data.date}T${data.start_time}:00`).toISOString()
+    const scheduledStart = sydneyDateTimeToISO(data.date, data.start_time)
     const endTime = calculateEndTime(data.start_time, data.duration_hours)
-    const scheduledEnd = new Date(`${data.date}T${endTime}:00`).toISOString()
+    const scheduledEnd = sydneyDateTimeToISO(data.date, endTime)
 
     // Get organization_id from the selected participant
     const participant = participants.find((p) => p.id === data.participant_id)

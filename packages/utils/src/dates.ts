@@ -20,3 +20,16 @@ export function getTimezoneAbbreviation(date: Date): string {
   const offset = new TZDate(date, TIMEZONE).getTimezoneOffset()
   return offset === -660 ? 'AEDT' : 'AEST'
 }
+
+/**
+ * Build an ISO timestamp from a date string (YYYY-MM-DD) and time string (HH:MM)
+ * interpreted in Australia/Sydney timezone. This prevents the common bug where
+ * `new Date("2026-03-07T09:00:00")` creates a local-timezone date that shifts
+ * when converted to UTC via `.toISOString()`.
+ */
+export function sydneyDateTimeToISO(dateStr: string, timeStr: string): string {
+  const [year, month, day] = dateStr.split('-').map(Number)
+  const [hour, minute] = timeStr.split(':').map(Number)
+  const sydneyDate = new TZDate(year, month - 1, day, hour, minute, 0, 0, TIMEZONE)
+  return sydneyDate.toISOString()
+}

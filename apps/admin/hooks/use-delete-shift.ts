@@ -4,10 +4,10 @@ import { toast } from '@/lib/toast'
 
 export function useDeleteShift() {
   const queryClient = useQueryClient()
-  const supabase = createClient()
 
   return useMutation({
     mutationFn: async (shiftId: string) => {
+      const supabase = createClient()
       const { error } = await supabase
         .from('shifts')
         .delete()

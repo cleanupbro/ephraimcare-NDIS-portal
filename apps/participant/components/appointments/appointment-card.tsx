@@ -1,6 +1,6 @@
 'use client'
 
-import { format, parseISO } from 'date-fns'
+import { formatSydneyDate } from '@ephraimcare/utils'
 import { Card, CardContent, Badge } from '@ephraimcare/ui'
 import { Calendar, Clock, User } from 'lucide-react'
 import { CancellationRequestDialog } from './cancellation-request-dialog'
@@ -43,7 +43,7 @@ export function AppointmentCard({
             <div className="flex items-center gap-2 mb-2">
               <Calendar className="h-4 w-4 text-primary" />
               <span className="font-medium">
-                {format(parseISO(appointment.scheduled_start), 'EEEE, d MMMM yyyy')}
+                {formatSydneyDate(appointment.scheduled_start, 'EEEE, d MMMM yyyy')}
               </span>
             </div>
 
@@ -51,8 +51,8 @@ export function AppointmentCard({
             <div className="flex items-center gap-2 text-sm text-muted-foreground mb-2">
               <Clock className="h-4 w-4" />
               <span>
-                {format(parseISO(appointment.scheduled_start), 'h:mm a')} -{' '}
-                {format(parseISO(appointment.scheduled_end), 'h:mm a')}
+                {formatSydneyDate(appointment.scheduled_start, 'h:mm a')} -{' '}
+                {formatSydneyDate(appointment.scheduled_end, 'h:mm a')}
               </span>
             </div>
 

@@ -1,6 +1,6 @@
 'use client'
 
-import { format, parseISO } from 'date-fns'
+import { formatSydneyDate } from '@ephraimcare/utils'
 import { Clock } from 'lucide-react'
 
 interface Appointment {
@@ -36,8 +36,6 @@ export function AppointmentsCard({ appointments }: AppointmentsCardProps) {
       </div>
       <ul className="mt-4 divide-y divide-border">
         {appointments.map((apt) => {
-          const start = parseISO(apt.scheduled_start)
-          const end = parseISO(apt.scheduled_end)
           const workerName = apt.worker
             ? `${apt.worker.first_name} ${apt.worker.last_name}`
             : 'Worker TBA'
@@ -46,9 +44,9 @@ export function AppointmentsCard({ appointments }: AppointmentsCardProps) {
             <li key={apt.id} className="py-3 first:pt-0 last:pb-0">
               <div className="flex justify-between">
                 <div>
-                  <p className="font-medium">{format(start, 'EEEE, d MMM')}</p>
+                  <p className="font-medium">{formatSydneyDate(apt.scheduled_start, 'EEEE, d MMM')}</p>
                   <p className="text-sm text-muted-foreground">
-                    {format(start, 'h:mm a')} — {format(end, 'h:mm a')}
+                    {formatSydneyDate(apt.scheduled_start, 'h:mm a')} — {formatSydneyDate(apt.scheduled_end, 'h:mm a')}
                   </p>
                 </div>
                 <div className="text-right">

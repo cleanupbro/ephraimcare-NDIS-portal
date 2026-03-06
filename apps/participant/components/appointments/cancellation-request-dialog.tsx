@@ -1,7 +1,7 @@
 'use client'
 
 import { useState } from 'react'
-import { format, parseISO } from 'date-fns'
+import { formatSydneyDate } from '@ephraimcare/utils'
 import {
   AlertDialog,
   AlertDialogAction,
@@ -90,11 +90,11 @@ export function CancellationRequestDialog({
           {/* Appointment details */}
           <div className="rounded-md bg-muted p-3">
             <p className="text-sm font-medium">
-              {format(parseISO(appointment.scheduled_start), 'EEEE, d MMMM yyyy')}
+              {formatSydneyDate(appointment.scheduled_start, 'EEEE, d MMMM yyyy')}
             </p>
             <p className="text-sm text-muted-foreground">
-              {format(parseISO(appointment.scheduled_start), 'h:mm a')} -{' '}
-              {format(parseISO(appointment.scheduled_end), 'h:mm a')}
+              {formatSydneyDate(appointment.scheduled_start, 'h:mm a')} -{' '}
+              {formatSydneyDate(appointment.scheduled_end, 'h:mm a')}
             </p>
             <p className="text-sm text-muted-foreground mt-1">
               with {workerName}

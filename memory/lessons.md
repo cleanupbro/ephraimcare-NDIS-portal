@@ -87,3 +87,8 @@ Format:
 **Problem:** `new Date('2026-02-15')` parses as UTC midnight → 2026-02-14 11:00 PM AEST.
 **Fix:** Always append `T00:00:00` when parsing date-only strings: `new Date('2026-02-15T00:00:00')`.
 **Rule:** When displaying date-only strings from Postgres, always append `T00:00:00` before passing to `new Date()`. Never use string concatenation to add ' UTC' — it's fragile and breaks for ISO timestamps.
+
+### 2026-02-27 — Playwright Combobox Click Strategy
+**What happened:** Playwright tests were failing when clicking Shadcn combobox components (Participant or Worker dropdowns).
+**Outcome:** Timeouts on submission because the selector intercepted standard clicks due to hidden inputs.
+**Lesson:** When interacting with Shadcn comboboxes or complex custom dropdowns in Playwright, use `force: true` if standard clicks timeout due to the element being technically hidden or covered.

@@ -18,6 +18,7 @@ import {
   subDays,
   parseISO,
 } from 'date-fns'
+import { formatSydneyDate } from '@ephraimcare/utils'
 import { Button, Badge } from '@ephraimcare/ui'
 import { ChevronLeft, ChevronRight, Calendar, List } from 'lucide-react'
 
@@ -98,7 +99,7 @@ export function CalendarView({ shifts, onShiftClick, isLoading }: CalendarViewPr
     const participant = shift.participants
       ? `${shift.participants.first_name} ${shift.participants.last_name.charAt(0)}.`
       : 'Unassigned'
-    const time = format(parseISO(shift.scheduled_start), 'h:mm a')
+    const time = formatSydneyDate(shift.scheduled_start, 'h:mm a')
 
     if (compact) {
       return (

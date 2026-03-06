@@ -1,7 +1,7 @@
 'use client'
 
 import { useState, useEffect } from 'react'
-import { format, parseISO } from 'date-fns'
+import { formatSydneyDate } from '@ephraimcare/utils'
 import {
   Button,
   Badge,
@@ -134,9 +134,9 @@ export default function CancellationRequestsPage() {
                   {/* Shift details */}
                   {request.shifts && (
                     <p className="text-sm text-muted-foreground mb-2">
-                      {format(parseISO(request.shifts.scheduled_start), 'EEE, d MMM yyyy')} at{' '}
-                      {format(parseISO(request.shifts.scheduled_start), 'h:mm a')} -{' '}
-                      {format(parseISO(request.shifts.scheduled_end), 'h:mm a')}
+                      {formatSydneyDate(request.shifts.scheduled_start, 'EEE, d MMM yyyy')} at{' '}
+                      {formatSydneyDate(request.shifts.scheduled_start, 'h:mm a')} -{' '}
+                      {formatSydneyDate(request.shifts.scheduled_end, 'h:mm a')}
                       {request.shifts.workers?.profiles && (
                         <> with {request.shifts.workers.profiles.first_name} {request.shifts.workers.profiles.last_name}</>
                       )}
@@ -150,7 +150,7 @@ export default function CancellationRequestsPage() {
 
                   {/* Meta */}
                   <p className="text-xs text-muted-foreground">
-                    Requested {format(parseISO(request.created_at), 'd MMM yyyy, h:mm a')}
+                    Requested {formatSydneyDate(request.created_at, 'd MMM yyyy, h:mm a')}
                   </p>
 
                   {/* Admin notes */}

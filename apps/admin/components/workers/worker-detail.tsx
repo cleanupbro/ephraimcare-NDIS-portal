@@ -62,21 +62,19 @@ export function WorkerDetail({ worker }: WorkerDetailProps) {
               Edit
             </Link>
           </Button>
-          {worker.is_active && (
-            <Button
-              variant="outline"
-              size="sm"
-              onClick={() => resendInvite.mutate({ email: worker.profiles.email })}
-              disabled={resendInvite.isPending}
-            >
-              {resendInvite.isPending ? (
-                <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-              ) : (
-                <Mail className="mr-2 h-4 w-4" />
-              )}
-              Resend Invite
-            </Button>
-          )}
+          <Button
+            variant="outline"
+            size="sm"
+            onClick={() => resendInvite.mutate({ email: worker.profiles.email })}
+            disabled={resendInvite.isPending}
+          >
+            {resendInvite.isPending ? (
+              <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+            ) : (
+              <Mail className="mr-2 h-4 w-4" />
+            )}
+            Resend Invite
+          </Button>
         </div>
       </div>
 

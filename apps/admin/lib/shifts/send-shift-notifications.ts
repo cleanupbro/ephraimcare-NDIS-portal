@@ -5,7 +5,7 @@ import {
   shiftReminder2h,
   participantReminder24h,
 } from '../sms/templates'
-import { format } from 'date-fns'
+import { formatSydneyDate } from '@ephraimcare/utils'
 
 interface ShiftWithDetails {
   id: string
@@ -123,7 +123,7 @@ export async function sendShiftReminders(
     result.shiftsProcessed++
 
     const shiftDate = new Date(shift.scheduled_start)
-    const startTime = format(shiftDate, 'h:mm a')
+    const startTime = formatSydneyDate(shift.scheduled_start, 'h:mm a')
 
     // Send to worker if opted in and has phone
     const workerProfile = shift.worker?.profile

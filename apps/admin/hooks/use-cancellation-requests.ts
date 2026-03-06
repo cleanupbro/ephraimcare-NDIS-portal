@@ -128,6 +128,7 @@ export function useReviewCancellationRequest() {
     },
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: cancellationKeys.all })
+      queryClient.invalidateQueries({ queryKey: ['shifts'] })
     },
   })
 }

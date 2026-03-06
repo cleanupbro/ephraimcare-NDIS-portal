@@ -8,6 +8,11 @@ This document provides a concise handover guide for the Ephraim Care NDIS portal
 
 ---
 
+## 🔐 Login Credentials & How to Test
+If you are looking for the test emails, passwords, and a step-by-step guide on how to manually log in and use the portals, please see the **[Login & Usage Guide](./LOGIN-AND-USAGE-GUIDE.md)**.
+
+---
+
 ## Admin Portal Screenshots
 
 ![Admin Login](./screenshots/admin-00-login.png)

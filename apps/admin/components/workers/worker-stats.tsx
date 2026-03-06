@@ -1,7 +1,7 @@
 "use client"
 
 import { Clock, Calendar, CalendarClock } from 'lucide-react'
-import { format, parseISO } from 'date-fns'
+import { formatSydneyDate } from '@ephraimcare/utils'
 import { Card, CardContent, Skeleton } from '@ephraimcare/ui'
 import { useWorkerStats } from '@/hooks/use-worker-stats'
 
@@ -72,7 +72,7 @@ export function WorkerStats({ workerId }: WorkerStatsProps) {
                   {nextShift.participants.first_name} {nextShift.participants.last_name}
                 </p>
                 <p className="text-xs text-muted-foreground">
-                  {format(parseISO(nextShift.scheduled_start), 'd MMM, h:mm a')}
+                  {formatSydneyDate(nextShift.scheduled_start, 'd MMM, h:mm a')}
                 </p>
               </div>
             ) : (

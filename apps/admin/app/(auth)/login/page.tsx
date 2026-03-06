@@ -1,6 +1,7 @@
 'use client'
 
 import { useState } from 'react'
+import Link from 'next/link'
 import { useRouter } from 'next/navigation'
 import { createClient } from '@/lib/supabase/client'
 
@@ -92,12 +93,12 @@ export default function LoginPage() {
         </button>
 
         <div className="text-center">
-          <a
+          <Link
             href="/reset-password"
             className="text-sm text-secondary hover:underline"
           >
             Forgot your password?
-          </a>
+          </Link>
         </div>
       </form>
     </>

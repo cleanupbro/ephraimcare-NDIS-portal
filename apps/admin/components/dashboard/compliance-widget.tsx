@@ -23,7 +23,7 @@ interface ComplianceWidgetProps {
 export function ComplianceWidget({ workers }: ComplianceWidgetProps) {
   if (workers.length === 0) {
     return (
-      <div className="rounded-lg border border-border p-6">
+      <div className="rounded-xl border border-border bg-card p-6 shadow-sm">
         <h2 className="font-heading text-lg font-semibold mb-3 flex items-center gap-2">
           <Shield className="h-5 w-5 text-green-600" />
           Compliance Status
@@ -36,7 +36,7 @@ export function ComplianceWidget({ workers }: ComplianceWidgetProps) {
   }
 
   return (
-    <div className="rounded-lg border border-border p-6">
+    <div className="rounded-xl border border-border bg-card p-6 shadow-sm">
       <h2 className="font-heading text-lg font-semibold mb-3 flex items-center gap-2">
         <AlertTriangle className="h-5 w-5 text-amber-500" />
         Compliance Alerts

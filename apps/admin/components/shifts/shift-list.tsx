@@ -1,7 +1,8 @@
 'use client'
 
 import { useState, useMemo, useEffect } from 'react'
-import { startOfWeek, endOfWeek, addWeeks, subWeeks, format } from 'date-fns'
+import { startOfWeek, endOfWeek, addWeeks, subWeeks } from 'date-fns'
+import { formatSydneyDate } from '@ephraimcare/utils'
 import { CalendarOff } from 'lucide-react'
 import { Skeleton } from '@ephraimcare/ui'
 import { createClient } from '@/lib/supabase/client'
@@ -118,7 +119,7 @@ export function ShiftList({ initialData }: ShiftListProps) {
   const groupedShifts = useMemo(() => {
     const groups: Record<string, ShiftWithRelations[]> = {}
     for (const shift of filteredShifts) {
-      const dayKey = format(new Date(shift.scheduled_start), 'yyyy-MM-dd')
+      const dayKey = formatSydneyDate(shift.scheduled_start, 'yyyy-MM-dd')
       if (!groups[dayKey]) {
         groups[dayKey] = []
       }
@@ -204,7 +205,7 @@ export function ShiftList({ initialData }: ShiftListProps) {
           {sortedDays.map((dayKey) => (
             <div key={dayKey}>
               <h3 className="mb-2 text-sm font-semibold text-muted-foreground uppercase tracking-wide">
-                {format(new Date(dayKey + 'T00:00:00'), 'EEEE, d MMM')}
+                {formatSydneyDate(dayKey + 'T00:00:00', 'EEEE, d MMM')}
               </h3>
               <div className="space-y-2">
                 {groupedShifts[dayKey].map((shift) => (

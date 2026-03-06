@@ -3,6 +3,7 @@ export {
   formatSydneyDate,
   getCurrentSydneyTime,
   getTimezoneAbbreviation,
+  sydneyDateTimeToISO,
   TIMEZONE,
 } from './dates'
 

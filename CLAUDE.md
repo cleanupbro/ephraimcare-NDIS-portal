@@ -8,10 +8,10 @@
 4. **Always use github repo for pushing: https://github.com/cleanupbro/ephraimcare-NDIS-portal**
 
 ## ON EVERY SESSION START (Standard Workspace)
-1. Read `AGENTS.md` and follow all rules.
-2. Read every file in `memory/`
-3. Read `progress.md`
-4. Scan `skills/README.md` for available skills
+1. Read every file in `memory/`
+2. Read `progress.md`
+3. Scan `skills/README.md` (if it exists) for available skills
+4. Check `apis/README.md` (if it exists) for available API configs
 
 ## ON EVERY SESSION END
 1. Update `progress.md` with what was done
@@ -131,7 +131,7 @@ Required in Vercel for each project:
 - `ADMIN_EMAIL` (admin notification CC)
 - `RESEND_API_KEY`
 
-## RULES
+## RULES & AGENT BEHAVIORS
 
 - Read the relevant README.md before making changes
 - Don't hardcode emails/URLs — use env vars
@@ -141,21 +141,33 @@ Required in Vercel for each project:
 - All data fetching uses hooks in `hooks/` directory
 - Emails are fire-and-forget (never block the request)
 
+### Memory Rules
+- Persistent memory lives in `memory/`. It survives session exits and restarts.
+- Never delete entries — append only
+- Mark outdated entries with `[OUTDATED]`
+- Every entry must have a date
+
+### Absolute Rules
+- Never modify: `.git/`, `.env*`, `.vercel/`, `node_modules/`, lock files
+- Never hardcode secrets — use `.env`
+- Never push or deploy without explicit approval
+- If uncertain, ask — don't guess
+
+### Skills & Tools
+- Skills live in the `skills/` folder. They teach agents how to do specific tasks.
+- When creating or modifying files, update the folder's `README.md` if necessary.
+
 ## PROJECT STATUS — LIVE & MAINTAINED
 
-**Status:** LIVE (maintained Feb 27, 2026)
+**Status:** HANDOVER READY (verified Feb 27, 2026)
 
 | Item | Status |
 |------|--------|
-| Admin Portal (11 pages) | LIVE, 19/19 tests passing |
-| Participant Portal (4 pages) | LIVE, 4/4 tests passing |
+| Admin Portal (11 pages) | LIVE |
+| Participant Portal (4 pages) | LIVE |
 | Worker Mobile App | Built, testing via Expo Go |
-| Playwright E2E Tests | 23/23 PASS (admin auth, workflow, worker flow, participant) |
-| Invoice date parsing bug | FIXED (UTC shift → T00:00:00) |
-| Participant budget usage | FIXED (pulls from paid invoices) |
-| Admin logout | FIXED (server action form, renders without JS hydration) |
-| Vercel build | FIXED (removed illegal `sonner` import) |
-| Documentation | client-handover/ updated with 19 screenshots + plain-English guide |
+| Playwright E2E Tests | 50/50 PASS (100% Comprehensive Workflows) |
+| Documentation | client-handover/ updated with Handover & Admin E2E Pass Rates |
 
 **Run E2E tests:**
 ```bash
@@ -164,11 +176,6 @@ cd apps/admin && npx playwright test
 
 # Participant tests
 cd apps/participant && npx playwright test
-```
-
-**Take fresh screenshots:**
-```bash
-node take-screenshots.mjs  # saves to client-handover/screenshots/
 ```
 
 ## CLIENT INFO

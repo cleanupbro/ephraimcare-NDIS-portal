@@ -1,6 +1,7 @@
 'use client'
 
 import { format, parseISO } from 'date-fns'
+import { formatSydneyDate } from '@ephraimcare/utils'
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
 import {
@@ -258,13 +259,13 @@ export function IncidentDetail({ incident, userId }: IncidentDetailProps) {
                 </div>
                 <div>
                   <Link
-                    href={`/shifts/${incident.shifts.id}`}
+                    href={`/shifts?selected=${incident.shifts.id}`}
                     className="text-sm font-medium hover:underline"
                   >
                     Related Shift
                   </Link>
                   <p className="text-xs text-muted-foreground">
-                    {format(parseISO(incident.shifts.scheduled_start), 'd MMM yyyy, h:mm a')}
+                    {formatSydneyDate(incident.shifts.scheduled_start, 'd MMM yyyy, h:mm a')}
                   </p>
                 </div>
               </div>

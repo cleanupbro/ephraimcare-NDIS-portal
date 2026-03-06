@@ -17,9 +17,9 @@ import {
   SelectContent,
   SelectItem,
 } from '@ephraimcare/ui'
-import { format } from 'date-fns'
 import { Pencil, XCircle } from 'lucide-react'
 import { createClient } from '@/lib/supabase/client'
+import { sydneyDateTimeToISO, formatSydneyDate } from '@ephraimcare/utils'
 import { useUpdateShift } from '@/hooks/use-update-shift'
 import { useDeleteShift } from '@/hooks/use-delete-shift'
 import { ShiftCancelDialog } from './shift-cancel-dialog'
@@ -85,7 +85,7 @@ function extractTime(iso: string): string {
 }
 
 function extractDate(iso: string): string {
-  return format(new Date(iso), 'yyyy-MM-dd')
+  return formatSydneyDate(iso, 'yyyy-MM-dd')
 }
 
 // ─── Component ──────────────────────────────────────────────────────────────
@@ -166,15 +166,16 @@ export function ShiftDetailSheet({ shift, open, onClose }: ShiftDetailSheetProps
   function handleSaveEdit() {
     if (!shift) return
 
-    // Build scheduled_start from date + start_time
-    const scheduledStart = new Date(`${editForm.date}T${editForm.start_time}:00`)
-    const scheduledEnd = new Date(scheduledStart.getTime() + editForm.duration_hours * 3600000)
+    // Build scheduled_start/end in Sydney timezone to avoid UTC offset bugs
+    const scheduledStartISO = sydneyDateTimeToISO(editForm.date, editForm.start_time)
+    const endMs = new Date(scheduledStartISO).getTime() + editForm.duration_hours * 3600000
+    const scheduledEndISO = new Date(endMs).toISOString()
 
     updateMutation.mutate(
       {
         worker_id: editForm.worker_id,
-        scheduled_start: scheduledStart.toISOString(),
-        scheduled_end: scheduledEnd.toISOString(),
+        scheduled_start: scheduledStartISO,
+        scheduled_end: scheduledEndISO,
         notes: editForm.notes || null,
       },
       {
@@ -324,7 +325,7 @@ export function ShiftDetailSheet({ shift, open, onClose }: ShiftDetailSheetProps
               <div className="space-y-4">
                 <DetailRow label="Worker" value={workerName} />
                 <DetailRow label="Support Type" value={shift.support_type ?? 'Not specified'} />
-                <DetailRow label="Date" value={format(new Date(shift.scheduled_start), 'EEEE, d MMMM yyyy')} />
+                <DetailRow label="Date" value={formatSydneyDate(shift.scheduled_start, 'EEEE, d MMMM yyyy')} />
                 <DetailRow
                   label="Time"
                   value={`${formatShiftTime(shift.scheduled_start)} - ${formatShiftTime(shift.scheduled_end)}`}
@@ -402,7 +403,6 @@ export function ShiftDetailSheet({ shift, open, onClose }: ShiftDetailSheetProps
         open={showCancel}
         onClose={() => {
           setShowCancel(false)
-          onClose()
         }}
         shiftId={shift.id}
       />

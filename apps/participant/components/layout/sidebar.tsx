@@ -1,5 +1,6 @@
 'use client'
 
+import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { createClient } from '@/lib/supabase/client'
 import { LayoutDashboard, FileText, User, LogOut, Calendar } from 'lucide-react'
@@ -66,7 +67,7 @@ export function Sidebar({ participant }: SidebarProps) {
           const Icon = item.icon
 
           return (
-            <a
+            <Link
               key={item.href}
               href={item.href}
               className={`flex items-center gap-3 rounded-md px-3 py-2 text-sm transition-colors ${
@@ -77,7 +78,7 @@ export function Sidebar({ participant }: SidebarProps) {
             >
               <Icon className="h-4 w-4" />
               {item.label}
-            </a>
+            </Link>
           )
         })}
       </nav>

@@ -23,12 +23,17 @@ export function useUpdateShift(shiftId: string) {
     mutationFn: async (input: UpdateShiftInput) => {
       const supabase = createClient()
 
+      // Filter out undefined fields to avoid overwriting existing values with null
+      const updateFields: Record<string, unknown> = { updated_at: new Date().toISOString() }
+      for (const [key, value] of Object.entries(input)) {
+        if (value !== undefined) {
+          updateFields[key] = value
+        }
+      }
+
       const { data, error } = await (supabase
         .from('shifts') as any)
-        .update({
-          ...input,
-          updated_at: new Date().toISOString(),
-        })
+        .update(updateFields)
         .eq('id', shiftId)
         .select('id')
         .single()

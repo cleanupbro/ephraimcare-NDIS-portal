@@ -1,4 +1,5 @@
 import type { Metadata } from 'next'
+import Link from 'next/link'
 import { WorkerForm } from '@/components/workers/worker-form'
 
 export const metadata: Metadata = {
@@ -12,9 +13,9 @@ export default function NewWorkerPage() {
       <nav className="text-sm text-muted-foreground">
         <ol className="flex items-center gap-1.5">
           <li>
-            <a href="/workers" className="hover:text-foreground transition-colors">
+            <Link href="/workers" className="hover:text-foreground transition-colors">
               Workers
-            </a>
+            </Link>
           </li>
           <li className="text-muted-foreground/50">/</li>
           <li className="text-foreground font-medium">New</li>

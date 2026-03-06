@@ -47,6 +47,16 @@ export const workerColumns: ColumnDef<WorkerWithProfile>[] = [
     ),
   },
   {
+    id: 'phone',
+    accessorFn: (row) => row.profiles.phone ?? '',
+    header: 'Phone',
+    cell: ({ row }) => (
+      <span className="text-sm text-muted-foreground">
+        {row.original.profiles.phone || '\u2014'}
+      </span>
+    ),
+  },
+  {
     id: 'support_types',
     accessorFn: (row) => row.services_provided?.join(', ') ?? '',
     header: 'Support Types',

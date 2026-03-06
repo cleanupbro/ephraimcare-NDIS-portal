@@ -48,3 +48,8 @@ Format:
 **Decision:** Restructured the project into a standard workspace layout.
 **Why:** To standardize memory, skills, and documentation across projects and ensure consistent agent behavior.
 **Alternatives:** N/A (Standard operating procedure).
+
+### 2026-02-27 — Playwright Combobox Click Strategy
+**Decision:** Used `{ force: true }` when clicking Shadcn comboboxes in E2E tests.
+**Why:** Shadcn's DOM structure places the actual input behind the trigger or visually hides it, causing Playwright strict mode to timeout waiting for it to be actionable.
+**Alternatives:** Attempting to click the exact visible span or div (rejected — flaky due to varying DOM rendering).

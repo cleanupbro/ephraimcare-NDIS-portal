@@ -7,6 +7,15 @@
 - **Purpose:** Monorepo for Ephraim Care’s NDIS portal, integrating ephraimcare.com.au with a secure web app for participant onboarding, plan and funding views, service booking workflows, and internal care team tools across Liverpool and Western Sydney.
 - **Maintainer Note:** This README is labeled for clear ownership and repository intent.
 
+---
+
+# 🚀 CLIENT HANDOVER — START HERE
+If you are Meshach or a stakeholder reviewing the platform, please start in the **[client-handover/](./client-handover/)** folder. 
+
+It contains the **[Login & Usage Guide](./client-handover/LOGIN-AND-USAGE-GUIDE.md)**, live URLs, test credentials, and comprehensive feature summaries.
+
+---
+
 <!-- CLAWD_REPO_LABEL_END -->
 
 <!-- CLAWD_REPO_STANDARD_START -->

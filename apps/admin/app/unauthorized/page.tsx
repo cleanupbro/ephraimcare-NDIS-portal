@@ -1,3 +1,5 @@
+import Link from 'next/link'
+
 export default function UnauthorizedPage() {
   return (
     <div className="flex min-h-screen items-center justify-center">
@@ -8,9 +10,9 @@ export default function UnauthorizedPage() {
         <p className="text-sm text-muted-foreground">
           You do not have permission to access the admin portal.
         </p>
-        <a href="/login" className="text-sm text-secondary hover:underline">
+        <Link href="/login" className="text-sm text-secondary hover:underline">
           Return to login
-        </a>
+        </Link>
       </div>
     </div>
   )
