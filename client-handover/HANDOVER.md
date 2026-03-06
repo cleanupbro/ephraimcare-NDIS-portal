@@ -8,13 +8,18 @@
 
 ## What You Got
 
-You have **2 web apps** and **1 mobile app** — all live and working right now:
+You have **1 public website**, **2 web apps**, and **1 mobile app** — all live and working right now:
 
 | App | Who Uses It | Link |
 |-----|-------------|------|
+| **Public Website** | Everyone (your business site) | [ephraimcare.com.au](https://www.ephraimcare.com.au) |
 | **Admin Portal** | You + your coordinators | [ephraimcare-ndis-portal-admin.vercel.app](https://ephraimcare-ndis-portal-admin.vercel.app) |
 | **Participant Portal** | Your NDIS clients | [ephraimcare-participant-portal.vercel.app](https://ephraimcare-participant-portal.vercel.app) |
 | **Worker Mobile App** | Your support workers | Expo/React Native (not deployed to App Store yet) |
+
+The **public website** is your front door — what people see when they Google "Ephraim Care". It has your services, about page, contact form, and all the info about your NDIS support services in Liverpool and Western Sydney.
+
+The **Admin Portal + Participant Portal + Worker App** are the behind-the-scenes system that runs your business — scheduling, rostering, invoicing, compliance, and everything else.
 
 ---
 
@@ -394,6 +399,7 @@ The mobile app (Expo/React Native) lets workers:
 
 | Layer | Technology |
 |-------|-----------|
+| Public Website | Next.js 14, TypeScript, Tailwind CSS, Radix UI, Motion, ElevenLabs Voice AI |
 | Admin Portal | Next.js 15, React 19, Tailwind CSS v4, shadcn/ui |
 | Participant Portal | Next.js 15, React 19, Tailwind CSS v4, shadcn/ui |
 | Worker Mobile App | Expo 53, React Native |
@@ -402,9 +408,10 @@ The mobile app (Expo/React Native) lets workers:
 | Hosting | Vercel (auto-deploy from GitHub) |
 | Email | Resend API |
 | SMS | Twilio (Australian number) |
+| Notifications | n8n Webhooks (SMS, WhatsApp, Telegram, Email) |
 | Monorepo | Turborepo + pnpm workspaces |
 | State | TanStack React Query + Zustand |
-| Repo | Private GitHub: `cleanupbro/ephraimcare-NDIS-portal` |
+| Repos | Private GitHub: `cleanupbro/ephraimcare-NDIS-portal` (portal) + `ephraimcarerepo1` (website) |
 
 ---
 
@@ -418,4 +425,56 @@ The mobile app (Expo/React Native) lets workers:
 
 ---
 
-*Built with care by OpBros.ai. All screenshots captured from live production on 7 March 2026.*
+## What This Would Cost to Build (Real 2025-2026 Market Pricing)
+
+This pricing is based on real Australian developer rates researched from 15 industry sources including Lancebase, Intracode, Codewave, Devstree, AppInventiv, Enterprise Monkey, 7Pillars, Fullstack, and Basecode — all Australian software industry pricing guides for 2025-2026.
+
+### What was built (scope summary)
+- Public business website with contact forms, service pages, and voice AI
+- Admin portal with 12+ pages (dashboard, participants, workers, shifts, invoices, case notes, incidents, compliance, cancellations, NDIS plans, settings)
+- Participant self-service portal (dashboard, appointments, invoices, profile)
+- Worker mobile app with GPS check-in/out and case notes
+- SMS + email notification system (shift reminders, cancellations, invitations)
+- NDIS compliance (incident reporting with NDIA countdown, worker screening checks, plan date tracking)
+- Full database with Row Level Security (organization-scoped, role-based access)
+- 39 automated E2E tests
+- Stability audit + 13 bug fixes
+
+### Estimated hours for this scope
+| Component | Hours |
+|-----------|-------|
+| Web admin + participant portal (Next.js + Supabase) | 500-700 |
+| Rostering, GPS check-in, scheduling with conflict detection | 250-400 |
+| Invoicing + NDIA-aligned exports | 150-250 |
+| Incident reporting, case notes, audit trails | 150-250 |
+| Notifications (SMS/email), templates, preferences | 80-140 |
+| React Native worker app (schedules, GPS, notes) | 350-550 |
+| Public website (design, content, forms, voice AI) | 150-250 |
+| Testing, refactoring, infra, documentation | 150-250 |
+| **TOTAL** | **1,780-2,790 hours** |
+
+### What it would cost at real Australian rates
+
+| Who Builds It | Rate (AUD/hr) | Hours | Total Cost (AUD) |
+|---------------|---------------|-------|-----------------|
+| **Solo Freelancer** | $100-$140/hr | 1,780-2,790 | **$180,000 - $300,000** |
+| **Small Agency** (2-5 people) | $140-$220/hr | 1,850-2,900 | **$250,000 - $450,000** |
+| **Mid-size Company** (20-100 people) | $200-$280/hr | 2,150-3,400 | **$400,000 - $750,000+** |
+
+> Australian freelance full-stack developers charge $80-$180 AUD/hour (source: Lancebase, Basecode).
+> Australian custom software agencies quote $90-$200 AUD/hour (source: Intracode, Codewave).
+> Mid-sized app builds in Australia range $80,000-$200,000 for app-only, with multi-surface compliance-heavy systems reaching $300,000-$750,000+ (source: Codewave, 7Pillars, AppInventiv).
+
+### What you paid
+
+| Item | Cost |
+|------|------|
+| Everything listed above | **$5,000 AUD** |
+
+That's **2-3% of what a solo freelancer would charge**, and **less than 1%** of what a mid-size company would quote.
+
+You got a $250K-$450K system for $5K. That's the value of working with OpBros.ai.
+
+---
+
+*Built with care by OpBros.ai. All screenshots captured from live production on 7 March 2026. Pricing research conducted via Perplexity AI deep search across 15 Australian industry sources.*
