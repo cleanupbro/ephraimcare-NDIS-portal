@@ -1,15 +1,11 @@
 'use client'
 
+import { useEffect } from 'react'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { createClient } from '@/lib/supabase/client'
-import { LayoutDashboard, FileText, User, LogOut, Calendar } from 'lucide-react'
+import { LayoutDashboard, FileText, User, LogOut, Calendar, X } from 'lucide-react'
 import { useQueryClient } from '@tanstack/react-query'
-import {
-  Sheet,
-  SheetContent,
-  SheetTitle,
-} from '@ephraimcare/ui'
 
 // ─── Types ────────────────────────────────────────────────────────────────────
 
@@ -108,6 +104,24 @@ function SidebarContent({ participant, onNavClick }: {
 // ─── Sidebar Component ────────────────────────────────────────────────────────
 
 export function Sidebar({ participant, mobileOpen, onMobileClose }: SidebarProps) {
+  const isOpen = !!mobileOpen
+
+  useEffect(() => {
+    if (isOpen) {
+      document.body.style.overflow = 'hidden'
+      return () => { document.body.style.overflow = '' }
+    }
+  }, [isOpen])
+
+  useEffect(() => {
+    if (!isOpen) return
+    const handler = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') onMobileClose?.()
+    }
+    document.addEventListener('keydown', handler)
+    return () => document.removeEventListener('keydown', handler)
+  }, [isOpen, onMobileClose])
+
   return (
     <>
       {/* Desktop sidebar */}
@@ -115,13 +129,29 @@ export function Sidebar({ participant, mobileOpen, onMobileClose }: SidebarProps
         <SidebarContent participant={participant} />
       </aside>
 
-      {/* Mobile Sheet sidebar */}
-      <Sheet open={mobileOpen} onOpenChange={(open) => !open && onMobileClose?.()}>
-        <SheetContent className="p-5 flex flex-col" side="left">
-          <SheetTitle className="sr-only">Navigation menu</SheetTitle>
+      {/* Mobile sidebar — plain div */}
+      <div className="md:hidden">
+        <div
+          className={`fixed inset-0 z-40 bg-black/50 transition-opacity duration-200 ${
+            isOpen ? 'opacity-100' : 'opacity-0 pointer-events-none'
+          }`}
+          onClick={onMobileClose}
+        />
+        <aside
+          className={`fixed inset-y-0 left-0 z-50 w-72 bg-card p-5 flex flex-col shadow-xl transition-transform duration-200 ease-out ${
+            isOpen ? 'translate-x-0' : '-translate-x-full'
+          }`}
+        >
+          <button
+            type="button"
+            onClick={onMobileClose}
+            className="absolute top-3 right-3 h-10 w-10 flex items-center justify-center rounded-md text-muted-foreground hover:text-foreground hover:bg-accent active:bg-accent"
+          >
+            <X className="h-5 w-5" />
+          </button>
           <SidebarContent participant={participant} onNavClick={onMobileClose} />
-        </SheetContent>
-      </Sheet>
+        </aside>
+      </div>
     </>
   )
 }
