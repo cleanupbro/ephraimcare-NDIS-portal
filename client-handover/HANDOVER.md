@@ -408,7 +408,7 @@ The mobile app (Expo/React Native) lets workers:
 | Hosting | Vercel (auto-deploy from GitHub) |
 | Email | Resend API |
 | SMS | Twilio (Australian number) |
-| Notifications | n8n Webhooks (SMS, WhatsApp, Telegram, Email) |
+| Notifications | Supabase triggers + Resend (email) + Twilio (SMS) |
 | Monorepo | Turborepo + pnpm workspaces |
 | State | TanStack React Query + Zustand |
 | Repos | Private GitHub: `cleanupbro/ephraimcare-NDIS-portal` (portal) + `ephraimcarerepo1` (website) |
@@ -474,6 +474,29 @@ This pricing is based on real Australian developer rates researched from 15 indu
 That's **2-3% of what a solo freelancer would charge**, and **less than 1%** of what a mid-size company would quote.
 
 You got a $250K-$450K system for $5K. That's the value of working with OpBros.ai.
+
+### Pricing sources (click to verify)
+
+All pricing data sourced from real Australian software industry guides published in 2025-2026:
+
+1. [Intracode — How Much Does Custom Software Cost in Australia? 2026 Pricing](https://www.intracode.com.au/blog/custom-software-cost-australia)
+2. [Codewave — App Development Costs in Australia 2025 Guide](https://codewave.com/insights/app-development-costs-australia/)
+3. [Basecode — Custom Software Development Cost in Australia 2026](https://basecode.com.au/blogs/custom-software-development-cost-in-australia-2026-pricing-timelines-project-types/)
+4. [Lightning Ventures — How Much Does Custom Software Development Cost in 2025?](https://www.lightningventures.com.au/blogs/custom-software-cost-guide)
+5. [Webcotalent — Hire Software Developers in Australia: 2026 Budget Guide](https://webcotalent.au/blog/how-to-hire-a-software-developer-in-australia-without-breaking-the-budget-2026-guide/)
+6. [Abbacus Technologies — Hourly Rate for Freelance Full Stack Developer](https://www.abbacustechnologies.com/what-is-the-hourly-rate-for-a-freelance-full-stack-developer/)
+7. [7Pillars — Breaking Down the Costs: React Native App](https://7pillars.com.au/blog/breaking-down-the-costs-how-much-to-build-your-dream-react-native-app/)
+8. [Enterprise Monkey — Costs and Timelines of Custom Software Projects Melbourne](https://enterprisemonkey.com.au/navigating-costs-and-timelines-custom-software-projects-melbourne/)
+9. [Clicks IT — Full Stack Developer Salary & Rates Guide](https://clicks.com.au/job-salary/full-stack-developer/)
+10. [Devstree — App Development Cost in Australia](https://www.devstree.com.au/app-development-cost-in-australia/)
+11. [AppInventiv — Software Development Cost in Australia 2026](https://appinventiv.com/blog/software-development-cost-in-australia/)
+12. [Lancebase — Average Hourly Rates for Freelance Australian Web Developers](https://lancebase.io/freelance-web-developer-hourly-rate-australia/)
+13. [AppInventiv — Mobile App Development Cost in Australia 2026](https://appinventiv.com/blog/mobile-app-development-cost-in-australia/)
+14. [Upscalix — Local vs Offshore Developer Cost: 2026 Australia Guide](https://upscalix.com.au/offshore/local-vs-offshore-developer-cost-australia)
+15. [Fullstack Labs — 2025 Software Development Price Guide & Hourly Rate](https://www.fullstack.com/labs/resources/blog/software-development-price-guide-hourly-rate-comparison)
+
+![Pricing Research Screenshot](./screenshots/pricing-research-perplexity.png)
+*^ Live Perplexity AI deep search results showing Australian software development pricing for 2025-2026.*
 
 ---
 
