@@ -271,15 +271,20 @@ const SheetContent = React.forwardRef<HTMLDivElement, SheetContentProps>(
             onTransitionEnd={handlePanelTransitionEnd}
             {...props}
           >
-            <button
-              type="button"
-              onClick={() => onOpenChange(false)}
-              className="absolute right-4 top-4 z-20 flex h-11 w-11 items-center justify-center rounded-md bg-background/95 text-muted-foreground transition-colors hover:text-foreground focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2"
-            >
-              <X className="h-4 w-4" />
-              <span className="sr-only">Close</span>
-            </button>
             <div className="min-h-0 flex-1 overflow-y-auto">{children}</div>
+            <div
+              className="absolute right-0 top-0 z-20 p-3"
+              onClick={(e) => e.stopPropagation()}
+            >
+              <button
+                type="button"
+                onClick={() => onOpenChange(false)}
+                className="flex h-11 w-11 items-center justify-center rounded-md bg-background shadow-sm border border-border text-muted-foreground transition-colors hover:text-foreground active:bg-accent focus:outline-none focus:ring-2 focus:ring-ring"
+              >
+                <X className="h-5 w-5" />
+                <span className="sr-only">Close</span>
+              </button>
+            </div>
           </div>
         </div>
       </SheetPortal>
