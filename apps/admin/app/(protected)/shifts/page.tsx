@@ -27,14 +27,14 @@ export default async function ShiftsPage() {
 
   return (
     <div className="space-y-6">
-      <div className="flex items-center justify-between">
+      <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
         <div>
-          <h1 className="font-heading text-2xl font-bold">Shifts</h1>
+          <h1 className="font-heading text-xl md:text-2xl font-bold">Shifts</h1>
           <p className="text-sm text-muted-foreground">
             Weekly shift schedule
           </p>
         </div>
-        <div className="flex items-center gap-2">
+        <div className="flex flex-wrap items-center gap-2">
           <Button variant="outline" asChild>
             <Link href="/shifts/calendar">
               <Calendar className="mr-2 h-4 w-4" />

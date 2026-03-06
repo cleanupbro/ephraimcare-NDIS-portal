@@ -16,7 +16,7 @@ export function PlanInfoCard({ startDate, endDate }: PlanInfoCardProps) {
   const isExpired = isPast(end)
 
   return (
-    <div className="rounded-xl border bg-card p-6 shadow-sm">
+    <div className="rounded-xl border bg-card p-4 md:p-6 shadow-sm">
       <div className="flex items-center gap-2">
         <Calendar className="h-4 w-4 text-muted-foreground" />
         <h3 className="text-sm font-medium text-muted-foreground">Plan Period</h3>

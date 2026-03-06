@@ -97,9 +97,9 @@ export function IncidentDetail({ incident, userId }: IncidentDetailProps) {
   return (
     <div className="space-y-6">
       {/* Header */}
-      <div className="flex items-start justify-between gap-4">
+      <div className="flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between">
         <div className="flex-1 min-w-0">
-          <h1 className="font-heading text-2xl font-bold">{incident.title}</h1>
+          <h1 className="font-heading text-xl md:text-2xl font-bold">{incident.title}</h1>
           <div className="flex flex-wrap items-center gap-2 mt-2">
             <Badge variant="outline">
               {INCIDENT_TYPE_LABELS[incident.incident_type as IncidentType]}
@@ -112,7 +112,7 @@ export function IncidentDetail({ incident, userId }: IncidentDetailProps) {
             </Badge>
           </div>
         </div>
-        <div className="flex items-center gap-2 shrink-0">
+        <div className="flex flex-wrap items-center gap-2 shrink-0">
           <Button variant="outline" size="sm" asChild>
             <Link href={`/incidents/${incident.id}/edit`}>
               <Pencil className="h-4 w-4 mr-2" />
@@ -195,7 +195,7 @@ export function IncidentDetail({ incident, userId }: IncidentDetailProps) {
               </div>
             )}
 
-            <div className="grid grid-cols-2 gap-4 pt-2">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-2">
               <div className="flex items-center gap-2 text-sm">
                 <Calendar className="h-4 w-4 text-muted-foreground" />
                 <span>{format(parseISO(incident.incident_date), 'd MMM yyyy, h:mm a')}</span>

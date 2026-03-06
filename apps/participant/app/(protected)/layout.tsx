@@ -1,6 +1,6 @@
 import { redirect } from 'next/navigation'
 import { createClient } from '@/lib/supabase/server'
-import { Sidebar } from '@/components/layout/sidebar'
+import { ProtectedShell } from '@/components/layout/protected-shell'
 
 export default async function ProtectedLayout({
   children,
@@ -37,11 +37,8 @@ export default async function ProtectedLayout({
   }
 
   return (
-    <div className="flex min-h-screen">
-      <Sidebar participant={participant} />
-      <main className="flex-1 p-8">
-        {children}
-      </main>
-    </div>
+    <ProtectedShell participant={participant}>
+      {children}
+    </ProtectedShell>
   )
 }

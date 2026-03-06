@@ -34,13 +34,13 @@ export function ShiftFilters({ filters, onFiltersChange, participants, workers }
   }
 
   return (
-    <div className="flex flex-wrap items-center gap-3">
+    <div className="grid grid-cols-2 sm:flex sm:flex-wrap sm:items-center gap-3">
       {/* Participant filter */}
       <Select
         value={filters.participantId || '__all__'}
         onValueChange={(value) => updateFilter('participantId', value)}
       >
-        <SelectTrigger className="w-[180px]">
+        <SelectTrigger className="w-full sm:w-[180px]">
           <SelectValue placeholder="All Participants" />
         </SelectTrigger>
         <SelectContent>
@@ -58,7 +58,7 @@ export function ShiftFilters({ filters, onFiltersChange, participants, workers }
         value={filters.workerId || '__all__'}
         onValueChange={(value) => updateFilter('workerId', value)}
       >
-        <SelectTrigger className="w-[180px]">
+        <SelectTrigger className="w-full sm:w-[180px]">
           <SelectValue placeholder="All Workers" />
         </SelectTrigger>
         <SelectContent>
@@ -76,7 +76,7 @@ export function ShiftFilters({ filters, onFiltersChange, participants, workers }
         value={filters.status || '__all__'}
         onValueChange={(value) => updateFilter('status', value)}
       >
-        <SelectTrigger className="w-[160px]">
+        <SelectTrigger className="w-full sm:w-[160px]">
           <SelectValue placeholder="All Statuses" />
         </SelectTrigger>
         <SelectContent>
@@ -95,7 +95,7 @@ export function ShiftFilters({ filters, onFiltersChange, participants, workers }
         value={filters.supportType || '__all__'}
         onValueChange={(value) => updateFilter('supportType', value)}
       >
-        <SelectTrigger className="w-[180px]">
+        <SelectTrigger className="w-full sm:w-[180px]">
           <SelectValue placeholder="All Types" />
         </SelectTrigger>
         <SelectContent>

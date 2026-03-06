@@ -1,7 +1,13 @@
-import type { Metadata } from 'next'
+import type { Metadata, Viewport } from 'next'
 import '@ephraimcare/ui/styles/globals.css'
 import { QueryProvider } from '@/providers/query-provider'
 import { Toaster } from '@/components/ui/toaster'
+
+export const viewport: Viewport = {
+  width: 'device-width',
+  initialScale: 1,
+  maximumScale: 5,
+}
 
 export const metadata: Metadata = {
   title: 'Ephraim Care - Admin Portal',

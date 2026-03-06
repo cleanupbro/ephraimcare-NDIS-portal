@@ -5,6 +5,11 @@ import { usePathname } from 'next/navigation'
 import { createClient } from '@/lib/supabase/client'
 import { LayoutDashboard, FileText, User, LogOut, Calendar } from 'lucide-react'
 import { useQueryClient } from '@tanstack/react-query'
+import {
+  Sheet,
+  SheetContent,
+  SheetTitle,
+} from '@ephraimcare/ui'
 
 // ─── Types ────────────────────────────────────────────────────────────────────
 
@@ -16,6 +21,8 @@ interface Participant {
 
 interface SidebarProps {
   participant: Participant
+  mobileOpen?: boolean
+  onMobileClose?: () => void
 }
 
 // ─── Navigation Items ─────────────────────────────────────────────────────────
@@ -27,17 +34,13 @@ const navItems = [
   { href: '/profile', label: 'Profile', icon: User },
 ]
 
-// ─── Sidebar Component ────────────────────────────────────────────────────────
+// ─── Sidebar Content ──────────────────────────────────────────────────────────
 
-/**
- * Sidebar component for participant portal.
- * - Shows navigation with active link highlighting
- * - Displays user info at bottom
- * - Logout button calls signOut and redirects to /login
- */
-export function Sidebar({ participant }: SidebarProps) {
+function SidebarContent({ participant, onNavClick }: {
+  participant: Participant
+  onNavClick?: () => void
+}) {
   const pathname = usePathname()
-
   const queryClient = useQueryClient()
 
   const handleLogout = async () => {
@@ -53,15 +56,15 @@ export function Sidebar({ participant }: SidebarProps) {
   }
 
   return (
-    <aside className="flex w-64 flex-col border-r border-border bg-card">
+    <>
       {/* Logo and portal name */}
-      <div className="p-6">
+      <div className="mb-6">
         <h2 className="font-heading text-lg font-bold text-primary">Ephraim Care</h2>
         <p className="text-xs text-muted-foreground">Participant Portal</p>
       </div>
 
       {/* Navigation */}
-      <nav className="flex-1 space-y-1 px-4">
+      <nav className="flex-1 space-y-1">
         {navItems.map((item) => {
           const isActive = pathname === item.href || pathname.startsWith(item.href + '/')
           const Icon = item.icon
@@ -70,7 +73,8 @@ export function Sidebar({ participant }: SidebarProps) {
             <Link
               key={item.href}
               href={item.href}
-              className={`flex items-center gap-3 rounded-md px-3 py-2 text-sm transition-colors ${
+              onClick={onNavClick}
+              className={`flex items-center gap-3 rounded-md px-3 py-3 md:py-2 text-sm transition-colors ${
                 isActive
                   ? 'bg-primary/10 text-primary font-medium'
                   : 'text-muted-foreground hover:bg-accent hover:text-foreground'
@@ -84,7 +88,7 @@ export function Sidebar({ participant }: SidebarProps) {
       </nav>
 
       {/* User info and logout */}
-      <div className="border-t border-border p-4">
+      <div className="mt-auto border-t border-border pt-4">
         <div className="mb-3">
           <p className="text-sm font-medium">{participant.first_name} {participant.last_name}</p>
           <p className="text-xs text-muted-foreground font-mono">NDIS: {participant.ndis_number}</p>
@@ -97,6 +101,27 @@ export function Sidebar({ participant }: SidebarProps) {
           Sign out
         </button>
       </div>
-    </aside>
+    </>
+  )
+}
+
+// ─── Sidebar Component ────────────────────────────────────────────────────────
+
+export function Sidebar({ participant, mobileOpen, onMobileClose }: SidebarProps) {
+  return (
+    <>
+      {/* Desktop sidebar */}
+      <aside className="hidden md:flex w-64 flex-col border-r border-border bg-card p-6">
+        <SidebarContent participant={participant} />
+      </aside>
+
+      {/* Mobile Sheet sidebar */}
+      <Sheet open={mobileOpen} onOpenChange={(open) => !open && onMobileClose?.()}>
+        <SheetContent className="p-5 flex flex-col" side="left">
+          <SheetTitle className="sr-only">Navigation menu</SheetTitle>
+          <SidebarContent participant={participant} onNavClick={onMobileClose} />
+        </SheetContent>
+      </Sheet>
+    </>
   )
 }

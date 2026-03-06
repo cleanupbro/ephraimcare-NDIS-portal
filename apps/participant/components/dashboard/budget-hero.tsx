@@ -23,7 +23,7 @@ function getBarColor(percentage: number): string {
 export function BudgetHero({ allocated, used }: BudgetHeroProps) {
   if (allocated <= 0) {
     return (
-      <div className="rounded-xl border bg-card p-6 shadow-sm">
+      <div className="rounded-xl border bg-card p-4 md:p-6 shadow-sm">
         <h2 className="text-sm font-medium text-muted-foreground">Budget Status</h2>
         <p className="mt-4 text-muted-foreground">No budget information available</p>
       </div>
@@ -35,11 +35,11 @@ export function BudgetHero({ allocated, used }: BudgetHeroProps) {
   const barColor = getBarColor(percentage)
 
   return (
-    <div className="rounded-xl border bg-card p-6 shadow-sm">
+    <div className="rounded-xl border bg-card p-4 md:p-6 shadow-sm">
       <h2 className="text-sm font-medium text-muted-foreground">Budget Status</h2>
       <div className="mt-4 space-y-4">
         <div className="flex items-baseline justify-between">
-          <span className="text-3xl font-bold">{formatAUD(used)}</span>
+          <span className="text-2xl md:text-3xl font-bold">{formatAUD(used)}</span>
           <span className="text-muted-foreground">of {formatAUD(allocated)} used</span>
         </div>
         <div className="h-4 w-full rounded-full bg-muted">

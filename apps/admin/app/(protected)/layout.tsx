@@ -1,6 +1,6 @@
 import { redirect } from 'next/navigation'
 import { createClient } from '@/lib/supabase/server'
-import { AdminSidebar } from '@/components/layout/admin-sidebar'
+import { ProtectedShell } from '@/components/layout/protected-shell'
 
 export default async function ProtectedLayout({
   children,
@@ -25,15 +25,12 @@ export default async function ProtectedLayout({
   }
 
   return (
-    <div className="flex min-h-screen">
-      <AdminSidebar
-        firstName={profile.first_name}
-        lastName={profile.last_name}
-        role={profile.role}
-      />
-      <main className="flex-1 p-8 overflow-y-auto">
-        {children}
-      </main>
-    </div>
+    <ProtectedShell
+      firstName={profile.first_name}
+      lastName={profile.last_name}
+      role={profile.role}
+    >
+      {children}
+    </ProtectedShell>
   )
 }

@@ -16,12 +16,19 @@ import {
   Receipt,
   BookOpen,
 } from 'lucide-react'
+import {
+  Sheet,
+  SheetContent,
+  SheetTitle,
+} from '@ephraimcare/ui'
 import { AdminLogoutButton } from '@/components/auth/admin-logout-button'
 
 interface AdminSidebarProps {
   firstName: string
   lastName: string
   role: string
+  mobileOpen?: boolean
+  onMobileClose?: () => void
 }
 
 const NAV_ITEMS = [
@@ -38,7 +45,12 @@ const NAV_ITEMS = [
   { href: '/settings', label: 'Settings', icon: Settings },
 ]
 
-export function AdminSidebar({ firstName, lastName, role }: AdminSidebarProps) {
+function SidebarContent({ firstName, lastName, role, onNavClick }: {
+  firstName: string
+  lastName: string
+  role: string
+  onNavClick?: () => void
+}) {
   const pathname = usePathname()
 
   function isActive(href: string): boolean {
@@ -47,7 +59,7 @@ export function AdminSidebar({ firstName, lastName, role }: AdminSidebarProps) {
   }
 
   return (
-    <aside className="flex flex-col w-64 border-r border-border bg-card p-6 shrink-0">
+    <>
       <div className="mb-8">
         <h2 className="font-heading text-lg font-bold text-primary">Ephraim Care</h2>
         <p className="text-xs text-muted-foreground">Admin Portal</p>
@@ -60,7 +72,8 @@ export function AdminSidebar({ firstName, lastName, role }: AdminSidebarProps) {
             <Link
               key={href}
               href={href}
-              className={`flex items-center gap-3 rounded-md px-3 py-2 text-sm transition-colors ${
+              onClick={onNavClick}
+              className={`flex items-center gap-3 rounded-md px-3 py-3 md:py-2 text-sm transition-colors ${
                 active
                   ? 'bg-primary/10 text-primary font-medium'
                   : 'text-muted-foreground hover:bg-accent hover:text-foreground'
@@ -82,6 +95,30 @@ export function AdminSidebar({ firstName, lastName, role }: AdminSidebarProps) {
         </p>
         <AdminLogoutButton />
       </div>
-    </aside>
+    </>
+  )
+}
+
+export function AdminSidebar({ firstName, lastName, role, mobileOpen, onMobileClose }: AdminSidebarProps) {
+  return (
+    <>
+      {/* Desktop sidebar */}
+      <aside className="hidden md:flex flex-col w-64 border-r border-border bg-card p-6 shrink-0">
+        <SidebarContent firstName={firstName} lastName={lastName} role={role} />
+      </aside>
+
+      {/* Mobile Sheet sidebar */}
+      <Sheet open={mobileOpen} onOpenChange={(open) => !open && onMobileClose?.()}>
+        <SheetContent className="p-5 flex flex-col" side="left">
+          <SheetTitle className="sr-only">Navigation menu</SheetTitle>
+          <SidebarContent
+            firstName={firstName}
+            lastName={lastName}
+            role={role}
+            onNavClick={onMobileClose}
+          />
+        </SheetContent>
+      </Sheet>
+    </>
   )
 }

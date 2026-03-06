@@ -110,7 +110,7 @@ export default function GenerateInvoicePage() {
           </Button>
         </Link>
         <div>
-          <h1 className="font-heading text-2xl font-bold">Generate Invoice</h1>
+          <h1 className="font-heading text-xl md:text-2xl font-bold">Generate Invoice</h1>
           <p className="text-sm text-muted-foreground">
             Create an invoice from completed shifts
           </p>
@@ -164,7 +164,7 @@ export default function GenerateInvoicePage() {
             </div>
 
             {/* Date Range */}
-            <div className="grid grid-cols-2 gap-4">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               <div className="space-y-2">
                 <Label htmlFor="period_start">Period Start</Label>
                 <Input

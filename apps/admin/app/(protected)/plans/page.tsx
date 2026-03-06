@@ -19,9 +19,9 @@ export default async function PlansPage() {
 
   return (
     <div className="space-y-6">
-      <div className="flex items-center justify-between">
+      <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
         <div>
-          <h1 className="font-heading text-2xl font-bold">NDIS Plans</h1>
+          <h1 className="font-heading text-xl md:text-2xl font-bold">NDIS Plans</h1>
           <p className="text-sm text-muted-foreground">
             {plans?.length ?? 0} plans
           </p>
@@ -31,7 +31,7 @@ export default async function PlansPage() {
         </button>
       </div>
 
-      <div className="grid gap-4 md:grid-cols-2">
+      <div className="grid gap-4 grid-cols-1 md:grid-cols-2">
         {plans?.map((plan) => {
           const budgetTotal = plan.plan_budgets?.reduce((sum, b) => sum + Number(b.allocated_amount), 0) ?? 0
 
@@ -53,7 +53,7 @@ export default async function PlansPage() {
                 </span>
               </div>
 
-              <div className="mt-3 grid grid-cols-2 gap-2 text-sm">
+              <div className="mt-3 grid grid-cols-1 sm:grid-cols-2 gap-2 text-sm">
                 <div>
                   <span className="text-muted-foreground">Period</span>
                   <p className="font-medium">

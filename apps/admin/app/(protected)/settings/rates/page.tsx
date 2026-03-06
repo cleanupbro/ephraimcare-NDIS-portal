@@ -101,7 +101,7 @@ function RateForm({ defaultValues, onSubmit, isLoading, submitLabel }: RateFormP
       </div>
 
       {/* Rate Tiers */}
-      <div className="grid grid-cols-2 gap-4">
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
         <div className="space-y-2">
           <Label htmlFor="weekday_rate">Weekday Rate ($/hr) *</Label>
           <Input
@@ -212,9 +212,9 @@ export default function RatesSettingsPage() {
   return (
     <div className="space-y-6 max-w-5xl">
       {/* Header */}
-      <div className="flex items-center justify-between">
+      <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
         <div>
-          <h1 className="font-heading text-2xl font-bold">Support Type Rates</h1>
+          <h1 className="font-heading text-xl md:text-2xl font-bold">Support Type Rates</h1>
           <p className="text-sm text-muted-foreground">
             Configure hourly rates for each support type
           </p>
@@ -231,7 +231,7 @@ export default function RatesSettingsPage() {
           Loading rates...
         </div>
       ) : rates && rates.length > 0 ? (
-        <div className="rounded-lg border border-border">
+        <div className="rounded-lg border border-border overflow-x-auto">
           <Table>
             <TableHeader>
               <TableRow>

@@ -57,7 +57,7 @@ export default async function DashboardPage() {
     <div className="space-y-8">
       {/* Header */}
       <div>
-        <h1 className="font-heading text-2xl font-bold">
+        <h1 className="font-heading text-xl md:text-2xl font-bold">
           Welcome back, {profile?.first_name}
         </h1>
         <p className="text-sm text-muted-foreground">
@@ -76,7 +76,7 @@ export default async function DashboardPage() {
 
       <div className="grid gap-6 md:grid-cols-2">
         {/* Quick Actions */}
-        <div className="rounded-xl border border-border bg-card p-6 shadow-sm">
+        <div className="rounded-xl border border-border bg-card p-4 md:p-6 shadow-sm">
           <h2 className="font-heading text-lg font-semibold mb-4">Quick Actions</h2>
           <div className="space-y-2">
             <QuickAction href="/shifts/new" label="Schedule a new shift" />
@@ -91,7 +91,7 @@ export default async function DashboardPage() {
       </div>
 
       {/* Upcoming Shifts */}
-      <div className="rounded-xl border border-border bg-card p-6 shadow-sm">
+      <div className="rounded-xl border border-border bg-card p-4 md:p-6 shadow-sm">
         <div className="flex items-center justify-between mb-4">
           <h2 className="font-heading text-lg font-semibold">Upcoming Shifts</h2>
           <Link href="/shifts" className="text-sm text-secondary hover:underline flex items-center gap-1">
@@ -108,7 +108,7 @@ export default async function DashboardPage() {
                 ? `${shift.workers.profiles.first_name} ${shift.workers.profiles.last_name}`
                 : 'Unassigned'
               return (
-                <div key={shift.id} className="flex items-center justify-between rounded-lg border border-border px-4 py-3 hover:bg-muted/30 transition-colors">
+                <div key={shift.id} className="flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between rounded-lg border border-border px-4 py-3 hover:bg-muted/30 transition-colors">
                   <div className="flex-1">
                     <p className="text-sm font-medium">{participant}</p>
                     <p className="text-xs text-muted-foreground">
@@ -148,12 +148,12 @@ export default async function DashboardPage() {
 
 function DashboardCard({ title, value, href, icon }: { title: string; value: string; href: string; icon: React.ReactNode }) {
   return (
-    <Link href={href} className="group block rounded-xl border border-border bg-card p-6 shadow-sm hover:shadow-md hover:border-primary/30 transition-all">
+    <Link href={href} className="group block rounded-xl border border-border bg-card p-4 md:p-6 shadow-sm hover:shadow-md hover:border-primary/30 transition-all active:scale-[0.98]">
       <div className="flex items-center justify-between mb-2">
         <p className="text-sm font-medium text-muted-foreground">{title}</p>
         <span className="text-muted-foreground/50 group-hover:text-primary transition-colors">{icon}</span>
       </div>
-      <p className="text-3xl font-bold tracking-tight">{value}</p>
+      <p className="text-2xl md:text-3xl font-bold tracking-tight">{value}</p>
     </Link>
   )
 }
